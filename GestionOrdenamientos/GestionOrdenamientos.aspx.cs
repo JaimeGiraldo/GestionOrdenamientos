@@ -79,22 +79,7 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-        [System.Web.Services.WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string InicioSesion(string UsuarioSistema, string Clave)
-        {
-            try
-            {
-                GestionOrdenamientos objLogin = new GestionOrdenamientos();
-                return objLogin.validarUsuario(UsuarioSistema, Clave);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
+     
 
 
         public string ObtenerPreguntas()
