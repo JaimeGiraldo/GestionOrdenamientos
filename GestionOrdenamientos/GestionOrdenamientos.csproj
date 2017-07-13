@@ -48,6 +48,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\EncuestaAlpina\EncuestaAlpina\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,6 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.eot" />
+    <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.ttf" />
+    <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.woff" />
+    <Content Include="fonts\bpicons\bpicons.eot" />
+    <Content Include="fonts\bpicons\bpicons.ttf" />
+    <Content Include="fonts\bpicons\bpicons.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,10 +84,68 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\component.css" />
+    <Content Include="css\demo.css" />
+    <Content Include="css\helpers.css" />
+    <Content Include="css\plugins.css" />
+    <Content Include="fonts\alpina-dashicons\demo-files\demo.css" />
+    <Content Include="fonts\alpina-dashicons\demo-files\demo.js" />
+    <Content Include="fonts\alpina-dashicons\demo.html" />
+    <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.svg" />
+    <Content Include="fonts\alpina-dashicons\style.css" />
+    <Content Include="fonts\bpicons\bpicons.svg" />
+    <Content Include="fonts\bpicons\license.txt" />
+    <Content Include="GestionOrdenamientos.aspx" />
+    <Content Include="Imagenes\select2.png" />
+    <Content Include="images\Atención B. _ Img Diag.png" />
+    <Content Include="images\back_pro_es_hand.jpg" />
+    <Content Include="images\bg_ayuda_alpina_blanco.jpg" />
+    <Content Include="images\bg_download_gris_png.png" />
+    <Content Include="images\bg_elementos_login_oficce.jpg" />
+    <Content Include="images\elmento_ramdon_internas.png" />
+    <Content Include="images\evaluacion360_titulo_principal.png" />
+    <Content Include="images\foto_perfil_usuario_sin_img.jpg" />
+    <Content Include="images\icon_mail_color_compartir.png" />
+    <Content Include="images\icon_ready_send.png" />
+    <Content Include="images\icon_share_vector_green.svg" />
+    <Content Include="images\logo_alpina_shadow.png" />
+    <Content Include="images\logo_principal_soyclave.png" />
+    <Content Include="images\pdf_icon_download_color.png" />
+    <Content Include="js\api.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\classie.js" />
+    <Content Include="js\curvedLines.js" />
+    <Content Include="js\Grafico360.js" />
+    <Content Include="js\highcharts.js" />
+    <Content Include="js\jquery-2.1.1.min.js" />
+    <Content Include="js\jquery.flot.orderBars.js" />
+    <Content Include="js\jquery.flot.pie.js" />
+    <Content Include="js\jquery.sparkline.js" />
+    <Content Include="js\jspdf.min.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\modals.js" />
+    <Content Include="js\modernizr-custom.js" />
+    <Content Include="js\progressbar.js" />
+    <Content Include="js\select2.js" />
+    <Content Include="js\sweet-alert.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BD\AccesoDatos.cs" />
+    <Compile Include="BD\SQLHelper.cs" />
+    <Compile Include="GestionOrdenamientos.aspx.cs">
+      <DependentUpon>GestionOrdenamientos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionOrdenamientos.aspx.designer.cs">
+      <DependentUpon>GestionOrdenamientos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Documentos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
