@@ -36,10 +36,8 @@ var IdUsuario = null;
 
 
 
-    $("#btnAsignar").on("click", function (e) {
-        var fechaIni = $("#dtmFechaInicial").val();
-        var fechaFin = $("#dtmFechaFinal").val();
-        consultarOrdenesFecha(fechaIni, fechaFin);
+    $("#btnAsignar").on("click", function (e) {       
+        consultarOrdenesFecha();
     });
 
  
@@ -415,6 +413,110 @@ var IdUsuario = null;
 		});
 	}
 
+
+
+
+    //Iniciar Sesion
+	function iniciarSesion(usuario, clave) {
+	    $.ajax({
+	        url: "GestionOrdenamientos.aspx/InicioSesion",
+	        data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        async: true,
+	        type: 'POST'
+	    }).done(function (rest) {
+	        if (rest.Error != undefined) {
+	            alert(rest.Error);
+	        } else {
+
+	            var lista = JSON.parse(rest.d);
+
+	            if (lista.Table.length > 0) {
+
+	                if (lista.Table[0].respuesta == "OK") {
+	                    openMenu();
+	                    $('#btnMenu').removeAttr('style');
+	                } else {
+	                    swal('Evolution', 'Lo sentimos, no tienes permisos para ingresar!', 'warning');
+	                }
+	            }
+	            else {
+	                swal('Evolution', 'Lo sentimos, no tienes permisos para ingresar!', 'warning');
+	            }
+	        }
+	    });
+	}
+
+    //consultar ordenes para optimizar
+	function consultarOrdenesFecha() {
+
+	    var Optimizador = "123";
+	    $.ajax({
+	        url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
+	        data: "{ Optimizador: '" + Optimizador + "'}",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        async: true,
+	        type: 'POST'
+	    }).done(function (rest) {
+	        if (rest.Error != undefined) {
+	            alert(rest.Error);
+	        } else {
+	            var listaDatos = JSON.parse(rest.d);
+
+	            var datos = listaDatos.Table;
+
+	            if (listaDatos.Table.length > 0) {
+	             
+	                if (listaDatos.Table.length > 0) {
+
+	                    
+
+	                    for (var i = 0; i < datos.length; i++) {
+	                        var tbl = '';
+	                        tbl += '<tr>';
+	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
+	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
+	                        tbl += '<td>' + datos[i].Estado_Solicitud + '</td>';
+	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
+	                        tbl += '<td>' + datos[i].Cups + '</td>';
+	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                        tbl += '<td>' + datos[i].Estado_servicio + '</td>';
+	                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
+	                        tbl += '<td>' + datos[i].Optimizador + '</td>';
+	                        tbl += '</tr>';
+	                        $("#tablaAsignar").append(tbl);	                      
+	                    }
+	                }
+
+
+
+	                //obtenerEvaluacion();
+	            }
+	            else {
+	                swal('Autoevaluacion', 'No se encontraron ordenes con los filtros ingresados.', 'warning');
+	                $('#tablaCalificar td').remove();
+	            }
+	        }
+	    });
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	function obtenerEvaluacionGrupal(evaluador) {
 
 
@@ -509,53 +611,53 @@ var IdUsuario = null;
 
 	}
 
-	//function obtenerEvaluacion() {
+	function obtenerEvaluacion() {
           
 
-	//    $.ajax({
-	//        url: "GestionOrdenamientos.aspx/obtenerPreguntas",
-	//        data:null,
-	//        contentType: "application/json; charset=utf-8",
-	//        dataType: "json",
-	//        async: false,
-	//        type: 'POST'
-	//    }).done(function (rest) {
+	    $.ajax({
+	        url: "GestionOrdenamientos.aspx/obtenerPreguntas",
+	        data:null,
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        async: false,
+	        type: 'POST'
+	    }).done(function (rest) {
 
-	//        var lista = rest.d;
+	        var lista = rest.d;
 
-	//        if (lista != '') {
+	        if (lista != '') {
 
-	//            var listaDatos = JSON.parse(lista);
+	            var listaDatos = JSON.parse(lista);
 
-	//            //if (listaDatos[0].realizada > 0) {
-	//            //    swal('EvolutionNet', 'El empleado seleccionado ya fue evaluado..!!', 'info');
-	//            //    return;
-	//            //}
+	            //if (listaDatos[0].realizada > 0) {
+	            //    swal('EvolutionNet', 'El empleado seleccionado ya fue evaluado..!!', 'info');
+	            //    return;
+	            //}
 
-	//            //Recorremos la lista con los datos 
-	//            for (var i = 0; i < listaDatos.Table.length; i++) {
-	//                var tbl = '';
-	//                var id = listaDatos.Table[i].IdPregunta;
-	//                tbl += '<tr>';
-	//                //if (listaDatos.Table[i].Letra == 'x' || listaDatos.Table[i].Letra == 'Y' || listaDatos.Table[i].Letra == 'z' || listaDatos.Table[i].Letra == 'z1') {
-	//                //    tbl += '<td></td>';
-	//                //}
-	//                //else {
-	//                    tbl += '<td id=' + id + '>' + listaDatos.Table[i].Letra + '</td>';
-	//               // }
-	//                tbl += '<td id=Descripcion' + id + '>' + listaDatos.Table[i].Descripcion + '</td>';
-	//                tbl += '<td><select  id=ddlCalificacionJefe' + id + ' class="form-control color-blue" onchange="calificarJefe(' + id + ')"><option value="1">Nunca</option><option value="2">Pocas veces</option><option value="3">Frecuentemente</option><option value="4">Siempre</option></select></td>';
-	//               // tbl += '<td> <div  class="progress animated-bar"><div id=progresoJefe' + id + ' class="progress-bar progress-bar-danger" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 25%;">0%</div></div></td>';	                
-	//                tbl += '</tr>';
+	            //Recorremos la lista con los datos 
+	            for (var i = 0; i < listaDatos.Table.length; i++) {
+	                var tbl = '';
+	                var id = listaDatos.Table[i].IdPregunta;
+	                tbl += '<tr>';
+	                //if (listaDatos.Table[i].Letra == 'x' || listaDatos.Table[i].Letra == 'Y' || listaDatos.Table[i].Letra == 'z' || listaDatos.Table[i].Letra == 'z1') {
+	                //    tbl += '<td></td>';
+	                //}
+	                //else {
+	                    tbl += '<td id=' + id + '>' + listaDatos.Table[i].Letra + '</td>';
+	               // }
+	                tbl += '<td id=Descripcion' + id + '>' + listaDatos.Table[i].Descripcion + '</td>';
+	                tbl += '<td><select  id=ddlCalificacionJefe' + id + ' class="form-control color-blue" onchange="calificarJefe(' + id + ')"><option value="1">Nunca</option><option value="2">Pocas veces</option><option value="3">Frecuentemente</option><option value="4">Siempre</option></select></td>';
+	               // tbl += '<td> <div  class="progress animated-bar"><div id=progresoJefe' + id + ' class="progress-bar progress-bar-danger" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 25%;">0%</div></div></td>';	                
+	                tbl += '</tr>';
 	             
-	//                $("#tablaPreguntas").append(tbl);	                
+	                $("#tablaPreguntas").append(tbl);	                
 	              	             
-	//            }
+	            }
 	           
-	//        }
-	//    });
+	        }
+	    });
         
-	//}    
+	}    
 
     function guardarEvaluacion(id) {
                
@@ -634,82 +736,7 @@ var IdUsuario = null;
 
     
 
-    function consultarOrdenesFecha(fechaInicial, fechaFinal) {
 
-         $.ajax({
-             url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
-             data: "{ FechaInicial: '" + fechaInicial + "',FechaFinal:'" + fechaFinal + "'}",
-             contentType: "application/json; charset=utf-8",
-             dataType: "json",
-             async: true,
-             type: 'POST'
-         }).done(function (rest) {
-             if (rest.Error != undefined) {
-                 alert(rest.Error);
-             } else {
-
-                 var lista = JSON.parse(rest.d);
-
-                 if (lista.Table.length > 0) {                     
-                     //$('#btnMenu').removeAttr('style');
-                     if (lista.Table.length > 0) {
-                         $('#tablaCalificar td').remove();
-                         for (var i = 0; i < lista.Table.length; i++) {
-
-                             console.log(lista.Table.length);
-                             var tbl = '';                           
-                             tbl += '<tr>';
-                             tbl += '<td id="nombre' + "id" + '">' + lista.Table[i].Ciklos_Usuario_que_Registro + '</td>';                          
-                          
-                             tbl += '</tr>';
-                             $("#tablaCalificar").append(tbl);
-                         }
-                     }
-
-
-
-                     //obtenerEvaluacion();
-                 }
-                 else {
-                     swal('Autoevaluacion', 'No se encontraron ordenes con los filtros ingresados.', 'warning');
-                     $('#tablaCalificar td').remove();
-                 }
-             }
-         });
-     }
-   
-
-    //Iniciar Session
-    function iniciarSesion(usuario, clave) {
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/InicioSesion",
-            data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                alert(rest.Error);
-            } else {
-
-                var lista = JSON.parse(rest.d);
-
-                if (lista.Table.length > 0) {
-
-                    if (lista.Table[0].respuesta == "OK") {
-                        openMenu();
-                        $('#btnMenu').removeAttr('style');
-                    } else {
-                        swal('Evolution', 'Usted No tiene Permisos para ingresar..!', 'warning');
-                    }
-                }
-                else {
-                    swal('Evolution', 'Usted No tiene Permisos para ingresar..!', 'warning');
-                }
-            }
-        });
-    }
 
     //Iniciar Session
     //function iniciarSesion(usuario, clave, tipo) {

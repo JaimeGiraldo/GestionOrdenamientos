@@ -73,10 +73,8 @@
 		<!-- page -->
 		<div class="page" id="page-home">
 			<!-- Header -->
-			<header class="bp-header cf">
-				<span class="bp-header__present">Gestion Ordenamientos <span class="bp-tooltip bp-icon bp-icon--about" data-content="El único objetivo de este proceso de evaluación de 360° es confirmar sus fortalezas y encontrar, aceptar y actuar con respecto a sus necesidades más apremiantes."></span></span>
-				<h1 class="bp-header__present">Bienvenid@s</h1>
-				<p class="bp-header__present">Inicia sesión</p>
+			<header class="bp-header cf">		
+				<p class="bp-header__present">Gestion Ordenamientos bienvenidos, <b>inicia sesión</b></p>
 				<!--<nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
 					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
@@ -156,40 +154,22 @@
                     </div>
                    
                    <div class="col-lg-4 col-md-4">
-                       <button id="btnAsignar" class="btn btn-primary" onclick="consultarOrdenesFecha()">Consultar Ordenes</button>
+                       <button id="btnAsignar" class="btn btn-primary">Consultar Ordenes</button>
                    </div>           
                     <div class="col-lg-12 col-md-12">
                  
                  <table id="tablaAsignar" class="table table-hover table-action">
                        <thead>
                         <tr>   
-                            <th>Cups</th> 
-                                <th>Codigo_Solicitud_Ciklos</th> 
-                    <th>Fecha_Registro_Solicitud</th> 
-                    <th>Ciklos_Usuario_que_Registro</th> 
-                    <th>Fecha_Esperada_de_Respuesta</th> 
-                    <th>Estado_Solicitud</th> 
-                    <th>Prestador_Solicitante</th> 
-                    <th>Id_Afiliado</th> 
-                    <th>Ciudad_del_Centro_que_Audita</th> 
-                    <th>Centro_que_Audita</th> 
-                    <th>Usuario_que_deja_Pendiente_en_Auditoria</th> 
-                    <th>Ciudad_del_centro_generador_de_autorizacion</th> 
-                    <th>Centro_generador_de_autorizacion</th> 
-                    <th>Usuario_que_deja_Pendiente_en_Front</th> 
-                    <th>Tipo_de_servicio</th> 
-                    <th>Descripcion</th> 
-                    <th>Estado_servicio</th> 
-                    <th>Nivel_Autorizacion</th> 
-                    <th>Responsable_Auditoria</th> 
-                    <th>Responsable_Generar_At4</th> 
-                    <th>Usuario_que_Audita</th> 
-                    <th>Justificacion_de_Auditoria</th> 
-                    <th>Observaciones_de_Auditoria</th> 
-                    <th>Observaciones_Generales</th> 
-                    <th>ValorAproximado</th> 
-                    <th>Cups</th>                                                     
-                            
+                             <th>Fecha Solicitud</th>
+                             <th>Fecha Esperada</th>
+                             <th>Estado Soli</th>
+                             <th>Solicitante</th>
+                             <th>Cups</th> 
+                             <th>Descripción</th>
+                             <th>Estado Serv</th>
+                             <th>Afiliado</th>        
+                             <th>Optimizador</th>                             
                         </tr>
                     </thead>
                       <tbody></tbody>
