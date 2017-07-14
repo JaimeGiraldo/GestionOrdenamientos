@@ -95,6 +95,31 @@ namespace GestionOrdenamientos
         }
 
 
+        //Actualiza los datos de usuario
+        public string ActualizarOrdenes(string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        {
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
+            if (dt.Tables.Count > 0)
+            {
+                return JsonConvert.SerializeObject(dt);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string actualizarOrdenes(string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        {
+            GestionOrdenamientos objUsuario = new GestionOrdenamientos();
+            return objUsuario.ActualizarOrdenes(optimizador, idconsecutivo, proveedorasignado, observaciones);
+        }
+
+
+
         public string ObtenerPreguntas()
         {
             try

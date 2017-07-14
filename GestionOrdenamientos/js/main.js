@@ -481,33 +481,27 @@ var IdUsuario = null;
 	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
 	                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
 	                        tbl += '<td>' + datos[i].Optimizador + '</td>';
-	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].Codigo_Solicitud_Ciklos + '" class="form-control color-blue per70"></select>' + '</td>';
-	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].Codigo_Solicitud_Ciklos + '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].Codigo_Solicitud_Ciklos + ')">Asignar</button>' + '</td>';
+	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].idConsecutivo + '" class="form-control color-blue per70"></select>' + '</td>';
+	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Ingresa tus observaciones">' + '</td>';
+	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].idConsecutivo + ',' + i+1 + ')">Asignar</button>' + '</td>';
 	                        tbl += '</tr>';	                        
                                                    
 
 	                        $("#tablaAsignar").append(tbl);
 
-	                        var combo = $('#ddl_Proveedoress_' + datos[i].Codigo_Solicitud_Ciklos);
+	                        var combo = $('#ddl_Proveedoress_' + datos[i].idConsecutivo);
 	                        llenarCombos(combo, "spsuministros_Proveedores_Obtener");
 	                    }
 	                }
 	            else {
-	                swal('Autoevaluacion', 'No se encontraron ordenes asignadas al usuario: ' + usuario + '.', 'warning');
-	                $('#tablaCalificar td').remove();
+	                    swal('Autoevaluacion', 'No se encontraron ordenes asignadas al usuario: ' + usuario + '.', 'warning');
+	                    $('#tablaAsignar td').remove();
 	            }
 	        }
 	    });
 	}
     
-
-
-
-
-
-
-
-
+    
 	function obtenerEvaluacionGrupal(evaluador) {
 
 
@@ -727,118 +721,6 @@ var IdUsuario = null;
 
     
 
-
-
-    //Iniciar Session
-    //function iniciarSesion(usuario, clave, tipo) {
-    //    $.ajax({
-    //        url: "GestionOrdenamientos.aspx/InicioSesion",
-    //        data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        async: true,
-    //        type: 'POST'
-    //    }).done(function (rest) {
-    //        if (rest.Error != undefined) {
-    //            alert(rest.Error);
-    //        } else {
-
-    //            var lista = JSON.parse(rest.d);
-
-    //            if (lista.Table[0].cant > 0) {
-    //                openMenu();
-    //                $('#btnMenu').removeAttr('style');
-    //                if (usuario == "admin") {
-    //                    $('#Parametrizacion').removeAttr('style');
-    //                    $('#ParametrizacionJefe').removeAttr('style');
-    //                }
-
-    //                if (lista.Table1.length > 0) {
-    //                    IdUsuario = lista.Table1[0].Cedula;
-    //                    $('#lblUsuario').html(lista.Table1[0].Perfil);
-    //                    $('#lblPerfil').html(lista.Table1[0].Perfil);
-    //                    $('#lblUserAyuda').html('<b>' + lista.Table1[0].Perfil + '</b>');
-    //                    var Permiso = lista.Table1[0].Permiso;
-    //                    if (Permiso == 1) {
-    //                        $("#Resultado1").show();
-    //                        $("#Resultado2").show();
-    //                        $("#Fortalezas").show();
-    //                    } else {
-    //                        $("#Resultado1").hide();
-    //                        $("#Resultado2").hide();
-    //                        $("#Fortalezas").hide();
-    //                    }
-    //                    var MostrarAyuda = lista.Table1[0].MostrarAyuda;
-    //                    if (MostrarAyuda == '0') {
-    //                        swal('Autoevaluación', 'Abrir ayuda', 'warning');
-    //                        $('#btnMenu').trigger('click');
-    //                        $('#ayuda_user').trigger('click');
-    //                    }
-    //                    else {
-    //                        //swal('Autoevaluación', 'Señor Usuario si usted necesita ayuda dirijase al menu!', 'warning');
-    //                    }
-
-    //                }
-
-    //                if (lista.Table3.length > 0) {
-    //                    for (var i = 0; i < lista.Table3.length; i++) {
-    //                        var div = '';
-    //                        div = '<div class="box_blanco_name">';
-    //                        div += '<h5>' + lista.Table3[i].Nombre + '</h5>';
-    //                        div += '<span>' + lista.Table3[i].Cargo + '</span>';
-    //                        div += '<a style="cursor:pointer;" href="javascript:getResultadosIndividual(' + lista.Table3[i].CedulaEvaluado + ')">Ver Resultado</a>';
-    //                        div += '</div>';
-    //                        $("#EmpleadosJefe").append(div);
-
-    //                    }
-
-    //                }
-
-    //                //ParametrizacionAdmin
-    //                //if (lista.Table4.length > 0) {
-
-    //                //       for (var i = 0; i < lista.Table4.length; i++) {
-    //                //           var Permisos = '';
-    //                //           if (lista.Table4[i].Permiso == 1) {
-    //                //               Permisos = 'checked';                                
-    //                //           } else {
-    //                //               var Permisos= '';                                
-    //                //           }
-    //                //        var div = '';
-    //                //        div += '<div  class="box_display_list_user">';
-    //                //        div += '<div class="name_user_cargo_list_boox">';
-
-    //                //        div += '<h6>' + lista.Table4[i].Nombre + '</h6>';
-    //                //        div += '<span>' + lista.Table4[i].Cargo + '</span>';
-
-    //                //        div += '</div>';
-
-    //                //        div += ' <div class="tools_right_cta">';
-    //                //        div += '    <div class="permi_no_per">';
-    //                //        div += '     <form action="" class="toggle_permitir">';
-    //                //           div += '       <input type="checkbox" id="toogle_' + lista.Table4[i].CedulaEvaluado +'" '+Permisos+'/>';
-    //                //           div += '      <label for="toogle2" id="lbl_toogle_' + lista.Table4[i].CedulaEvaluado + '" onclick="cambiarPermisos(' + lista.Table4[i].CedulaEvaluado + ')"></label>';
-    //                //        div += '  </form>';
-    //                //        div += ' </div>';	                        
-
-    //                //        div += ' <a href="#" class="icon_fold"><span class="icon-folder"></span></a>';
-    //                //           div += ' <a class="btn_full_he_blu" href="javascript:getResultadosIndividual(' + lista.Table4[i].CedulaEvaluado+')" style="cursor:pointer">Ver calificación</a>';
-    //                //        div += '</div>';	                        
-    //                //        div += '</div>';
-    //                //           $("#ParametrizacionAdmin").append(div);                           
-    //                //       }
-
-    //                //}
-
-    //                //obtenerEvaluacion();
-    //            }
-    //            else {
-    //                swal('Autoevaluacion', 'Usted No tiene Permisos para ingresar..!', 'warning');
-    //            }
-    //        }
-    //    });
-    //}   
-
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 	function getStackPagesIdxs(excludePageIdx) {
 		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
@@ -874,13 +756,71 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
 
+function FiltrarTablaSede() {
+    var input, filter, table, tr, td, i;
+    table = document.getElementById("tablaCasos");
+    tr = table.getElementsByTagName("tr");
+    var sede = $('#ddlSedes option:selected').text().toUpperCase();
+
+    for (i = 0; i < tr.length; i++) {
+        tdSede = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+            if (tdSede.innerHTML.toUpperCase().indexOf(sede) > -1) {
+                tr[i].style.display = "";
+            }
+            else {
+                tr[i].style.display = "none";
+            }
+        }
 
 
-function GuardarProovedor(valor) {
+    }
 
-   
-    var vlor = $('#ddl_Proveedoress_' + valor).val();
-    console.log(valor +' ' + vlor);
+
+}
+
+function GuardarProovedor(posicion,posiciontabla) {
+
+    var input, filter, table, tr, td, i;
+    table = document.getElementById("tablaAsignar");
+    tr = table.getElementsByTagName("tr");
+
+
+    //tr[posiciontabla].style.display = "none";
+
+    var optimizador = usuario;
+    var idconsecutivo = posicion;
+    var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
+    var observaciones = $('#txtObservaciones_' + posicion).val();
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/actualizarOrdenes",
+        data: "{ optimizador: '" + optimizador + "', idconsecutivo: '" + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '" + observaciones + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            if (listaDatos.Table.length > 0) {
+
+                if (datos[0].Respuesta == "OK") {
+                    swal('Autoevaluacion', 'Bien, el proveedor se asigno correctamente.', 'warning');
+                } else {
+                    swal('Autoevaluacion', 'Lo sentimos, el proveedor no se asigno correctamente.', 'warning');
+                }
+            }
+            else {
+                swal('Autoevaluacion', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                $('#tablaCalificar td').remove();
+            }
+        }
+    });
 }
 
 

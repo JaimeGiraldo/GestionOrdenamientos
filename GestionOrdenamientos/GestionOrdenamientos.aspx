@@ -156,13 +156,14 @@
                              <th>Descripción</th>                            
                              <th>Afiliado</th>        
                              <th>Optimizador</th>
-                             <th>Asignar Proveedor</th>                             
+                             <th>Asignar Proveedor</th>
+                             <th>Observaciones</th>                             
                         </tr>
                     </thead>
                       <tbody></tbody>
                     </table>
              </div>
-		          </div>
+		         
          </div>
              </div>       
         
