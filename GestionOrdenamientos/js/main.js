@@ -35,12 +35,7 @@ var IdUsuario = null;
     });
 
 
-
-    $("#btnAsignar").on("click", function (e) {       
-        consultarOrdenesFecha();
-    });
-
- 
+    
 
     ////Llama a el metodo de recuperación contraseña
     //$("#btnOldvPass").on("click", function (e) {
@@ -436,6 +431,8 @@ var IdUsuario = null;
 
 	                if (lista.Table[0].respuesta == "OK") {
 	                    openMenu();
+	                    consultarOrdenesFecha()
+	                    $('#lblUsuario').html(usuario);
 	                    $('#btnMenu').removeAttr('style');
 	                } else {
 	                    swal('Evolution', 'Lo sentimos, no tienes permisos para ingresar!', 'warning');
@@ -448,10 +445,12 @@ var IdUsuario = null;
 	    });
 	}
 
+
+
+
     //consultar ordenes para optimizar
 	function consultarOrdenesFecha() {
-
-	    var Optimizador = "123";
+	    var Optimizador = usuario;
 	    $.ajax({
 	        url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
 	        data: "{ Optimizador: '" + Optimizador + "'}",
@@ -464,16 +463,14 @@ var IdUsuario = null;
 	            alert(rest.Error);
 	        } else {
 	            var listaDatos = JSON.parse(rest.d);
+	            var datos = listaDatos.Table;	             
+	            $('#tablaAsignar td').remove();
 
-	            var datos = listaDatos.Table;
+	                if (listaDatos.Table.length > 0) {	                    
 
-	            if (listaDatos.Table.length > 0) {
-	             
-	                if (listaDatos.Table.length > 0) {
+	                    for (var i = 0; i < datos.length; i++) {                        
+	                       
 
-	                    
-
-	                    for (var i = 0; i < datos.length; i++) {
 	                        var tbl = '';
 	                        tbl += '<tr>';
 	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
@@ -482,33 +479,27 @@ var IdUsuario = null;
 	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
 	                        tbl += '<td>' + datos[i].Cups + '</td>';
 	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                        tbl += '<td>' + datos[i].Estado_servicio + '</td>';
 	                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
 	                        tbl += '<td>' + datos[i].Optimizador + '</td>';
-	                        tbl += '</tr>';
-	                        $("#tablaAsignar").append(tbl);	                      
+	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].Codigo_Solicitud_Ciklos + '" class="form-control color-blue per70"></select>' + '</td>';
+	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].Codigo_Solicitud_Ciklos + '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].Codigo_Solicitud_Ciklos + ')">Asignar</button>' + '</td>';
+	                        tbl += '</tr>';	                        
+                                                   
+
+	                        $("#tablaAsignar").append(tbl);
+
+	                        var combo = $('#ddl_Proveedoress_' + datos[i].Codigo_Solicitud_Ciklos);
+	                        llenarCombos(combo, "spsuministros_Proveedores_Obtener");
 	                    }
 	                }
-
-
-
-	                //obtenerEvaluacion();
-	            }
 	            else {
-	                swal('Autoevaluacion', 'No se encontraron ordenes con los filtros ingresados.', 'warning');
+	                swal('Autoevaluacion', 'No se encontraron ordenes asignadas al usuario: ' + usuario + '.', 'warning');
 	                $('#tablaCalificar td').remove();
 	            }
 	        }
 	    });
 	}
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -882,6 +873,16 @@ $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
+
+
+
+function GuardarProovedor(valor) {
+
+   
+    var vlor = $('#ddl_Proveedoress_' + valor).val();
+    console.log(valor +' ' + vlor);
+}
+
 
 //Obtiene todos los resultados
 function obtenerResultadosTodos() {

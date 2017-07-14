@@ -143,21 +143,8 @@
 			</header>    
             
         <div class="container">
-               <div class="scroll_header_fixed">
-                    <div class="col-lg-4 col-md-4">
-                         <label class="s16 color-white">Fecha Inicial</label>
-                        <input type="date" id="dtmFechaInicial"/>
-                          </div>    
-                        <div class="col-lg-4 col-md-4">
-                         <label class="s16 color-white">Fecha Final</label>
-                        <input type="date" id="dtmFechaFinal" />
-                    </div>
-                   
-                   <div class="col-lg-4 col-md-4">
-                       <button id="btnAsignar" class="btn btn-primary">Consultar Ordenes</button>
-                   </div>           
-                    <div class="col-lg-12 col-md-12">
-                 
+               <div class="scroll_header_fixed">                 
+                            
                  <table id="tablaAsignar" class="table table-hover table-action">
                        <thead>
                         <tr>   
@@ -166,10 +153,10 @@
                              <th>Estado Soli</th>
                              <th>Solicitante</th>
                              <th>Cups</th> 
-                             <th>Descripción</th>
-                             <th>Estado Serv</th>
+                             <th>Descripción</th>                            
                              <th>Afiliado</th>        
-                             <th>Optimizador</th>                             
+                             <th>Optimizador</th>
+                             <th>Asignar Proveedor</th>                             
                         </tr>
                     </thead>
                       <tbody></tbody>
