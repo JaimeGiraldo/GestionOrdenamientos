@@ -10,6 +10,24 @@ var IdUsuario = null;
    
     var cboProveedor = $('#ddlProveedores');
     llenarCombos(cboProveedor, "spsuministros_Proveedores_Obtener");
+
+
+    $("#btnLogin").on("click", function (e) {
+        usuario = $('#txtUsuario').val();
+        var clave = $('#txtContraseña').val();
+        if (usuario.length == 0 || clave.length == 0) {
+            swal('Evolution', 'Los campos usuario y contraseña son necesarios.', 'warning');
+            return;
+        }
+
+        iniciarSesion(usuario, clave);
+        e.preventDefault();
+
+    });
+
+
+
+  
     $("#form_usuario_sede").change();
 
     $("#btnSalir").on("click", function (e) {
@@ -24,18 +42,7 @@ var IdUsuario = null;
         consultarOrdenesFecha(fechaIni, fechaFin);
     });
 
-    $("#btnLogin").on("click", function (e) {
-        usuario = $('#txtUsuario').val();
-        var clave = $('#txtContraseña').val();
-        if (usuario.length == 0 || clave.length == 0) {
-            swal('Autoevaluación', 'Falta informacion para inicio sesion..!', 'warning');
-            return;
-        }
-
-        iniciarSesion(usuario, clave);
-        e.preventDefault();
-
-    });
+ 
 
     ////Llama a el metodo de recuperación contraseña
     //$("#btnOldvPass").on("click", function (e) {
@@ -664,7 +671,7 @@ var IdUsuario = null;
                      //obtenerEvaluacion();
                  }
                  else {
-                     swal('Autoevaluacion', 'No se ha configurado personas a calificar..!', 'warning');
+                     swal('Autoevaluacion', 'No se encontraron ordenes con los filtros ingresados.', 'warning');
                      $('#tablaCalificar td').remove();
                  }
              }

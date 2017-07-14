@@ -95,11 +95,11 @@
 
 							<div class="login-form" id="login_alp">
 								<div class="control-group">
-								<input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario" >
+								<input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario" >
 								<label class="login-field-icon fui-user" for="login-name"></label>
 								</div>
 								<div class="control-group">
-								<input type="password" id="txtContraseña" class="login-field" value="alpina360" placeholder="Contraseña">
+								<input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
 								<label class="login-field-icon fui-lock" for="login-pass"></label>
 								</div>
 								<a id="btnLogin" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
