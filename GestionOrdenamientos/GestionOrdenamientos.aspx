@@ -126,11 +126,15 @@
             
     <div class="container">
               
-             <div class="col-lg-3 col-md-3">
+             <div class="col-lg-6 col-md-6">
                                     <label>Arrastre Archivo con las ordenes</label>
                                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
-                                <br />
+                           <br />
+                 <input type="button" id="btnProcesarArchivo"  class="btn btn-primary" value="Procesar" onclick="procesarArchivo();"/>
                                 </div>
+        <div class="col-lg-6 col-md-6">
+
+        </div>
          </div>
              </div>      
                        
@@ -290,8 +294,12 @@
     <script src="js/bootstrap.js"></script>
     <script src="js/jspdf.min.js"></script>
     <script src="js/dropzone.js"></script>
+    
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script type="text/javascript">
+        subirArchivos();
+     </script>
 </body>
 
 </html>

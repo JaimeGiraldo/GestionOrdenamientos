@@ -11,16 +11,14 @@ using Newtonsoft.Json;
 using System.Net.Mail;
 using GestionOrdenamientos.BD;
 using System.IO;
+using System.Data.SqlClient;
+using System.Data.OleDb;
 
 namespace GestionOrdenamientos
 {
     public partial class GestionOrdenamientos : System.Web.UI.Page
     {
-        AccesoDatos objRetornarDatos = new AccesoDatos();
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
+        AccesoDatos objRetornarDatos = new AccesoDatos();       
         
         public string validarUsuario(string UsuarioSistema, string Clave)
         {
@@ -95,35 +93,37 @@ namespace GestionOrdenamientos
         }
 
 
-        public string ObtenerPreguntas()
+        public string ProcesarArchivo(string Archivo)
         {
-            try
-            {
-                var dt = objRetornarDatos.llenarDataSet("spObtenerPreguntas");
 
-                if (dt.Tables.Count > 0)
-                {
-                    return JsonConvert.SerializeObject(dt);
-                }
-                else
-                {
-                    return string.Empty;
+            string SaveLocation = Server.MapPath(@"~\Documentos") + "\\" + Archivo;
+            DataSet dsImportar = new DataSet();
+            string Sql = @"Select * From [" + Archivo + "$]";
+            OleDbConnection cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + SaveLocation + "; Extended Properties=Excel 8.0");
+            OleDbDataAdapter da = new OleDbDataAdapter(Sql, cnn);
+            cnn.Open();
+            da.Fill(dsImportar);            
+            if (dsImportar.Tables.Count > 0)
+            {
+                using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion()))
+                {                                            
+                        bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos";                        
+                        bulkcopy.WriteToServer(dsImportar.Tables[0]);
+                        bulkcopy.Close(); 
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
-        [System.Web.Services.WebMethod]
+            return "OK";
+        }                       
+
+    [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string obtenerPreguntas()
+        public static string procesarArchivo(string Archivo)
         {
             try
             {
                 GestionOrdenamientos objOrdenes = new GestionOrdenamientos();
-                return objOrdenes.ObtenerPreguntas();
+                return objOrdenes.ProcesarArchivo(Archivo);
             }
             catch (Exception ex)
             {
