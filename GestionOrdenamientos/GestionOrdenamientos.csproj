@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\ep_naturalwhite.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.eot" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.ttf" />

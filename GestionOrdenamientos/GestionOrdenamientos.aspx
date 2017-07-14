@@ -73,10 +73,8 @@
 		<!-- page -->
 		<div class="page" id="page-home">
 			<!-- Header -->
-			<header class="bp-header cf">
-				<span class="bp-header__present">Gestion Ordenamientos <span class="bp-tooltip bp-icon bp-icon--about" data-content="El único objetivo de este proceso de evaluación de 360° es confirmar sus fortalezas y encontrar, aceptar y actuar con respecto a sus necesidades más apremiantes."></span></span>
-				<h1 class="bp-header__present">Bienvenid@s</h1>
-				<p class="bp-header__present">Inicia sesión</p>
+			<header class="bp-header cf">		
+				<p class="bp-header__present">Gestion Ordenamientos bienvenidos, <b>inicia sesión</b></p>
 				<!--<nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
 					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
