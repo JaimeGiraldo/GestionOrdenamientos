@@ -59,7 +59,7 @@ namespace GestionOrdenamientos
 
 
 
-        public string ConsultarOrdenesxFecha(string FechaInicial, string FechaFinal)
+        public string consultarOrdenesxFecha(string FechaInicial, string FechaFinal)
         {
             try
             {
@@ -79,23 +79,20 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string consultarOrdenesxFecha(string FechaInicial, string FechaFinal)
+        public static string ConsultarOrdenesxFecha(string FechaInicial, string FechaFinal)
         {
             try
             {
-                GestionOrdenamientos objOrdenes = new GestionOrdenamientos();
-                return objOrdenes.ConsultarOrdenesxFecha(FechaInicial, FechaFinal);
+                GestionOrdenamientos objLogin = new GestionOrdenamientos();
+                return objLogin.consultarOrdenesxFecha(FechaInicial, FechaFinal);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
 
 
         public string ObtenerPreguntas()

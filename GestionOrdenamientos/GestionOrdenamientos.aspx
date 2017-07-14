@@ -35,6 +35,7 @@
 <body>
 	<div class="logo_alp">
 		<img src="images/LogoNuevo.png" alt="Promedan">
+
 	</div>
 
     
@@ -95,14 +96,14 @@
 
 							<div class="login-form" id="login_alp">
 								<div class="control-group">
-								<input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario" >
+								<input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario" >
 								<label class="login-field-icon fui-user" for="login-name"></label>
 								</div>
 								<div class="control-group">
-								<input type="password" id="txtContraseña" class="login-field" value="alpina360" placeholder="Contraseña">
+								<input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
 								<label class="login-field-icon fui-lock" for="login-pass"></label>
 								</div>
-								<a id="btnLogins" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
+								<a id="btnLogin" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
                             <%--    <div class="accion_form_login">
                                     <a href="#" id="olvide_pass"><span class="icon-unlock"></span> ¿Olvidaste tu contraseña?</a>
                                 </div>--%>
