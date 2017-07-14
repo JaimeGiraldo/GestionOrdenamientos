@@ -79,7 +79,20 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-     
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string ConsultarOrdenesxFecha(string FechaInicial, string FechaFinal)
+        {
+            try
+            {
+                GestionOrdenamientos objLogin = new GestionOrdenamientos();
+                return objLogin.consultarOrdenesxFecha(FechaInicial, FechaFinal);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         public string ObtenerPreguntas()

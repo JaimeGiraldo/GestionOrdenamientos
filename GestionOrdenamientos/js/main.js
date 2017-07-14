@@ -24,18 +24,18 @@ var IdUsuario = null;
         consultarOrdenesFecha(fechaIni, fechaFin);
     });
 
-    //$("#btnLogin").on("click", function (e) {
-    //    usuario = $('#txtUsuario').val();
-    //    var clave = $('#txtContraseña').val();
-    //    if (usuario.length == 0 || clave.length == 0) {
-    //        swal('Autoevaluación', 'Falta informacion para inicio sesion..!', 'warning');
-    //        return;
-    //    }
+    $("#btnLogin").on("click", function (e) {
+        usuario = $('#txtUsuario').val();
+        var clave = $('#txtContraseña').val();
+        if (usuario.length == 0 || clave.length == 0) {
+            swal('Autoevaluación', 'Falta informacion para inicio sesion..!', 'warning');
+            return;
+        }
 
-    //    iniciarSesion(usuario, clave);
-    //    e.preventDefault();
+        iniciarSesion(usuario, clave);
+        e.preventDefault();
 
-    //});
+    });
 
     ////Llama a el metodo de recuperación contraseña
     //$("#btnOldvPass").on("click", function (e) {
@@ -648,19 +648,12 @@ var IdUsuario = null;
                      if (lista.Table.length > 0) {
                          $('#tablaCalificar td').remove();
                          for (var i = 0; i < lista.Table.length; i++) {
-                             var tbl = '';
-                             var id = lista.Table[i].Id;
-                             var nombre = lista.Table[i].Descripcion;
+
+                             console.log(lista.Table.length);
+                             var tbl = '';                           
                              tbl += '<tr>';
-                             tbl += '<td id="nombre' + id + '">' + lista.Table[i].Descripcion + '</td>';
-                             tbl += '<td>' + lista.Table[i].Rol + '</td>';
-                             tbl += '<td id="Estado' + id + '">' + lista.Table[i].Estado + '</td>';
-                             if (lista.Table[i].Estado == 'Calificado') {
-                                 tbl += '<td><input  type="button" class="btn btn-default s10" disabled="disabled" value="Evaluar"></td>';
-                             }
-                             else {
-                                 tbl += '<td><input id="btnEvaluar" type="button" class="btn btn-default s10" value="Evaluar" onclick="calificar(' + id + ')"></td>';                                
-                             }
+                             tbl += '<td id="nombre' + "id" + '">' + lista.Table[i].Ciklos_Usuario_que_Registro + '</td>';                          
+                          
                              tbl += '</tr>';
                              $("#tablaCalificar").append(tbl);
                          }
@@ -678,8 +671,9 @@ var IdUsuario = null;
          });
      }
    
+
     //Iniciar Session
-    function iniciarSesion(usuario, clave, tipo) {
+    function iniciarSesion(usuario, clave) {
         $.ajax({
             url: "GestionOrdenamientos.aspx/InicioSesion",
             data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
@@ -694,99 +688,131 @@ var IdUsuario = null;
 
                 var lista = JSON.parse(rest.d);
 
-                if (lista.Table[0].cant > 0) {
-                    openMenu();
-                    $('#btnMenu').removeAttr('style');
-                    if (usuario == "admin") {
-                        $('#Parametrizacion').removeAttr('style');
-                        $('#ParametrizacionJefe').removeAttr('style');
+                if (lista.Table.length > 0) {
+
+                    if (lista.Table[0].respuesta == "OK") {
+                        openMenu();
+                        $('#btnMenu').removeAttr('style');
+                    } else {
+                        swal('Evolution', 'Usted No tiene Permisos para ingresar..!', 'warning');
                     }
-
-                    if (lista.Table1.length > 0) {
-                        IdUsuario = lista.Table1[0].Cedula;
-                        $('#lblUsuario').html(lista.Table1[0].Perfil);
-                        $('#lblPerfil').html(lista.Table1[0].Perfil);
-                        $('#lblUserAyuda').html('<b>' + lista.Table1[0].Perfil + '</b>');
-                        var Permiso = lista.Table1[0].Permiso;
-                        if (Permiso == 1) {
-                            $("#Resultado1").show();
-                            $("#Resultado2").show();
-                            $("#Fortalezas").show();
-                        } else {
-                            $("#Resultado1").hide();
-                            $("#Resultado2").hide();
-                            $("#Fortalezas").hide();
-                        }
-                        var MostrarAyuda = lista.Table1[0].MostrarAyuda;
-                        if (MostrarAyuda == '0') {
-                            swal('Autoevaluación', 'Abrir ayuda', 'warning');
-                            $('#btnMenu').trigger('click');
-                            $('#ayuda_user').trigger('click');
-                        }
-                        else {
-                            //swal('Autoevaluación', 'Señor Usuario si usted necesita ayuda dirijase al menu!', 'warning');
-                        }
-
-                    }
-
-                    if (lista.Table3.length > 0) {
-                        for (var i = 0; i < lista.Table3.length; i++) {
-                            var div = '';
-                            div = '<div class="box_blanco_name">';
-                            div += '<h5>' + lista.Table3[i].Nombre + '</h5>';
-                            div += '<span>' + lista.Table3[i].Cargo + '</span>';
-                            div += '<a style="cursor:pointer;" href="javascript:getResultadosIndividual(' + lista.Table3[i].CedulaEvaluado + ')">Ver Resultado</a>';
-                            div += '</div>';
-                            $("#EmpleadosJefe").append(div);
-
-                        }
-
-                    }
-
-                    //ParametrizacionAdmin
-                    //if (lista.Table4.length > 0) {
-
-                    //       for (var i = 0; i < lista.Table4.length; i++) {
-                    //           var Permisos = '';
-                    //           if (lista.Table4[i].Permiso == 1) {
-                    //               Permisos = 'checked';                                
-                    //           } else {
-                    //               var Permisos= '';                                
-                    //           }
-                    //        var div = '';
-                    //        div += '<div  class="box_display_list_user">';
-                    //        div += '<div class="name_user_cargo_list_boox">';
-
-                    //        div += '<h6>' + lista.Table4[i].Nombre + '</h6>';
-                    //        div += '<span>' + lista.Table4[i].Cargo + '</span>';
-
-                    //        div += '</div>';
-
-                    //        div += ' <div class="tools_right_cta">';
-                    //        div += '    <div class="permi_no_per">';
-                    //        div += '     <form action="" class="toggle_permitir">';
-                    //           div += '       <input type="checkbox" id="toogle_' + lista.Table4[i].CedulaEvaluado +'" '+Permisos+'/>';
-                    //           div += '      <label for="toogle2" id="lbl_toogle_' + lista.Table4[i].CedulaEvaluado + '" onclick="cambiarPermisos(' + lista.Table4[i].CedulaEvaluado + ')"></label>';
-                    //        div += '  </form>';
-                    //        div += ' </div>';	                        
-
-                    //        div += ' <a href="#" class="icon_fold"><span class="icon-folder"></span></a>';
-                    //           div += ' <a class="btn_full_he_blu" href="javascript:getResultadosIndividual(' + lista.Table4[i].CedulaEvaluado+')" style="cursor:pointer">Ver calificación</a>';
-                    //        div += '</div>';	                        
-                    //        div += '</div>';
-                    //           $("#ParametrizacionAdmin").append(div);                           
-                    //       }
-
-                    //}
-
-                    //obtenerEvaluacion();
                 }
                 else {
-                    swal('Autoevaluacion', 'Usted No tiene Permisos para ingresar..!', 'warning');
+                    swal('Evolution', 'Usted No tiene Permisos para ingresar..!', 'warning');
                 }
             }
         });
-    }   
+    }
+
+    //Iniciar Session
+    //function iniciarSesion(usuario, clave, tipo) {
+    //    $.ajax({
+    //        url: "GestionOrdenamientos.aspx/InicioSesion",
+    //        data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        async: true,
+    //        type: 'POST'
+    //    }).done(function (rest) {
+    //        if (rest.Error != undefined) {
+    //            alert(rest.Error);
+    //        } else {
+
+    //            var lista = JSON.parse(rest.d);
+
+    //            if (lista.Table[0].cant > 0) {
+    //                openMenu();
+    //                $('#btnMenu').removeAttr('style');
+    //                if (usuario == "admin") {
+    //                    $('#Parametrizacion').removeAttr('style');
+    //                    $('#ParametrizacionJefe').removeAttr('style');
+    //                }
+
+    //                if (lista.Table1.length > 0) {
+    //                    IdUsuario = lista.Table1[0].Cedula;
+    //                    $('#lblUsuario').html(lista.Table1[0].Perfil);
+    //                    $('#lblPerfil').html(lista.Table1[0].Perfil);
+    //                    $('#lblUserAyuda').html('<b>' + lista.Table1[0].Perfil + '</b>');
+    //                    var Permiso = lista.Table1[0].Permiso;
+    //                    if (Permiso == 1) {
+    //                        $("#Resultado1").show();
+    //                        $("#Resultado2").show();
+    //                        $("#Fortalezas").show();
+    //                    } else {
+    //                        $("#Resultado1").hide();
+    //                        $("#Resultado2").hide();
+    //                        $("#Fortalezas").hide();
+    //                    }
+    //                    var MostrarAyuda = lista.Table1[0].MostrarAyuda;
+    //                    if (MostrarAyuda == '0') {
+    //                        swal('Autoevaluación', 'Abrir ayuda', 'warning');
+    //                        $('#btnMenu').trigger('click');
+    //                        $('#ayuda_user').trigger('click');
+    //                    }
+    //                    else {
+    //                        //swal('Autoevaluación', 'Señor Usuario si usted necesita ayuda dirijase al menu!', 'warning');
+    //                    }
+
+    //                }
+
+    //                if (lista.Table3.length > 0) {
+    //                    for (var i = 0; i < lista.Table3.length; i++) {
+    //                        var div = '';
+    //                        div = '<div class="box_blanco_name">';
+    //                        div += '<h5>' + lista.Table3[i].Nombre + '</h5>';
+    //                        div += '<span>' + lista.Table3[i].Cargo + '</span>';
+    //                        div += '<a style="cursor:pointer;" href="javascript:getResultadosIndividual(' + lista.Table3[i].CedulaEvaluado + ')">Ver Resultado</a>';
+    //                        div += '</div>';
+    //                        $("#EmpleadosJefe").append(div);
+
+    //                    }
+
+    //                }
+
+    //                //ParametrizacionAdmin
+    //                //if (lista.Table4.length > 0) {
+
+    //                //       for (var i = 0; i < lista.Table4.length; i++) {
+    //                //           var Permisos = '';
+    //                //           if (lista.Table4[i].Permiso == 1) {
+    //                //               Permisos = 'checked';                                
+    //                //           } else {
+    //                //               var Permisos= '';                                
+    //                //           }
+    //                //        var div = '';
+    //                //        div += '<div  class="box_display_list_user">';
+    //                //        div += '<div class="name_user_cargo_list_boox">';
+
+    //                //        div += '<h6>' + lista.Table4[i].Nombre + '</h6>';
+    //                //        div += '<span>' + lista.Table4[i].Cargo + '</span>';
+
+    //                //        div += '</div>';
+
+    //                //        div += ' <div class="tools_right_cta">';
+    //                //        div += '    <div class="permi_no_per">';
+    //                //        div += '     <form action="" class="toggle_permitir">';
+    //                //           div += '       <input type="checkbox" id="toogle_' + lista.Table4[i].CedulaEvaluado +'" '+Permisos+'/>';
+    //                //           div += '      <label for="toogle2" id="lbl_toogle_' + lista.Table4[i].CedulaEvaluado + '" onclick="cambiarPermisos(' + lista.Table4[i].CedulaEvaluado + ')"></label>';
+    //                //        div += '  </form>';
+    //                //        div += ' </div>';	                        
+
+    //                //        div += ' <a href="#" class="icon_fold"><span class="icon-folder"></span></a>';
+    //                //           div += ' <a class="btn_full_he_blu" href="javascript:getResultadosIndividual(' + lista.Table4[i].CedulaEvaluado+')" style="cursor:pointer">Ver calificación</a>';
+    //                //        div += '</div>';	                        
+    //                //        div += '</div>';
+    //                //           $("#ParametrizacionAdmin").append(div);                           
+    //                //       }
+
+    //                //}
+
+    //                //obtenerEvaluacion();
+    //            }
+    //            else {
+    //                swal('Autoevaluacion', 'Usted No tiene Permisos para ingresar..!', 'warning');
+    //            }
+    //        }
+    //    });
+    //}   
 
 	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 	function getStackPagesIdxs(excludePageIdx) {

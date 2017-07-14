@@ -102,7 +102,7 @@
 								<input type="password" id="txtContraseña" class="login-field" value="alpina360" placeholder="Contraseña">
 								<label class="login-field-icon fui-lock" for="login-pass"></label>
 								</div>
-								<a id="btnLogins" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
+								<a id="btnLogin" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
                             <%--    <div class="accion_form_login">
                                     <a href="#" id="olvide_pass"><span class="icon-unlock"></span> ¿Olvidaste tu contraseña?</a>
                                 </div>--%>
