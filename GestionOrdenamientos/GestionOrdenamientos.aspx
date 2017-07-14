@@ -289,7 +289,7 @@
     <script src="js/highcharts.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jspdf.min.js"></script>
-
+    <script src="js/dropzone.js"></script>
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </body>
