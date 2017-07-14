@@ -70,6 +70,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\dropzone.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.eot" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.ttf" />
@@ -77,6 +78,7 @@
     <Content Include="fonts\bpicons\bpicons.eot" />
     <Content Include="fonts\bpicons\bpicons.ttf" />
     <Content Include="fonts\bpicons\bpicons.woff" />
+    <Content Include="ImportarArchivo.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -142,6 +144,9 @@
     </Compile>
     <Compile Include="GestionOrdenamientos.aspx.designer.cs">
       <DependentUpon>GestionOrdenamientos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarArchivo.ashx.cs">
+      <DependentUpon>ImportarArchivo.ashx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
