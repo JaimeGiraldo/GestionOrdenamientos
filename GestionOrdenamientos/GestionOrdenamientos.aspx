@@ -35,6 +35,7 @@
 <body>
 	<div class="logo_alp">
 		<img src="images/LogoNuevo.png" alt="Promedan">
+
 	</div>
 
     
