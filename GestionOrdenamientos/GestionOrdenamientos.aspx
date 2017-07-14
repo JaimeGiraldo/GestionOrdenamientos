@@ -297,7 +297,7 @@
     </div>
 	
 	<!-- /pages-stack -->
-	<button class="menu-button" id="btnMenu" <%--style="display:none"--%>><span>Menu</span></button>
+	<button class="menu-button" id="btnMenu" style="display:none"><span>Menu</span></button>
    
    <%-- <script src="js/jquery-2.1.1.min.js"></script>--%>
    <script src="js/select2.js"></script>
