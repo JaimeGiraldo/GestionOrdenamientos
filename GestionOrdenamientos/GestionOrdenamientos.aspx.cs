@@ -58,13 +58,13 @@ namespace GestionOrdenamientos
         }
 
 
-
-        public string consultarOrdenesxFecha(string FechaInicial, string FechaFinal)
+        //Obtiene las ordenes asignadas por usuario
+        public string consultarOrdenesxFecha(string Optimizador)
         {
             try
             {
 
-                var dtUsuario = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + FechaInicial + "','" + FechaFinal + "'");
+                var dtUsuario = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + Optimizador + "'");
                 if (dtUsuario.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtUsuario);
@@ -81,12 +81,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string ConsultarOrdenesxFecha(string FechaInicial, string FechaFinal)
+        public static string ConsultarOrdenesxFecha(string Optimizador)
         {
             try
             {
                 GestionOrdenamientos objLogin = new GestionOrdenamientos();
-                return objLogin.consultarOrdenesxFecha(FechaInicial, FechaFinal);
+                return objLogin.consultarOrdenesxFecha(Optimizador);
             }
             catch (Exception ex)
             {
