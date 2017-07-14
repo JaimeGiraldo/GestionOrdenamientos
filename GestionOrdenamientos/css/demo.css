@@ -60,15 +60,7 @@ a:hover {
 /* Blueprint header */
 
 .bp-header {
-	width: 300px;
-    position: absolute;
-    top: 150px;
-    left: 50%;
-    margin-left: -150px;
-    /* font-weight: 100; */
-    font-size: 14px;
-    text-align: center;
-    font-family: sans-serif;
+	padding: 6em 10vw 2em;
 }
 
 .bp-header__title {
