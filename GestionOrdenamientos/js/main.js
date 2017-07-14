@@ -10,6 +10,7 @@ var IdUsuario = null;
    
     var cboProveedor = $('#ddlProveedores');
     llenarCombos(cboProveedor, "spsuministros_Proveedores_Obtener");
+    cboProveedor.select2();
     $("#form_usuario_sede").change();
 
     $("#btnSalir").on("click", function (e) {
@@ -17,12 +18,6 @@ var IdUsuario = null;
     });
 
 
-
-    $("#btnAsignar").on("click", function (e) {
-        var fechaIni = $("#dtmFechaInicial").val();
-        var fechaFin = $("#dtmFechaFinal").val();
-        consultarOrdenesFecha(fechaIni, fechaFin);
-    });
 
     //$("#btnLogin").on("click", function (e) {
     //    usuario = $('#txtUsuario').val();
@@ -449,235 +444,13 @@ var IdUsuario = null;
 
 	           
 
-	            ////Recorremos la lista con los datos  
-	            //var tbl = '';
-	            //for (var i = 0; i < listaDatos.Table.length; i++) {
-	              
-	            //    cont = cont + 1;
-	            //    var idPregunta = listaDatos.Table[i].IdPregunta;
-	            //    var id = listaDatos.Table[i].Id;
-
-	            //    var si = listaDatos.Table[0].Id;
-                    
-
-	            //    if (listaDatos.Table[i].Letra == "x" || listaDatos.Table[i].Letra == "y" || listaDatos.Table[i].Letra == "z" || listaDatos.Table[i].Letra == "z1") {
-	            //     //   tbl += '<div></div>';
-	            //    }
-	                
-	            //    tbl += '<h2 class="fs-title" id=Descripcion' + id + '>' + listaDatos.Table[i].Letra + '. ' + listaDatos.Table[i].Descripcion + '</h2>';
-	            //    tbl += ' <div class="usuario_enc">';
-	            //    tbl += '<div class="col-md-3 autoev_estad calificado_est" id=' + id + '>' + listaDatos.Table[i].Estado + '</div>';
-	            //    tbl += '<div class="col-md-3 autoev_cat" id=' + id + '>' + listaDatos.Table[i].Rol + '</div>';
-	            //    tbl += ' <div class="row"><div class="col-md-3 autoev_nombre" id=' + i + '-' + id + '>' + listaDatos.Table[i].Colaborador + '</div>';
-	                
-	                
-	            //    if (listaDatos.Table[i].Letra == "x") {
-	            //        tbl += '<div><textarea rows="2" id="txtFortaleza1' + id + '" placeholder="fortaleza1" class="form-control"/> </div>';
-	            //    }else if (listaDatos.Table[i].Letra == "y") {
-	            //        tbl += '<div><textarea rows="2" id="txtFortaleza2' + id + '"  placeholder="fortaleza2" class="form-control"/> </div>';
-	            //    }
-	            //    else if (listaDatos.Table[i].Letra == "z") {
-	            //        tbl += '<div><textarea rows="2" id="txtOportunidad1' + id + '"  placeholder="Oportunidad1" class="form-control"/> </div>';
-	            //    }else  if (listaDatos.Table[i].Letra == "z1") {
-	            //        tbl += '<div><textarea rows="2" id="txtOportunidad2' + id + '"  placeholder="Oportunidad2" class="form-control"/> </div>';
-	            //    }
-	            //    else {
-	            //        tbl += '<div class="col-md-3"><div class="form-group"><select  id=ddlCalificacionJefe' + idPregunta + id + ' class="form-control color-blue"><option value="1">Nunca</option><option value="2">Pocas veces</option><option value="3">Algunas veces</option><option value="4">La mayoría de las veces</option><option value="5">Siempre</option></select></div></div></div>';
-	            //    }
-	            //    tbl += '</div></div></div></div>';
-	                
-	              
-	            //    if (cont == cuantosE) {
-	            //        $("#pregunta" + idPregunta).append(tbl);
-	            //        tbl = '';
-	            //        cont = 0;
-	            //    }
-
-	            //}
-
-
 
 	        }
 	    });
 
 	}
-
-	//function obtenerEvaluacion() {
-          
-
-	//    $.ajax({
-	//        url: "GestionOrdenamientos.aspx/obtenerPreguntas",
-	//        data:null,
-	//        contentType: "application/json; charset=utf-8",
-	//        dataType: "json",
-	//        async: false,
-	//        type: 'POST'
-	//    }).done(function (rest) {
-
-	//        var lista = rest.d;
-
-	//        if (lista != '') {
-
-	//            var listaDatos = JSON.parse(lista);
-
-	//            //if (listaDatos[0].realizada > 0) {
-	//            //    swal('EvolutionNet', 'El empleado seleccionado ya fue evaluado..!!', 'info');
-	//            //    return;
-	//            //}
-
-	//            //Recorremos la lista con los datos 
-	//            for (var i = 0; i < listaDatos.Table.length; i++) {
-	//                var tbl = '';
-	//                var id = listaDatos.Table[i].IdPregunta;
-	//                tbl += '<tr>';
-	//                //if (listaDatos.Table[i].Letra == 'x' || listaDatos.Table[i].Letra == 'Y' || listaDatos.Table[i].Letra == 'z' || listaDatos.Table[i].Letra == 'z1') {
-	//                //    tbl += '<td></td>';
-	//                //}
-	//                //else {
-	//                    tbl += '<td id=' + id + '>' + listaDatos.Table[i].Letra + '</td>';
-	//               // }
-	//                tbl += '<td id=Descripcion' + id + '>' + listaDatos.Table[i].Descripcion + '</td>';
-	//                tbl += '<td><select  id=ddlCalificacionJefe' + id + ' class="form-control color-blue" onchange="calificarJefe(' + id + ')"><option value="1">Nunca</option><option value="2">Pocas veces</option><option value="3">Frecuentemente</option><option value="4">Siempre</option></select></td>';
-	//               // tbl += '<td> <div  class="progress animated-bar"><div id=progresoJefe' + id + ' class="progress-bar progress-bar-danger" role="progressbar" data-transitiongoal="0" aria-valuenow="0" style="width: 25%;">0%</div></div></td>';	                
-	//                tbl += '</tr>';
-	             
-	//                $("#tablaPreguntas").append(tbl);	                
-	              	             
-	//            }
-	           
-	//        }
-	//    });
-        
-	//}    
-
-    function guardarEvaluacion(id) {
-               
-    
-    var a = $('#ddlCalificacionJefe1').val();
-    var b = $('#ddlCalificacionJefe2').val();
-    var c = $('#ddlCalificacionJefe3').val();
-    var d = $('#ddlCalificacionJefe4').val();
-    var e = $('#ddlCalificacionJefe5').val();
-    var f = $('#ddlCalificacionJefe6').val();
-    var g = $('#ddlCalificacionJefe7').val();
-    var h = $('#ddlCalificacionJefe8').val();
-    var i = $('#ddlCalificacionJefe9').val();
-    var j = $('#ddlCalificacionJefe10').val();
-    var k = $('#ddlCalificacionJefe11').val();
-    var l = $('#ddlCalificacionJefe12').val();
-    var m = $('#ddlCalificacionJefe13').val();
-    var n = $('#ddlCalificacionJefe14').val();
-    var o = $('#ddlCalificacionJefe15').val();
-    var p = $('#ddlCalificacionJefe16').val();
-    var q = $('#ddlCalificacionJefe17').val();
-    var r = $('#ddlCalificacionJefe18').val();
-    var s = $('#ddlCalificacionJefe19').val();
-    var t = $('#ddlCalificacionJefe20').val();
-    var u = $('#ddlCalificacionJefe21').val();
-    var v = $('#ddlCalificacionJefe22').val();
-    var w = $('#ddlCalificacionJefe23').val();
-    var x = $('#ddlCalificacionJefe24').val();
-    var y = $('#ddlCalificacionJefe25').val();
-    var evaluador = IdUsuario;
-    var evaluado = $('#lblCedula').html();
-
-    var fortaleza1 = $('#txtFortaleza1').val();
-    var fortaleza2 = $('#txtFortaleza2').val();
-    var oportunidad1 = $('#txtOportunidad1').val();
-    var oportunidad2 = $('#txtOportunidad2').val();
-    var finalizar = $('#btnFinalizarIndividualRes').val();
-
-    if (finalizar == 'NO') {
-        swal('AutoEvaluacion 360', 'Finalice la encuesta', 'danger');
-        return false;
-    }else {  
-
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/guardarEvaluacion",
-            data: "{Id:'" + id + "',A:'" + a + "',B:'" + b + "',C:'" + c + "',D:'" + d + "',E:'" + e + "',F:'" + f + "', G:'" + g + "',H:'" + h + "',I:'" + i + "',J:'" + j + "',K:'" + k + "',L:'" + l + "',M:'" + m + "',N:'" + n + "',O:'" + o + "',P:'" + p + "', Q:'" + q + "',R:'" + r + "',S:'" + s + "',T:'" + t + "',U:'" + u + "',V:'" + v + "',W:'" + w + "',X:'" + x + "',Y:'" + y + "',Evaluador:'" + evaluador + "', Evaluado:'" + evaluado + "',Fortaleza1:'" + fortaleza1 + "',Fortaleza2:'" + fortaleza2 + "',Oportunidad1:'" + oportunidad1 + "',Oportunidad2:'" + oportunidad2 + "',Finalizar:'" + finalizar + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                alert(rest.Error);
-            } else {
-                swal('Evaluacion 360', 'Evaluación Guardada con Éxito', 'success');                
-
-                $('#Estado' + evaluado).html('Calificado');
-                $('#btnEvaluar').attr('style', 'visibility:hidden');
-                $('#tablaPreguntas').attr('style', 'visibility:hidden');
-
-                for (var i = 0; i < 25; i++) {
-                    $('#ddlCalificacionJefe' + i).val(1);
-                    calificarJefeCargar(1, i);
-                }
-                $('#txtFortaleza1').val('');
-                $('#txtFortaleza2').val('');
-                $('#txtOportunidad1').val('');
-                $('#txtOportunidad2').val('');
-                $('#btnFinalizarIndividualRes').val('NO');
-                $('#bloqRespuestas').attr('style', 'display:none'); 
-                
-            }
-        });
-    }
-}
-
     
 
-    function consultarOrdenesFecha(fechaInicial, fechaFinal) {
-
-         $.ajax({
-             url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
-             data: "{ FechaInicial: '" + fechaInicial + "',FechaFinal:'" + fechaFinal + "'}",
-             contentType: "application/json; charset=utf-8",
-             dataType: "json",
-             async: true,
-             type: 'POST'
-         }).done(function (rest) {
-             if (rest.Error != undefined) {
-                 alert(rest.Error);
-             } else {
-
-                 var lista = JSON.parse(rest.d);
-
-                 if (lista.Table.length > 0) {                     
-                     //$('#btnMenu').removeAttr('style');
-                     if (lista.Table.length > 0) {
-                         $('#tablaCalificar td').remove();
-                         for (var i = 0; i < lista.Table.length; i++) {
-                             var tbl = '';
-                             var id = lista.Table[i].Id;
-                             var nombre = lista.Table[i].Descripcion;
-                             tbl += '<tr>';
-                             tbl += '<td id="nombre' + id + '">' + lista.Table[i].Descripcion + '</td>';
-                             tbl += '<td>' + lista.Table[i].Rol + '</td>';
-                             tbl += '<td id="Estado' + id + '">' + lista.Table[i].Estado + '</td>';
-                             if (lista.Table[i].Estado == 'Calificado') {
-                                 tbl += '<td><input  type="button" class="btn btn-default s10" disabled="disabled" value="Evaluar"></td>';
-                             }
-                             else {
-                                 tbl += '<td><input id="btnEvaluar" type="button" class="btn btn-default s10" value="Evaluar" onclick="calificar(' + id + ')"></td>';                                
-                             }
-                             tbl += '</tr>';
-                             $("#tablaCalificar").append(tbl);
-                         }
-                     }
-
-
-
-                     //obtenerEvaluacion();
-                 }
-                 else {
-                     swal('Autoevaluacion', 'No se ha configurado personas a calificar..!', 'warning');
-                     $('#tablaCalificar td').remove();
-                 }
-             }
-         });
-     }
-   
     //Iniciar Session
     function iniciarSesion(usuario, clave, tipo) {
         $.ajax({
@@ -2259,3 +2032,78 @@ $(".previous").click(function () {
 $(".submit").click(function () {
     return false;
 })
+
+
+function consultarOrdenesFecha() {
+
+    var fechaIni = $("#dtmFechaInicial").val();
+    var fechaFin = $("#dtmFechaFinal").val();
+
+    if (fechaIni.length == 0 || fechaFin.legend == 0) {
+        swal('Gestion Ordenamientos', 'debe Ingresar fecha de consulta..!', 'warning');
+        return;
+    }
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
+        data: "{ FechaInicial: '" + fechaIni + "',FechaFinal:'" + fechaFin + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+
+            var lista = JSON.parse(rest.d);
+
+            if (lista.Table.length > 0) {
+                //$('#btnMenu').removeAttr('style');
+                if (lista.Table.length > 0) {
+                    $('#tablaAsignar td').remove();
+                    for (var i = 0; i < lista.Table.length; i++) {
+                        var tbl = '';
+                        tbl += '<tr>';
+                        tbl += '<td>' + lista.Table[i].Codigo_Solicitud_Ciklos + '</td>';
+                        tbl += '<td>' + lista.Table[i].Fecha_Registro_Solicitud + '</td>';
+                        tbl += '<td>' + lista.Table[i].Ciklos_Usuario_que_Registro + '</td>';
+                        tbl += '<td>' + lista.Table[i].Fecha_Esperada_de_Respuesta + '</td>';
+                        tbl += '<td>' + lista.Table[i].Estado_Solicitud + '</td>';
+                        tbl += '<td>' + lista.Table[i].Prestador_Solicitante + '</td>';
+                        tbl += '<td>' + lista.Table[i].Id_Afiliado + '</td>';
+                        tbl += '<td>' + lista.Table[i].Ciudad_del_Centro_que_Audita + '</td>';
+                        tbl += '<td>' + lista.Table[i].Centro_que_Audita + '</td>';
+                        tbl += '<td>' + lista.Table[i].Usuario_que_deja_Pendiente_en_Auditoria + '</td>';
+                        tbl += '<td>' + lista.Table[i].Ciudad_del_centro_generador_de_autorizacion + '</td>';
+                        tbl += '<td>' + lista.Table[i].Centro_generador_de_autorizacion + '</td>';
+                        tbl += '<td>' + lista.Table[i].Usuario_que_deja_Pendiente_en_Front + '</td>';
+                        tbl += '<td>' + lista.Table[i].Tipo_de_servicio + '</td>';
+                        tbl += '<td>' + lista.Table[i].Descripcion + '</td>';
+                        tbl += '<td>' + lista.Table[i].Estado_servicio + '</td>';
+                        tbl += '<td>' + lista.Table[i].Nivel_Autorizacion + '</td>';
+                        tbl += '<td>' + lista.Table[i].Responsable_Auditoria + '</td>';
+                        tbl += '<td>' + lista.Table[i].Responsable_Generar_At4 + '</td>';
+                        tbl += '<td>' + lista.Table[i].Usuario_que_Audita + '</td>';
+                        tbl += '<td>' + lista.Table[i].Justificacion_de_Auditoria + '</td>';
+                        tbl += '<td>' + lista.Table[i].Observaciones_de_Auditoria + '</td>';
+                        tbl += '<td>' + lista.Table[i].Observaciones_Generales + '</td>';
+                        tbl += '<td>' + lista.Table[i].ValorAproximado + '</td>';
+                        tbl += '<td>' + lista.Table[i].Cups + '</td>';
+
+                        tbl += '</tr>';
+                        $("#tablaAsignar").append(tbl);
+                    }
+                }
+
+
+
+                //obtenerEvaluacion();
+            }
+            else {
+                swal('Autoevaluacion', 'No se ha configurado personas a calificar..!', 'warning');
+                $('#tablaCalificar td').remove();
+            }
+        }
+    });
+}
