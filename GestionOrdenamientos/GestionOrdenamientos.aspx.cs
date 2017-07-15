@@ -59,12 +59,12 @@ namespace GestionOrdenamientos
 
 
         //Obtiene las ordenes asignadas por usuario
-        public string consultarOrdenesxFecha(string Optimizador)
+        public string consultarOrdenesxFecha(string tipoidoptimizador,string idoptimizador)
         {
             try
             {
 
-                var dtUsuario = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + Optimizador + "'");
+                var dtUsuario = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + tipoidoptimizador + "','" + idoptimizador + "'");
                 if (dtUsuario.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtUsuario);
@@ -81,12 +81,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string ConsultarOrdenesxFecha(string Optimizador)
+        public static string ConsultarOrdenesxFecha(string tipoidoptimizador, string idoptimizador)
         {
             try
             {
                 GestionOrdenamientos objLogin = new GestionOrdenamientos();
-                return objLogin.consultarOrdenesxFecha(Optimizador);
+                return objLogin.consultarOrdenesxFecha(tipoidoptimizador, idoptimizador);
             }
             catch (Exception ex)
             {

@@ -4,8 +4,12 @@
 
 var cuantosE = 0;
 var cikloEvaluados = null;
-var usuario = null;
 var IdUsuario = null;
+
+
+
+var usuario; 
+
 ; (function (window) {
    
     var cboProveedor = $('#ddlProveedores');
@@ -430,16 +434,35 @@ var IdUsuario = null;
 	            if (lista.Table.length > 0) {
 
 	                if (lista.Table[0].respuesta == "OK") {
-	                    openMenu();
-	                    consultarOrdenesFecha()
-	                    $('#lblUsuario').html(usuario);
-	                    $('#btnMenu').removeAttr('style');
+
+	                    if (lista.Table[0].idtipousuario == "0") {
+	                        //si es un tipo usu o admin, vera todo el menu
+	                        openMenu();
+	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                        $('#btnMenu').removeAttr('style');
+	                    }else  if (lista.Table[0].idtipousuario == "1") {
+	                        //si es un tipo usu 1 optimizador, no vera el menu de proveedor
+	                        $('#pgEvaluarGrupal').addClass('hidden');
+	                        openMenu();
+	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
+	                        $('#btnMenu').removeAttr('style');
+	                    } else {
+	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor
+	                        $('#pgEvaluarIndividual').addClass('hidden');
+	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
+	                        openMenu();
+	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                        $('#btnMenu').removeAttr('style');
+	                    }
+	                    
 	                } else {
-	                    swal('Evolution', 'Lo sentimos, no tienes permisos para ingresar!', 'warning');
+	                    swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
 	                }
 	            }
 	            else {
-	                swal('Evolution', 'Lo sentimos, no tienes permisos para ingresar!', 'warning');
+	                swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
 	            }
 	        }
 	    });
@@ -449,11 +472,10 @@ var IdUsuario = null;
 
 
     //consultar ordenes para optimizar
-	function consultarOrdenesFecha() {
-	    var Optimizador = usuario;
+	function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	    $.ajax({
 	        url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
-	        data: "{ Optimizador: '" + Optimizador + "'}",
+	        data: "{ tipoidoptimizador: '" + tipoidoptimizador + "', idoptimizador: '" + idoptimizador + "'}",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "json",
 	        async: true,
@@ -468,9 +490,7 @@ var IdUsuario = null;
 
 	                if (listaDatos.Table.length > 0) {	                    
 
-	                    for (var i = 0; i < datos.length; i++) {                        
-	                       
-
+	                    for (var i = 0; i < datos.length; i++) {   
 	                        var tbl = '';
 	                        tbl += '<tr>';
 	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
@@ -494,8 +514,9 @@ var IdUsuario = null;
 	                    }
 	                }
 	            else {
-	                    swal('Autoevaluacion', 'No se encontraron ordenes asignadas al usuario: ' + usuario + '.', 'warning');
+	                    swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
 	                    $('#tablaAsignar td').remove();
+	                    $("#tittleAsignar").val('nooooo');
 	            }
 	        }
 	    });
