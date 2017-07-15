@@ -96,9 +96,9 @@ namespace GestionOrdenamientos
 
 
         //Actualiza los datos de usuario
-        public string ActualizarOrdenes(string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
         {
-            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
             if (dt.Tables.Count > 0)
             {
                 return JsonConvert.SerializeObject(dt);
@@ -112,10 +112,10 @@ namespace GestionOrdenamientos
 
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarOrdenes(string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
         {
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
-            return objUsuario.ActualizarOrdenes(optimizador, idconsecutivo, proveedorasignado, observaciones);
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observaciones);
         }
 
 

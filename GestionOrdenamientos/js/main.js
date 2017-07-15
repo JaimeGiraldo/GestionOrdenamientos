@@ -8,7 +8,7 @@ var IdUsuario = null;
 
 
 
-var usuario; 
+var usuario,IdtipoOpt,IdOpt; 
 
 ; (function (window) {
    
@@ -435,6 +435,9 @@ var usuario;
 
 	                if (lista.Table[0].respuesta == "OK") {
 
+	                    IdtipoOpt = lista.Table[0].idtipoid;
+	                    IdOpt = lista.Table[0].identificacion;
+
 	                    if (lista.Table[0].idtipousuario == "0") {
 	                        //si es un tipo usu o admin, vera todo el menu
 	                        openMenu();
@@ -442,14 +445,15 @@ var usuario;
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    }else  if (lista.Table[0].idtipousuario == "1") {
-	                        //si es un tipo usu 1 optimizador, no vera el menu de proveedor
+	                        //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
+	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
 	                        $('#pgEvaluarGrupal').addClass('hidden');
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    } else {
-	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor
+	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
 	                        $('#pgEvaluarIndividual').addClass('hidden');
 	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
 	                        openMenu();
@@ -503,9 +507,11 @@ var usuario;
 	                        tbl += '<td>' + datos[i].Optimizador + '</td>';
 	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].idConsecutivo + '" class="form-control color-blue per70"></select>' + '</td>';
 	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Ingresa tus observaciones">' + '</td>';
-	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].idConsecutivo + ',' + i+1 + ')">Asignar</button>' + '</td>';
+	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Asignar</button>' + '</td>';
 	                        tbl += '</tr>';	                        
-                                                   
+                           //cuando se pasan parametros en este boton string saca error           
+	                      
 
 	                        $("#tablaAsignar").append(tbl);
 
@@ -800,23 +806,23 @@ function FiltrarTablaSede() {
 
 }
 
-function GuardarProovedor(posicion,posiciontabla) {
+function GuardarProovedor(posicion, posiciontabla) {
 
     var input, filter, table, tr, td, i;
     table = document.getElementById("tablaAsignar");
     tr = table.getElementsByTagName("tr");
 
-
+    console.log(IdtipoOpt)
+    console.log(IdOpt)
     //tr[posiciontabla].style.display = "none";
-
-    var optimizador = usuario;
+   
     var idconsecutivo = posicion;
     var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
     var observaciones = $('#txtObservaciones_' + posicion).val();
 
     $.ajax({
         url: "GestionOrdenamientos.aspx/actualizarOrdenes",
-        data: "{ optimizador: '" + optimizador + "', idconsecutivo: '" + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '" + observaciones + "'}",
+        data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '" + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '" + observaciones + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,
@@ -831,7 +837,7 @@ function GuardarProovedor(posicion,posiciontabla) {
             if (listaDatos.Table.length > 0) {
 
                 if (datos[0].Respuesta == "OK") {
-                    swal('Autoevaluacion', 'Bien, el proveedor se asigno correctamente.', 'warning');
+                    swal('Autoevaluacion', 'Bien, el proveedor se asigno correctamente.', 'success');
                 } else {
                     swal('Autoevaluacion', 'Lo sentimos, el proveedor no se asigno correctamente.', 'warning');
                 }
