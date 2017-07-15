@@ -8,7 +8,7 @@ var IdUsuario = null;
 
 
 
-var usuario,IdtipoOpt,IdOpt; 
+var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes; 
 
 ; (function (window) {
    
@@ -29,10 +29,22 @@ var usuario,IdtipoOpt,IdOpt;
 
     });
 
+    $("#btnActualizartabla").on("click", function (e) {
+       //remueve el cuerpo de la tabala
+        var tbl = document.getElementById("tablaAsignar"); // Get the table
+        tbl.removeChild(tbl.getElementsByTagName("tbody")[0]);
+
+        consultarOrdenesFecha(IdtipoOpt, IdOpt);
+    });
+
+
+
 
 
   
-    $("#form_usuario_sede").change();
+    $("#form_usuario_sede").change();   
+
+
 
     $("#btnSalir").on("click", function (e) {
         location.reload();
@@ -489,12 +501,23 @@ var usuario,IdtipoOpt,IdOpt;
 	            alert(rest.Error);
 	        } else {
 	            var listaDatos = JSON.parse(rest.d);
-	            var datos = listaDatos.Table;	             
+	            var datos = listaDatos.Table;
+	            var datos1 = listaDatos.Table1;
+	            var datos2 = listaDatos.Table2;
+
+	           
+
 	            $('#tablaAsignar td').remove();
 
 	                if (listaDatos.Table.length > 0) {	                    
 
-	                    for (var i = 0; i < datos.length; i++) {   
+	                    totalpendientes = datos2[0].cantidadPendientes;
+	                    document.getElementById('lbltotalasignados').innerHTML = datos1[0].cantidadTotal;
+	                    document.getElementById('lbltotalpendientes').innerHTML = datos2[0].cantidadPendientes;
+
+
+	                    for (var i = 0; i < datos.length; i++) {
+	                        datosorden = datos;
 	                        var tbl = '';
 	                        tbl += '<tr>';
 	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
@@ -504,7 +527,7 @@ var usuario,IdtipoOpt,IdOpt;
 	                        tbl += '<td>' + datos[i].Cups + '</td>';
 	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
 	                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
-	                        tbl += '<td>' + datos[i].Optimizador + '</td>';
+	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].idConsecutivo + '" class="form-control color-blue per70"></select>' + '</td>';
 	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Ingresa tus observaciones">' + '</td>';
 	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
@@ -512,7 +535,6 @@ var usuario,IdtipoOpt,IdOpt;
 	                        tbl += '</tr>';	                        
                            //cuando se pasan parametros en este boton string saca error           
 	                      
-
 	                        $("#tablaAsignar").append(tbl);
 
 	                        var combo = $('#ddl_Proveedoress_' + datos[i].idConsecutivo);
@@ -522,7 +544,6 @@ var usuario,IdtipoOpt,IdOpt;
 	            else {
 	                    swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
 	                    $('#tablaAsignar td').remove();
-	                    $("#tittleAsignar").val('nooooo');
 	            }
 	        }
 	    });
@@ -810,11 +831,7 @@ function GuardarProovedor(posicion, posiciontabla) {
 
     var input, filter, table, tr, td, i;
     table = document.getElementById("tablaAsignar");
-    tr = table.getElementsByTagName("tr");
-
-    console.log(IdtipoOpt)
-    console.log(IdOpt)
-    //tr[posiciontabla].style.display = "none";
+    tr = table.getElementsByTagName("tr");    
    
     var idconsecutivo = posicion;
     var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
@@ -838,16 +855,32 @@ function GuardarProovedor(posicion, posiciontabla) {
 
                 if (datos[0].Respuesta == "OK") {
                     swal('Autoevaluacion', 'Bien, el proveedor se asigno correctamente.', 'success');
+                    tr[posiciontabla].style.display = "none";
+                    totalpendientes = totalpendientes - 1;
+                    document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
                 } else {
                     swal('Autoevaluacion', 'Lo sentimos, el proveedor no se asigno correctamente.', 'warning');
                 }
             }
             else {
                 swal('Autoevaluacion', 'Lo sentimos, el registro no se actualizo.', 'warning');
-                $('#tablaCalificar td').remove();
             }
         }
     });
+}
+
+function MasInformacion(posicion) {
+   
+    document.getElementById('lblsolicitud').innerHTML = datosorden[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('lblpaciente').innerHTML = datosorden[posicion].Id_Afiliado;
+    document.getElementById('lblusuregistro').innerHTML = datosorden[posicion].Ciklos_Usuario_que_Registro;
+    document.getElementById('lblestadosoli').innerHTML = datosorden[posicion].Estado_Solicitud;
+    document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Estado_servicio; 
+    document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Tipo_de_servicio;
+
+
+    $("#myModal").modal();
+   
 }
 
 
