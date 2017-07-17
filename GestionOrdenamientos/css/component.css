@@ -56,6 +56,7 @@ html.js,
 	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 	-webkit-transform: translate3d(-50%, 150px, 0);
 	transform: translate3d(-50%, 150px, 0);
+    z-index: 9;
 }
 
 .js .pages-nav--open {
