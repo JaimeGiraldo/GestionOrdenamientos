@@ -213,7 +213,7 @@ html.js,
     -webkit-align-items: center;
     align-items: center;
     flex-direction: column;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .bp-header, .login {
 	-webkit-transition: all 500ms ease;
