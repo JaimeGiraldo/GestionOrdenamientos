@@ -226,8 +226,8 @@
         
         <div class="page" id="page-Proveedores">
 			<header class="bp-header cf">
-				<h1 class="bp-header__title">Proveedores</h1>			
-                <p>Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
+                <h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>			
+                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
 			</header>    
             
          <div class="container">
@@ -242,7 +242,7 @@
                             <th>Cups</th> 
                             <th>Descripcion</th>  
                             <th>Proveedor</th>    
-                            <th>Accion</th>                                                     
+                            <th>Accion</th>                                                   
                             
                         </tr>
                     </thead>
