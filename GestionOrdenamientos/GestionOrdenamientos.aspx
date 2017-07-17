@@ -37,6 +37,7 @@
 
     
 	<div class="usuario_name">
+        <img src="images/LogoNuevo.png" alt="Promedan">
 		<h4 class="link">¡Bienvenido!</h4>
 		<span id="lblUsuario" class="nombre_usuario"></span>
 		<span id="cargo" class="cargo_lab"></span>
