@@ -49,10 +49,10 @@
 	<nav class="pages-nav">
      <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
-     --%>   <div class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
-		<div class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
-        <div class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
-        <div class="pages-nav__item" id="Resultado1"><a id="btnGrafico"  class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
+     --%>   <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
+		<div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
+        <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
+        <div id="MenuReportes" class="pages-nav__item" id="Resultado1"><a id="btnGrafico"  class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
 		<%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		 
         
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
@@ -227,8 +227,8 @@
         
         <div class="page" id="page-Proveedores">
 			<header class="bp-header cf">
-				<h1 class="bp-header__title">Proveedores</h1>			
-                <p>Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
+				<h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>			
+                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
 			</header>    
             
          <div class="container">

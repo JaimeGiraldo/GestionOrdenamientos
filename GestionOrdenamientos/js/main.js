@@ -472,16 +472,16 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                        $('#btnMenu').removeAttr('style');
 	                    }else  if (lista.Table[0].idtipousuario == "1") {
 	                        //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
-	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
-	                        $('#pgEvaluarGrupal').addClass('hidden');
+	                        $('#MenuCargaArchivo').hide();
+	                        $('#MenuProveedor').hide();
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    } else {
 	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
-	                        $('#pgEvaluarIndividual').addClass('hidden');
-	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
+	                        $('#MenuOptimizador').hide();
+	                        $('#MenuCargaArchivo').hide();
 	                        openMenu();
 	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
@@ -592,7 +592,8 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                    var tbl = '';
 	                    tbl += '<tr>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
-	                    tbl += '<td>' + datos[i].Descripcion + '</td>'; 
+	                    tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                    tbl += '<td>' + '<input type="checkbox" id="cbox" value="second_checkbox">' + '</td>';
                         tbl += '</tr>';	                    
                         $("#tablaProveedores").append(tbl);
 	                }
@@ -600,7 +601,7 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	            }
 	            else {
 
-	                document.getElementById('headerproveedor').innerHTML = "No Tienes ordenes asignadas";
+	                document.getElementById('headerproveedor').innerHTML = "No Tienes ordenes pendientes";
 	                document.getElementById('lblheaderproveedor').innerHTML = "";
 	                 //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
 	                $('#tablaProveedores td').remove();
