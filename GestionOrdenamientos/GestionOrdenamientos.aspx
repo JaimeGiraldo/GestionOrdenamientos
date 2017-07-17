@@ -137,8 +137,8 @@
                        
       <div class="page" id="page-AsignarAT4">
 			<header class="bp-header cf">
-				<h1 class="bp-header__title">Asignar Orden Liberada</h1>			
-                <p>
+				<h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>			
+                <p id="optimi" > 
 					Favor consultar la orden y asignarle el provedor correspondiente
 				</p>
                 
@@ -229,34 +229,14 @@
         <div class="page" id="page-Proveedores">
 			<header class="bp-header cf">
 				<h1 class="bp-header__title">Proveedores</h1>			
-                <p>
-                    Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecucion
-				</p>
+                <p>Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
 			</header>    
             
          <div class="container">
-             <div class="col-lg-12 col-md-12">
-                         <label class="s16 color-white">Confirmar Ordenes Proveedor</label>
-                       
-                    </div>  
+            
 
 
-              <%-- <div class="scroll_header_fixed">--%>
-                   <div class="col-lg-12 col-md-12 form-horizontal">
-                                           
-         
-                  <label class="s16 color-white">Seleccione Proveedor</label>
-                 <select id="ddlProveedores" class="form-control color-blue per70"></select>
-                       
-                  <label class="s16 color-white">Ingrese Contraseña</label>
-                    <input type="password"  placeholder="Ingrese su Contraseña" class="form-control per70  "/>
-         
-                        <br />
-                       <button id="btnProveedor" class="btn btn-success per70" value="Consultar Ordenes">Consultar Ordenes</button>
-                    </div>
-		          <%--</div>--%>
-
-             <div class="col-lg-12 col-md-12">
+              <div class="col-lg-12 col-md-12">
                  
                  <table id="tablaProveedores" class="table table-hover table-action">
                        <thead>

@@ -537,12 +537,15 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                      
 	                        $("#tablaAsignar").append(tbl);
 
+	                        
 	                        var combo = $('#ddl_Proveedoress_' + datos[i].idConsecutivo);
 	                        llenarCombos(combo, "spsuministros_Proveedores_Obtener");
 	                    }
 	                }
-	            else {
-	                    swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
+	                else {
+	                    document.getElementById('headeroptimizacion').innerHTML = "No Tienes ordenes asignadas";
+	                    document.getElementById('optimi').innerHTML = "";	                    
+	                    //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
 	                    $('#tablaAsignar td').remove();
 	            }
 	        }
