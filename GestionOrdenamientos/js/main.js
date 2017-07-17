@@ -598,10 +598,18 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                    tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
                               '" class="btn btn-primary" onclick="GuardarAdjuntoProveedor(' + datos[i].idConsecutivo + ')">Adjuntar</button>' + '</td>';
-	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox" onclick="MasInformacionProveedor(' + i + ')"><span class="slider round"></span></label>' + '</td>';
+	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox" onclick="GuardarProovedorGestion(' + datos[i].idConsecutivo + ',' + (i + 1) + ')"><span class="slider round"></span></label>' + '</td>';
 	                    tbl += '</tr>';
 
-                        $("#tablaProveedores").append(tbl);
+	                    $("#tablaProveedores").append(tbl);
+
+                        //valida si la orden ya fue realizada por el proveedor
+	                    if (datos[i].EstadoProveedor == 1) {
+	                        $('#check_' + datos[i].idConsecutivo).prop('checked', true);
+	                        $('#txtOrden_' + datos[i].idConsecutivo).val(datos[i].OrdenProveedor);
+	                        $('#txtOrden_' + datos[i].idConsecutivo).prop("disabled", true);
+	                        $('#btnAdjunto_' + datos[i].idConsecutivo).prop("disabled", true);
+	                    }
 	                }
 
 	            }
@@ -951,15 +959,6 @@ function MasInformacion(posicion) {
 
 function GuardarAdjuntoProveedor(id) {
 
-
-    var permiso = 0;
-    if ($('#check_' + id).is(':checked')) {
-        permiso = 1;
-        console.log(permiso)
-    } else {
-        console.log(permiso)
-    }
-
     var proveedorasignado = $('#check_' + id).val();
     console.log(proveedorasignado)
 
@@ -970,7 +969,30 @@ function GuardarAdjuntoProveedor(id) {
 function MasInformacionProveedor(posicion) {
 
     swal('Autoevaluacion', 'Lo sentimos, el registro no se actualizo.' + posicion, 'warning');
+}
 
+
+function GuardarProovedorGestion(posicion, posiciontabla) {
+
+    var orden = $('#txtOrden_' + posicion ).val();
+
+    if (orden.length == 0) {
+        swal('Autoevaluacion', 'Lo sentimos, debes ingresar el número de la orden para continuar.', 'warning');
+        $('#check_' + posicion).prop('checked', false);
+
+    } else  if (!$('#check_' + posicion).is(':checked')) {
+        $('#check_' + posicion).prop('checked', true);
+        swal('Autoevaluacion', 'Lo sentimos, esta orden ya fue diligenciada y no es posible cambiar el estado.', 'warning');
+        } else {
+           
+
+
+
+           
+        }
+    
+  
+  
 }
 
 //Obtiene todos los resultados
