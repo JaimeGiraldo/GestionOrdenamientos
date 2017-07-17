@@ -188,7 +188,7 @@ html.js,
 	-webkit-perspective: 1200px;
 	perspective: 1200px;
 	-webkit-perspective-origin: 50% -50%;
-	perspective-origin: 50% -230%;
+	perspective-origin: 50% -260%;
 }
 .js .page {
 	position: relative;
@@ -197,8 +197,7 @@ html.js,
 	width: 100%;
 	height: 100vh;
 	pointer-events: auto;
-	/*background: #337ab7;*/
-    background: #013064;
+    background: #0cbae9;
 	box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -325,6 +324,18 @@ box-shadow: none;
 	margin-top: 12px;
 }
 
+.usuario_name input {
+    width: 100px;
+    float: right;
+    border-radius: 0;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 10px;
+    line-height: 14px;
+    color: #fff !important;
+    text-transform: uppercase;
+}
+
 
 
 .js .pages-stack--open .page {
@@ -363,7 +374,7 @@ box-shadow: none;
 .menu-button {
 	position: absolute;
 	z-index: 1000;
-	top: 30px;
+	top: 100px;
 	left: 30px;
 	width: 30px;
 	height: 24px;
@@ -381,7 +392,7 @@ box-shadow: none;
 .menu-button::before,
 .menu-button::after,
 .menu-button span {
-	background: #0cbae9;
+	background: #00245c;
     /*close btn*/
 }
 
@@ -602,25 +613,21 @@ a {
     background-size: cover;
 }
 .usuario_name {
-    position: fixed;
-    text-align: center;
-    padding-top: 1em;
-    /* z-index: 1; */
-    right: 2%;
-    background-color: #29AFFC;
-    border-radius: 0 0 3px 3px;
-    padding: 2em;
-    max-width: 18em;
+    position: absolute;
+    background-color: #0cbae9;
     color: #fff;
+    width: 100%;
 }
 .usuario_name h4 {
     margin-top: 0;
+    float: left;
 }
 span.nombre_usuario, span.cargo_lab, a.ver_perfil {
     font-size: 0.65em;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
+    float: left;
 }
 span.nombre_usuario {
     color: #cbe3ff;
