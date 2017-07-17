@@ -589,15 +589,18 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	            if (listaDatos.Table.length > 0) {
 
 	                for (var i = 0; i < datos.length; i++) {
+
 	                    var tbl = '';
 	                    tbl += '<tr>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
 	                    tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
+	                    tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
 	                    tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
                               '" class="btn btn-primary" onclick="GuardarAdjuntoProveedor(' + datos[i].idConsecutivo + ')">Adjuntar</button>' + '</td>';
+	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox" onclick="MasInformacionProveedor(' + i + ')"><span class="slider round"></span></label>' + '</td>';
 	                    tbl += '</tr>';
+
                         $("#tablaProveedores").append(tbl);
 	                }
 
@@ -922,11 +925,11 @@ function GuardarProovedor(posicion, posiciontabla) {
                     totalpendientes = totalpendientes - 1;
                     document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
                 } else {
-                    swal('Autoevaluacion', 'Lo sentimos, el proveedor no se asigno correctamente.', 'warning');
+                    swal('Evolution Ordenamientos', 'Lo sentimos, el proveedor no se asigno correctamente.', 'warning');
                 }
             }
             else {
-                swal('Autoevaluacion', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
             }
         }
     });
@@ -947,8 +950,27 @@ function MasInformacion(posicion) {
 }
 
 function GuardarAdjuntoProveedor(id) {
-    swal('Autoevaluacion', id, 'warning');
+
+
+    var permiso = 0;
+    if ($('#check_' + id).is(':checked')) {
+        permiso = 1;
+        console.log(permiso)
+    } else {
+        console.log(permiso)
+    }
+
+    var proveedorasignado = $('#check_' + id).val();
+    console.log(proveedorasignado)
+
+    swal('Autoevaluacion','Lo sentimos, el registro no se actualizo.' + id, 'warning');
     
+}
+
+function MasInformacionProveedor(posicion) {
+
+    swal('Autoevaluacion', 'Lo sentimos, el registro no se actualizo.' + posicion, 'warning');
+
 }
 
 //Obtiene todos los resultados

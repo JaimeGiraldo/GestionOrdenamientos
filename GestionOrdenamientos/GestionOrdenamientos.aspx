@@ -241,10 +241,11 @@
                        <thead>
                         <tr>   
                             <th>Cups</th> 
-                            <th>Descripcion</th>  
-                            <th>Proveedor</th>    
-                            <th>Accion</th>                                                     
-                            
+                            <th>Descripción</th>  
+                            <th>Detalle</th>    
+                            <th>Orden</th>
+                            <th>Soporte</th>                                                     
+                            <th>Estado</th> 
                         </tr>
                     </thead>
                       <tbody></tbody>
