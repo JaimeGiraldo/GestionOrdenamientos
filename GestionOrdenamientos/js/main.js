@@ -593,8 +593,11 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                    tbl += '<tr>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
 	                    tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                    tbl += '<td>' + '<input type="checkbox" id="cbox" value="second_checkbox">' + '</td>';
-                        tbl += '</tr>';	                    
+	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
+	                    tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
+	                    tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
+                              '" class="btn btn-primary" onclick="GuardarAdjuntoProveedor(' + datos[i].idConsecutivo + ')">Adjuntar</button>' + '</td>';
+	                    tbl += '</tr>';
                         $("#tablaProveedores").append(tbl);
 	                }
 
@@ -943,6 +946,10 @@ function MasInformacion(posicion) {
    
 }
 
+function GuardarAdjuntoProveedor(id) {
+    swal('Autoevaluacion', id, 'warning');
+    
+}
 
 //Obtiene todos los resultados
 function obtenerResultadosTodos() {
