@@ -141,11 +141,32 @@
                 <p>
 					Favor consultar la orden y asignarle el provedor correspondiente
 				</p>
-			</header>    
+                
+                 <div class="col-lg-2 col-md-2">
+                     <label >TOTAL ASIGNADO:</label>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                     <label id="lbltotalasignados"></label>
+                </div>
+
+                <div class="col-lg-2 col-md-2">
+                     <label >TOTAL PENDIENTES:</label>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                     <label id="lbltotalpendientes"></label>
+                </div>
+
+
+                <div class="col-lg-2 col-md-2">                                          
+                    <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
+                </div>
+            </header>    
             
         <div class="container">
-               <div class="scroll_header_fixed">                 
-                            
+               <div class="scroll_header_fixed">     
+                   
+                              
+              <div class="col-lg-12 col-md-12">
                  <table id="tablaAsignar" class="table table-hover table-action">
                        <thead>
                         <tr>   
@@ -155,16 +176,54 @@
                              <th>Solicitante</th>
                              <th>Cups</th> 
                              <th>Descripción</th>                            
-                             <th>Afiliado</th>        
-                             <th>Optimizador</th>
-                             <th>Asignar Proveedor</th>                             
+                             <th>Afiliado</th> 
+                             <th>Detalle</th>  
+                             <th>Asignar Proveedor</th>
+                             <th>Observaciones</th>                             
                         </tr>
                     </thead>
                       <tbody></tbody>
                     </table>
              </div>
-		          </div>
+		    </div>     
          </div>
+
+           <div class="container">
+                        <!-- Modal para ingresar en la pantalla principal un programa PYP -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">                                       
+                                       <%-- <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>--%>
+                                    </div>
+                                    <div class="modal-body" style="padding: 40px 50px;">
+                                        <p>Codigo Solicitud Ciklos.</p>
+                                        <label id="lblsolicitud"></label>
+
+                                         <p>Paciente.</p>
+                                        <label id="lblpaciente"></label>
+
+                                         <p>Usuario Registro.</p>
+                                        <label id="lblusuregistro"></label>
+
+                                        <p>Estado Solicitud.</p>
+                                        <label id="lblestadosoli"></label>
+
+                                        <p>Estado Servicio.</p>
+                                        <label id="lblestadoserv"></label>
+
+                                         <p>Tipo de Servicio.</p>
+                                        <label id="lbltiposerv"></label>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
              </div>       
         
         <div class="page" id="page-Proveedores">
