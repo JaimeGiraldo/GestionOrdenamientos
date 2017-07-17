@@ -11,20 +11,23 @@ using Newtonsoft.Json;
 using System.Net.Mail;
 using GestionOrdenamientos.BD;
 using System.IO;
-using System.Data.SqlClient;
-using System.Data.OleDb;
 
 namespace GestionOrdenamientos
 {
     public partial class GestionOrdenamientos : System.Web.UI.Page
     {
-        AccesoDatos objRetornarDatos = new AccesoDatos();       
+        AccesoDatos objRetornarDatos = new AccesoDatos();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
         
-        public string validarUsuario(string UsuarioSistema, string Clave)
+
+        //control de usuarios
+        public string ValidarUsuario(string UsuarioSistema, string Clave)
         {
             try
             {
-
                 var dtUsuario = objRetornarDatos.llenarDataSet("spValidarUsuarioSistema" + "'" + UsuarioSistema + "','" + Clave + "'");
                 if (dtUsuario.Tables.Count > 0)
                 {
@@ -42,12 +45,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string InicioSesion(string UsuarioSistema, string Clave)
+        public static string validarUsuario(string UsuarioSistema, string Clave)
         {
             try
             {
                 GestionOrdenamientos objLogin = new GestionOrdenamientos();
-                return objLogin.validarUsuario(UsuarioSistema, Clave);
+                return objLogin.ValidarUsuario(UsuarioSistema, Clave);
             }
             catch (Exception ex)
             {
@@ -56,16 +59,16 @@ namespace GestionOrdenamientos
         }
 
 
-        //Obtiene las ordenes asignadas por usuario
-        public string consultarOrdenesxFecha(string Optimizador)
+        //Obtiene las ordenes asignadas por optimizador
+        public string ConsultarOrdenesxOptimizador(string tipoidoptimizador,string idoptimizador)
         {
             try
             {
 
-                var dtUsuario = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + Optimizador + "'");
-                if (dtUsuario.Tables.Count > 0)
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + tipoidoptimizador + "','" + idoptimizador + "'");
+                if (dtOrdenes.Tables.Count > 0)
                 {
-                    return JsonConvert.SerializeObject(dtUsuario);
+                    return JsonConvert.SerializeObject(dtOrdenes);
                 }
                 else
                 {
@@ -79,12 +82,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string ConsultarOrdenesxFecha(string Optimizador)
+        public static string consultarOrdenesxOptimizador(string tipoidoptimizador, string idoptimizador)
         {
             try
             {
-                GestionOrdenamientos objLogin = new GestionOrdenamientos();
-                return objLogin.consultarOrdenesxFecha(Optimizador);
+                GestionOrdenamientos objOrdenesOptimizador = new GestionOrdenamientos();
+                return objOrdenesOptimizador.ConsultarOrdenesxOptimizador(tipoidoptimizador, idoptimizador);
             }
             catch (Exception ex)
             {
@@ -92,54 +95,60 @@ namespace GestionOrdenamientos
             }
         }
 
-
-        public string ProcesarArchivo(string Archivo)
+               
+        //Actualiza los datos de las ordenes optimizadas
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
         {
-
-            string SaveLocation = Server.MapPath(@"~\Documentos") + "\\" + Archivo;
-            DataSet dsImportar = new DataSet();
-            string Sql = @"Select * From [" + Archivo + "$]";
-            OleDbConnection cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + SaveLocation + "; Extended Properties=Excel 8.0");
-            OleDbDataAdapter da = new OleDbDataAdapter(Sql, cnn);
-            cnn.Open();
-            da.Fill(dsImportar);            
-            if (dsImportar.Tables.Count > 0)
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
+            if (dt.Tables.Count > 0)
             {
-                using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion()))
-                {                                            
-                        bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos";                        
-                        bulkcopy.WriteToServer(dsImportar.Tables[0]);
-                        bulkcopy.Close(); 
-                }
+                return JsonConvert.SerializeObject(dt);
             }
-
-            return "OK";
-        }                       
-
-    [System.Web.Services.WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string procesarArchivo(string Archivo)
-        {
-            try
+            else
             {
-                GestionOrdenamientos objOrdenes = new GestionOrdenamientos();
-                return objOrdenes.ProcesarArchivo(Archivo);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                return string.Empty;
             }
         }
 
 
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string cargarDatos(string sp)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        {
+            GestionOrdenamientos objUsuario = new GestionOrdenamientos();
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observaciones);
+        }
+
+
+        //Obtiene las ordenes por proveedor
+        public string ConsultarOrdenesxProveedor(string proveedor)
         {
             try
             {
-                GestionOrdenamientos objCombos = new GestionOrdenamientos();
-                return objCombos.CargarDatos(sp);
+
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string consultarOrdenesxProveedor(string proveedor)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor);
             }
             catch (Exception ex)
             {
@@ -147,6 +156,9 @@ namespace GestionOrdenamientos
             }
         }
 
+
+
+        //carga los datos de los combos
         public string CargarDatos(string sp)
         {
             try
@@ -162,6 +174,20 @@ namespace GestionOrdenamientos
                 {
                     return string.Empty;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string cargarDatos(string sp)
+        {
+            try
+            {
+                GestionOrdenamientos objCombos = new GestionOrdenamientos();
+                return objCombos.CargarDatos(sp);
             }
             catch (Exception ex)
             {

@@ -33,13 +33,11 @@
 </head>
 
 <body>
-	<div class="logo_alp">
-		<img src="images/LogoNuevo.png" alt="Promedan">
-
-	</div>
+	
 
     
 	<div class="usuario_name">
+        <img src="images/LogoNuevo.png" alt="Promedan">
 		<h4 class="link">¡Bienvenido!</h4>
 		<span id="lblUsuario" class="nombre_usuario"></span>
 		<span id="cargo" class="cargo_lab"></span>
@@ -52,10 +50,10 @@
 	<nav class="pages-nav">
      <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
-     --%>   <div class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
-		<div class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
-        <div class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
-        <div class="pages-nav__item" id="Resultado1"><a id="btnGrafico"  class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
+     --%>   <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
+		<div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
+        <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
+        <div id="MenuReportes" class="pages-nav__item" id="Resultado1"><a id="btnGrafico"  class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
 		<%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		 
         
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
@@ -74,7 +72,7 @@
 		<div class="page" id="page-home">
 			<!-- Header -->
 			<header class="bp-header cf">		
-				<p class="bp-header__present">Gestion Ordenamientos bienvenidos, <b>inicia sesión</b></p>
+			
 				<!--<nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
 					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
@@ -84,13 +82,16 @@
 			</header>
 			<div class="mylogin_eval">
 				<%--<img class="eval_360_logo" src="images/logoNuevo.png" alt="Promedan">--%>
-                <br />
-                <br /><br />
-                <br /><br />
-                <br />
-
+                
 				<div class="login">
+                        
 						<div class="login-screen">
+                            <div class="logo_alp">
+		                        <img src="images/LogoNuevo.png" alt="Promedan">
+                            </div>
+                            <div class="intro_log">
+                                <p>Gestión Ordenamientos, bienvenidos, <b>inicia sesión</b></p>
+                            </div>
 
 							<div class="login-form" id="login_alp">
 								<div class="control-group">
@@ -140,28 +141,36 @@
                        
       <div class="page" id="page-AsignarAT4">
 			<header class="bp-header cf">
-				<h1 class="bp-header__title">Asignar Orden Liberada</h1>			
-                <p>
+				<h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>			
+                <p id="optimi" > 
 					Favor consultar la orden y asignarle el provedor correspondiente
 				</p>
-			</header>    
+                
+                 <div class="col-lg-2 col-md-2">
+                     <label >TOTAL ASIGNADO:</label>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                     <label id="lbltotalasignados"></label>
+                </div>
+
+                <div class="col-lg-2 col-md-2">
+                     <label >TOTAL PENDIENTES:</label>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                     <label id="lbltotalpendientes"></label>
+                </div>
+
+
+                <div class="col-lg-2 col-md-2">                                          
+                    <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
+                </div>
+            </header>    
             
         <div class="container">
-               <div class="scroll_header_fixed">
-                    <div class="col-lg-4 col-md-4">
-                         <label class="s16 color-white">Fecha Inicial</label>
-                        <input type="date" id="dtmFechaInicial"/>
-                          </div>    
-                        <div class="col-lg-4 col-md-4">
-                         <label class="s16 color-white">Fecha Final</label>
-                        <input type="date" id="dtmFechaFinal" />
-                    </div>
+               <div class="scroll_header_fixed">     
                    
-                   <div class="col-lg-4 col-md-4">
-                       <button id="btnAsignar" class="btn btn-primary">Consultar Ordenes</button>
-                   </div>           
-                    <div class="col-lg-12 col-md-12">
-                 
+                              
+              <div class="col-lg-12 col-md-12">
                  <table id="tablaAsignar" class="table table-hover table-action">
                        <thead>
                         <tr>   
@@ -170,59 +179,78 @@
                              <th>Estado Soli</th>
                              <th>Solicitante</th>
                              <th>Cups</th> 
-                             <th>Descripción</th>
-                             <th>Estado Serv</th>
-                             <th>Afiliado</th>        
-                             <th>Optimizador</th>                             
+                             <th>Descripción</th>                            
+                             <th>Afiliado</th> 
+                             <th>Detalle</th>  
+                             <th>Asignar Proveedor</th>
+                             <th>Observaciones</th>                             
                         </tr>
                     </thead>
                       <tbody></tbody>
                     </table>
              </div>
-		          </div>
+		    </div>     
          </div>
+
+           <div class="container">
+                        <!-- Modal para ingresar en la pantalla principal un programa PYP -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">                                       
+                                       <%-- <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>--%>
+                                    </div>
+                                    <div class="modal-body" style="padding: 40px 50px;">
+                                        <p>Codigo Solicitud Ciklos.</p>
+                                        <label id="lblsolicitud"></label>
+
+                                         <p>Paciente.</p>
+                                        <label id="lblpaciente"></label>
+
+                                         <p>Usuario Registro.</p>
+                                        <label id="lblusuregistro"></label>
+
+                                        <p>Estado Solicitud.</p>
+                                        <label id="lblestadosoli"></label>
+
+                                        <p>Estado Servicio.</p>
+                                        <label id="lblestadoserv"></label>
+
+                                         <p>Tipo de Servicio.</p>
+                                        <label id="lbltiposerv"></label>
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
              </div>       
         
         <div class="page" id="page-Proveedores">
 			<header class="bp-header cf">
-				<h1 class="bp-header__title">Proveedores</h1>			
-                <p>
-                    Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecucion
-				</p>
+				<h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>			
+                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
 			</header>    
             
          <div class="container">
-             <div class="col-lg-12 col-md-12">
-                         <label class="s16 color-white">Confirmar Ordenes Proveedor</label>
-                       
-                    </div>  
+            
 
 
-              <%-- <div class="scroll_header_fixed">--%>
-                   <div class="col-lg-12 col-md-12 form-horizontal">
-                                           
-         
-                  <label class="s16 color-white">Seleccione Proveedor</label>
-                 <select id="ddlProveedores" class="form-control color-blue per70"></select>
-                       
-                  <label class="s16 color-white">Ingrese Contraseña</label>
-                    <input type="password"  placeholder="Ingrese su Contraseña" class="form-control per70  "/>
-         
-                        <br />
-                       <button id="btnProveedor" class="btn btn-success per70" value="Consultar Ordenes">Consultar Ordenes</button>
-                    </div>
-		          <%--</div>--%>
-
-             <div class="col-lg-12 col-md-12">
+              <div class="col-lg-12 col-md-12">
                  
                  <table id="tablaProveedores" class="table table-hover table-action">
                        <thead>
                         <tr>   
                             <th>Cups</th> 
-                            <th>Descripcion</th>  
-                            <th>Proveedor</th>    
-                            <th>Accion</th>                                                     
-                            
+                            <th>Descripción</th>  
+                            <th>Detalle</th>    
+                            <th>Orden</th>
+                            <th>Soporte</th>                                                     
+                            <th>Estado</th> 
                         </tr>
                     </thead>
                       <tbody></tbody>
