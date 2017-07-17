@@ -74,7 +74,7 @@
 		<div class="page" id="page-home">
 			<!-- Header -->
 			<header class="bp-header cf">		
-				<p class="bp-header__present">Gestion Ordenamientos bienvenidos, <b>inicia sesión</b></p>
+			
 				<!--<nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
 					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
@@ -84,13 +84,14 @@
 			</header>
 			<div class="mylogin_eval">
 				<%--<img class="eval_360_logo" src="images/logoNuevo.png" alt="Promedan">--%>
-                <br />
-                <br /><br />
-                <br /><br />
-                <br />
-
+                
 				<div class="login">
+                        
 						<div class="login-screen">
+
+                            <div class="intro_log">
+                                <p>Gestión Ordenamientos, bienvenidos, <b>inicia sesión</b></p>
+                            </div>
 
 							<div class="login-form" id="login_alp">
 								<div class="control-group">

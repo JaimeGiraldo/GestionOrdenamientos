@@ -197,8 +197,10 @@ html.js,
 
 /*==================== Login(Home) ====================*/
 .js #page-home {
-    background-image: url('../images/bg_elementos_login_oficce.jpg');
-    background-size: cover;
+    /*background-image: url('../images/bg_elementos_login_oficce.jpg');
+    background-size: cover;*/
+    background-image: url('../images/ep_naturalwhite.png');
+    background-repeat: repeat;
 }
 .js #page-home .mylogin_eval {
 	text-align: center;
@@ -211,6 +213,7 @@ html.js,
     -webkit-align-items: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 100px;
 }
 .bp-header, .login {
 	-webkit-transition: all 500ms ease;
@@ -250,8 +253,8 @@ img.LogoNuevo {
     max-width: 30em;
 }
 .login-screen {
-background-color: rgba(255, 255, 255, 0.1);
-padding: 1em;
+background-color: rgba(45, 204, 247, 0.1);
+padding: 2em;
 border-radius: 5px;
 position: relative;
 }
@@ -265,6 +268,16 @@ text-align: center;
 .control-group {
 margin-bottom: 5px;
 }
+
+.login-form input{
+    border-radius: 100px;
+    margin-bottom:5px;
+}
+
+a#btnLogin {
+    border-radius: 100px;
+}
+
 input {
 text-align: center;
 background-color: #ECF0F1;
@@ -417,10 +430,11 @@ box-shadow: none;
 /*===========================================
 Logo Header
 ===========================================*/
+
 .logo_alp {
     position: fixed;
     text-align: center;
-    padding-top: 1em;
+    padding-top: 1em;    
     z-index: 1;
     left: 50%;
     -webkit-transform: translate(-50%,0);

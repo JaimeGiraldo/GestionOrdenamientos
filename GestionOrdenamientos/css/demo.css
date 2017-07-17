@@ -36,6 +36,18 @@
 
 /* Main styles */
 
+/*=======login p styles======*/
+
+.intro_log p {
+        font-size: 20px;
+    font-weight: 300;
+    color: #999;
+    line-height: 25px;
+    padding: 20px 0;
+}
+
+/*======ends login p styles=====*/
+
 body {
     font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
     margin: 0;
