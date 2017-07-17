@@ -39,9 +39,9 @@
 /*=======login p styles======*/
 
 .intro_log p {
-        font-size: 20px;
+    font-size: 20px;
     font-weight: 300;
-    color: #999;
+    color: #fff;
     line-height: 25px;
     padding: 20px 0;
 }
@@ -52,8 +52,9 @@ body {
     font-family: 'Avenir Next', Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
     margin: 0;
     color: #cecece;
-    background-image: url('../images/ep_naturalwhite.png');
-    background-repeat: repeat;
+    background: #B2FEFA;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #0ED2F7, #B2FEFA);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

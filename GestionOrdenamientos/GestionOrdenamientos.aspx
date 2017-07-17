@@ -33,10 +33,7 @@
 </head>
 
 <body>
-	<div class="logo_alp">
-		<img src="images/LogoNuevo.png" alt="Promedan">
-
-	</div>
+	
 
     
 	<div class="usuario_name">
@@ -88,7 +85,9 @@
 				<div class="login">
                         
 						<div class="login-screen">
-
+                            <div class="logo_alp">
+		                        <img src="images/LogoNuevo.png" alt="Promedan">
+                            </div>
                             <div class="intro_log">
                                 <p>Gestión Ordenamientos, bienvenidos, <b>inicia sesión</b></p>
                             </div>
