@@ -515,7 +515,6 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
-  margin: 0;
 }
 
 .slider.round:before {
