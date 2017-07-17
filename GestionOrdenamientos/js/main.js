@@ -16,6 +16,20 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
     llenarCombos(cboProveedor, "spsuministros_Proveedores_Obtener");
 
 
+    //Ingresar con enter
+    $("#txtContraseña").keypress(function (e) {
+        if (e.which == 13) {
+            usuario = $('#txtUsuario').val();
+            var clave = $('#txtContraseña').val();
+            if (usuario.length == 0 || clave.length == 0) {
+                swal('Evolution', 'Los campos usuario y contraseña son necesarios!', 'warning');
+                return;
+            }
+            iniciarSesion(usuario, clave);
+            e.preventDefault();
+        }
+    });
+
     $("#btnLogin").on("click", function (e) {
         usuario = $('#txtUsuario').val();
         var clave = $('#txtContraseña').val();
