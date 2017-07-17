@@ -1947,8 +1947,8 @@ a.btn_submit_share {
 
 
 .dropzone .dz-default.dz-message {
-    background-image: url(http://sumaips.com/wp-content/uploads/2016/10/up_archivos_btn.png) !IMPORTANT;
-    height: 157px !IMPORTANT;
+    background-image: url('../images/up_archivos_btn.png') !IMPORTANT;    
+    height: 300px !IMPORTANT;
     margin-left: 0 !IMPORTANT;
     background-position: center center !IMPORTANT;
     margin-top: 0 !IMPORTANT;
