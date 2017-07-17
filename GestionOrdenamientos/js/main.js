@@ -16,6 +16,20 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
     llenarCombos(cboProveedor, "spsuministros_Proveedores_Obtener");
 
 
+    //Ingresar con enter
+    $("#txtContraseña").keypress(function (e) {
+        if (e.which == 13) {
+            usuario = $('#txtUsuario').val();
+            var clave = $('#txtContraseña').val();
+            if (usuario.length == 0 || clave.length == 0) {
+                swal('Evolution', 'Los campos usuario y contraseña son necesarios!', 'warning');
+                return;
+            }
+            iniciarSesion(usuario, clave);
+            e.preventDefault();
+        }
+    });
+
     $("#btnLogin").on("click", function (e) {
         usuario = $('#txtUsuario').val();
         var clave = $('#txtContraseña').val();
@@ -430,7 +444,7 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
     //Iniciar Sesion
 	function iniciarSesion(usuario, clave) {
 	    $.ajax({
-	        url: "GestionOrdenamientos.aspx/InicioSesion",
+	        url: "GestionOrdenamientos.aspx/validarUsuario",
 	        data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "json",
@@ -469,6 +483,7 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	                        $('#pgEvaluarIndividual').addClass('hidden');
 	                        $('#pgEvaluarAutoevaluacion').addClass('hidden');
 	                        openMenu();
+	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    }
@@ -490,7 +505,7 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
     //consultar ordenes para optimizar
 	function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	    $.ajax({
-	        url: "GestionOrdenamientos.aspx/consultarOrdenesxFecha",
+	        url: "GestionOrdenamientos.aspx/consultarOrdenesxOptimizador",
 	        data: "{ tipoidoptimizador: '" + tipoidoptimizador + "', idoptimizador: '" + idoptimizador + "'}",
 	        contentType: "application/json; charset=utf-8",
 	        dataType: "json",
@@ -552,6 +567,47 @@ var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes;
 	    });
 	}
     
+
+
+    //consultar ordenes para optimizar
+	function consultarOrdenesProveedor(proveedor) {
+	    $.ajax({
+	        url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+	        data: "{ proveedor: '" + proveedor + "'}",
+	        contentType: "application/json; charset=utf-8",
+	        dataType: "json",
+	        async: true,
+	        type: 'POST'
+	    }).done(function (rest) {
+	        if (rest.Error != undefined) {
+	            alert(rest.Error);
+	        } else {
+	            var listaDatos = JSON.parse(rest.d);
+	            var datos = listaDatos.Table;
+	            $('#tablaProveedores td').remove();
+
+	            if (listaDatos.Table.length > 0) {
+
+	                for (var i = 0; i < datos.length; i++) {
+	                    var tbl = '';
+	                    tbl += '<tr>';
+	                    tbl += '<td>' + datos[i].Cups + '</td>';
+	                    tbl += '<td>' + datos[i].Descripcion + '</td>'; 
+                        tbl += '</tr>';	                    
+                        $("#tablaProveedores").append(tbl);
+	                }
+
+	            }
+	            else {
+
+	                document.getElementById('headerproveedor').innerHTML = "No Tienes ordenes asignadas";
+	                document.getElementById('lblheaderproveedor').innerHTML = "";
+	                 //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
+	                $('#tablaProveedores td').remove();
+	            }
+	        }
+	    });
+	}
     
 	function obtenerEvaluacionGrupal(evaluador) {
 
