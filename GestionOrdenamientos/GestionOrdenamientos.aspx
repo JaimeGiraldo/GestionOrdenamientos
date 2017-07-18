@@ -81,7 +81,6 @@
 				</nav>-->
 			</header>
 			<div class="mylogin_eval">
-				<%--<img class="eval_360_logo" src="images/logoNuevo.png" alt="Promedan">--%>
                 
 				<div class="login">
                         
@@ -89,23 +88,23 @@
                             <div class="logo_alp">
 		                        <img src="images/LogoNuevo.png" alt="Promedan">
                             </div>
-                            <div class="intro_log">
+                            <!--<div class="intro_log">
                                 <p>Gestión Ordenamientos, bienvenidos, <b>inicia sesión</b></p>
-                            </div>
+                            </div>-->
 
-							<div class="login-form" id="login_alp">
+							<div class="login-form" id="login_pro">
+
 								<div class="control-group">
 								<input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario" >
 								<label class="login-field-icon fui-user" for="login-name"></label>
 								</div>
+
 								<div class="control-group">
 								<input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
 								<label class="login-field-icon fui-lock" for="login-pass"></label>
 								</div>
+
 								<a id="btnLogin" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
-                            <%--    <div class="accion_form_login">
-                                    <a href="#" id="olvide_pass"><span class="icon-unlock"></span> ¿Olvidaste tu contraseña?</a>
-                                </div>--%>
 							</div>
 
 						
