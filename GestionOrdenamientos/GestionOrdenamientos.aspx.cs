@@ -156,11 +156,11 @@ namespace GestionOrdenamientos
         }
 
         //Guarda el estado de las ordenes gestionadas por el proveedor
-        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden)
+        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden,string adjunto)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes_Proveedor" + "'" + proveedor + "','" + idorden + "','" + orden + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes_Proveedor" + "'" + proveedor + "','" + idorden + "','" + orden + "','" + adjunto + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -177,12 +177,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string guardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden)
+        public static string guardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden,string adjunto)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.GuardarOrdenesEstadoProveedor(proveedor, idorden, orden);
+                return objOrdenesProveedor.GuardarOrdenesEstadoProveedor(proveedor, idorden, orden, adjunto);
             }
             catch (Exception ex)
             {
