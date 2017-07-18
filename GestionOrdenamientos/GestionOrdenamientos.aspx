@@ -116,81 +116,74 @@
 			</div>
 		</div>
 		<!-- /page -->      
-  <div class="page" id="page-ImportarArchivo">
-	<header class="bp-header cf">
-				<h1 class="bp-header__title">Importar Archivo</h1>
-			
-                <p>
-					Importar archivo de ordenes generadas para los prestadores
-				</p>
-			</header>    
-            
-    <div class="container">
-              
-             <div class="col-lg-6 col-md-6">
-                                    <label>Arrastre Archivo con las ordenes</label>
-                                    <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
-                           <br />
-                
-                                </div>
-        <div class="col-lg-6 col-md-6">
- <input type="button" id="btnProcesarArchivo"  class="btn btn-primary" value="Procesar" onclick="procesarArchivo();"/>
+        <div class="page" id="page-ImportarArchivo">
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Importar Archivo</h1>
+                <p>Importar archivo de ordenes generadas para los prestadores</p>
+            </header>
+
+            <div class="container">
+
+                <div class="col-lg-6 col-md-6">
+                    <label>Arrastre Archivo con las ordenes</label>
+                    <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
+                    <br />
+
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar" onclick="procesarArchivo();" />
+                </div>
+            </div>
         </div>
-         </div>
-             </div>      
-                       
-      <div class="page" id="page-AsignarAT4">
-			<header class="bp-header cf">
-				<h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>			
-                <p id="optimi" > 
-					Favor consultar la orden y asignarle el provedor correspondiente
-				</p>
-                
-                 <div class="col-lg-2 col-md-2">
-                     <label >TOTAL ASIGNADO:</label>
+
+        <div class="page" id="page-AsignarAT4">
+            <header class="bp-header cf">
+                <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
+                <p id="optimi">
+                    Favor consultar la orden y asignarle el provedor correspondiente
+                </p>
+
+                <div class="col-lg-2 col-md-2">
+                    <label>TOTAL ASIGNADO:</label>
                 </div>
                 <div class="col-lg-3 col-md-3">
-                     <label id="lbltotalasignados"></label>
+                    <label id="lbltotalasignados"></label>
                 </div>
 
                 <div class="col-lg-2 col-md-2">
-                     <label >TOTAL PENDIENTES:</label>
+                    <label>TOTAL PENDIENTES:</label>
                 </div>
                 <div class="col-lg-3 col-md-3">
-                     <label id="lbltotalpendientes"></label>
+                    <label id="lbltotalpendientes"></label>
                 </div>
-
-
-                <div class="col-lg-2 col-md-2">                                          
+                <div class="col-lg-2 col-md-2">
                     <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
                 </div>
-            </header>    
-            
-        <div class="container">
-               <div class="scroll_header_fixed">     
-                   
-                              
-              <div class="col-lg-12 col-md-12">
-                 <table id="tablaAsignar" class="table table-hover table-action">
-                       <thead>
-                        <tr>   
-                             <th>Fecha Solicitud</th>
-                             <th>Fecha Esperada</th>
-                             <th>Estado Soli</th>
-                             <th>Solicitante</th>
-                             <th>Cups</th> 
-                             <th>Descripción</th>                            
-                             <th>Afiliado</th> 
-                             <th>Detalle</th>  
-                             <th>Asignar Proveedor</th>
-                             <th>Observaciones</th>                             
-                        </tr>
-                    </thead>
-                      <tbody></tbody>
-                    </table>
-             </div>
-		    </div>     
-         </div>
+            </header>
+
+            <div class="container">
+                <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                        <table id="tablaAsignar" class="table table-hover table-action">
+                            <thead>
+                                <tr>
+                                    <th>Fecha Solicitud</th>
+                                    <th>Fecha Esperada</th>
+                                    <th>Estado Soli</th>
+                                    <th>Solicitante</th>
+                                    <th>Cups</th>
+                                    <th>Descripción</th>
+                                    <th>Afiliado</th>
+                                    <th>Detalle</th>
+                                    <th>Asignar Proveedor</th>
+                                    <th>Observaciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
            <div class="container">
                         <!-- Modal para ingresar en la pantalla principal un programa PYP -->
@@ -198,8 +191,9 @@
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    <div class="modal-header">                                       
-                                       <%-- <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>--%>
+                                    <div class="modal-header">    
+                                                                         
+                                        <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
                                     </div>
                                     <div class="modal-body" style="padding: 40px 50px;">
                                         <p>Codigo Solicitud Ciklos.</p>
@@ -228,36 +222,99 @@
                             </div>
                         </div>
                     </div>
-             </div>       
-        
-        <div class="page" id="page-Proveedores">
-			<header class="bp-header cf">
-				<h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>			
-                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
-			</header>    
-            
-         <div class="container">
-            
-
-
-              <div class="col-lg-12 col-md-12">
-                 
-                 <table id="tablaProveedores" class="table table-hover table-action">
-                       <thead>
-                        <tr>   
-                            <th>Cups</th> 
-                            <th>Descripción</th>  
-                            <th>Detalle</th>    
-                            <th>Orden</th>
-                            <th>Soporte</th>                                                     
-                            <th>Estado</th> 
-                        </tr>
-                    </thead>
-                      <tbody></tbody>
-                    </table>
              </div>
 
-         </div>
+        <div class="page" id="page-Proveedores">
+            <header class="bp-header cf">
+                <h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>
+                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes, e incluir soportes de ejecución.</p>
+            </header>
+
+            <div class="container">
+                <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                        <table id="tablaProveedores" class="table table-hover table-action">
+                            <thead>
+                                <tr>
+                                    <th>Fecha Asignacion</th>
+                                    <th>Cups</th>
+                                    <th>Descripción</th>
+                                    <th>Detalle</th>
+                                    <th>Orden</th>
+                                    <th>Soporte</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- Modal para ingresar en la pantalla principal un programa PYP -->
+                    <div class="modal fade" id="DetalleModalProveedor" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                </div>
+                                <div class="modal-body" style="padding: 40px 50px;">
+
+                                    <p>Cups.</p>
+                                    <label id="lblcupsPro"></label>
+                                                                       
+                                    <p>Paciente.</p>
+                                    <label id="lblpacientePro"></label>
+
+                                    <p>Usuario Asigno.</p>
+                                    <label id="lblusuregistroPro"></label>
+
+                                    <p>Estado Solicitud.</p>
+                                    <label id="lblestadosoliPro"></label>
+
+                                    <p>Estado Servicio.</p>
+                                    <label id="lblestadoservPro"></label>
+
+                                    <p>Observaciones.</p>
+                                    <label id="lbltiposervPro"></label>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            <div class="container">
+                    <!-- Modal para ingresar en la pantalla principal un programa PYP -->
+                    <div class="modal fade" id="ModalAdjuntoProveedor" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                </div>
+                                <div class="modal-body">
+                                   
+
+                                    
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
              </div>      
 
            <div class="page" id="page-Resultado1">

@@ -23,7 +23,7 @@ namespace GestionOrdenamientos
         }
         
 
-        //control de usuarios
+        //control de usuarios e inicio de sesion
         public string ValidarUsuario(string UsuarioSistema, string Clave)
         {
             try
@@ -59,12 +59,11 @@ namespace GestionOrdenamientos
         }
 
 
-        //Obtiene las ordenes asignadas por optimizador
+        //Obtiene las ordenes asignadas por optimizador a partir del usuario logueado
         public string ConsultarOrdenesxOptimizador(string tipoidoptimizador,string idoptimizador)
         {
             try
             {
-
                 var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerRepresaxFecha" + "'" + tipoidoptimizador + "','" + idoptimizador + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
@@ -96,7 +95,7 @@ namespace GestionOrdenamientos
         }
 
                
-        //Actualiza los datos de las ordenes optimizadas
+        //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
         public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
         {
             var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
@@ -120,7 +119,7 @@ namespace GestionOrdenamientos
         }
 
 
-        //Obtiene las ordenes por proveedor
+        //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
         public string ConsultarOrdenesxProveedor(string proveedor)
         {
             try
@@ -149,6 +148,41 @@ namespace GestionOrdenamientos
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
                 return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Guarda el estado de las ordenes gestionadas por el proveedor
+        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes_Proveedor" + "'" + proveedor + "','" + idorden + "','" + orden + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarOrdenesEstadoProveedor(proveedor, idorden, orden);
             }
             catch (Exception ex)
             {

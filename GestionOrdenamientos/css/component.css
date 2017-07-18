@@ -1949,7 +1949,7 @@ a.btn_submit_share {
 
 .dropzone .dz-default.dz-message {
     background-image: url('../images/up_archivos_btn.png') !IMPORTANT;    
-    height: 300px !IMPORTANT;
+    height: 300px ;
     margin-left: 0 !IMPORTANT;
     background-position: center center !IMPORTANT;
     margin-top: 0 !IMPORTANT;
