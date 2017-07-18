@@ -1,10 +1,11 @@
 html.js,
 .js body {
-	overflow: hidden;
-	height: 100vh;
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Rubik', sans-serif;
 }
 
-
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700');
 
 /*===========================================
 1. Pages Nav
@@ -203,10 +204,10 @@ html.js,
 
 /*==================== Login(Home) ====================*/
 .js #page-home {
-    background: #B2FEFA;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to left, #0ED2F7, #B2FEFA);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #0ED2F7, #B2FEFA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background-image: url('/images/bg_login_medical.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
 }
 .js #page-home .mylogin_eval {
 	text-align: center;
@@ -259,7 +260,6 @@ img.LogoNuevo {
     max-width: 30em;
 }
 .login-screen {
-background-color: rgba(45,204,246, 0.3);
 padding: 2em;
 border-radius: 0;
 position: relative;
@@ -450,15 +450,54 @@ Logo Header
 ===========================================*/
 
 .logo_alp img {
-    /*position: fixed;
-    text-align: center;
-    padding-top: 1em;    
-    z-index: 1;
-    left: 50%;
-    -webkit-transform: translate(-50%,0);
-    transform: translate(-50%,0);*/
-    width: 100%;
-    padding: 30px;
+    max-width: 272px;
+    height: auto;
+}
+#login_pro {
+    background-color: #fff;
+    max-width: 272px;
+    margin: 0 auto;
+    margin-top: 2em;
+    padding: 2em;
+    box-shadow: 0px 12px 18px 0px rgba(0, 0, 0, 0.17);
+}
+#btnLogin {
+    background-image: -moz-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 100%);
+    background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 100%);
+    background-image: -ms-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 100%);
+    box-shadow: 0px 8px 18px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 100em !important;
+    border: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2em;
+}
+#btnLogin:hover {
+    background-image: -moz-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 100%);
+    background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);
+    background-image: -ms-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 100%);
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+#btnLogin, #btnLogin:hover {
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.login-form input {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #d0d0d0;
+    text-align: left;
+    color: #a1a1a1 !IMPORTANT;
+    outline: none !important;
+}
+.login-form input:hover, .login-form input:focus {
+    outline: none;
+    border-bottom: 1px solid #00C2D7;
+
 }
 
 /*===========================================
@@ -1435,7 +1474,7 @@ div#page-Grupal label.s16 {
   margin-bottom: 10px;
   width: 100%;
   box-sizing: border-box;
-  font-family: montserrat;
+  font-family: 'Rubik', sans-serif;
   color: #2C3E50;
   font-size: 13px;
 }
@@ -1949,7 +1988,7 @@ a.btn_submit_share {
 
 .dropzone .dz-default.dz-message {
     background-image: url('../images/up_archivos_btn.png') !IMPORTANT;    
-    height: 300px !IMPORTANT;
+    height: 300px ;
     margin-left: 0 !IMPORTANT;
     background-position: center center !IMPORTANT;
     margin-top: 0 !IMPORTANT;
