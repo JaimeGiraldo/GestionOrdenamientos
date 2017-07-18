@@ -11,6 +11,8 @@ using Newtonsoft.Json;
 using System.Net.Mail;
 using GestionOrdenamientos.BD;
 using System.IO;
+using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace GestionOrdenamientos
 {
@@ -194,6 +196,48 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
+
+
+
+
+
+        public string  ProcesarArchivo(string Archivo)
+        {
+
+            string SaveLocation = Server.MapPath(@"~\Documentos") + "\\" + Archivo;
+            DataSet dsImportar = new DataSet();
+            string Sql = @"Select * From [Hoja1$]";
+            OleDbConnection cnn = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + SaveLocation + "; Extended Properties=Excel 8.0");
+            OleDbDataAdapter da = new OleDbDataAdapter(Sql, cnn);
+            cnn.Open();
+            da.Fill(dsImportar);
+            if (dsImportar.Tables.Count > 0)
+            {
+                using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion()))
+                {
+                    bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos1";
+                    bulkcopy.WriteToServer(dsImportar.Tables[0]);
+                    bulkcopy.Close();
+                }
+            }
+            return "OK";
+        }
+        
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string procesarArchivo(string Archivo)
+        {
+            try
+            {
+                GestionOrdenamientos objProcesar = new GestionOrdenamientos();
+                return objProcesar.ProcesarArchivo(Archivo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
 
 
