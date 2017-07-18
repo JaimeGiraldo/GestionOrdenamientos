@@ -131,10 +131,10 @@
                                     <label>Arrastre Archivo con las ordenes</label>
                                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
                            <br />
-                 <input type="button" id="btnProcesarArchivo"  class="btn btn-primary" value="Procesar" onclick="procesarArchivo();"/>
+                
                                 </div>
         <div class="col-lg-6 col-md-6">
-
+ <input type="button" id="btnProcesarArchivo"  class="btn btn-primary" value="Procesar" onclick="procesarArchivo();"/>
         </div>
          </div>
              </div>      
