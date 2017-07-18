@@ -2,6 +2,7 @@
 
 var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes; 
 
+var archivos = [];
 ; (function (window) {
    
     
@@ -622,25 +623,24 @@ function MasInformacion(posicion) {
 
 function GuardarAdjuntoProveedor(id) {
     
+    archivos = [];
     $("#ModalAdjuntoProveedor .modal-body").html('');
-    //var btn = $('#btnAdjunto_' + id);   
-
+   
     var zona;
     zona += '<div class="col-lg-12 col-md-12"><label>Arrastra el archivo o toca para seleccionar</label><div id="mydropzone1_' + id + '" class="dropzone"></div></div>';
     $("#ModalAdjuntoProveedor .modal-body").append(zona);
     $("#ModalAdjuntoProveedor").modal();
-
-    var archivos = [];
-   
+       
         Dropzone.autoDiscover = false;
 
         $("#mydropzone1_"+id).dropzone({
             url: "ImportarArchivo.ashx",
             addRemoveLinks: true,
             success: function (file, response) {
-                var imgName = response;
-
-                archivos.push(imgName);
+                var filename = response;               
+                archivos.push(filename);
+                //console.log(archivos)
+                //console.log(archivos.toString())
                 sessionStorage.setItem('archivos', archivos);
             },
             error: function (file, response) {
@@ -648,8 +648,6 @@ function GuardarAdjuntoProveedor(id) {
             }
         });
 
-    
-    
 }
 
 function MasInformacionProveedor(posicion) {
@@ -670,6 +668,7 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
     var orden = $('#txtOrden_' + posicion).val();
     var idorden = posicion;
     var proveedor = IdOpt;
+    var adjunto = archivos.toString();
 
     if (orden.length == 0) {
         swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar el número de la orden para continuar.', 'warning');
@@ -683,7 +682,7 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/guardarOrdenesEstadoProveedor",
-            data: "{ proveedor: '" + proveedor + "', idorden: '" + idorden + "', orden: '" + orden + "'}",
+            data: "{ proveedor: '" + proveedor + "', idorden: '" + idorden + "', orden: '" + orden + "', adjunto: '" + adjunto + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
