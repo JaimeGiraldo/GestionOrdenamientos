@@ -351,8 +351,15 @@ var archivos = [];
 	                        $('#btnMenu').removeAttr('style');
 	                    }else  if (lista.Table[0].idtipousuario == "1") {
 	                        //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
+
+                            //esconde los menus
 	                        $('#MenuCargaArchivo').hide();
 	                        $('#MenuProveedor').hide();
+
+                            //esconde las paginas	                        
+	                        $('#page-ImportarArchivo').hide();
+	                        $('#page-Proveedores').hide();
+
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
@@ -361,6 +368,11 @@ var archivos = [];
 	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
 	                        $('#MenuOptimizador').hide();
 	                        $('#MenuCargaArchivo').hide();
+
+	                        $('#page-AsignarAT4').hide();
+	                        $('#page-ImportarArchivo').hide();
+
+
 	                        openMenu();
 	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
@@ -416,24 +428,14 @@ var archivos = [];
 	                        tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
 	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
 	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
-	                        tbl += '<td>' + datos[i].Descripcion + '</td>';	                       
-	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
-	                        tbl += '<td>' + '<label class="switch"><input id="checkAt4_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
-	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Observaciones">' + '</td>';
-	                        tbl += '<td>' + '<input type="text" id="txtCIE10_' + datos[i].idConsecutivo + '" placeholder="Diagnostico">' + '</td>';                     
-	                        tbl += '<td>' + '<label class="switch"><input id="checkAdecuado_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
-	                        tbl += '<td>' + '<input type="text" id="txtProfesional_' + datos[i].idConsecutivo + '" placeholder="Profesional">' + '</td>';
-	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].idConsecutivo + '" class="form-control color-blue per70"></select>' + '</td>';
-	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
-                                '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Asignar</button>' + '</td>';
+	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button><button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
+                                '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Gestionar</button>' + '</td>';
+	                       
 	                        tbl += '</tr>';	                        
-                           //cuando se pasan parametros en este boton string saca error           
-	                      
+                        
 	                        $("#tablaAsignar").append(tbl);
-                            	                        
-	                        var combo = $('#ddl_Proveedoress_' + datos[i].idConsecutivo);
-	                        llenarCombos(combo, "spsuministros_Proveedores_ObtenerNew");
-	                        //llenarCombos(combo, "spsuministros_Proveedores_Obtener");
+                           
 	                    }
 	                    datosorden = datos;
 	                }
@@ -445,10 +447,8 @@ var archivos = [];
 	            }
 	        }
 	    });
-	}
-    
-
-
+	}   
+	
 
     //consultar ordenes para optimizar
 	function consultarOrdenesProveedor(proveedor) {
@@ -541,6 +541,30 @@ $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
+
+
+function abrirModalAcciones(posicion, posiciontabla) {
+
+    $("#ModalAcciones .modal-body").html('');
+
+    var body;
+    body += '<p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label>';
+    body += '<p>Observaciones:</p><input type="text" id="txtObservaciones_' + posicion + '" placeholder="Ingresa tus observaciones">';
+    body += '<p>CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnostico">';
+    body += '<p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label>';
+    body += '<p>Profesional:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Profesional">';
+    body += '<p>Seleccione Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="form-control color-blue per70"></select>';
+    body += '<button id="btnAsignarProveedor_' + posicion +
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + posiciontabla + ')">Guardar</button>';
+
+    $("#ModalAcciones .modal-body").append(body);
+
+    var combo = $('#ddl_Proveedoress_' + posicion);
+    llenarCombos(combo, "spsuministros_Proveedores_ObtenerNew");
+
+    $("#ModalAcciones").modal();
+
+}
 
 function FiltrarTablaSede() {
     var input, filter, table, tr, td, i;
