@@ -2042,3 +2042,42 @@ label#lbltotalasignados, label#lbltotalpendientes {
     display: inline-block !IMPORTANT;
     margin: 0 !IMPORTANT;
 }
+
+/*===================================================================================
+    STYLE PROMEDAN GESTIÓN ORDEDAMIENTOS
+===================================================================================*/
+.modal-header button.close {
+    background-color: transparent !IMPORTANT;
+    font-size: 2em;
+    position: absolute;
+    right: 1em !IMPORTANT;
+    top: 1.5em;
+    letter-spacing: 0;
+}
+@media (min-width: 768px) {
+    .modal-content {
+        -webkit-box-shadow: 0 13px 40px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 13px 40px rgba(0, 0, 0, 0.15);
+        border-radius: 0;
+        border: none;
+    }
+}
+.modal-content {
+    background-image: url('../images/bg_modal_ordenamients_icons.jpg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+.modal-header h4 {
+    text-align: center;
+    padding-top: 1em;
+    padding-bottom: 0.8em;
+}
+button, input[type="button"] {
+    border-radius: 100em !Important;
+    letter-spacing: 0 !IMPORTANT;
+    text-transform: uppercase !IMPORTANT;
+    font-size: 13px !IMPORTANT;
+    font-weight: 500 !IMPORTANT;
+    padding: 0.7em !IMPORTANT;
+}

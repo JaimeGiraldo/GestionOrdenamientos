@@ -194,9 +194,9 @@
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    <div class="modal-header">    
-                                                                         
+                                    <div class="modal-header">                               
                                         <h4 id="myModaltittle"><span class="glyphicon glyphicon-plus"></span></h4>
+                                        <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body" style="padding: 40px 50px;">
                                         <p>Cups:</p>
@@ -259,8 +259,8 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-
                                     <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body" style="padding: 40px 50px;">
 
@@ -284,7 +284,7 @@
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -299,8 +299,8 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-
                                     <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
                                    
