@@ -98,9 +98,9 @@ namespace GestionOrdenamientos
 
                
         //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
-        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones,string at4, string cie10,string adecuado,string profesional)
         {
-            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "'");
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "'");
             if (dt.Tables.Count > 0)
             {
                 return JsonConvert.SerializeObject(dt);
@@ -114,10 +114,10 @@ namespace GestionOrdenamientos
 
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observaciones)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observaciones, string at4, string cie10, string adecuado, string profesional)
         {
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
-            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observaciones);
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observaciones, at4, cie10, adecuado, profesional);
         }
 
 

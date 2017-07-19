@@ -412,16 +412,18 @@ var archivos = [];
 	                       
 	                        var tbl = '';
 	                        tbl += '<tr>';
-	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
+
+	                        tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
 	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
-	                        tbl += '<td>' + datos[i].Estado_Solicitud + '</td>';
 	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
-	                        tbl += '<td>' + datos[i].Cups + '</td>';
-	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
+	                        tbl += '<td>' + datos[i].Descripcion + '</td>';	                       
 	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
+	                        tbl += '<td>' + '<label class="switch"><input id="checkAt4_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
+	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Observaciones">' + '</td>';
+	                        tbl += '<td>' + '<input type="text" id="txtCIE10_' + datos[i].idConsecutivo + '" placeholder="Diagnostico">' + '</td>';                     
+	                        tbl += '<td>' + '<label class="switch"><input id="checkAdecuado_' + datos[i].idConsecutivo + '" type="checkbox"><span class="slider round"></span></label>' + '</td>';
+	                        tbl += '<td>' + '<input type="text" id="txtProfesional_' + datos[i].idConsecutivo + '" placeholder="Profesional">' + '</td>';
 	                        tbl += '<td>' + '<select id="ddl_Proveedoress_' + datos[i].idConsecutivo + '" class="form-control color-blue per70"></select>' + '</td>';
-	                        tbl += '<td>' + '<input type="text" id="txtObservaciones_' + datos[i].idConsecutivo + '" placeholder="Ingresa tus observaciones">' + '</td>';
 	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
                                 '" class="btn btn-primary" onclick="GuardarProovedor(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Asignar</button>' + '</td>';
 	                        tbl += '</tr>';	                        
@@ -445,6 +447,7 @@ var archivos = [];
 	    });
 	}
     
+
 
 
     //consultar ordenes para optimizar
@@ -562,6 +565,7 @@ function FiltrarTablaSede() {
 
 }
 
+
 function GuardarProovedor(posicion, posiciontabla) {
 
     var input, filter, table, tr, td, i;
@@ -572,13 +576,32 @@ function GuardarProovedor(posicion, posiciontabla) {
     var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
     var observaciones = $('#txtObservaciones_' + posicion).val();
 
+    var cie10 = $('#txtCIE10_' + posicion).val();
+    var profesional = $('#txtProfesional_' + posicion).val();
+    var at4 = 0;
+    var adecuado = 0;
+    if (!$('#checkAt4_' + posicion).is(':checked')) {
+        at4 = 0;
+    } else {
+        at4 = 1;
+    }
+
+    if (!$('#checkAdecuado_' + posicion).is(':checked')) {
+        adecuado = 0;
+    } else {
+        adecuado = 1;
+    }
+
     if (proveedorasignado == "0") {
         swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
     } else {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/actualizarOrdenes",
-            data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '" + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '" + observaciones + "'}",
+            data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
+                + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '"
+                + observaciones + "', at4: '" + at4 + "', cie10: '"
+                + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -611,12 +634,15 @@ function GuardarProovedor(posicion, posiciontabla) {
 
 function MasInformacion(posicion) {
    
-    document.getElementById('lblsolicitud').innerHTML = datosorden[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('myModaltittle').innerHTML ='Detalle de la Orden Nº: ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
+
+    document.getElementById('lblsolicitud').innerHTML = datosorden[posicion].Cups;
     document.getElementById('lblpaciente').innerHTML = datosorden[posicion].Id_Afiliado;
-    document.getElementById('lblusuregistro').innerHTML = datosorden[posicion].Ciklos_Usuario_que_Registro;
-    document.getElementById('lblestadosoli').innerHTML = datosorden[posicion].Estado_Solicitud;
-    document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Estado_servicio; 
-    document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Tipo_de_servicio;
+    document.getElementById('lbltiposervicio').innerHTML = datosorden[posicion].Tipo_de_servicio;
+    document.getElementById('lblestadoservicio').innerHTML = datosorden[posicion].Estado_servicio;
+    
+    document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Nivel_Autorizacion;
+    document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Centro_generador_de_autorizacion;
     
     $("#myModal").modal();   
 }
