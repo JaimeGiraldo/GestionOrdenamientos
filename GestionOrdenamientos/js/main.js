@@ -1484,3 +1484,28 @@ $(".previous").click(function () {
 $(".submit").click(function () {
     return false;
 })
+
+
+
+
+function procesarArchivo()
+{
+    
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/procesarArchivo",
+        data: "{ Archivo: '" + archivos + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            swal('GestionOrdenamiento', 'Proceso realizado con exito..', 'success');
+        }
+    });
+
+
+}
