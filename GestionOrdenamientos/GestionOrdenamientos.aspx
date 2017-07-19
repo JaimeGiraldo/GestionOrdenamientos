@@ -243,7 +243,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
                                    </div>
                                 </div>
                             </div>
@@ -332,23 +332,35 @@
                                 </div>
                                 <div class="modal-body" style="padding: 40px 50px;">
 
-                                    <p>Cups.</p>
-                                    <label id="lblcupsPro"></label>
-                                                                       
-                                    <p>Paciente.</p>
-                                    <label id="lblpacientePro"></label>
+                                    <div class="cinta_whit_sh">
+                                        <span>Cups:</span>
+                                        <label id="lblcupsPro"></label>
+                                    </div>
 
-                                    <p>Usuario Asigno.</p>
-                                    <label id="lblusuregistroPro"></label>
+                                    <div class="cinta_whit_sh">
+                                        <span>Paciente:</span>
+                                        <label id="lblpacientePro"></label>
+                                    </div>
 
-                                    <p>Estado Solicitud.</p>
-                                    <label id="lblestadosoliPro"></label>
+                                    <div class="cinta_whit_sh">
+                                        <span>Usuario Asigno:</span>
+                                        <label id="lblusuregistroPro"></label>
+                                    </div>
 
-                                    <p>Estado Servicio.</p>
-                                    <label id="lblestadoservPro"></label>
+                                    <div class="cinta_whit_sh">
+                                        <span>Estado Solicitud:</span>
+                                        <label id="lblestadosoliPro"></label>
+                                    </div>
 
-                                    <p>Observaciones.</p>
-                                    <label id="lbltiposervPro"></label>
+                                    <div class="cinta_whit_sh">
+                                        <span>Estado Servicio:</span>
+                                        <label id="lblestadoservPro"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Observaciones:</span>
+                                        <label id="lbltiposervPro"></label>
+                                    </div>
 
                                 </div>
                                 <div class="modal-footer">

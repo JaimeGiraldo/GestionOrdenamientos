@@ -158,7 +158,7 @@ namespace GestionOrdenamientos
         }
 
         //Guarda el estado de las ordenes gestionadas por el proveedor
-        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden,string adjunto)
+        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden, string adjunto)
         {
             try
             {

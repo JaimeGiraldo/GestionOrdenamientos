@@ -562,6 +562,8 @@ function abrirModalAcciones(posicion, posiciontabla) {
     var combo = $('#ddl_Proveedoress_' + posicion);
     llenarCombos(combo, "spsuministros_Proveedores_ObtenerNew");
 
+    //document.getElementById('ModaltittleAcciones').innerHTML = 'Gestion de la Orden Nº: ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
+
     $("#ModalAcciones").modal();
 
 }
@@ -677,7 +679,7 @@ function GuardarAdjuntoProveedor(id) {
     $("#ModalAdjuntoProveedor .modal-body").html('');
    
     var zona;
-    zona += '<div class="col-lg-12 col-md-12"><label>Arrastra el archivo o toca para seleccionar</label><div id="mydropzone1_' + id + '" class="dropzone"></div></div>';
+    zona += '<div class="col-lg-12 col-md-12"> <div class="cinta_whit_sh"><label>Arrastra el archivo o toca para seleccionar</label></div><div id="mydropzone1_' + id + '" class="dropzone"></div></div>';
     $("#ModalAdjuntoProveedor .modal-body").append(zona);
     $("#ModalAdjuntoProveedor").modal();
        
