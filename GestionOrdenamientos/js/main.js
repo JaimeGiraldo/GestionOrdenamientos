@@ -547,13 +547,13 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     $("#ModalAcciones .modal-body").html('');
 
-    var body;
-    body += '<p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label>';
+    var body='';
+    body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_mod"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
     body += '<p>Observaciones:</p><input type="text" id="txtObservaciones_' + posicion + '" placeholder="Ingresa tus observaciones">';
     body += '<p>CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnostico">';
-    body += '<p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label>';
     body += '<p>Profesional:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Profesional">';
-    body += '<p>Seleccione Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="form-control color-blue per70"></select>';
+    body += '<p>Seleccione Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="form-control color-blue"></select>';
     body += '<button id="btnAsignarProveedor_' + posicion +
                                 '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + posiciontabla + ')">Guardar</button>';
 

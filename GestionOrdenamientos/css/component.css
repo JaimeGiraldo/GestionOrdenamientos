@@ -2112,3 +2112,27 @@ label#lbltotalasignados, label#lbltotalpendientes {
     text-align: center;
     border: none;
 }
+select, input {
+    box-shadow: none !important;
+    outline: none !important;
+}
+.modal select {
+    outline: none !important;
+    border: none !important;
+    background-color: #ecf0f1;
+    height: auto;
+    padding: 1em;
+}
+#btnAsignarProveedor_56 {
+    margin-top: 2em !IMPORTANT;
+}
+.box_swith_mod {
+    width: calc(50% - 5px);
+    display: inline-block;
+    border: 1px solid #00bdda;
+    margin-right: 5px;
+    padding: 1em;
+    border-radius: 3px;
+    background-color: rgba(0, 189, 218, 0.08);
+    margin-bottom: 2em;
+}
