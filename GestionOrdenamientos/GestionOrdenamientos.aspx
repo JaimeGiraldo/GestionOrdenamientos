@@ -216,25 +216,31 @@
                                         <h4 id="myModaltittle"><span class="glyphicon glyphicon-plus"></span></h4>
                                         <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
-                                    <div class="modal-body" style="padding: 40px 50px;">
-                                        <p>Cups:</p>
-                                        <label id="lblsolicitud"></label>
-
-                                        <p>Paciente:</p>
-                                        <label id="lblpaciente"></label>
-
-                                        <p>Tipo Servicio:</p>
-                                        <label id="lbltiposervicio"></label>
-
-                                        <p>Estado Servicio:</p>
-                                        <label id="lblestadoservicio"></label>                                        
-
-                                        <p>Nivel Autorización:</p>
-                                        <label id="lblestadoserv"></label>
-
-                                         <p>Centro Generador de la Autorización:</p>
-                                        <label id="lbltiposerv"></label>
-                                        
+                                    <div class="modal-body">
+                                        <div class="cinta_whit_sh">
+                                            <span>Cups:</span>
+                                            <label id="lblsolicitud"></label>
+                                        </div>
+                                        <div class="cinta_whit_sh">
+                                            <span>Paciente:</span>
+                                            <label id="lblpaciente"></label>
+                                        </div>
+                                        <div class="cinta_whit_sh">
+                                            <span>Tipo Servicio:</span>
+                                            <label id="lbltiposervicio"></label>
+                                        </div>
+                                        <div class="cinta_whit_sh">
+                                            <span>Estado Servicio:</span>
+                                            <label id="lblestadoservicio"></label>                                        
+                                        </div>
+                                        <div class="cinta_whit_sh">
+                                            <span>Nivel Autorización:</span>
+                                            <label id="lblestadoserv"></label>
+                                        </div>
+                                        <div class="cinta_whit_sh">
+                                             <span>Centro Generador de la Autorización:</span>
+                                            <label id="lbltiposerv"></label>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Aceptar</button>
