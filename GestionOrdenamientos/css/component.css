@@ -60,15 +60,16 @@ html.js,
 }
 
 .js .pages-nav--open {
-	pointer-events: auto;
-	opacity: 1;
-	-webkit-transform: translate3d(-50%, 0, 0);
-	transform: translate3d(-50%, 0, 0);
+    pointer-events: auto;
+    opacity: 1;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    margin-top: 3em;
 }
 
 .pages-nav__item {
 	width: 100%;
-    background-color: #0cbae9;
+    background-color: #0fd0b6 !important;
 	padding: 2em 0;
     /*border-radius: 5px;*/
     margin-bottom: 1px;
@@ -189,7 +190,7 @@ html.js,
 	-webkit-perspective: 1200px;
 	perspective: 1200px;
 	-webkit-perspective-origin: 50% -50%;
-	perspective-origin: 50% -220%;
+	perspective-origin: 25% -220%;
 }
 .js .page {
 	position: relative;
@@ -198,7 +199,7 @@ html.js,
 	width: 100%;
 	height: 100vh;
 	pointer-events: auto;
-    background: #0cbae9;
+    background: #fff;
 	box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -300,7 +301,7 @@ box-shadow: none;
 }
 .btn {
   border: 2px solid transparent;
-  background: #3498DB;
+  background: #0fd0b6;
   color: #ffffff;
   font-size: 16px;
   line-height: 25px;
@@ -315,7 +316,7 @@ box-shadow: none;
   margin: 0 auto;
 }
 .btn:hover {
-  background-color: #00a0e5;
+  background-color: #00bdda;
 }
 .login-link {
   font-size: 12px;
@@ -371,17 +372,18 @@ box-shadow: none;
 /* Menu button */
 
 .menu-button {
-	position: absolute;
-	z-index: 1000;
-	top: 100px;
-	left: 30px;
-	width: 30px;
-	height: 24px;
-	padding: 0;
-	cursor: pointer;
-	border: none;
-	outline: none;
-	background: transparent;
+    position: absolute;
+    z-index: 1000;
+    top: 30px;
+    left: 30px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 100%;
+    background: #00bdda;
 }
 
 .no-js .menu-button {
@@ -391,44 +393,43 @@ box-shadow: none;
 .menu-button::before,
 .menu-button::after,
 .menu-button span {
-	background: #00245c;
+	background: #fff;
     /*close btn*/
 }
 
-.menu-button::before,
-.menu-button::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 0;
-	width: 100%;
-	height: 2px;
-	pointer-events: none;
-	-webkit-transition: -webkit-transform 0.25s;
-	transition: transform 0.25s;
-	-webkit-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
+.menu-button::before, .menu-button::after {
+    content: '';
+    position: absolute;
+    top: 47%;
+    left: 10px;
+    width: 50%;
+    height: 2px;
+    pointer-events: none;
+    -webkit-transition: -webkit-transform 0.25s;
+    transition: transform 0.25s;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
 }
 
 .menu-button span {
-	position: absolute;
-	left: 0;
-	overflow: hidden;
-	width: 100%;
-	height: 2px;
-	text-indent: 200%;
-	-webkit-transition: opacity 0.25s;
-	transition: opacity 0.25s;
+    position: absolute;
+    left: 11px;
+    overflow: hidden;
+    width: 43%;
+    height: 2px;
+    text-indent: 200%;
+    -webkit-transition: opacity 0.25s;
+    transition: opacity 0.25s;
 }
 
 .menu-button::before {
-	-webkit-transform: translate3d(0, -10px, 0) scale3d(0.8, 1, 1);
-	transform: translate3d(0, -10px, 0) scale3d(0.8, 1, 1);
+    -webkit-transform: translate3d(0, -10px, 0) scale3d(0.8, 1, 1);
+    transform: translate3d(0, -5px, 0) scale3d(0.9, 1, 1);
 }
 
 .menu-button::after {
-	-webkit-transform: translate3d(0, 10px, 0) scale3d(0.8, 1, 1);
-	transform: translate3d(0, 10px, 0) scale3d(0.8, 1, 1);
+    -webkit-transform: translate3d(0, 10px, 0) scale3d(0.8, 1, 1);
+    transform: translate3d(0, 7px, 0) scale3d(0.9, 1, 1);
 }
 
 .menu-button--open span {
@@ -581,7 +582,7 @@ th{
   text-align: left;
   font-weight: bold;
   font-size: 0.95em;
-  color: #fff;
+  color: #a1a1a1;
   text-transform: uppercase;
 }
 td{
@@ -590,7 +591,7 @@ td{
   vertical-align:middle;
   font-weight: 300;
   font-size: 0.95em;
-  color: #fff;
+  color: #a1a1a1;
   border-bottom: solid 1px rgba(255,255,255,0.1);
 }
 #tablaPreguntas tr th:first-child, #tablaPreguntas tr td:first-child {
@@ -599,7 +600,7 @@ td{
     font-weight: bold;
 }
 tr td:first-child {
-    background-color: #00245c;
+    background-color: #efefef;
 }
 #tablaPreguntas tr th:nth-child(3), #tablaPreguntas tr td:nth-child(3) {
     width: 13em;
@@ -653,9 +654,9 @@ a {
 }
 .usuario_name {
     position: absolute;
-    background-color: #0cbae9;
     color: #fff;
     width: 100%;
+    text-align: center;
 }
 .usuario_name h4 {
     color: #1b74af;
@@ -672,8 +673,10 @@ a {
 
 .usuario_name img {
     width: 130px;
-    float: left;
-    margin: 12px 50px 0 100px;
+    margin: 0 auto !IMPORTANT;
+    display: inline-block;
+    padding-top: 3em;
+    margin-left: 5em !IMPORTANT;
 }
 
 
@@ -748,7 +751,7 @@ a.link_autoevalu_perf {
     margin-top: -5em;
 }
 a.link_autoevalu_perf:hover {
-    background-color: #3498db;
+    background-color: #0fd0b6;
 }
 .flotante {
     position:fixed;
@@ -1652,7 +1655,7 @@ div#page-Grupal label.s16 {
         font-weight: bold;
         letter-spacing: 4px;
         font-size: 1em;
-        background-color: #00a0e5 !important;
+        background-color: #00bdda !important;
         -webkit-transition: all 300ms ease;
         -moz-transition: all 300ms ease;
         -ms-transition: all 300ms ease;
@@ -1666,7 +1669,7 @@ div#page-Grupal label.s16 {
         text-transform: uppercase;
         text-align: center;
         font-size: 1.2em;
-        color: #3498db !IMPORTANT;
+        color: #0fd0b6 !IMPORTANT;
         font-weight: 700;
         padding-top: 1em;
         padding-bottom: 0.4em;
@@ -2004,4 +2007,38 @@ a.btn_submit_share {
     border-radius: 0 !IMPORTANT;
     background: transparent !IMPORTANT;
     padding: 0;
+}
+button, input[type="button"] {
+    border: none !IMPORTANT;
+    outline: none !important;
+}
+input#btnSalir {
+    border-radius: 100em;
+    margin-top: 1.5em;
+    margin-right: 1.5em;
+}
+
+#page-AsignarAT4 .container {
+    width: 100%;
+    max-width: 1300px;
+}
+.listar_nambers {
+    display: block;
+    width: 100%;
+    height: 80px;
+    padding: 1em;
+    background-color: rgba(0, 189, 218, 0.11);
+    border: 1px solid #00bdda;
+    vertical-align: middle;
+    margin-bottom: 3em;
+}
+label#lbltotalasignados, label#lbltotalpendientes {
+    color: #00bdda;
+    font-weight: 100;
+    font-size: 2.5em;
+    display: inline-block;
+}
+.listar_nambers label {
+    display: inline-block !IMPORTANT;
+    margin: 0 !IMPORTANT;
 }

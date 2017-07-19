@@ -37,11 +37,11 @@
 
     
 	<div class="usuario_name">
-        <img src="images/LogoNuevo.png" alt="Promedan">
-		<h4 class="link">¡Bienvenido!</h4>
+        <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">
+		<!--<h4 class="link">¡Bienvenido!</h4>
 		<span id="lblUsuario" class="nombre_usuario"></span>
 		<span id="cargo" class="cargo_lab"></span>
-        <span id="Csambiar contraseña" class="cargo_lab"></span>
+        <span id="Csambiar contraseña" class="cargo_lab"></span>-->
          <input type="button" id="btnSalir"  class="btn btn-danger" value="Salir" />
 		
 	</div>
@@ -141,41 +141,45 @@
                 <p id="optimi">
                     Favor consultar la orden y asignarle el provedor correspondiente
                 </p>
-
-                <div class="col-lg-2 col-md-2">
-                    <label>TOTAL ASIGNADO:</label>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <label id="lbltotalasignados"></label>
-                </div>
-
-                <div class="col-lg-2 col-md-2">
-                    <label>TOTAL PENDIENTES:</label>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <label id="lbltotalpendientes"></label>
-                </div>
-                <div class="col-lg-2 col-md-2">
-                    <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
-                </div>
             </header>
 
             <div class="container">
                 <div class="scroll_header_fixed">
+
+                <div class="listar_nambers">
+                    <div class="col-md-2">
+                        <label>TOTAL<br>ASIGNADO:</label>
+                        <label id="lbltotalasignados"></label>
+                    </div>
+                    <div class="col-md-2">
+                        <label>TOTAL<br>PENDIENTES:</label>
+                        <label id="lbltotalpendientes"></label>
+                    </div>
+                    <div class="col-md-2 col-md-offset-6">
+                        <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
+                    </div>
+                </div>
+
                     <div class="col-lg-12 col-md-12">
                         <table id="tablaAsignar" class="table table-hover table-action">
                             <thead>
                                 <tr>
-                                    <th>Fecha Solicitud</th>
+                                    <th>Codigo S. Ciklos</th>
                                     <th>Fecha Esperada</th>
-                                    <th>Estado Soli</th>
-                                    <th>Solicitante</th>
-                                    <th>Cups</th>
-                                    <th>Descripción</th>
-                                    <th>Afiliado</th>
+                                    <th>IPS Solicitante</th>
+                                    
+                                                                     
+                                   
+                                    <th>Descripción</th>                                    
                                     <th>Detalle</th>
+                                    <th>Genero AT4?</th>
+                                    <th>Observacion</th>
+                                    <th>CIE 10</th>
+                                    <th>Adecuada</th>
+                                    <th>Profesional</th>
                                     <th>Asignar Proveedor</th>
-                                    <th>Observaciones</th>
+                                   
+                                   
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -192,25 +196,25 @@
                                 <div class="modal-content">
                                     <div class="modal-header">    
                                                                          
-                                        <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                        <h4 id="myModaltittle"><span class="glyphicon glyphicon-plus"></span></h4>
                                     </div>
                                     <div class="modal-body" style="padding: 40px 50px;">
-                                        <p>Codigo Solicitud Ciklos.</p>
+                                        <p>Cups:</p>
                                         <label id="lblsolicitud"></label>
 
-                                         <p>Paciente.</p>
+                                        <p>Paciente:</p>
                                         <label id="lblpaciente"></label>
 
-                                         <p>Usuario Registro.</p>
-                                        <label id="lblusuregistro"></label>
+                                        <p>Tipo Servicio:</p>
+                                        <label id="lbltiposervicio"></label>
 
-                                        <p>Estado Solicitud.</p>
-                                        <label id="lblestadosoli"></label>
+                                        <p>Estado Servicio:</p>
+                                        <label id="lblestadoservicio"></label>                                        
 
-                                        <p>Estado Servicio.</p>
+                                        <p>Nivel Autorización:</p>
                                         <label id="lblestadoserv"></label>
 
-                                         <p>Tipo de Servicio.</p>
+                                         <p>Centro Generador de la Autorización:</p>
                                         <label id="lbltiposerv"></label>
                                         
                                     </div>
