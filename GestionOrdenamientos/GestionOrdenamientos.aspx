@@ -50,7 +50,7 @@
 	<nav class="pages-nav">
      <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
-     --%>   <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
+     --%><div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
 		<div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
         <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
         <div id="MenuReportes" class="pages-nav__item" id="Resultado1"><a id="btnGrafico"  class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
@@ -114,26 +114,53 @@
 
 			</div>
 		</div>
-		<!-- /page -->      
-        <div class="page" id="page-ImportarArchivo">
-            <header class="bp-header cf">
-                <h1 class="bp-header__title">Importar Archivo</h1>
-                <p>Importar archivo de ordenes generadas para los prestadores</p>
-            </header>
-
+		<!-- /page -->    
+        
+         <div class="page" id="page-Resultado1">
+           <input type="hidden" id="IdUsuario" value="0"/>
+			<header class="bp-header cf">
+				<h1 class="bp-header__title">Resultados – Líder Clave</h1>
+                <p>A continuación, encontraras tus resultados.<br />
+                    No olvides que la retroalimentación es un regalo y es la clave del éxito está en que construyas y ejecutes tu plan de desarrollo tomando en cuenta esta información.
+                </p>
+			</header>   
+                
             <div class="container">
+                  <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                    </div>           
+                    <div class="col-lg-12 col-md-12">
+                        <div id="tablaReporte">
+                        </div>
+                    </div>
+		          </div>
+            </div>
 
-                <div class="col-lg-6 col-md-6">
-                    <label>Arrastre Archivo con las ordenes</label>
-                    <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
-                    <br />
-
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar" onclick="procesarArchivo();" />
+            <div class="share">
+                <p class="tile_hover_btn">Compartir Resultados</p>
+                <div class="modal_share_container">
+                    <div class="box_down_pdf">
+                        <h3>Descargar PDF</h3>
+                        <a href="#" id="btnGetPDF" class="btn_down_circle">
+                            <img src="images/pdf_icon_download_color.png" class="circle_btn" alt="PDF" />
+                        </a>
+                    </div>
+                    <div class="box_share_result">
+                        <div class="share_place_type">
+                            <img src="images/icon_mail_color_compartir.png" alt="E-mail" />
+                            <h3>Compartir Resultados</h3>
+                            <input type="email" name="name" id="email_resultados" value="" placeholder="E-mail" />
+                            <a href="#" id="btnEnviarResultados" class="btn_submit_share">Enviar</a>
+                        </div>
+                        <div class="share_sendsi_type none_this">
+                            <img src="images/icon_ready_send.png" alt="Listo" />
+                            <h3>Los resultados fueron<br>enviados con éxito.</h3>
+                            <a href="javascript:newEnviarResultados()" class="btn_submit_share">Enviar otro</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+       </div>
 
         <div class="page" id="page-AsignarAT4">
             <header class="bp-header cf">
@@ -167,18 +194,8 @@
                                     <th>Codigo S. Ciklos</th>
                                     <th>Fecha Esperada</th>
                                     <th>IPS Solicitante</th>
-                                    
-                                                                     
-                                   
                                     <th>Descripción</th>                                    
                                     <th>Detalle</th>
-                                    <th>Genero AT4?</th>
-                                    <th>Observacion</th>
-                                    <th>CIE 10</th>
-                                    <th>Adecuada</th>
-                                    <th>Profesional</th>
-                                    <th>Asignar Proveedor</th>
-                                   
                                    
                                 </tr>
                             </thead>
@@ -194,8 +211,7 @@
                             <div class="modal-dialog">
                                 <!-- Modal content-->
                                 <div class="modal-content">
-                                    <div class="modal-header">    
-                                                                         
+                                    <div class="modal-header">                                                                             
                                         <h4 id="myModaltittle"><span class="glyphicon glyphicon-plus"></span></h4>
                                     </div>
                                     <div class="modal-body" style="padding: 40px 50px;">
@@ -225,7 +241,51 @@
                             </div>
                         </div>
                     </div>
+
+
+            <div class="modal fade" id="ModalAcciones" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 id="ModaltittleAcciones"><span class="glyphicon glyphicon-plus"></span>Gestion de Ordenamientos</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 10px 50px;">
+                           
+
+                        </div>
+                        <div class="modal-footer">
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
              </div>
+          
+        <div class="page" id="page-ImportarArchivo">
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Importar Archivo</h1>
+                <p>Importar archivo de ordenes generadas para los prestadores</p>
+            </header>
+
+            <div class="container">
+
+                <div class="col-lg-6 col-md-6">
+                    <label>Arrastre Archivo con las ordenes</label>
+                    <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
+                    <br />
+
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar" onclick="procesarArchivo();" />
+                </div>
+            </div>
+        </div>
+
+        
 
         <div class="page" id="page-Proveedores">
             <header class="bp-header cf">
@@ -320,51 +380,7 @@
             </div>
              </div>      
 
-           <div class="page" id="page-Resultado1">
-           <input type="hidden" id="IdUsuario" value="0"/>
-			<header class="bp-header cf">
-				<h1 class="bp-header__title">Resultados – Líder Clave</h1>
-                <p>A continuación, encontraras tus resultados.<br />
-                    No olvides que la retroalimentación es un regalo y es la clave del éxito está en que construyas y ejecutes tu plan de desarrollo tomando en cuenta esta información.
-                </p>
-			</header>   
-                
-            <div class="container">
-                  <div class="scroll_header_fixed">
-                    <div class="col-lg-12 col-md-12">
-                    </div>           
-                    <div class="col-lg-12 col-md-12">
-                        <div id="tablaReporte">
-                        </div>
-                    </div>
-		          </div>
-            </div>
-
-            <div class="share">
-                <p class="tile_hover_btn">Compartir Resultados</p>
-                <div class="modal_share_container">
-                    <div class="box_down_pdf">
-                        <h3>Descargar PDF</h3>
-                        <a href="#" id="btnGetPDF" class="btn_down_circle">
-                            <img src="images/pdf_icon_download_color.png" class="circle_btn" alt="PDF" />
-                        </a>
-                    </div>
-                    <div class="box_share_result">
-                        <div class="share_place_type">
-                            <img src="images/icon_mail_color_compartir.png" alt="E-mail" />
-                            <h3>Compartir Resultados</h3>
-                            <input type="email" name="name" id="email_resultados" value="" placeholder="E-mail" />
-                            <a href="#" id="btnEnviarResultados" class="btn_submit_share">Enviar</a>
-                        </div>
-                        <div class="share_sendsi_type none_this">
-                            <img src="images/icon_ready_send.png" alt="Listo" />
-                            <h3>Los resultados fueron<br>enviados con éxito.</h3>
-                            <a href="javascript:newEnviarResultados()" class="btn_submit_share">Enviar otro</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-       </div>
+          
       
 	 
     </div>
