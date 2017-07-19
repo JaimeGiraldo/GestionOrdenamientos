@@ -249,7 +249,7 @@ namespace GestionOrdenamientos
             {
                 using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion()))
                 {
-                    bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos1";
+                    bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos";
                     bulkcopy.WriteToServer(dsImportar.Tables[0]);
                     bulkcopy.Close();
                 }
