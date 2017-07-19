@@ -166,16 +166,22 @@
                         <table id="tablaAsignar" class="table table-hover table-action">
                             <thead>
                                 <tr>
-                                    <th>Fecha Solicitud</th>
+                                    <th>Codigo S. Ciklos</th>
                                     <th>Fecha Esperada</th>
-                                    <th>Estado Soli</th>
-                                    <th>Solicitante</th>
-                                    <th>Cups</th>
-                                    <th>Descripción</th>
-                                    <th>Afiliado</th>
+                                    <th>IPS Solicitante</th>
+                                    
+                                                                     
+                                   
+                                    <th>Descripción</th>                                    
                                     <th>Detalle</th>
+                                    <th>Genero AT4?</th>
+                                    <th>Observacion</th>
+                                    <th>CIE 10</th>
+                                    <th>Adecuada</th>
+                                    <th>Profesional</th>
                                     <th>Asignar Proveedor</th>
-                                    <th>Observaciones</th>
+                                   
+                                   
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -192,25 +198,25 @@
                                 <div class="modal-content">
                                     <div class="modal-header">    
                                                                          
-                                        <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                        <h4 id="myModaltittle"><span class="glyphicon glyphicon-plus"></span></h4>
                                     </div>
                                     <div class="modal-body" style="padding: 40px 50px;">
-                                        <p>Codigo Solicitud Ciklos.</p>
+                                        <p>Cups:</p>
                                         <label id="lblsolicitud"></label>
 
-                                         <p>Paciente.</p>
+                                        <p>Paciente:</p>
                                         <label id="lblpaciente"></label>
 
-                                         <p>Usuario Registro.</p>
-                                        <label id="lblusuregistro"></label>
+                                        <p>Tipo Servicio:</p>
+                                        <label id="lbltiposervicio"></label>
 
-                                        <p>Estado Solicitud.</p>
-                                        <label id="lblestadosoli"></label>
+                                        <p>Estado Servicio:</p>
+                                        <label id="lblestadoservicio"></label>                                        
 
-                                        <p>Estado Servicio.</p>
+                                        <p>Nivel Autorización:</p>
                                         <label id="lblestadoserv"></label>
 
-                                         <p>Tipo de Servicio.</p>
+                                         <p>Centro Generador de la Autorización:</p>
                                         <label id="lbltiposerv"></label>
                                         
                                     </div>
