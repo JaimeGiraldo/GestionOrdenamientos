@@ -491,7 +491,7 @@ Logo Header
     border: none;
     background-color: transparent;
     border-bottom: 1px solid #d0d0d0;
-    text-align: left;
+    text-align: center;
     color: #a1a1a1 !IMPORTANT;
     outline: none !important;
 }
@@ -2134,5 +2134,5 @@ select, input {
     padding: 1em;
     border-radius: 3px;
     background-color: rgba(0, 189, 218, 0.08);
-    margin-bottom: 2em;
+    margin-bottom: 0;
 }
