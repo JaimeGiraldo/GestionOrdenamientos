@@ -199,7 +199,6 @@ namespace GestionOrdenamientos
         {
             try
             {
-
                 var dt = objRetornarDatos.llenarDataSet(sp);
 
                 if (dt.Tables.Count > 0)
@@ -273,6 +272,8 @@ namespace GestionOrdenamientos
         }
 
 
+
+        
 
 
     }

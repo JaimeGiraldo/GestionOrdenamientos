@@ -1,11 +1,24 @@
 
-
+var colores = ['#F44336', '#E91E63', '#9C27B0', '#3F51B5', '#2196F3', '#009688', '#4CAF50', '#CDDC39', '#76FF03', '#FFEB3B', '#FF9800', '#795548', '#9E9E9E', '#FFFF00'];
 var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes; 
 
 var archivos = [];
 ; (function (window) {
    
-    
+    //Animacion para los graficos dashboard
+    Math.easeOutBounce = function (pos) {
+        if ((pos) < (1 / 2.75)) {
+            return (7.5625 * pos * pos);
+        }
+        if (pos < (2 / 2.75)) {
+            return (7.5625 * (pos -= (1.5 / 2.75)) * pos + 0.75);
+        }
+        if (pos < (2.5 / 2.75)) {
+            return (7.5625 * (pos -= (2.25 / 2.75)) * pos + 0.9375);
+        }
+        return (7.5625 * (pos -= (2.625 / 2.75)) * pos + 0.984375);
+    };
+        
        //Ingresar con enter
     $("#txtContraseña").keypress(function (e) {
         if (e.which == 13) {
@@ -41,17 +54,30 @@ var archivos = [];
         consultarOrdenesFecha(IdtipoOpt, IdOpt);
     });
 
+    //muestra el grafico 2 del dashboard
+    $("#btngrafico2").on("click", function (e) {
+        pintarGrafico2();
+        $("#ModalGrafico2").modal();
+    });
 
-     
-    $("#form_usuario_sede").change();   
 
-
+    $("#btngrafico3").on("click", function (e) {
+        pintarGrafico3();
+        $("#ModalGrafico2").modal();
+    });
 
     $("#btnSalir").on("click", function (e) {
         location.reload();
     });
-      
 
+
+    //////////////////////////////////////////////////////////////////////////////////////
+
+
+
+     
+    $("#form_usuario_sede").change();   
+  
 
     //Llama a el metodo para filtrar los usuarios
     $('#busqueda_usuario').change(function () {
@@ -339,6 +365,9 @@ var archivos = [];
 	            if (lista.Table.length > 0) {
 
 	                if (lista.Table[0].respuesta == "OK") {
+
+                        //obtiene los datos para el dashboard
+	                    obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
 
 	                    IdtipoOpt = lista.Table[0].idtipoid;
 	                    IdOpt = lista.Table[0].identificacion;
@@ -926,4 +955,194 @@ function procesarArchivo()
         }
     });
     
+}
+
+function obtenerDashboard(spP) {
+
+    var cups = [];
+    var cantidades = [];
+    var coloress = [];   
+    
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/cargarDatos",
+        data: "{ sp: '" + spP + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+            var datos1 = listaDatos.Table1;
+            var datos2 = listaDatos.Table2;
+            var datos3 = listaDatos.Table3;
+            var datos4 = listaDatos.Table4;
+
+            if (listaDatos.Table.length > 0) {
+                
+                coloress = colores.sort(function () { return Math.random() - 0.5 });
+                for (var i = 0; i < datos.length; i++) {
+                    cups.push(datos[i].cups);
+                    cantidades.push(datos[i].cantidad);                                 
+                }
+                coloress.push(colores);
+              
+                $("#lblgeneradas").html(datos1[0].TotalOrdenes);
+                $("#lblpendientes").html(datos2[0].TotalPendientes);
+                $("#lbladecuadas").html(datos3[0].TotalAdecuadas);
+                $("#lblnoadecuadas").html(datos4[0].TotalNoAdecuadas);
+
+                pintarGrafico1(cups, cantidades, coloress);
+            }
+            else {
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+            }
+        }
+    });
+}
+
+function pintarGrafico1(motivos, cantidades, colores) {
+
+    //console.log(cantidades.map(Number));
+    var chart = Highcharts.chart('container', {
+
+        title: {
+            text: 'Ordenes por CUPS (Top 10)'
+        }, 
+        tooltip: {
+            headerFormat: '<b>{point.x}</b><br/>',
+            pointFormat: 'Total: {point.y}'
+        },
+        plotOptions: {
+            series: {               
+                borderWidth: 2,
+                dataLabels: {
+                    enabled: true
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutBounce'
+                }
+            }
+        },
+
+        yAxis: {
+            title: {
+                text: 'Total generados'
+            }
+        },
+
+        xAxis: {
+            categories: motivos
+        },
+
+        series: [{
+            type: 'column',
+            colors: colores,
+            colorByPoint: true,
+            data: cantidades.map(Number),
+            showInLegend: false
+        }]
+
+    });
+
+    $("#loaderdashboard").hide();
+}
+
+
+
+function pintarGrafico2() {
+    Highcharts.chart('containergrafico2', {
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Monthly Average Temperature'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+            title: {
+                text: 'Temperature (°C)'
+            }
+        },
+        plotOptions: {
+            line: {
+                dataLabels: {
+                    enabled: true
+                },
+                enableMouseTracking: false
+            }
+        },
+        series: [{
+            name: 'Tokyo',
+            data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }, {
+            name: 'London',
+            data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+        }]
+    });
+   
+}
+
+
+function pintarGrafico3() {
+    
+    // Build the chart
+    Highcharts.chart('containergrafico2', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Browser market shares January, 2015 to May, 2015'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'Microsoft Internet Explorer',
+                y: 56.33
+            }, {
+                name: 'Chrome',
+                y: 24.03,
+                sliced: true,
+                selected: true
+            }, {
+                name: 'Firefox',
+                y: 10.38
+            }, {
+                name: 'Safari',
+                y: 4.77
+            }, {
+                name: 'Opera',
+                y: 0.91
+            }, {
+                name: 'Proprietary or Undetectable',
+                y: 0.2
+            }]
+        }]
+    });
 }

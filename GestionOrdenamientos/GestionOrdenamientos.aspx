@@ -11,6 +11,7 @@
     <meta name="description" content="Confirmamos tus fortalezas y actuamos con respecto a las necesidades más apremiantes." />
     <meta name="author" content="Intelsa.co" />
     <link rel="shortcut icon" href="favicon.ico">
+
     <!-- Latest compiled and minified CSS -->
     <%--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--%>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -26,6 +27,15 @@
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>--%>
     <!-- jQuery easing plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" type="text/javascript"></script>
+
+   <!-- Cards dashboard-->
+   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>  
+   <link href="css/cards.css" rel="stylesheet" />
+
+   <!-- Graficos-->
+    <script src="js/highcharts.js"></script>
+    <script src="js/exporting.js"></script>
+    <script src="js/drilldown.js"></script>
 
 </head>
 <body>
@@ -80,7 +90,7 @@
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
                                 <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
-                                <label class="login-field-icon fui-user" for="login-name"></label>
+                                <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
                                 <input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
@@ -95,25 +105,144 @@
 		<!-- /page -->    
         
         <div class="page" id="page-Resultado1">
-            <input type="hidden" id="IdUsuario" value="0" />
+           <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Análisis y Reportes</h1>
+                <p>Información detallada sobre la cantidad de ordenes y el proceso de optimización.</p>
+                
+                <!-- indicador de wait -->  
+                 <div class="col-lg-6 col-md-4" ></div>
+                 <div class="col-lg-2 col-md-2" >
+                     <div class="loader" id="loaderdashboard" ></div>
+                 </div>
+                 
+
                 <%-- <p>A continuación, encontraras tus resultados.<br />
                     No olvides que la retroalimentación es un regalo y es la clave del éxito está en que construyas y ejecutes tu plan de desarrollo tomando en cuenta esta información.
-                </p>--%>
-                <p>Información detallada del proceso de optimización.</p>
+                </p>--%>                
             </header>
+                      
+                <div class="container">
+                    
+                    <div class="scroll_header_fixed">
+                        <div class="col-lg-12 col-md-12"></div>
+                       <%-- <div class="col-lg-12 col-md-12">
+                            <div id="tablaReporte">
+                        </div>
+                        </div>--%>
+                        
+                        <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
 
-            <div class="container">
-                <div class="scroll_header_fixed">
-                    <div class="col-lg-12 col-md-12">
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <div id="tablaReporte">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header" data-background-color="green">
+                                        <i class="material-icons">assignment</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="category">Ordenes Generadas</p>
+                                        <h3 class="title" id="lblgeneradas">0</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">receipt</i> Ingresadas al sistema
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header" data-background-color="red">
+                                        <i class="material-icons">help</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="category">Ordenes Pendientes</p>
+                                        <h3 class="title" id="lblpendientes">0</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">date_range</i> En espera de Optimización
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header" data-background-color="blue">
+                                        <i class="material-icons">comment</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="category">Total Adecuadas</p>
+                                        <h3 class="title" id="lbladecuadas">0</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">check_circle</i> Pertinentes
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header"  data-background-color="orange">
+                                        <i class="material-icons">info_outline</i>
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="category">Total no Adecuadas</p>
+                                        <h3 class="title" id="lblnoadecuadas">0</h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">report_problem</i> No Pertinentes 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
+                                <button id="btngrafico2" class="btn btn-primary">Grafico 2</button>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
+                                <button id="btngrafico3" class="btn btn-primary">Grafico 3</button>
+                            </div>
+
+                             <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
+                                <button id="btngrafico4" class="btn btn-primary">Reportes</button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6">                           
+                            <div id="container"></div>
+                        </div>
+
+                        </div>
+                </div>       
+            
+              <div class="modal fade" id="ModalGrafico2" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="ModalGrafico2tittle">TITULO</h4>
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+
+                                 <div id="containergrafico2" style="width:472px"></div>
+
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>           
+                
         </div>
 
         <div class="page" id="page-AsignarAT4">
@@ -139,6 +268,7 @@
                         </div>
                     </div>
 
+       
                     <div class="col-lg-12 col-md-12">
                         <table id="tablaAsignar" class="table table-hover table-action">
                             <thead>
@@ -244,22 +374,32 @@
             </header>
             <div class="container">
                 <div class="scroll_header_fixed">
+
                     <div class="col-lg-12 col-md-12">
-                        <table id="tablaProveedores" class="table table-hover table-action">
-                            <thead>
-                                <tr>
-                                    <th>Fecha Asignacion</th>
-                                    <th>Cups</th>
-                                    <th>Descripción</th>
-                                    <th>Detalle</th>
-                                    <th>Orden</th>
-                                    <th>Soporte</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                        <div class="card">
+                            <div class="card-header" data-background-color="blue">
+                                <h4 class="title">Listado de Ordenes</h4>
+                                <p class="category">Ordenes pendientes por gestión del proveedor</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="tablaProveedores" class="table table-hover table-action">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha Asignacion</th>
+                                            <th>Cups</th>
+                                            <th>Descripción</th>
+                                            <th>Detalle</th>
+                                            <th>Orden</th>
+                                            <th>Soporte</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
                 <div class="container">
                     <!-- Modal para ingresar en la pantalla detalle de la orden -->
@@ -337,10 +477,10 @@
     <script src="js/main.js"></script>
     <script src="js/sweet-alert.js"></script>
     <script src="js/progressbar.js"></script>
-    <script src="js/highcharts.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jspdf.min.js"></script>
     <script src="js/dropzone.js"></script>
+
 
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>

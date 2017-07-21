@@ -70,9 +70,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\cards.css" />
     <Content Include="images\ep_naturalwhite.png" />
     <Content Include="images\logoNuevo.png" />
+    <Content Include="js\drilldown.js" />
     <Content Include="js\dropzone.js" />
+    <Content Include="js\exporting.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.eot" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.ttf" />
