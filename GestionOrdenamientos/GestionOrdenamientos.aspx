@@ -122,14 +122,9 @@
                 </p>--%>                
             </header>
                       
-                <div class="container">
-                    
-                    <div class="scroll_header_fixed">
-                        <div class="col-lg-12 col-md-12"></div>
-                       <%-- <div class="col-lg-12 col-md-12">
-                            <div id="tablaReporte">
-                        </div>
-                        </div>--%>
+                <div class="container">                   
+                  
+                        <div class="col-lg-12 col-md-12"></div>                     
                         
                         <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
 
@@ -173,7 +168,7 @@
                                         <i class="material-icons">comment</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">Total Adecuadas</p>
+                                        <p class="category">Adecuadas</p>
                                         <h3 class="title" id="lbladecuadas">0</h3>
                                     </div>
                                     <div class="card-footer">
@@ -190,7 +185,7 @@
                                         <i class="material-icons">info_outline</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">Total no Adecuadas</p>
+                                        <p class="category">No Adecuadas</p>
                                         <h3 class="title" id="lblnoadecuadas">0</h3>
                                     </div>
                                     <div class="card-footer">
@@ -200,7 +195,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
                                 <button id="btngrafico2" class="btn btn-primary">Grafico 2</button>
@@ -213,13 +207,17 @@
                              <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
                                 <button id="btngrafico4" class="btn btn-primary">Reportes</button>
                             </div>
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">                           
-                            <div id="container"></div>
-                        </div>
 
                         </div>
+
+                        <div class="col-lg-6 col-md-6">
+                           
+                            <div id="container" style="height:400px"></div>
+                             <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: end">
+                                <label onclick="ExportToExcel()" style="font:menu"><u>Ver detalle</u></label>
+                            </div>
+                        </div>                   
+
                 </div>       
             
               <div class="modal fade" id="ModalGrafico2" role="dialog">
@@ -231,10 +229,7 @@
                                 <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-
-                                 <div id="containergrafico2" style="width:472px"></div>
-
-                                
+                                 <div id="containergrafico2" style="width:472px"></div>                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
@@ -242,6 +237,26 @@
                         </div>
                     </div>
                 </div>
+
+            <div class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">                       
+                        <div class="modal-body">
+                            <%--tabla para generar el archivo excel del graficio icianial en el dashboard, se oculta dentro de un modal--%>
+                            <table id="tbldetallegraficodash" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>CUPS</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>CANTIDAD</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>                       
+                    </div>
+                </div>
+            </div>                      
                 
         </div>
 
@@ -377,7 +392,7 @@
 
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
-                            <div class="card-header" data-background-color="blue">
+                            <div class="card-header" data-background-color="bluee">
                                 <h4 class="title">Listado de Ordenes</h4>
                                 <p class="category">Ordenes pendientes por gestión del proveedor</p>
                             </div>
