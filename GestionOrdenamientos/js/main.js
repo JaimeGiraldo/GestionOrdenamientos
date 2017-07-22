@@ -95,66 +95,66 @@ var archivos = [];
 	});
 
 
-    $("#btnAdicionarParametrizacion").on("click", function (e) {
-        var evaluador = $('#ddlEvaluador').val();
-        if (evaluador.length == 0)
-        {
-            swal('Autoevaluación', 'debe Seleccionar Evaluador.!!', 'warning');
-            return;
+    //$("#btnAdicionarParametrizacion").on("click", function (e) {
+    //    var evaluador = $('#ddlEvaluador').val();
+    //    if (evaluador.length == 0)
+    //    {
+    //        swal('Autoevaluación', 'debe Seleccionar Evaluador.!!', 'warning');
+    //        return;
 
-        }
+    //    }
 
-        var evaluado = $('#ddlEvaluado').val();
-        if (evaluado.length == 0) {
-            swal('Autoevaluación', 'debe Seleccionar Evaluado.!!', 'warning');
-            return;
+    //    var evaluado = $('#ddlEvaluado').val();
+    //    if (evaluado.length == 0) {
+    //        swal('Autoevaluación', 'debe Seleccionar Evaluado.!!', 'warning');
+    //        return;
 
-        }
+    //    }
 
-        var roles = $('#ddlRoles').val();
-        if (roles.length == 0) {
-            swal('Autoevaluación', 'debe Seleccionar Rol.!!', 'warning');
-            return;
+    //    var roles = $('#ddlRoles').val();
+    //    if (roles.length == 0) {
+    //        swal('Autoevaluación', 'debe Seleccionar Rol.!!', 'warning');
+    //        return;
 
-        }
+    //    }
 
-        //if (evaluador == evaluado)
-        //{
-        //    swal('Autoevaluacion', 'NO se permite evaluarse a si mismo.!!', 'warning');
-        //    return;
-        //}
+    //    //if (evaluador == evaluado)
+    //    //{
+    //    //    swal('Autoevaluacion', 'NO se permite evaluarse a si mismo.!!', 'warning');
+    //    //    return;
+    //    //}
 
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/parametrizacion",
-            data: "{ Evaluador: '" + evaluador + "',Evaluado:'" + evaluado +"',Rol:'"+ roles +"'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                swal('AutoEvaluación', 'Ocurrio un error favor informar a sistemas', 'error');
-            } else {
+    //    $.ajax({
+    //        url: "GestionOrdenamientos.aspx/parametrizacion",
+    //        data: "{ Evaluador: '" + evaluador + "',Evaluado:'" + evaluado +"',Rol:'"+ roles +"'}",
+    //        contentType: "application/json; charset=utf-8",
+    //        dataType: "json",
+    //        async: true,
+    //        type: 'POST'
+    //    }).done(function (rest) {
+    //        if (rest.Error != undefined) {
+    //            swal('AutoEvaluación', 'Ocurrio un error favor informar a sistemas', 'error');
+    //        } else {
 
-                var lista = JSON.parse(rest.d); 
+    //            var lista = JSON.parse(rest.d); 
 
-                if (lista != '') {
+    //            if (lista != '') {
                     
 
-                    if (lista.Table[0].Rta == 'Ya Existe') {
-                        swal('AutoEvaluación', 'Esta parametrizacion ya se realizo', 'info');
-                        return;
-                    }
-                    else {
-                        swal('Evaluación', 'Parametros Guardados con Éxito', 'success');
-                        var evaluador = $('#ddlEvaluador').val();
-                        obtenerParametrizacion(evaluador);
-                        FiltrarTabla(evaluador);
-                    }
-                }
-            }
-        });
-    });
+    //                if (lista.Table[0].Rta == 'Ya Existe') {
+    //                    swal('AutoEvaluación', 'Esta parametrizacion ya se realizo', 'info');
+    //                    return;
+    //                }
+    //                else {
+    //                    swal('Evaluación', 'Parametros Guardados con Éxito', 'success');
+    //                    var evaluador = $('#ddlEvaluador').val();
+    //                    obtenerParametrizacion(evaluador);
+    //                    FiltrarTabla(evaluador);
+    //                }
+    //            }
+    //        }
+    //    });
+    //});
 
     
 	'use strict';

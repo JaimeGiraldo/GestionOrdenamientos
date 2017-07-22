@@ -52,10 +52,12 @@
     <nav class="pages-nav">
         <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
-        --%><div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
+        --%>
+        <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
+        <div id="MenuResponsables" class="pages-nav__item"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Configurar Responsables</a></div>
         <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
         <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
-        <div id="MenuReportes" class="pages-nav__item" id="Resultado1"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
+        <div id="MenuReportes" class="pages-nav__item"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
         <div class="pages-nav__item" id="Fortalezas" style="display:none"><a id="btnGrafico2" class="link link--page" href="#page-Fortalezas"><span class="icon-padnote"></span>Fortalezas - Oportunidad Mejora</a></div>
@@ -67,7 +69,6 @@
     <!-- /navigation-->
 	<!-- pages stack -->
 	<div class="pages-stack">
-		<!-- page -->
 		<div class="page" id="page-home">
 			<!-- Header -->
 			<header class="bp-header cf">					
@@ -102,7 +103,7 @@
                 </div>
             </div>
         </div>
-		<!-- /page -->    
+	   
         
         <div class="page" id="page-Resultado1">
            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
@@ -348,6 +349,54 @@
                 </div>
             </div>
         </div>
+
+
+            <div class="page" id="page-Responsables">
+			<header class="bp-header cf">
+				<h1 class="bp-header__title">Parametrización Responsable</h1>
+				<p class="info">
+                    Seleccione el personal que va realizar la optimizacion
+				</p>
+			</header>
+            <div class="container">
+                <div class="scroll_header_fixed">
+			        <div class="col-lg-12 col-md-12">
+                        <div class="row box_selet_ca_ev bg-primary">
+		                    <div class="col-md-6">
+                                <label class="s16 color-white">Seleccione Empleado</label>
+                                <select id="ddlEmpleado" class="form-control color-blue"></select>
+			                </div>
+                            
+                            <div class="col-md-6">
+                                <label class="s16 color-white">Seleccione Cups</label>
+                                <select id="ddlCups" class="form-control color-blue"></select>
+                                <br />
+			                </div>
+
+                            <div class="col-md-6"></div>
+                            <div class="col-md-6">
+                            <input type="button"   id="btnAdd" class="btn btn-success color-white per100" value="Adicionar" />
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <label class="s16 color-white">Detalle Parametrizacion</label>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                        <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                           <thead>
+                                <tr>   
+                                    <th>Colaborador</th>
+                                    <th>Cups</th>                                  
+                                    <th style="text-align:right">Accion</th>
+                                </tr>
+                            </thead>
+                          <tbody></tbody>
+                        </table>
+                    </div>            
+                </div>
+            </div>
+	    </div>
 
         <div class="page" id="page-ImportarArchivo">
             <header class="bp-header cf">
