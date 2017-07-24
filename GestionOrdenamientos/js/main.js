@@ -377,6 +377,7 @@ var archivos = [];
 	                        //si es un tipo usu o admin, vera todo el menu
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    }else  if (lista.Table[0].idtipousuario == "1") {
@@ -384,29 +385,34 @@ var archivos = [];
 
                             //esconde los menus
 	                        $('#MenuCargaArchivo').hide();
+	                        $('#MenuResponsables').hide();
 	                        $('#MenuProveedor').hide();
 
                             //esconde las paginas	                        
 	                        $('#page-ImportarArchivo').hide();
+	                        $('#page-Responsables').hide();
 	                        $('#page-Proveedores').hide();
 
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
-	                    } else {
-	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
+	                    } else if (lista.Table[0].idtipousuario == "2") {
+	                        //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
 	                        $('#MenuOptimizador').hide();
 	                        $('#MenuCargaArchivo').hide();
+	                        $('#MenuResponsables').hide();
 
 	                        $('#page-AsignarAT4').hide();
 	                        $('#page-ImportarArchivo').hide();
-
+	                        $('#page-Responsables').hide();
 
 	                        openMenu();
 	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
+	                    } else {
+	                        swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
 	                    }
 	                    
 	                } else {
@@ -717,7 +723,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
         archivos = [];
         $("#ModalAdjuntoProveedor .modal-body").html('');
    
-        var body;
+        var body='';
         body += '<div class="cinta_whit_sh"><label>Arrastra el archivo o toca para seleccionar</label></div><div id="mydropzone1_' + id + '" class="dropzone"></div>';
         $("#ModalAdjuntoProveedor .modal-body").append(body);
         $("#ModalAdjuntoProveedor").modal();
