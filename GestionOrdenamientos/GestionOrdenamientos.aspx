@@ -268,7 +268,7 @@
             </header>
             <div class="container">
                 <div class="scroll_header_fixed">
-                    <div class="listar_nambers">
+                  <%-- <div class="listar_nambers">
                         <div class="col-md-2">
                             <label>TOTAL<br>
                                 ASIGNADO:</label>
@@ -282,25 +282,54 @@
                         <div class="col-md-2 col-md-offset-6">
                             <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
                         </div>
-                    </div>
+                    </div>--%>
 
-       
                     <div class="col-lg-12 col-md-12">
-                        <table id="tablaAsignar" class="table table-hover table-action">
-                            <thead>
-                                <tr>
-                                    <th>Codigo S. Ciklos</th>
-                                    <th>Fecha Registro</th>
-                                    <th>Fecha Esperada</th>
-                                    <th>IPS Solicitante</th>
-                                    <th>Descripción</th>
-                                    <th>Detalle</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                        <div class="card">
+                           
+                            <div class="col-lg-12 col-md-12"  data-background-color="bluee" style="margin:-20px 5px 0; padding:15px; border-radius:3px">
+                              
+                                <div class="col-md-3" >
+                                    <label>TOTAL ASIGNADO:</label>
+                                    <label id="lbltotalasignados"></label>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>TOTAL PENDIENTES:</label>
+                                    <label id="lbltotalpendientes"></label>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label>FILTRAR:</label>
+                                    <input  type="text" id="txtfiltro" placeholder="Ingresa el numero del CUPS" onkeyup="FiltrarTablaSede()">
+                                </div>
+
+                                <div class="col-md-3" style="text-align:end;padding-top:25px">
+                                      <button id="btnActualizartabla" style="background-color:#0c9688">Listar</button>
+                                </div>
+
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="tablaAsignar" class="table table-hover table-action">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo S. Ciklos</th>
+                                            <th>Fecha Registro</th>
+                                            <th>Fecha Esperada</th>
+                                            <th>IPS Solicitante</th>
+                                            <th>CUPS</th>
+                                            <th>Descripción</th>
+                                            <th>Detalle</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
+       
+                    
                 </div>
             </div>
 

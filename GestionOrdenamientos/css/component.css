@@ -2033,7 +2033,7 @@ input#btnSalir {
     margin-bottom: 3em;
 }
 label#lbltotalasignados, label#lbltotalpendientes {
-    color: #00bdda;
+    color: white;
     font-weight: 100;
     font-size: 2.5em;
     display: inline-block;

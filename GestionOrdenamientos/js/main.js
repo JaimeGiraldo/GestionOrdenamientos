@@ -70,8 +70,7 @@ var archivos = [];
         location.reload();
     });
 
-    
-
+   
     //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -462,6 +461,7 @@ var archivos = [];
 	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
 	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
 	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
+	                        tbl += '<td>' + datos[i].Cups + '</td>';
 	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
 	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
@@ -577,11 +577,6 @@ $(window).on("load resize ", function () {
 }).resize();
 
 
-function DetalleGrafico(){
-
-    $("#ModalDetalle").modal();
-}
-
 function abrirModalAcciones(posicion, posiciontabla) {
 
     $("#ModalAcciones .modal-body").html('');
@@ -614,7 +609,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     //function FiltrarTablaSede() {
     //    var input, filter, table, tr, td, i;
-    //    table = document.getElementById("tablaCasos");
+    //    table = document.getElementById("tablaAsignar");
     //    tr = table.getElementsByTagName("tr");
     //    var sede = $('#ddlSedes option:selected').text().toUpperCase();
 
@@ -634,6 +629,25 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
 
     //}
+
+
+function FiltrarTablaSede() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("txtfiltro");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaAsignar");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 
 
     function GuardarProovedor(posicion, posiciontabla) {
