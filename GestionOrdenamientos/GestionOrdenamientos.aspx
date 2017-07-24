@@ -301,7 +301,7 @@
 
                                 <div class="col-md-3">
                                     <label>FILTRAR:</label>
-                                    <input  type="text" id="txtfiltro" placeholder="Ingresa el numero del CUPS" onkeyup="FiltrarTablaSede()">
+                                    <input class="myinput" type="text" id="txtfiltro"  placeholder="Ingresa el número de CUPS" onkeyup="FiltrarTablaSede()">
                                 </div>
 
                                 <div class="col-md-3" style="text-align:end;padding-top:25px">
