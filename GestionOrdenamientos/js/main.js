@@ -70,7 +70,9 @@ var archivos = [];
         location.reload();
     });
 
-   
+    var cboEmpleado = $('#ddlEmpleado');
+    llenarCombos(cboEmpleado, "spevolution_Empleados_Obtener");
+
     //////////////////////////////////////////////////////////////////////////////////////
 
 
