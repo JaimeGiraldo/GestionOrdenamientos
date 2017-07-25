@@ -69,8 +69,8 @@ var archivos = [];
     $("#btnSalir").on("click", function (e) {
         location.reload();
     });
-
-    
+    var cboEmpleado = $('#ddlEmpleado');
+    llenarCombos(cboEmpleado, "spevolution_Empleados_Obtener");
 
     //////////////////////////////////////////////////////////////////////////////////////
 

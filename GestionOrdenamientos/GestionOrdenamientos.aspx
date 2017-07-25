@@ -384,7 +384,7 @@
                             
                             <div class="col-md-6">
                                 <label class="s16 color-white">Seleccione Cups</label>
-                                <select id="ddlCups" class="form-control color-blue"></select>
+                                <input type="text" class="form-control" placeholder="ingrese Cups" />
                                 <br />
 			                </div>
 
