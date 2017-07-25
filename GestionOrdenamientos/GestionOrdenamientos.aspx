@@ -45,14 +45,16 @@
 		<span id="lblUsuario" class="nombre_usuario"></span>
 		<span id="cargo" class="cargo_lab"></span>
         <span id="Csambiar contraseña" class="cargo_lab"></span>--%>
-        <input type="button" id="btnSalir" class="btn btn-danger" value="Salir" />
+        <input type="button" id="btnSalir"  value="Salir" />
     </div>
 
     <!-- navigation -->
+   
     <nav class="pages-nav">
         <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
         --%>
+        
         <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
         <div id="MenuResponsables" class="pages-nav__item"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Configurar Responsables</a></div>
         <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
@@ -65,7 +67,7 @@
         <div class="pages-nav__item"><a id="btnPerfil"  class="link link--page" href="#page-perfil"><span class="icon-profile"></span>Perfil</a></div>
         <div class="pages-nav__item"><a id="btnAyuda" class="link link--page" href="#ayuda_user"><span class="icon-info"></span>Instrucciones</a></div>--%>
     </nav>
-    
+   
     <!-- /navigation-->
 	<!-- pages stack -->
 	<div class="pages-stack">

@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\cards.css" />
+    <Content Include="images\bg_modal_ordenamients_icons.jpg" />
     <Content Include="images\ep_naturalwhite.png" />
     <Content Include="images\ic_search.png" />
     <Content Include="images\logoNuevo.png" />
