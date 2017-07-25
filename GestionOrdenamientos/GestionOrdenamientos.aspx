@@ -92,7 +92,7 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
@@ -404,44 +404,54 @@
                     Seleccione el personal que va realizar la optimizacion
 				</p>
 			</header>
-            <div class="container">
-                <div class="scroll_header_fixed">
-			        <div class="col-lg-12 col-md-12">
-                        <div class="row box_selet_ca_ev bg-primary">
-		                    <div class="col-md-6">
-                                <label class="s16 color-white">Seleccione Empleado</label>
-                                <select id="ddlEmpleado" class="form-control color-blue"></select>
-			                </div>
-                            
-                            <div class="col-md-6">
-                                <label class="s16 color-white">Seleccione Cups</label>
-                                <input type="text" class="form-control" placeholder="ingrese Cups" />
-                                <br />
-			                </div>
+               <div class="container">
+                <div class="scroll_header_fixed">                
 
-                            <div class="col-md-6"></div>
-                            <div class="col-md-6">
-                            <input type="button"   id="btnAdd" class="btn btn-success color-white per100" value="Adicionar" />
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                           
+                            <div class="col-lg-12 col-md-12"  data-background-color="bluee" style="margin:-20px 5px 0; padding:15px; border-radius:3px">
+                              
+                                <div class="col-md-3" >
+                                    <label class="s16 color-white">Responsable:</label>
+                                    <select id="ddlEmpleado" class="form-control color-blue"></select>
                                 </div>
+
+                                <div class="col-md-5">
+                                    <label class="s16 color-white">Cups:</label>
+                                    <select id="ddlCups" class="form-control color-blue"></select>
+                                </div>
+
+                                  <div class="col-md-2">
+                                    <label>FILTRAR:</label>
+                                    <input type="text" id="txtfiltroRespon"  placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height:35px">
+                                </div>
+                                                      
+                                <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                                    <input type="button" id="btnAdd" style="background-color:#0c9688" value="Adicionar" />
+                                </div>
+
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                                    <thead>
+                                        <tr>
+                                            <th>Responsable</th>
+                                            <th>Identificación</th>
+                                            <th>Cups</th>
+                                            <th>Descripción </th>
+                                            <th>Accion</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <label class="s16 color-white">Detalle Parametrizacion</label>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                        <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
-                           <thead>
-                                <tr>   
-                                    <th>Colaborador</th>
-                                    <th>Cups</th>                                  
-                                    <th style="text-align:right">Accion</th>
-                                </tr>
-                            </thead>
-                          <tbody></tbody>
-                        </table>
-                    </div>            
+                    </div>      
+                    
                 </div>
             </div>
+           
 	    </div>
 
         <div class="page" id="page-ImportarArchivo">

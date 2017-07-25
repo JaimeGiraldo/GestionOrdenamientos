@@ -71,8 +71,17 @@ var archivos = [];
     });
 
     var cboEmpleado = $('#ddlEmpleado');
-    llenarCombos(cboEmpleado, "spevolution_Empleados_Obtener");
+    llenarCombos(cboEmpleado, "spOrdenamientos_ObtenerUsuarios");
 
+    var cboEmpleado = $('#ddlCups');
+    llenarCombos(cboEmpleado, "spOrdenamientos_Obtener_ListaCUPS");
+
+   // $("#ddlCups").select2();
+
+    
+    $("#btnAdd").on("click", function (e) {
+        AsignarResponsables();
+    });
     //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -985,6 +994,54 @@ function FiltrarTablaSede() {
     
     }
 
+    function AsignarResponsables() {
+
+        var idresponsable = $('#ddlEmpleado').val();
+        var responsable = $("#ddlEmpleado :selected").text();
+        var cups = $('#ddlCups').val();
+        var descripcion = $("#ddlCups :selected").text();
+      
+
+        console.log(responsable + ' ' + cups);
+
+        if (cups.length = 0 || cups == "null") {
+            swal('EvolutionNet', 'Debes seleccionar un cups valido.', 'warning');
+        } else {
+
+            var tbl = '';
+            tbl += '<tr>';
+            tbl += '<td>' + responsable + '</td>';
+            tbl += '<td>' + idresponsable + '</td>';
+            tbl += '<td>' + cups + '</td>';
+            tbl += '<td>' + descripcion + '</td>';
+            tbl += '<td>' + '<button id="btnEliminar" >Eliminar</button>' + '</td>';
+            tbl += '</tr>';
+
+            $("#tablaParametros").append(tbl);
+
+            swal('GestionOrdenamientos', 'El registro se adicionó correctamente.', 'success');
+        }       
+    }
+
+    function FiltrarResponsables() {
+
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("txtfiltroRespon");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("tablaParametros");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+
+    }
     function obtenerDashboard(spP) {
 
         var cups = [];
