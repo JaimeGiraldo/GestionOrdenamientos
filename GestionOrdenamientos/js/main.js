@@ -69,9 +69,8 @@ var archivos = [];
     $("#btnSalir").on("click", function (e) {
         location.reload();
     });
-    var cboEmpleado = $('#ddlEmpleado');
-    llenarCombos(cboEmpleado, "spevolution_Empleados_Obtener");
 
+   
     //////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -377,6 +376,7 @@ var archivos = [];
 	                        //si es un tipo usu o admin, vera todo el menu
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
 	                    }else  if (lista.Table[0].idtipousuario == "1") {
@@ -384,29 +384,34 @@ var archivos = [];
 
                             //esconde los menus
 	                        $('#MenuCargaArchivo').hide();
+	                        $('#MenuResponsables').hide();
 	                        $('#MenuProveedor').hide();
 
                             //esconde las paginas	                        
 	                        $('#page-ImportarArchivo').hide();
+	                        $('#page-Responsables').hide();
 	                        $('#page-Proveedores').hide();
 
 	                        openMenu();
 	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
-	                    } else {
-	                       //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
+	                    } else if (lista.Table[0].idtipousuario == "2") {
+	                        //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
 	                        $('#MenuOptimizador').hide();
 	                        $('#MenuCargaArchivo').hide();
+	                        $('#MenuResponsables').hide();
 
 	                        $('#page-AsignarAT4').hide();
 	                        $('#page-ImportarArchivo').hide();
-
+	                        $('#page-Responsables').hide();
 
 	                        openMenu();
 	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                        $('#btnMenu').removeAttr('style');
+	                    } else {
+	                        swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
 	                    }
 	                    
 	                } else {
@@ -456,6 +461,7 @@ var archivos = [];
 	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
 	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
 	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
+	                        tbl += '<td>' + datos[i].Cups + '</td>';
 	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
 	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
@@ -571,11 +577,6 @@ $(window).on("load resize ", function () {
 }).resize();
 
 
-function DetalleGrafico(){
-
-    $("#ModalDetalle").modal();
-}
-
 function abrirModalAcciones(posicion, posiciontabla) {
 
     $("#ModalAcciones .modal-body").html('');
@@ -608,7 +609,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     //function FiltrarTablaSede() {
     //    var input, filter, table, tr, td, i;
-    //    table = document.getElementById("tablaCasos");
+    //    table = document.getElementById("tablaAsignar");
     //    tr = table.getElementsByTagName("tr");
     //    var sede = $('#ddlSedes option:selected').text().toUpperCase();
 
@@ -628,6 +629,25 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
 
     //}
+
+
+function FiltrarTablaSede() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("txtfiltro");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaAsignar");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
 
 
     function GuardarProovedor(posicion, posiciontabla) {
@@ -717,7 +737,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
         archivos = [];
         $("#ModalAdjuntoProveedor .modal-body").html('');
    
-        var body;
+        var body='';
         body += '<div class="cinta_whit_sh"><label>Arrastra el archivo o toca para seleccionar</label></div><div id="mydropzone1_' + id + '" class="dropzone"></div>';
         $("#ModalAdjuntoProveedor .modal-body").append(body);
         $("#ModalAdjuntoProveedor").modal();

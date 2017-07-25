@@ -72,7 +72,9 @@
   <ItemGroup>
     <Content Include="css\cards.css" />
     <Content Include="images\ep_naturalwhite.png" />
+    <Content Include="images\ic_search.png" />
     <Content Include="images\logoNuevo.png" />
+    <Content Include="images\up_archivos_btn.png" />
     <Content Include="js\drilldown.js" />
     <Content Include="js\dropzone.js" />
     <Content Include="js\exporting.js" />
@@ -112,13 +114,10 @@
     <Content Include="images\bg_download_gris_png.png" />
     <Content Include="images\bg_elementos_login_oficce.jpg" />
     <Content Include="images\elmento_ramdon_internas.png" />
-    <Content Include="images\evaluacion360_titulo_principal.png" />
     <Content Include="images\foto_perfil_usuario_sin_img.jpg" />
     <Content Include="images\icon_mail_color_compartir.png" />
     <Content Include="images\icon_ready_send.png" />
     <Content Include="images\icon_share_vector_green.svg" />
-    <Content Include="images\logo_alpina_shadow.png" />
-    <Content Include="images\logo_principal_soyclave.png" />
     <Content Include="images\pdf_icon_download_color.png" />
     <Content Include="js\api.js" />
     <Content Include="js\bootstrap.js" />
