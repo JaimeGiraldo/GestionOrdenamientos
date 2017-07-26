@@ -98,9 +98,9 @@ namespace GestionOrdenamientos
 
                
         //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
-        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observaciones,string at4, string cie10,string adecuado,string profesional)
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional)
         {
-            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observaciones + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "'");
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observacionesaudit + "','" + observacionesagen + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "'");
             if (dt.Tables.Count > 0)
             {
                 return JsonConvert.SerializeObject(dt);
@@ -114,10 +114,10 @@ namespace GestionOrdenamientos
 
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observaciones, string at4, string cie10, string adecuado, string profesional)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional)
         {
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
-            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observaciones, at4, cie10, adecuado, profesional);
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional);
         }
 
 
@@ -185,6 +185,78 @@ namespace GestionOrdenamientos
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
                 return objOrdenesProveedor.GuardarOrdenesEstadoProveedor(proveedor, idorden, orden, adjunto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Guarda el responsable asignado
+        public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionResponsable" + "'" + IdTipoId + "','" + Identificacion + "','" + Cups + "','" + descripcion + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups, string descripcion)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarAsignacionResponsable(IdTipoId, Identificacion, Cups, descripcion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Elimina el responsable asignado
+        public string EliminarAsignacionResponsable(string idasignacion)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_EliminarAsignacionResponsable" + "'" + idasignacion + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string eliminarAsignacionResponsable(string idasignacion)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.EliminarAsignacionResponsable(idasignacion);
             }
             catch (Exception ex)
             {

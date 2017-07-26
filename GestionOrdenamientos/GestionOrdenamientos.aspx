@@ -262,7 +262,7 @@
             </div>                      
                 
         </div>
-
+       <%-- pagina para optimizacion--%>
         <div class="page" id="page-AsignarAT4">
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
@@ -387,7 +387,7 @@
                             <h4 id="ModaltittleAcciones"></h4>
                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
-                        <div class="modal-body" style="padding: 0px 50px;">
+                        <div class="modal-body" style="padding: 0px;">
                         </div>
                         <div class="modal-footer">
                         </div>
@@ -395,65 +395,58 @@
                 </div>
             </div>
         </div>
+        <%--Pagina de asignacion de responsables--%>
+        <div class="page" id="page-Responsables">
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Parametrización Responsable</h1>
+                <p>Seleccione el personal que va a realizar la optimización.</p>
+            </header>
+            <div class="container">
+                <div class="card" style="margin:0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 15px; border-radius: 3px">
 
-
-            <div class="page" id="page-Responsables">
-			<header class="bp-header cf">
-				<h1 class="bp-header__title">Parametrización Responsable</h1>
-				<p class="info">
-                    Seleccione el personal que va realizar la optimizacion
-				</p>
-			</header>
-               <div class="container">
-                <div class="scroll_header_fixed">                
-
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                           
-                            <div class="col-lg-12 col-md-12"  data-background-color="bluee" style="margin:-20px 5px 0; padding:15px; border-radius:3px">
-                              
-                                <div class="col-md-3" >
-                                    <label class="s16 color-white">Responsable:</label>
-                                    <select id="ddlEmpleado" class="form-control color-blue"></select>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <label class="s16 color-white">Cups:</label>
-                                    <select id="ddlCups" class="form-control color-blue"></select>
-                                </div>
-
-                                  <div class="col-md-2">
-                                    <label>FILTRAR:</label>
-                                    <input type="text" id="txtfiltroRespon"  placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height:35px">
-                                </div>
-                                                      
-                                <div class="col-md-2" style="text-align: end; padding-top: 25px">
-                                    <input type="button" id="btnAdd" style="background-color:#0c9688" value="Adicionar" />
-                                </div>
-
-                            </div>
-                            <div class="card-content table-responsive">
-                                <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
-                                    <thead>
-                                        <tr>
-                                            <th>Responsable</th>
-                                            <th>Identificación</th>
-                                            <th>Cups</th>
-                                            <th>Descripción </th>
-                                            <th>Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
+                        <div class="col-md-3">
+                            <label class="s16 color-white">Responsable:</label>
+                            <select id="ddlEmpleado" class="form-control color-blue"></select>
                         </div>
-                    </div>      
-                    
+
+                        <div class="col-md-5">
+                            <label class="s16 color-white">Cups:</label>
+                            <select id="ddlCups" class="form-control color-blue"></select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height: 35px">
+                        </div>
+
+                        <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                            <input type="button" id="btnAdd" style="background-color: #0c9688" value="Adicionar" />
+                        </div>
+
+                    </div>
+                </div>
+                <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card-content table-responsive">
+                            <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Responsable</th>
+                                        <th>Identificación</th>
+                                        <th>Cups</th>
+                                        <th>Descripción </th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-           
-	    </div>
-
+        </div>
+       <%-- pagina para importacion de archivo--%>
         <div class="page" id="page-ImportarArchivo">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Importar Archivo</h1>

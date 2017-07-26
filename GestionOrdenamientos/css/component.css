@@ -1326,6 +1326,7 @@ table {
 .table tbody > tr:nth-child(odd) > td,
 .table tbody > tr:nth-child(odd) > th {
   background-color: transparent;
+
 }    
 .table .t-small {
   width: 5%;

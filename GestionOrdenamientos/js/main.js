@@ -1,6 +1,7 @@
 
 var colores = ['#F44336', '#E91E63', '#9C27B0', '#3F51B5', '#2196F3', '#009688', '#4CAF50', '#CDDC39', '#76FF03', '#FFEB3B', '#FF9800', '#795548', '#9E9E9E', '#FFFF00'];
-var usuario,IdtipoOpt,IdOpt,datosorden,totalpendientes,detalledashboard; 
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard;
+var idtipoidaux = "CC";
 
 var archivos = [];
 ; (function (window) {
@@ -77,99 +78,12 @@ var archivos = [];
     llenarCombos(cboEmpleado, "spOrdenamientos_Obtener_ListaCUPS");
 
    // $("#ddlCups").select2();
-
     
     $("#btnAdd").on("click", function (e) {
         AsignarResponsables();
     });
     //////////////////////////////////////////////////////////////////////////////////////
-
-
-
-     
-    $("#form_usuario_sede").change();   
-  
-
-    //Llama a el metodo para filtrar los usuarios
-    $('#busqueda_usuario').change(function () {
-        var nombre = $('#busqueda_usuario').val();
-        obtenerUsuarios(nombre);
-    });
-
-   
     
-	//share button
-	$(".share").on('click', function (e) {
-		$(".fab").removeClass("no");
-		if (e.target != this) return;
-		$('.share, .fab').toggleClass("active");
-	});
-
-
-    //$("#btnAdicionarParametrizacion").on("click", function (e) {
-    //    var evaluador = $('#ddlEvaluador').val();
-    //    if (evaluador.length == 0)
-    //    {
-    //        swal('Autoevaluación', 'debe Seleccionar Evaluador.!!', 'warning');
-    //        return;
-
-    //    }
-
-    //    var evaluado = $('#ddlEvaluado').val();
-    //    if (evaluado.length == 0) {
-    //        swal('Autoevaluación', 'debe Seleccionar Evaluado.!!', 'warning');
-    //        return;
-
-    //    }
-
-    //    var roles = $('#ddlRoles').val();
-    //    if (roles.length == 0) {
-    //        swal('Autoevaluación', 'debe Seleccionar Rol.!!', 'warning');
-    //        return;
-
-    //    }
-
-    //    //if (evaluador == evaluado)
-    //    //{
-    //    //    swal('Autoevaluacion', 'NO se permite evaluarse a si mismo.!!', 'warning');
-    //    //    return;
-    //    //}
-
-    //    $.ajax({
-    //        url: "GestionOrdenamientos.aspx/parametrizacion",
-    //        data: "{ Evaluador: '" + evaluador + "',Evaluado:'" + evaluado +"',Rol:'"+ roles +"'}",
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        async: true,
-    //        type: 'POST'
-    //    }).done(function (rest) {
-    //        if (rest.Error != undefined) {
-    //            swal('AutoEvaluación', 'Ocurrio un error favor informar a sistemas', 'error');
-    //        } else {
-
-    //            var lista = JSON.parse(rest.d); 
-
-    //            if (lista != '') {
-                    
-
-    //                if (lista.Table[0].Rta == 'Ya Existe') {
-    //                    swal('AutoEvaluación', 'Esta parametrizacion ya se realizo', 'info');
-    //                    return;
-    //                }
-    //                else {
-    //                    swal('Evaluación', 'Parametros Guardados con Éxito', 'success');
-    //                    var evaluador = $('#ddlEvaluador').val();
-    //                    obtenerParametrizacion(evaluador);
-    //                    FiltrarTabla(evaluador);
-    //                }
-    //            }
-    //        }
-    //    });
-    //});
-
-    
-	'use strict';
-
 	var support = { transitions: Modernizr.csstransitions },
 		// transition end event name
 		transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
@@ -206,377 +120,371 @@ var archivos = [];
 		// check if menu is open
 		isMenuOpen = false;
 
-	function init() {
-		buildStack();
-		initEvents();
-	}
+function init() {
+	buildStack();
+	initEvents();
+}
 
-	function buildStack() {
-		var stackPagesIdxs = getStackPagesIdxs();
+function buildStack() {
+	var stackPagesIdxs = getStackPagesIdxs();
 
-		// set z-index, opacity, initial transforms to pages and add class page--inactive to all except the current one
-		for(var i = 0; i < pagesTotal; ++i) {
-			var page = pages[i],
-				posIdx = stackPagesIdxs.indexOf(i);
+	// set z-index, opacity, initial transforms to pages and add class page--inactive to all except the current one
+	for(var i = 0; i < pagesTotal; ++i) {
+		var page = pages[i],
+			posIdx = stackPagesIdxs.indexOf(i);
 
-			if( current !== i ) {
-				classie.add(page, 'page--inactive');
+		if( current !== i ) {
+			classie.add(page, 'page--inactive');
 
-				if( posIdx !== -1 ) {
-					// visible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,100%,0)';
-					page.style.transform = 'translate3d(0,100%,0)';
-				}
-				else {
-					// invisible pages in the stack
-					page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
-					page.style.transform = 'translate3d(0,75%,-300px)';		
-				}
-			}
-			else {
-				classie.remove(page, 'page--inactive');
-			}
-
-			page.style.zIndex = i < current ? parseInt(current - i) : parseInt(pagesTotal + current - i);
-			
 			if( posIdx !== -1 ) {
-				page.style.opacity = parseFloat(1 - 0.1 * posIdx);
+				// visible pages in the stack
+				page.style.WebkitTransform = 'translate3d(0,100%,0)';
+				page.style.transform = 'translate3d(0,100%,0)';
 			}
 			else {
-				page.style.opacity = 0;
+				// invisible pages in the stack
+				page.style.WebkitTransform = 'translate3d(0,75%,-300px)';
+				page.style.transform = 'translate3d(0,75%,-300px)';		
 			}
-		}
-	}
-
-	// event binding
-	function initEvents() {
-		// menu button click
-		menuCtrl.addEventListener('click', toggleMenu);
-
-
-
-		// navigation menu clicks
-		navItems.forEach(function(item) {
-			// which page to open?
-			var pageid = item.getAttribute('href').slice(1);
-			item.addEventListener('click', function(ev) {
-				ev.preventDefault();
-				openPage(pageid);
-			});
-		});
-
-		// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
-		pages.forEach(function(page) {
-			var pageid = page.getAttribute('id');
-			page.addEventListener('click', function(ev) {
-				if( isMenuOpen ) {
-					ev.preventDefault();
-					openPage(pageid);
-				}
-			});
-		});
-
-		// keyboard navigation events
-		document.addEventListener( 'keydown', function( ev ) {
-			if( !isMenuOpen ) return; 
-			var keyCode = ev.keyCode || ev.which;
-			if( keyCode === 27 ) {
-				closeMenu();
-			}
-		} );
-	}
-
-	// toggle menu fn
-	function toggleMenu() {
-		if( isMenuOpen ) {
-			closeMenu();
 		}
 		else {
-			openMenu();
-			isMenuOpen = true;
-		}
-	}
-	// opens the menu
-	function openMenu() {
-		// toggle the menu button
-		classie.add(menuCtrl, 'menu-button--open')
-		// stack gets the class "pages-stack--open" to add the transitions
-		classie.add(stack, 'pages-stack--open');
-		// reveal the menu
-		classie.add(nav, 'pages-nav--open');
-
-		// now set the page transforms
-		var stackPagesIdxs = getStackPagesIdxs();
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
-			page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
-        }       
-	}
-
-	// closes the menu
-	function closeMenu() {
-		// same as opening the current page again
-		openPage();
-	}
-
-	// opens a page
-	function openPage(id) {
-		var futurePage = id ? document.getElementById(id) : pages[current],
-			futureCurrent = pages.indexOf(futurePage),
-			stackPagesIdxs = getStackPagesIdxs(futureCurrent);
-
-		// set transforms for the new current page
-		futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
-		futurePage.style.transform = 'translate3d(0, 0, 0)';
-		futurePage.style.opacity = 1;
-
-		// set transforms for the other items in the stack
-		for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
-			var page = pages[stackPagesIdxs[i]];
-			page.style.WebkitTransform = 'translate3d(0,100%,0)';
-			page.style.transform = 'translate3d(0,100%,0)';
+			classie.remove(page, 'page--inactive');
 		}
 
-		// set current
-		if( id ) {
-			current = futureCurrent;
+		page.style.zIndex = i < current ? parseInt(current - i) : parseInt(pagesTotal + current - i);
+			
+		if( posIdx !== -1 ) {
+			page.style.opacity = parseFloat(1 - 0.1 * posIdx);
 		}
-		
-		// close menu..
-		classie.remove(menuCtrl, 'menu-button--open');
-		classie.remove(nav, 'pages-nav--open');
-		onEndTransition(futurePage, function() {
-			classie.remove(stack, 'pages-stack--open');
-			// reorganize stack
-			buildStack();
-			isMenuOpen = false;
+		else {
+			page.style.opacity = 0;
+		}
+	}
+}
+
+// event binding
+function initEvents() {
+	// menu button click
+	menuCtrl.addEventListener('click', toggleMenu);
+
+
+
+	// navigation menu clicks
+	navItems.forEach(function(item) {
+		// which page to open?
+		var pageid = item.getAttribute('href').slice(1);
+		item.addEventListener('click', function(ev) {
+			ev.preventDefault();
+			openPage(pageid);
 		});
+	});
+
+	// clicking on a page when the menu is open triggers the menu to close again and open the clicked page
+	pages.forEach(function(page) {
+		var pageid = page.getAttribute('id');
+		page.addEventListener('click', function(ev) {
+			if( isMenuOpen ) {
+				ev.preventDefault();
+				openPage(pageid);
+			}
+		});
+	});
+
+	// keyboard navigation events
+	document.addEventListener( 'keydown', function( ev ) {
+		if( !isMenuOpen ) return; 
+		var keyCode = ev.keyCode || ev.which;
+		if( keyCode === 27 ) {
+			closeMenu();
+		}
+	} );
+}
+
+// toggle menu fn
+function toggleMenu() {
+	if( isMenuOpen ) {
+		closeMenu();
+	}
+	else {
+		openMenu();
+		isMenuOpen = true;
+	}
+}
+// opens the menu
+function openMenu() {
+	// toggle the menu button
+	classie.add(menuCtrl, 'menu-button--open')
+	// stack gets the class "pages-stack--open" to add the transitions
+	classie.add(stack, 'pages-stack--open');
+	// reveal the menu
+	classie.add(nav, 'pages-nav--open');
+
+	// now set the page transforms
+	var stackPagesIdxs = getStackPagesIdxs();
+	for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
+		var page = pages[stackPagesIdxs[i]];
+		page.style.WebkitTransform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)'; // -200px, -230px, -260px
+		page.style.transform = 'translate3d(0, 75%, ' + parseInt(-1 * 200 - 50*i) + 'px)';
+    }       
+}
+
+// closes the menu
+function closeMenu() {
+	// same as opening the current page again
+	openPage();
+}
+
+// opens a page
+function openPage(id) {
+	var futurePage = id ? document.getElementById(id) : pages[current],
+		futureCurrent = pages.indexOf(futurePage),
+		stackPagesIdxs = getStackPagesIdxs(futureCurrent);
+
+	// set transforms for the new current page
+	futurePage.style.WebkitTransform = 'translate3d(0, 0, 0)';
+	futurePage.style.transform = 'translate3d(0, 0, 0)';
+	futurePage.style.opacity = 1;
+
+	// set transforms for the other items in the stack
+	for(var i = 0, len = stackPagesIdxs.length; i < len; ++i) {
+		var page = pages[stackPagesIdxs[i]];
+		page.style.WebkitTransform = 'translate3d(0,100%,0)';
+		page.style.transform = 'translate3d(0,100%,0)';
 	}
 
+	// set current
+	if( id ) {
+		current = futureCurrent;
+	}
+		
+	// close menu..
+	classie.remove(menuCtrl, 'menu-button--open');
+	classie.remove(nav, 'pages-nav--open');
+	onEndTransition(futurePage, function() {
+		classie.remove(stack, 'pages-stack--open');
+		// reorganize stack
+		buildStack();
+		isMenuOpen = false;
+	});
+}
 
+//Iniciar Sesion
+function iniciarSesion(usuario, clave) {
+	$.ajax({
+	    url: "GestionOrdenamientos.aspx/validarUsuario",
+	    data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "json",
+	    async: true,
+	    type: 'POST'
+	}).done(function (rest) {
+	    if (rest.Error != undefined) {
+	        alert(rest.Error);
+	    } else {
 
+	        var lista = JSON.parse(rest.d);
 
-    //Iniciar Sesion
-	function iniciarSesion(usuario, clave) {
-	    $.ajax({
-	        url: "GestionOrdenamientos.aspx/validarUsuario",
-	        data: "{ UsuarioSistema: '" + usuario + "', Clave: '" + clave + "'}",
-	        contentType: "application/json; charset=utf-8",
-	        dataType: "json",
-	        async: true,
-	        type: 'POST'
-	    }).done(function (rest) {
-	        if (rest.Error != undefined) {
-	            alert(rest.Error);
-	        } else {
+	        if (lista.Table.length > 0) {
 
-	            var lista = JSON.parse(rest.d);
+	            if (lista.Table[0].respuesta == "OK") {
 
-	            if (lista.Table.length > 0) {
+                    //obtiene los datos para el dashboard
+	                obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
 
-	                if (lista.Table[0].respuesta == "OK") {
+	                IdtipoOpt = lista.Table[0].idtipoid;
+	                IdOpt = lista.Table[0].identificacion;
 
-                        //obtiene los datos para el dashboard
-	                    obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
+	                if (lista.Table[0].idtipousuario == "0") {
+	                    //si es un tipo usu o admin, vera todo el menu
+	                    openMenu();
+	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
+	                    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");
+	                    $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                    $('#btnMenu').removeAttr('style');
+	                }else  if (lista.Table[0].idtipousuario == "1") {
+	                    //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
 
-	                    IdtipoOpt = lista.Table[0].idtipoid;
-	                    IdOpt = lista.Table[0].identificacion;
+                        //esconde los menus
+	                    $('#MenuCargaArchivo').hide();
+	                    $('#MenuResponsables').hide();
+	                    $('#MenuProveedor').hide();
 
-	                    if (lista.Table[0].idtipousuario == "0") {
-	                        //si es un tipo usu o admin, vera todo el menu
-	                        openMenu();
-	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
-	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
-	                        $('#btnMenu').removeAttr('style');
-	                    }else  if (lista.Table[0].idtipousuario == "1") {
-	                        //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
+                        //esconde las paginas	                        
+	                    $('#page-ImportarArchivo').hide();
+	                    $('#page-Responsables').hide();
+	                    $('#page-Proveedores').hide();
 
-                            //esconde los menus
-	                        $('#MenuCargaArchivo').hide();
-	                        $('#MenuResponsables').hide();
-	                        $('#MenuProveedor').hide();
+	                    openMenu();
+	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                    $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
+	                    $('#btnMenu').removeAttr('style');
+	                } else if (lista.Table[0].idtipousuario == "2") {
+	                    //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
+	                    $('#MenuOptimizador').hide();
+	                    $('#MenuCargaArchivo').hide();
+	                    $('#MenuResponsables').hide();
 
-                            //esconde las paginas	                        
-	                        $('#page-ImportarArchivo').hide();
-	                        $('#page-Responsables').hide();
-	                        $('#page-Proveedores').hide();
+	                    $('#page-AsignarAT4').hide();
+	                    $('#page-ImportarArchivo').hide();
+	                    $('#page-Responsables').hide();
 
-	                        openMenu();
-	                        consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
-	                        $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
-	                        $('#btnMenu').removeAttr('style');
-	                    } else if (lista.Table[0].idtipousuario == "2") {
-	                        //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
-	                        $('#MenuOptimizador').hide();
-	                        $('#MenuCargaArchivo').hide();
-	                        $('#MenuResponsables').hide();
-
-	                        $('#page-AsignarAT4').hide();
-	                        $('#page-ImportarArchivo').hide();
-	                        $('#page-Responsables').hide();
-
-	                        openMenu();
-	                        consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                        $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
-	                        $('#btnMenu').removeAttr('style');
-	                    } else {
-	                        swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
-	                    }
-	                    
+	                    openMenu();
+	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
+	                    $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                    $('#btnMenu').removeAttr('style');
 	                } else {
-	                    swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
+	                    swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
 	                }
-	            }
-	            else {
-	                swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'error');
+	                    
+	            } else {
+	                swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
 	            }
 	        }
-	    });
-	}
+	        else {
+	            swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'error');
+	        }
+	    }
+	});
+}
     
+//consultar ordenes para optimizar
+function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
+	$.ajax({
+	    url: "GestionOrdenamientos.aspx/consultarOrdenesxOptimizador",
+	    data: "{ tipoidoptimizador: '" + tipoidoptimizador + "', idoptimizador: '" + idoptimizador + "'}",
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "json",
+	    async: true,
+	    type: 'POST'
+	}).done(function (rest) {
+	    if (rest.Error != undefined) {
+	        alert(rest.Error);
+	    } else {
+	        var listaDatos = JSON.parse(rest.d);
+	        var datos = listaDatos.Table;
+	        var datos1 = listaDatos.Table1;
+	        var datos2 = listaDatos.Table2;	           
 
-    //consultar ordenes para optimizar
-	function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
-	    $.ajax({
-	        url: "GestionOrdenamientos.aspx/consultarOrdenesxOptimizador",
-	        data: "{ tipoidoptimizador: '" + tipoidoptimizador + "', idoptimizador: '" + idoptimizador + "'}",
-	        contentType: "application/json; charset=utf-8",
-	        dataType: "json",
-	        async: true,
-	        type: 'POST'
-	    }).done(function (rest) {
-	        if (rest.Error != undefined) {
-	            alert(rest.Error);
-	        } else {
-	            var listaDatos = JSON.parse(rest.d);
-	            var datos = listaDatos.Table;
-	            var datos1 = listaDatos.Table1;
-	            var datos2 = listaDatos.Table2;	           
+	        $('#tablaAsignar td').remove();
 
-	            $('#tablaAsignar td').remove();
+	            if (listaDatos.Table.length > 0) {	                    
 
-	                if (listaDatos.Table.length > 0) {	                    
-
-	                    totalpendientes = datos2[0].cantidadPendientes;
-	                    document.getElementById('lbltotalasignados').innerHTML = datos1[0].cantidadTotal;
-	                    document.getElementById('lbltotalpendientes').innerHTML = datos2[0].cantidadPendientes;
-
-	                    for (var i = 0; i < datos.length; i++) {
-	                       
-	                        var tbl = '';
-	                        tbl += '<tr>';
-
-	                        tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
-	                        tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
-	                        tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
-	                        tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
-	                        tbl += '<td>' + datos[i].Cups + '</td>';
-	                        tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                        tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
-	                        tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
-                                 '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Auditar</button>' + '</td>';
-	                        tbl += '</tr>';	                        
-                        
-	                        $("#tablaAsignar").append(tbl);
-                           
-	                    }
-	                    datosorden = datos;
-	                }
-	                else {
-	                    document.getElementById('headeroptimizacion').innerHTML = "No Tienes ordenes asignadas";
-	                    document.getElementById('optimi').innerHTML = "";	                    
-	                    //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
-	                    $('#tablaAsignar td').remove();
-	            }
-	        }
-	    });
-	}   
-	
-
-    //consultar ordenes para optimizar
-	function consultarOrdenesProveedor(proveedor) {
-	    $.ajax({
-	        url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
-	        data: "{ proveedor: '" + proveedor + "'}",
-	        contentType: "application/json; charset=utf-8",
-	        dataType: "json",
-	        async: true,
-	        type: 'POST'
-	    }).done(function (rest) {
-	        if (rest.Error != undefined) {
-	            alert(rest.Error);
-	        } else {
-	            var listaDatos = JSON.parse(rest.d);
-	            var datos = listaDatos.Table;
-	            $('#tablaProveedores td').remove();
-
-	            if (listaDatos.Table.length > 0) {
+	                totalpendientes = datos2[0].cantidadPendientes;
+	                document.getElementById('lbltotalasignados').innerHTML = datos1[0].cantidadTotal;
+	                document.getElementById('lbltotalpendientes').innerHTML = datos2[0].cantidadPendientes;
 
 	                for (var i = 0; i < datos.length; i++) {
-
+	                       
 	                    var tbl = '';
 	                    tbl += '<tr>';
-	                    tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
+
+	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
+	                    tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
+	                    tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
+	                    tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
 	                    tbl += '<td>' + datos[i].Descripcion + '</td>';
-	                    tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
-	                    tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
-	                    tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
-                              '" class="btn btn-primary" onclick="GuardarAdjuntoProveedor(' + datos[i].idConsecutivo + ')">Adjuntar</button>' + '</td>';
-	                    tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox" onclick="GuardarProovedorGestion(' + datos[i].idConsecutivo + ',' + (i + 1) + ')"><span class="slider round"></span></label>' + '</td>';
-	                    tbl += '</tr>';
-
-	                    $("#tablaProveedores").append(tbl);
-
-                        //valida si la orden ya fue realizada por el proveedor
-	                    if (datos[i].EstadoProveedor == 1) {
-	                        $('#check_' + datos[i].idConsecutivo).prop('checked', true);
-	                        $('#txtOrden_' + datos[i].idConsecutivo).val(datos[i].OrdenProveedor);
-	                        $('#txtOrden_' + datos[i].idConsecutivo).prop("disabled", true);
-	                        $('#btnAdjunto_' + datos[i].idConsecutivo).prop("disabled", true);
-	                    }
+	                    tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
+	                    tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
+                                '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Auditar</button>' + '</td>';
+	                    tbl += '</tr>';	                        
+                        
+	                    $("#tablaAsignar").append(tbl);
+                           
 	                }
-	                datosorden = datos; //
+	                datosorden = datos;
 	            }
 	            else {
-
-	                document.getElementById('headerproveedor').innerHTML = "No Tienes ordenes pendientes";
-	                document.getElementById('lblheaderproveedor').innerHTML = "";
-	                 //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
-	                $('#tablaProveedores td').remove();
-	            }
+	                document.getElementById('headeroptimizacion').innerHTML = "No Tienes ordenes asignadas";
+	                document.getElementById('optimi').innerHTML = "";	                    
+	                //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
+	                $('#tablaAsignar td').remove();
 	        }
-	    });
-	}
-   
+	    }
+	});
+}   
 	
-	// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
-	function getStackPagesIdxs(excludePageIdx) {
-		var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
-			nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
-			idxs = [],
+//consultar ordenes para optimizar
+function consultarOrdenesProveedor(proveedor) {
+	$.ajax({
+	    url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+	    data: "{ proveedor: '" + proveedor + "'}",
+	    contentType: "application/json; charset=utf-8",
+	    dataType: "json",
+	    async: true,
+	    type: 'POST'
+	}).done(function (rest) {
+	    if (rest.Error != undefined) {
+	        alert(rest.Error);
+	    } else {
+	        var listaDatos = JSON.parse(rest.d);
+	        var datos = listaDatos.Table;
+	        $('#tablaProveedores td').remove();
 
-			excludeIdx = excludePageIdx || -1;
+	        if (listaDatos.Table.length > 0) {
 
-		if( excludePageIdx != current ) {
-			idxs.push(current);
-		}
-		if( excludePageIdx != nextStackPageIdx ) {
-			idxs.push(nextStackPageIdx);
-		}
-		if( excludePageIdx != nextStackPageIdx_2 ) {
-			idxs.push(nextStackPageIdx_2);
-		}
+	            for (var i = 0; i < datos.length; i++) {
 
-		return idxs;
+	                var tbl = '';
+	                tbl += '<tr>';
+	                tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
+	                tbl += '<td>' + datos[i].Cups + '</td>';
+	                tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
+	                tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
+	                tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
+                            '" class="btn btn-primary" onclick="GuardarAdjuntoProveedor(' + datos[i].idConsecutivo + ')">Adjuntar</button>' + '</td>';
+	                tbl += '<td>' + '<label class="switch"><input id="check_' + datos[i].idConsecutivo + '" type="checkbox" onclick="GuardarProovedorGestion(' + datos[i].idConsecutivo + ',' + (i + 1) + ')"><span class="slider round"></span></label>' + '</td>';
+	                tbl += '</tr>';
+
+	                $("#tablaProveedores").append(tbl);
+
+                    //valida si la orden ya fue realizada por el proveedor
+	                if (datos[i].EstadoProveedor == 1) {
+	                    $('#check_' + datos[i].idConsecutivo).prop('checked', true);
+	                    $('#txtOrden_' + datos[i].idConsecutivo).val(datos[i].OrdenProveedor);
+	                    $('#txtOrden_' + datos[i].idConsecutivo).prop("disabled", true);
+	                    $('#btnAdjunto_' + datos[i].idConsecutivo).prop("disabled", true);
+	                }
+	            }
+	            datosorden = datos; //
+	        }
+	        else {
+
+	            document.getElementById('headerproveedor').innerHTML = "No Tienes ordenes pendientes";
+	            document.getElementById('lblheaderproveedor').innerHTML = "";
+	                //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
+	            $('#tablaProveedores td').remove();
+	        }
+	    }
+	});
+}
+   
+// gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
+function getStackPagesIdxs(excludePageIdx) {
+	var nextStackPageIdx = current + 1 < pagesTotal ? current + 1 : 0,
+		nextStackPageIdx_2 = current + 2 < pagesTotal ? current + 2 : 1,
+		idxs = [],
+
+		excludeIdx = excludePageIdx || -1;
+
+	if( excludePageIdx != current ) {
+		idxs.push(current);
 	}
+	if( excludePageIdx != nextStackPageIdx ) {
+		idxs.push(nextStackPageIdx);
+	}
+	if( excludePageIdx != nextStackPageIdx_2 ) {
+		idxs.push(nextStackPageIdx_2);
+	}
+
+	return idxs;
+}
 
 	init();
 
 })(window);
-
 
 // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
 $(window).on("load resize ", function () {
@@ -586,7 +494,6 @@ $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
-
 
 function abrirModalAcciones(posicion, posiciontabla) {
 
@@ -598,7 +505,8 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_mod"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
-    body += '<p>Observaciones:</p><input type="text" id="txtObservaciones_' + posicion + '" placeholder="Ingresa tus observaciones">';
+    body += '<p>Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico.">';
+    body += '<p>Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos.">';
     body += '<p>CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico">';
     body += '<p>Profesional:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional">';
     body += '<p>Selecciona un Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="form-control color-blue"></select>';
@@ -618,30 +526,6 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
 }
 
-    //function FiltrarTablaSede() {
-    //    var input, filter, table, tr, td, i;
-    //    table = document.getElementById("tablaAsignar");
-    //    tr = table.getElementsByTagName("tr");
-    //    var sede = $('#ddlSedes option:selected').text().toUpperCase();
-
-    //    for (i = 0; i < tr.length; i++) {
-    //        tdSede = tr[i].getElementsByTagName("td")[2];
-    //        if (td) {
-    //            if (tdSede.innerHTML.toUpperCase().indexOf(sede) > -1) {
-    //                tr[i].style.display = "";
-    //            }
-    //            else {
-    //                tr[i].style.display = "none";
-    //            }
-    //        }
-
-
-    //    }
-
-
-    //}
-
-
 function FiltrarTablaSede() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("txtfiltro");
@@ -660,8 +544,7 @@ function FiltrarTablaSede() {
     }
 }
 
-
-    function GuardarProovedor(posicion, posiciontabla) {
+function GuardarProovedor(posicion, posiciontabla) {
 
         var input, filter, table, tr, td, i;
         table = document.getElementById("tablaAsignar");
@@ -669,7 +552,8 @@ function FiltrarTablaSede() {
    
         var idconsecutivo = posicion;
         var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
-        var observaciones = $('#txtObservaciones_' + posicion).val();
+        var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
+        var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
 
         var cie10 = $('#txtCIE10_' + posicion).val();
         var profesional = $('#txtProfesional_' + posicion).val();
@@ -694,8 +578,8 @@ function FiltrarTablaSede() {
             $.ajax({
                 url: "GestionOrdenamientos.aspx/actualizarOrdenes",
                 data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
-                    + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observaciones: '"
-                    + observaciones + "', at4: '" + at4 + "', cie10: '"
+                    + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
+                    + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
                     + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -711,8 +595,9 @@ function FiltrarTablaSede() {
                     if (listaDatos.Table.length > 0) {
 
                         if (datos[0].Respuesta == "OK") {
-                            swal('Autoevaluacion', 'Bien, la orden se auditó correctamente.', 'success');
-                            tr[posiciontabla].style.display = "none";
+                            swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
+                            //tr[posiciontabla].style.display = "none";
+                            document.getElementById("tablaAsignar").deleteRow(posiciontabla);
                             totalpendientes = totalpendientes - 1;
                             document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
                             $("#ModalAcciones").modal('hide');
@@ -728,7 +613,7 @@ function FiltrarTablaSede() {
         }
     }
 
-    function MasInformacion(posicion) {
+function MasInformacion(posicion) {
   
         document.getElementById('myModaltittle').innerHTML ='Detalle de la Orden ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
 
@@ -743,7 +628,7 @@ function FiltrarTablaSede() {
         $("#myModal").modal();   
     }
 
-    function GuardarAdjuntoProveedor(id) {
+function GuardarAdjuntoProveedor(id) {
     
         archivos = [];
         $("#ModalAdjuntoProveedor .modal-body").html('');
@@ -772,20 +657,19 @@ function FiltrarTablaSede() {
 
     }
 
-    function MasInformacionProveedor(posicion) {
+function MasInformacionProveedor(posicion) {
 
         document.getElementById('lblcupsPro').innerHTML = datosorden[posicion].Cups;   
         document.getElementById('lblpacientePro').innerHTML = datosorden[posicion].Id_Afiliado;
         document.getElementById('lblusuregistroPro').innerHTML = datosorden[posicion].TipoIdOptimizador +': '+ datosorden[posicion].Optimizador;
         document.getElementById('lblestadosoliPro').innerHTML = datosorden[posicion].Estado_Solicitud;
         document.getElementById('lblestadoservPro').innerHTML = datosorden[posicion].Estado_servicio;
-        document.getElementById('lbltiposervPro').innerHTML = datosorden[posicion].Observaciones;
+        document.getElementById('lbltiposervPro').innerHTML = datosorden[posicion].ObservacionesAud;
 
         $("#DetalleModalProveedor").modal();
     }
 
-
-    function GuardarProovedorGestion(posicion, posiciontabla) {
+function GuardarProovedorGestion(posicion, posiciontabla) {
 
         var orden = $('#txtOrden_' + posicion).val();
         var idorden = posicion;
@@ -836,17 +720,8 @@ function FiltrarTablaSede() {
         }    
     }
 
-
-    ////Exportar a excel
-    //function ExportToExcel() {    
-    //    var htmltable = document.getElementById('ResultadosTodos');
-    //    var html = htmltable.outerHTML;
-    //    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-    //}
-
-
-    //llenar combos o select
-    function llenarCombos(combo, spP) {
+//llenar combos o select
+function llenarCombos(combo, spP) {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/cargarDatos",
@@ -874,9 +749,8 @@ function FiltrarTablaSede() {
         });
     }
 
-
-    var archivos = [];
-    function subirArchivos() {
+var archivos = [];
+function subirArchivos() {
         Dropzone.autoDiscover = false;
 
         $("#mydropzone").dropzone({
@@ -974,7 +848,7 @@ function FiltrarTablaSede() {
         return false;
     })
 
-    function procesarArchivo()
+function procesarArchivo()
     {
     
         $.ajax({
@@ -994,36 +868,141 @@ function FiltrarTablaSede() {
     
     }
 
-    function AsignarResponsables() {
+function consultarAsignaciones(spP) {
 
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/cargarDatos",
+            data: "{ sp: '" + spP + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+            } else {
+               
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                $('#tablaParametros td').remove();             
+
+                if (listaDatos.Table.length > 0) {
+                  
+                    for (var i = 0; i < datos.length; i++) {
+                     
+                        var tbl = '';
+                        tbl += '<tr id="tr_' + datos[i].IdAsignacion + '">';
+                        tbl += '<td>' + datos[i].NombreCompleto + '</td>';
+                        tbl += '<td>' + datos[i].identificacion + '</td>';
+                        tbl += '<td>' + datos[i].cups + '</td>';
+                        tbl += '<td>' + datos[i].Descripcion + '</td>';
+                        tbl += '<td>' + '<button id="btnEliminar_' + datos[i].IdAsignacion + '" onclick="EliminarResponsable(' + datos[i].IdAsignacion + ')">Eliminar</button>' + '</td>';
+                        tbl += '</tr>';
+
+                        $("#tablaParametros").append(tbl);
+                    }
+                }
+                else {
+                    //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');                   
+                }              
+            }
+
+        });
+
+    }
+
+function AsignarResponsables() {
+            
         var idresponsable = $('#ddlEmpleado').val();
         var responsable = $("#ddlEmpleado :selected").text();
         var cups = $('#ddlCups').val();
-        var descripcion = $("#ddlCups :selected").text();
-      
-
-        console.log(responsable + ' ' + cups);
+        var descripcion = $("#ddlCups :selected").text();      
+        //var rowCount = $('#tablaParametros tr').length;       
 
         if (cups.length = 0 || cups == "null") {
             swal('EvolutionNet', 'Debes seleccionar un cups valido.', 'warning');
         } else {
+            
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/guardarAsignacionResponsable",
+                data: "{ IdTipoId: '" + idtipoidaux + "', Identificacion: '" + idresponsable + "', Cups: '" + cups + "', descripcion: '" + descripcion + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    alert(rest.Error);
+                } else {
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
 
-            var tbl = '';
-            tbl += '<tr>';
-            tbl += '<td>' + responsable + '</td>';
-            tbl += '<td>' + idresponsable + '</td>';
-            tbl += '<td>' + cups + '</td>';
-            tbl += '<td>' + descripcion + '</td>';
-            tbl += '<td>' + '<button id="btnEliminar" >Eliminar</button>' + '</td>';
-            tbl += '</tr>';
+                    if (listaDatos.Table.length > 0) {
 
-            $("#tablaParametros").append(tbl);
+                        if (datos[0].Respuesta == "OK") {
 
-            swal('GestionOrdenamientos', 'El registro se adicionó correctamente.', 'success');
+                            var tbl = '';
+                            tbl += '<tr id="tr_' + datos[0].idasignacion + '">';
+                            tbl += '<td>' + responsable + '</td>';
+                            tbl += '<td>' + idresponsable + '</td>';
+                            tbl += '<td>' + cups + '</td>';
+                            tbl += '<td>' + descripcion + '</td>';
+                            tbl += '<td>' + '<button id="btnEliminar_a' + datos[0].idasignacion + '" onclick="EliminarResponsable(' + datos[0].idasignacion + ')">Eliminar</button>' + '</td>';
+                            tbl += '</tr>';
+
+                            $("#tablaParametros").append(tbl);
+                           
+                            swal('Evolution Ordenamientos', 'Bien, la asignación se realizó correctamente.', 'success');
+
+                        } else {
+                            swal('Evolution Ordenamientos', 'Lo sentimos, el CUPS ' + cups + ' ya fue asignado a ' + responsable +'.', 'warning');
+                        }
+                    }
+                    else {
+                        swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                    }
+                }
+            });
         }       
     }
 
-    function FiltrarResponsables() {
+function EliminarResponsable(idasignacion) {
+      
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/eliminarAsignacionResponsable",
+            data: "{ idasignacion: '" + idasignacion + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                if (listaDatos.Table.length > 0) {
+
+                    if (datos[0].Respuesta == "OK") {
+                        //borra la fila de la tabla en pantalla
+                        $('#tr_' + idasignacion).html('');
+                        //tr[posicion].style.display = "none";
+                        swal('Evolution Ordenamientos', 'Bien, la asignación se eliminó correctamente.', 'success');
+                    } else {
+                        swal('Evolution Ordenamientos', 'Lo sentimos, la asignación no se eliminó correctamente.', 'warning');
+                    }
+                }
+                else {
+                    swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se eliminó.', 'warning');
+                }
+            }
+        });
+                
+    }
+
+function FiltrarResponsables() {
 
         var input, filter, table, tr, td, i;
         input = document.getElementById("txtfiltroRespon");
@@ -1042,7 +1021,8 @@ function FiltrarTablaSede() {
         }
 
     }
-    function obtenerDashboard(spP) {
+
+function obtenerDashboard(spP) {
 
         var cups = [];
         var cantidades = [];
@@ -1111,7 +1091,7 @@ function FiltrarTablaSede() {
         });
     }
 
-    function pintarGrafico1(motivos, cantidades, colores) {
+function pintarGrafico1(motivos, cantidades, colores) {
 
         //console.log(cantidades.map(Number));
         var chart = Highcharts.chart('container', {
@@ -1160,13 +1140,13 @@ function FiltrarTablaSede() {
         $("#loaderdashboard").hide();
     }
 
-    function ExportToExcel() {
+function ExportToExcel() {
         var htmltable = document.getElementById('tbldetallegraficodash');
         var html = htmltable.outerHTML;
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
     }
 
-    function pintarGrafico2() {
+function pintarGrafico2() {
         Highcharts.chart('containergrafico2', {
             chart: {
                 type: 'line'
@@ -1204,8 +1184,7 @@ function FiltrarTablaSede() {
    
     }
 
-
-    function pintarGrafico3() {
+function pintarGrafico3() {
     
         // Build the chart
         Highcharts.chart('containergrafico2', {
