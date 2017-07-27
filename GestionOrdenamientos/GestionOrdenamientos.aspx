@@ -208,7 +208,7 @@
                             </div>
 
                              <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
-                                <button id="btngrafico4" class="btn btn-primary">Reportes</button>
+                                <button id="btnreportes" class="btn btn-primary">Reportes</button>
                             </div>
 
                         </div>
@@ -259,8 +259,61 @@
                         </div>                       
                     </div>
                 </div>
-            </div>                      
-                
+            </div>     
+            
+             <div class="modal fade" id="ModalReportes" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="ModalReportestittle">REPORTES</h4>
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            
+                            <section id="services">         
+                                    <div class="row">
+                                        <div class="col-md-12 service-item">
+                                            <div class="service-icon"><i class="fa fa-desktop" id="reporteasignaciones"></i></div>
+                                            <h4 class="service-title"><a href="">Reporte de Asignaciones</a></h4>
+                                            <p class="service-description">Informe detallado del número de ordenes asignadas por cada persona responsable de la gestión.</p>
+                                        </div>
+                                        <div class="col-md-12 service-item">
+                                            <div class="service-icon"><i class="fa fa-bar-chart" id="reporte2"></i></div>
+                                            <h4 class="service-title"><a href="">Reporte 2</a></h4>
+                                            <p class="service-description">Descripción reporte 2.</p>
+                                        </div>                                        
+                                    </div>                               
+                            </section>
+                            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <%--tabla para generar el reporte de asignaciones, se oculta dentro de un modal--%>
+                            <table id="tblasignacionesresponsables" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>TipoId</th>
+                                        <th>Identificacion</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Cups</th>
+                                        <th>Ordenes Asignadas</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
        <%-- pagina para optimizacion--%>
         <div class="page" id="page-AsignarAT4">
@@ -459,9 +512,50 @@
                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
                     <br />
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar" onclick="procesarArchivo();" />
+                <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
+                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar Archivo" onclick="procesarArchivo();" />
                 </div>
+                 <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
+                    <input type="button" id="btnRepartir" class="btn btn-primary" value="Distribuir Cups"/>
+                </div>
+
+                <div class="col-lg-12 col-md-12"></div>
+                 <!-- indicador de wait -->  
+                 <div class="col-lg-6 col-md-6" ></div>
+                 <div class="col-lg-4 col-md-4" >
+                     <div class="loader" id="loaderepartir" style="display:none" ></div>
+                 </div>
+                
+
+
+                <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: end">
+                    <label onclick="ExportToExcelRepartir()" style="font: menu"><u>Ver detalle</u></label>
+                </div>
+
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header" data-background-color="bluee">
+                            <h4 class="title">Listado de Asignaciones</h4>
+                            <p class="category">Asignaciones realizadas después de realizar la actualización de nuevas ordenes y responsables.</p>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table id="tablaRepartir" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Tipo ID</th>
+                                        <th>Identificacion</th>
+                                        <th>CUPS</th>
+                                        <th>Total Asignado</th>
+                                        <th>Total Ordenes</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+
             </div>
         </div>
 

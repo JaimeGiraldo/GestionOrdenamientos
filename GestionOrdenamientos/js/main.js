@@ -77,10 +77,24 @@ var archivos = [];
     var cboEmpleado = $('#ddlCups');
     llenarCombos(cboEmpleado, "spOrdenamientos_Obtener_ListaCUPS");
 
-   // $("#ddlCups").select2();
+   $("#ddlCups").select2();
     
     $("#btnAdd").on("click", function (e) {
         AsignarResponsables();
+    });
+
+    //Reparte las ordenes entre los responsables asignados
+    $("#btnRepartir").on("click", function (e) {
+        $("#loaderepartir").show();
+        RepartirOrdenes("spGestionOrdenamientos_asignarCUPSResposables");
+    }); 
+
+    $("#btnreportes").on("click", function (e) {
+        $("#ModalReportes").modal();
+    });
+
+    $('#reporteasignaciones').on("click", function (e) {
+        ObtenerResponsablesAsignaciones("spGestionOrdenamientos_ObtenerReporteResponsables");
     });
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -1020,7 +1034,96 @@ function FiltrarResponsables() {
             }
         }
 
-    }
+}
+
+function RepartirOrdenes(spP) {
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/cargarDatos",
+        data: "{ sp: '" + spP + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+           
+            $('#tablaRepartir td').remove();
+
+            if (listaDatos.Table.length > 0) {          
+
+               
+
+                for (var i = 0; i < datos.length; i++) {
+
+                    var tbl = '';
+                    tbl += '<tr>';
+                    tbl += '<td>' + datos[i].IdTipoId + '</td>';
+                    tbl += '<td>' + datos[i].Identificacion + '</td>';
+                    tbl += '<td>' + datos[i].Cups + '</td>';
+                    tbl += '<td>' + datos[i].TotalAsignado + '</td>';
+                    tbl += '<td>' + datos[i].TotalOrdenes + '</td>';
+                    tbl += '</tr>';
+
+                    $("#tablaRepartir").append(tbl);
+
+                    $("#loaderepartir").hide();                    
+                }
+            }
+            else {
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos, todas las ordenes ya fueron asignadas.', 'warning');
+                $("#loaderepartir").hide();
+            }
+        }
+    });
+}
+
+function ObtenerResponsablesAsignaciones(spP) {
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/cargarDatos",
+        data: "{ sp: '" + spP + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            $('#tblasignacionesresponsables td').remove();
+
+            if (listaDatos.Table.length > 0) {
+
+                for (var i = 0; i < datos.length; i++) {
+
+                    var tbl = '';
+                    tbl += '<tr>';
+                    tbl += '<td>' + datos[i].TipoIdOptimizador + '</td>';
+                    tbl += '<td>' + datos[i].Optimizador + '</td>';
+                    tbl += '<td>' + datos[i].NombreCompleto + '</td>';
+                    tbl += '<td>' + datos[i].cups + '</td>';
+                    tbl += '<td>' + datos[i].TotalOrdenesAsignadas + '</td>';
+                    tbl += '</tr>';
+
+                    $("#tblasignacionesresponsables").append(tbl);
+                }
+
+                ExportToExcelResponsables();
+            }
+            else {
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+            }
+        }
+    });
+
+}
 
 function obtenerDashboard(spP) {
 
@@ -1138,13 +1241,25 @@ function pintarGrafico1(motivos, cantidades, colores) {
         });
 
         $("#loaderdashboard").hide();
-    }
+}
+
+function ExportToExcelRepartir() {
+    var htmltable = document.getElementById('tablaRepartir');
+    var html = htmltable.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+}
 
 function ExportToExcel() {
         var htmltable = document.getElementById('tbldetallegraficodash');
         var html = htmltable.outerHTML;
         window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-    }
+}
+
+function ExportToExcelResponsables() {
+    var htmltable = document.getElementById('tblasignacionesresponsables');
+    var html = htmltable.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+}
 
 function pintarGrafico2() {
         Highcharts.chart('containergrafico2', {
