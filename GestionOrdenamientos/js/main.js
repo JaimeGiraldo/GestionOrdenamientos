@@ -875,6 +875,7 @@ function procesarArchivo()
         }).done(function (rest) {
             if (rest.Error != undefined) {
                 alert(rest.Error);
+                swal('GestionOrdenamiento', 'lo sentimos, ocurrio un error..', 'warning');
             } else {
                 swal('GestionOrdenamiento', 'Proceso realizado con exito..', 'success');
             }
@@ -1052,7 +1053,8 @@ function RepartirOrdenes(spP) {
             var listaDatos = JSON.parse(rest.d);
             var datos = listaDatos.Table;
            
-            $('#tablaRepartir td').remove();
+            //$('#tablaRepartir td').remove();
+            $('#tablaRepartir tbody').html('');
 
             if (listaDatos.Table.length > 0) {          
 
@@ -1064,6 +1066,7 @@ function RepartirOrdenes(spP) {
                     tbl += '<tr>';
                     tbl += '<td>' + datos[i].IdTipoId + '</td>';
                     tbl += '<td>' + datos[i].Identificacion + '</td>';
+                    tbl += '<td>' + datos[i].NombreCompleto + '</td>';
                     tbl += '<td>' + datos[i].Cups + '</td>';
                     tbl += '<td>' + datos[i].TotalAsignado + '</td>';
                     tbl += '<td>' + datos[i].TotalOrdenes + '</td>';
@@ -1097,19 +1100,21 @@ function ObtenerResponsablesAsignaciones(spP) {
             var listaDatos = JSON.parse(rest.d);
             var datos = listaDatos.Table;
 
-            $('#tblasignacionesresponsables td').remove();
+            //$('#tblasignacionesresponsables td').remove();
+            $('#tblasignacionesresponsables tbody').html('');
 
             if (listaDatos.Table.length > 0) {
 
                 for (var i = 0; i < datos.length; i++) {
 
-                    var tbl = '';
+                    var tbl = ''; 
                     tbl += '<tr>';
                     tbl += '<td>' + datos[i].TipoIdOptimizador + '</td>';
                     tbl += '<td>' + datos[i].Optimizador + '</td>';
                     tbl += '<td>' + datos[i].NombreCompleto + '</td>';
                     tbl += '<td>' + datos[i].cups + '</td>';
                     tbl += '<td>' + datos[i].TotalOrdenesAsignadas + '</td>';
+                    tbl += '<td>' + datos[i].TotalOrdenesAuditadas + '</td>';
                     tbl += '</tr>';
 
                     $("#tblasignacionesresponsables").append(tbl);
@@ -1173,7 +1178,8 @@ function obtenerDashboard(spP) {
 
                     pintarGrafico1(cups, cantidades, coloress);
 
-                    $('#tbldetallegraficodash td').remove();
+                    //$('#tbldetallegraficodash td').remove();
+                    $('#tbldetallegraficodash tbody').html('');
 
                     for (var i = 0; i < datos.length; i++) {
 

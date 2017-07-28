@@ -137,12 +137,12 @@
                                         <i class="material-icons">assignment</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">Ordenes Generadas</p>
+                                        <p class="category">Ingresadas al Sistema</p>
                                         <h3 class="title" id="lblgeneradas">0</h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">receipt</i> Ingresadas al sistema
+                                            <i class="material-icons">receipt</i> Importadas desde Excel
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                         <i class="material-icons">help</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">Ordenes Pendientes</p>
+                                        <p class="category">Pendientes de Optimización</p>
                                         <h3 class="title" id="lblpendientes">0</h3>
                                     </div>
                                     <div class="card-footer">
@@ -171,12 +171,12 @@
                                         <i class="material-icons">comment</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">Adecuadas</p>
+                                        <p class="category">Asignadas a Responsable</p>
                                         <h3 class="title" id="lbladecuadas">0</h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">check_circle</i> Pertinentes
+                                            <i class="material-icons">check_circle</i> Personal de optimización
                                         </div>
                                     </div>
                                 </div>
@@ -188,12 +188,12 @@
                                         <i class="material-icons">info_outline</i>
                                     </div>
                                     <div class="card-content">
-                                        <p class="category">No Adecuadas</p>
+                                        <p class="category">Asignadas Faltantes</p>
                                         <h3 class="title" id="lblnoadecuadas">0</h3>
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons">report_problem</i> No Pertinentes 
+                                            <i class="material-icons">report_problem</i> Asignadas sin optimizar 
                                         </div>
                                     </div>
                                 </div>
@@ -305,6 +305,7 @@
                                         <th>Nombre Completo</th>
                                         <th>Cups</th>
                                         <th>Ordenes Asignadas</th>
+                                        <th>Ordenes Auditadas</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -360,7 +361,7 @@
                                 </div>
 
                                 <div class="col-md-3" style="text-align:end;padding-top:25px">
-                                      <button id="btnActualizartabla" style="background-color:#0c9688">Listar</button>
+                                      <button id="btnActualizartabla">Listar</button>
                                 </div>
 
                             </div>
@@ -545,6 +546,7 @@
                                     <tr>
                                         <th>Tipo ID</th>
                                         <th>Identificacion</th>
+                                        <th>Nombre Completo</th>
                                         <th>CUPS</th>
                                         <th>Total Asignado</th>
                                         <th>Total Ordenes</th>

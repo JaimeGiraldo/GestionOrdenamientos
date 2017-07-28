@@ -372,6 +372,7 @@ box-shadow: none;
 	margin-top: 12px;
 }
 
+
 .usuario_name input {
     width: 100px;
     float: right;
@@ -669,6 +670,15 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
 ::-webkit-scrollbar-thumb { 
   background-color: #00b4ec;
   border-radius: 100em;
+}
+
+
+#btnActualizartabla {
+   background-color:#0c9688;
+}
+#btnActualizartabla:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
 }
 
 
