@@ -77,7 +77,12 @@ var archivos = [];
     var cboEmpleado = $('#ddlCups');
     llenarCombos(cboEmpleado, "spOrdenamientos_Obtener_ListaCUPS");
 
-   $("#ddlCups").select2();
+    
+
+    $("#ddlCups").select2({
+        placeholder: "Select a state"
+    });
+
     
     $("#btnAdd").on("click", function (e) {
         AsignarResponsables();

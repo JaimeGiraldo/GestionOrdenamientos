@@ -466,7 +466,7 @@
 
                         <div class="col-md-5">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCups" class="form-control color-blue"></select>
+                            <select id="ddlCups"  class="form-control color-blue"></select>
                         </div>
 
                         <div class="col-md-2">
