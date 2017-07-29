@@ -318,8 +318,7 @@ function iniciarSesion(usuario, clave) {
 	                    openMenu();
 	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
 	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");
-	                    $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");	                    
 	                    $('#btnMenu').removeAttr('style');
 	                }else  if (lista.Table[0].idtipousuario == "1") {
 	                    //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
@@ -336,7 +335,6 @@ function iniciarSesion(usuario, clave) {
 
 	                    openMenu();
 	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
-	                    $('#lblUsuario').html(lista.Table[0].idtipoid +': '+ lista.Table[0].identificacion);
 	                    $('#btnMenu').removeAttr('style');
 	                } else if (lista.Table[0].idtipousuario == "2") {
 	                    //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
@@ -350,11 +348,13 @@ function iniciarSesion(usuario, clave) {
 
 	                    openMenu();
 	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                    $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                    $('#btnMenu').removeAttr('style');
 	                } else {
 	                    swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
 	                }
+
+	                $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
+	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
 	                    
 	            } else {
 	                swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
@@ -917,7 +917,7 @@ function consultarAsignaciones(spP) {
                         tbl += '<td>' + datos[i].identificacion + '</td>';
                         tbl += '<td>' + datos[i].cups + '</td>';
                         tbl += '<td>' + datos[i].Descripcion + '</td>';
-                        tbl += '<td>' + '<button id="btnEliminar_' + datos[i].IdAsignacion + '" onclick="EliminarResponsable(' + datos[i].IdAsignacion + ')">Eliminar</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btnEliminar_' + datos[i].IdAsignacion + '" onclick="EliminarResponsable(' + datos[i].IdAsignacion + ')" class="btn btn-primary">Eliminar</button>' + '</td>';
                         tbl += '</tr>';
 
                         $("#tablaParametros").append(tbl);
@@ -968,7 +968,7 @@ function AsignarResponsables() {
                             tbl += '<td>' + idresponsable + '</td>';
                             tbl += '<td>' + cups + '</td>';
                             tbl += '<td>' + descripcion + '</td>';
-                            tbl += '<td>' + '<button id="btnEliminar_a' + datos[0].idasignacion + '" onclick="EliminarResponsable(' + datos[0].idasignacion + ')">Eliminar</button>' + '</td>';
+                            tbl += '<td>' + '<button id="btnEliminar_a' + datos[0].idasignacion + '" onclick="EliminarResponsable(' + datos[0].idasignacion + ')" class="btn btn-primary">Eliminar</button>' + '</td>';
                             tbl += '</tr>';
 
                             $("#tablaParametros").append(tbl);

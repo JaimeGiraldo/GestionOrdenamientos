@@ -40,12 +40,27 @@
 </head>
 <body>
     <div class="usuario_name">
-        <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">
-        <%--<h4 class="link">¡Bienvenido!</h4>
-		<span id="lblUsuario" class="nombre_usuario"></span>
-		<span id="cargo" class="cargo_lab"></span>
-        <span id="Csambiar contraseña" class="cargo_lab"></span>--%>
-        <input type="button" id="btnSalir"  value="Salir" />
+
+        <div class="col-lg-12 col-md-12">
+              <div class="col-lg-3 col-md-3">   
+               <%-- <span id="lblNombreUsuario" class="nombre_usuario"></span> --%>
+                <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">   
+            </div>
+            <div class="col-lg-4 col-md-4"> 
+                <span id="lblNombreUsuario" class="nombre_usuario"></span>       
+            </div>
+            <div class="col-lg-3 col-md-3">
+                 <h4 id="lblUsuario" class="nombre_usuario"></h4>  
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <input type="button" id="btnSalir" value="Salir" />
+            </div>
+        </div>
+
+
+
+        <%--<span id="Csambiar contraseña" class="cargo_lab"></span>--%>
+        
     </div>
 
     <!-- navigation -->
@@ -457,7 +472,7 @@
             </header>
             <div class="container">
                 <div class="card" style="margin:0">
-                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 15px; border-radius: 3px">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
                         <div class="col-md-3">
                             <label class="s16 color-white">Responsable:</label>
@@ -471,11 +486,11 @@
 
                         <div class="col-md-2">
                             <label>FILTRAR:</label>
-                            <input type="text" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height: 35px">
+                            <input type="text" class="myinput1" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height: 35px">
                         </div>
 
                         <div class="col-md-2" style="text-align: end; padding-top: 25px">
-                            <input type="button" id="btnAdd" style="background-color: #0c9688" value="Adicionar" />
+                            <button id="btnAdd">Adicionar</button>
                         </div>
 
                     </div>
@@ -514,10 +529,11 @@
                     <br />
                 </div>
                 <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
-                    <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar Archivo" onclick="procesarArchivo();" />
+                   <%-- <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar Archivo" onclick="procesarArchivo();" />--%>
+                    <button id="btnProcesarArchivo" class="btn btn-primary" onclick="procesarArchivo();">Procesar Archivo</button>
                 </div>
                  <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
-                    <input type="button" id="btnRepartir" class="btn btn-primary" value="Distribuir Cups"/>
+                    <button id="btnRepartir" class="btn btn-primary">Distribuir Cups</button>
                 </div>
 
                 <div class="col-lg-12 col-md-12"></div>

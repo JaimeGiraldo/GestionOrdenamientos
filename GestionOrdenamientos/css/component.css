@@ -44,8 +44,8 @@ html.js,
 .js .pages-nav {
 	position: absolute;
 	top: 10%;
-	right: -2%;
-	width: 100px;
+	right: -2.8%;
+	width: 113px;
 	/*max-width: 1200px;*/
 	pointer-events: none;
 	opacity: 0;
@@ -70,9 +70,9 @@ html.js,
 .pages-nav__item {
 	width: 100%;
     background-color: #0fd0b6 !important;
-	padding: 2em 0;
-    /*border-radius: 5px;*/
-    margin-bottom: 1px;
+	padding: 1em 0;
+    border-radius: 15px;
+    margin-bottom: 3px;
     -webkit-transition: background 500ms ease;
 	-moz-transition: background 500ms ease;
 	-ms-transition: background 500ms ease;
@@ -80,8 +80,7 @@ html.js,
 	transition: background 500ms ease;
 }
 .pages-nav__item:hover {
-    background-color: rgba(45,204,246, 0.5);
-  
+    background-color: rgba(45,204,246, 0.5);  
 }
 .pages-nav .pages-nav__item--social {
 	width: 100%;
@@ -251,6 +250,42 @@ html.js,
 }
 
 /*==================== Login(Home) ====================*/
+
+.js #page-Resultado1 {
+    background-image: url('/images/fondo2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.js #page-AsignarAT4 {
+    background-image: url('/images/fondo1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.js #page-ImportarArchivo {
+    background-image: url('/images/fondo3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.js #page-Responsables {
+    background-image: url('/images/fondo4.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+.js #page-Proveedores {
+    background-image: url('/images/fondo5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
 .js #page-home {
     background-image: url('/images/bg_login_medical.jpg');
     background-repeat: no-repeat;
@@ -673,6 +708,15 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
 }
 
 
+#btnAdd {
+   background-color:#0c9688;
+}
+#btnAdd:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+
 #btnActualizartabla {
    background-color:#0c9688;
 }
@@ -713,39 +757,39 @@ a {
     text-align: center;
 }
 .usuario_name h4 {
-    color: #1b74af;
-    float: left;
-    font-size: 20px;
+    color: #fff;
+    float: right;
+    font-size: 15px;
     font-family: sans-serif;
     font-weight: 500;
-    margin: 12px 0 0 0;
+    margin: 18px 0 0 0;
 }
 
-.usuario_name h4:hover {
+/*.usuario_name h4:hover {
     color: #1b74af;
-}
+}*/
 
 .usuario_name img {
-    width: 130px;
+    width: 230px;
     margin: 0 auto !IMPORTANT;
     display: inline-block;
-    padding-top: 3em;
+    padding-top: 2em;
     margin-left: 5em !IMPORTANT;
 }
 
 
-span.nombre_usuario, span.cargo_lab, a.ver_perfil {
-    font-size: 20px;
-    font-family: sans-serif;
-    font-weight: 100;
-    margin: 9px 10px 0 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    float: left;
-}
 span.nombre_usuario {
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin: 40px;
+    text-transform: uppercase;
+    float: right;
     color: #fff;
 }
+/*span.nombre_usuario {
+    color: #fff;
+}*/
 a.ver_perfil {
     color: #fff;
     background-color: #29affc;
@@ -2070,13 +2114,10 @@ button, input[type="button"] {
 
 #btnSalir {
   border-radius: 100em;
-  margin-top: 1.5em;
-  margin-right: 1.5em;
+  margin-top: 2.5em;
   border: 2px solid transparent;
   background: #00bdda;
   color: #ffffff;
-  line-height: 25px;
-  padding: 12px 0;
   text-decoration: none;
   text-shadow: none;
   box-shadow: none;
@@ -2108,6 +2149,15 @@ button, input[type="button"] {
   background-image: url('/images/ic_search.png');
   background-position: 1px 5px;
   background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #86e4db;
+  background-color: rgba(0, 189, 218, 0.11);
+  
+}
+
+.myinput1 {  
   width: 100%;
   font-size: 16px;
   padding: 12px 20px 12px 40px;
