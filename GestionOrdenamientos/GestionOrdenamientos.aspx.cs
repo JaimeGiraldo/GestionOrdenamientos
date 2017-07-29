@@ -19,11 +19,12 @@ namespace GestionOrdenamientos
     public partial class GestionOrdenamientos : System.Web.UI.Page
     {
         AccesoDatos objRetornarDatos = new AccesoDatos();
+        String archivo;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-        
+        }        
 
         //control de usuarios e inicio de sesion
         public string ValidarUsuario(string UsuarioSistema, string Clave)
@@ -59,8 +60,7 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-
+        
         //Obtiene las ordenes asignadas por optimizador a partir del usuario logueado
         public string ConsultarOrdenesxOptimizador(string tipoidoptimizador,string idoptimizador)
         {
@@ -95,8 +95,7 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-               
+                       
         //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
         public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional)
         {
@@ -110,8 +109,6 @@ namespace GestionOrdenamientos
                 return string.Empty;
             }
         }
-
-
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional)
@@ -119,8 +116,7 @@ namespace GestionOrdenamientos
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
             return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional);
         }
-
-
+        
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
         public string ConsultarOrdenesxProveedor(string proveedor)
         {
@@ -191,8 +187,7 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-
+        
         //Guarda el responsable asignado
         public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion)
         {
@@ -227,8 +222,7 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-
+        
         //Elimina el responsable asignado
         public string EliminarAsignacionResponsable(string idasignacion)
         {
@@ -263,8 +257,6 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-
 
         //carga los datos de los combos
         public string CargarDatos(string sp)
@@ -302,13 +294,9 @@ namespace GestionOrdenamientos
             }
         }
 
-
-
-
-
+        //procesa el archivo excel adjunto
         public string  ProcesarArchivo(string Archivo)
         {
-
             string SaveLocation = Server.MapPath(@"~\Documentos") + "\\" + Archivo;
             DataSet dsImportar = new DataSet();
             string Sql = @"Select * From [Hoja1$]";
@@ -318,7 +306,7 @@ namespace GestionOrdenamientos
             da.Fill(dsImportar);
             if (dsImportar.Tables.Count > 0)
             {
-                using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion()))
+                using (SqlBulkCopy bulkcopy = new SqlBulkCopy(objRetornarDatos.retonarStringConexion(),SqlBulkCopyOptions.KeepIdentity & SqlBulkCopyOptions.KeepNulls))
                 {
                     bulkcopy.DestinationTableName = "A_estructura_carge_represa_Ciklos";
                     bulkcopy.WriteToServer(dsImportar.Tables[0]);
@@ -327,7 +315,6 @@ namespace GestionOrdenamientos
             }
             return "OK";
         }
-        
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string procesarArchivo(string Archivo)
@@ -340,13 +327,9 @@ namespace GestionOrdenamientos
             catch (Exception ex)
             {
                 throw ex;
+                //return "KO";
             }
         }
-
-
-
         
-
-
     }
 }

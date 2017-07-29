@@ -258,13 +258,6 @@ html.js,
     background-position: top center;
 }
 
-.js #page-AsignarAT4 {
-    background-image: url('/images/fondo1.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top center;
-}
-
 .js #page-ImportarArchivo {
     background-image: url('/images/fondo3.png');
     background-repeat: no-repeat;
@@ -273,14 +266,25 @@ html.js,
 }
 
 .js #page-Responsables {
-    background-image: url('/images/fondo4.jpg');
+    background-image: url('/images/fondo6.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
 }
 
+
+.js #page-AsignarAT4 {
+    background-image: url('/images/fondo1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
+
+
+
 .js #page-Proveedores {
-    background-image: url('/images/fondo5.jpg');
+    background-image: url('/images/fondo6.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
@@ -2090,7 +2094,7 @@ a.btn_submit_share {
 
 .dropzone .dz-default.dz-message {
     background-image: url('../images/up_archivos_btn.png') !IMPORTANT;    
-    height: 100px ;
+    height: 158px ;
     margin-left: 0 !IMPORTANT;
     background-position: center center !IMPORTANT;
     margin-top: 0 !IMPORTANT;

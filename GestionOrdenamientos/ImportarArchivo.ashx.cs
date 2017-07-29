@@ -37,9 +37,18 @@ namespace GestionOrdenamientos
 
                 if (!string.IsNullOrEmpty(fileName))
                 {
-                    fileExtension = Path.GetExtension(fileName);
-                    pathToSave_100 = HttpContext.Current.Server.MapPath(carpeta) + fileName;
-                    file.SaveAs(pathToSave_100);
+                    try
+                    {
+                        fileExtension = Path.GetExtension(fileName);
+                        pathToSave_100 = HttpContext.Current.Server.MapPath(carpeta) + fileName;
+                        file.SaveAs(pathToSave_100);
+                    }
+                    catch (Exception ex)
+                    {
+                        context.Response.Write("error");
+                    }
+
+                  
                 }
             }
 

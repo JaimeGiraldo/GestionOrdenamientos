@@ -519,12 +519,12 @@
         <div class="page" id="page-ImportarArchivo">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Importar Archivo</h1>
-                <p>Importar archivo de ordenes generadas para los prestadores</p>
+                <p>Ingresar el archivo de ordenes generadas para los prestadores al sistema.</p>
             </header>
 
             <div class="container">
                 <div class="col-lg-6 col-md-6">
-                    <label>Arrastre Archivo con las ordenes</label>
+                    <label>Arrastra o selecciona el archivo en formato Excel.</label>
                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
                     <br />
                 </div>

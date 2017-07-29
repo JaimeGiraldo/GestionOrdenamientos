@@ -1,6 +1,6 @@
 
 var colores = ['#F44336', '#E91E63', '#9C27B0', '#3F51B5', '#2196F3', '#009688', '#4CAF50', '#CDDC39', '#76FF03', '#FFEB3B', '#FF9800', '#795548', '#9E9E9E', '#FFFF00'];
-var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard;
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard,nombrearchivo;
 var idtipoidaux = "CC";
 
 var archivos = [];
@@ -74,8 +74,8 @@ var archivos = [];
     var cboEmpleado = $('#ddlEmpleado');
     llenarCombos(cboEmpleado, "spOrdenamientos_ObtenerUsuarios");
 
-    var cboEmpleado = $('#ddlCups');
-    llenarCombos(cboEmpleado, "spOrdenamientos_Obtener_ListaCUPS");
+    var cboCups = $('#ddlCups');
+    llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");
 
     
 
@@ -777,11 +777,11 @@ function subirArchivos() {
             addRemoveLinks: true,
             success: function (file, response) {
                 var imgName = response;
-
                 archivos.push(imgName);
                 sessionStorage.setItem('archivos', archivos);
             },
             error: function (file, response) {
+               
                 alert("Error cargando el archivo");
             }
         });
@@ -867,9 +867,13 @@ function subirArchivos() {
         return false;
     })
 
-function procesarArchivo()
-    {
-    
+    function procesarArchivo() {
+
+             
+        if (archivos.length == 0 || nombrearchivo == archivos || archivos.toString().indexOf("error") != -1) {
+        swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron archivos o el archivo ya fue procesado anteriormente.', 'warning');
+        } else {
+
         $.ajax({
             url: "GestionOrdenamientos.aspx/procesarArchivo",
             data: "{ Archivo: '" + archivos + "'}",
@@ -878,15 +882,27 @@ function procesarArchivo()
             async: false,
             type: 'POST'
         }).done(function (rest) {
-            if (rest.Error != undefined) {
-                alert(rest.Error);
-                swal('GestionOrdenamiento', 'lo sentimos, ocurrio un error..', 'warning');
+
+            //console.log(rest)
+            //console.log(rest.d)
+
+            if (rest.d == "KO") {
+                //alert(rest.Error);
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron archivos con el formato adecuado.', 'warning');
             } else {
-                swal('GestionOrdenamiento', 'Proceso realizado con exito..', 'success');
+                nombrearchivo = archivos;
+                swal('Evolution Ordenamientos', 'Bien, proceso realizado con exito.', 'success');
             }
+
+            //if (rest.Error != undefined) {
+            //    alert(rest.Error);
+            //    swal('GestionOrdenamiento', 'lo sentimos, ocurrio un error..', 'warning');
+            //} else {
+            //    swal('GestionOrdenamiento', 'Proceso realizado con exito..', 'success');
+            //}
         });
-    
-    }
+    }       
+ }
 
 function consultarAsignaciones(spP) {
 
@@ -1061,6 +1077,7 @@ function RepartirOrdenes(spP) {
             //$('#tablaRepartir td').remove();
             $('#tablaRepartir tbody').html('');
 
+
             if (listaDatos.Table.length > 0) {          
 
                
@@ -1200,6 +1217,7 @@ function obtenerDashboard(spP) {
                 }
                 else {
                     swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+                    $("#loaderdashboard").hide();
                 }
             }
         });
