@@ -1,0 +1,13 @@
+<table id="tblasignacionesresponsables" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>TipoId</th>
+                                        <th>Identificacion</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Cups</th>
+                                        <th>Ordenes Asignadas</th>
+                                        <th>Ordenes Auditadas</th>
+                                    </tr>
+                                </thead>
+                                <tbody><tr><td>CC</td><td>1036634597</td><td>LUIS MIGUEL MONCADA (PRUEBA)</td><td>890280</td><td>34</td><td>0</td></tr><tr><td>CC</td><td>1128440295</td><td>ISABEL CRISTINA OSPINA BEDOYA</td><td>890280</td><td>33</td><td>0</td></tr><tr><td>CC</td><td>123456789</td><td>ADMIN</td><td>890280</td><td>33</td><td>0</td></tr></tbody>
+                            </table>

@@ -21,7 +21,9 @@
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
     <link rel="stylesheet" type="text/css" href="css/component.css" />
     <link rel="stylesheet" type="text/css" href="fonts/alpina-dashicons/style.css" />
+    <link href="css/select2.min.css" rel="stylesheet" />
     <script src="js/modernizr-custom.js"></script>
+
     <!-- jQuery -->
     <script src="js/jquery-2.1.1.min.js"></script>
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>--%>
@@ -36,6 +38,7 @@
     <script src="js/highcharts.js"></script>
     <script src="js/exporting.js"></script>
     <script src="js/drilldown.js"></script>
+
 
 </head>
 <body>
@@ -75,6 +78,8 @@
         <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
         <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
         <div id="MenuReportes" class="pages-nav__item"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
+        <div id="MenuCUPS" class="pages-nav__item"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Administrar CUPS</a></div>
+       
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
         <div class="pages-nav__item" id="Fortalezas" style="display:none"><a id="btnGrafico2" class="link link--page" href="#page-Fortalezas"><span class="icon-padnote"></span>Fortalezas - Oportunidad Mejora</a></div>
@@ -448,17 +453,17 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="ModalAcciones" role="dialog">
+            <div class="modal fade" id="ModalAcciones" role="dialog" >
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 id="ModaltittleAcciones"></h4>
-                            <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <div class="modal-header" style="padding:0px">
+                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 id="ModaltittleAcciones"></h4>                           
                         </div>
-                        <div class="modal-body" style="padding: 0px;">
+                        <div class="modal-body" style="padding-top:5px">
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer" style="padding-top:0px;padding-bottom:0px">
                         </div>
                     </div>
                 </div>
@@ -469,6 +474,13 @@
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
                 <p>Seleccione el personal que va a realizar la optimización.</p>
+               <%-- <div class="col-md-3">
+                    <label class="s16">Responsable:</label>
+                    <select id="selecttest" class="js-example-basic-single js-states form-control" multiple="multiple">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>--%>                
             </header>
             <div class="container">
                 <div class="card" style="margin:0">
@@ -481,12 +493,12 @@
 
                         <div class="col-md-5">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCups"  class="form-control color-blue"></select>
+                            <select id="ddlCups"  class="js-example-basic-single js-states form-control" ></select>
                         </div>
 
-                        <div class="col-md-2">
+                        <div class="col-md-2" >
                             <label>FILTRAR:</label>
-                            <input type="text" class="myinput1" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()" style="height: 35px">
+                            <input type="text" class="myinput1" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()">
                         </div>
 
                         <div class="col-md-2" style="text-align: end; padding-top: 25px">
@@ -676,13 +688,55 @@
                 </div>
             </div>
         </div>
+
+          <div class="page" id="page-CUPS">
+            <header class="bp-header cf">
+                <h1  class="bp-header__title">Administrar CUPS</h1>
+                <p>Sistema para administración y control de los CUPS que usa el programa en general y su parametrización.</p>
+            </header>
+             <div class="container">
+                <div class="card" style="margin:0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
+
+                       
+                        <div class="col-md-10">
+                            <label class="s16 color-white">Cups:</label>
+                            <select id="ddlCupsout"  class="js-example-basic-single js-states form-control" ></select>
+                        </div>
+                                              
+
+                        <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                            <button id="btnAddcups">Seleccionar</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card-content table-responsive">
+                            <table id="tablaCUPS" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                                <thead>
+                                    <tr>                                        
+                                        <th>Cups</th>
+                                        <th>Descripción </th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- /pages-stack -->
     <button class="menu-button" id="btnMenu" style="display: none"><span>Menu</span></button>
 
     <%-- <script src="js/jquery-2.1.1.min.js"></script>--%>
-    <script src="js/select2.js"></script>
+<%--    <script src="js/select2.js"></script>--%>
+    <script src="js/select2.full.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/main.js"></script>
     <script src="js/sweet-alert.js"></script>

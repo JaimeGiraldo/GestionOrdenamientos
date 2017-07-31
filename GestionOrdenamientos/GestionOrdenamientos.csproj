@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\cards.css" />
+    <Content Include="css\select2.min.css" />
     <Content Include="images\bg_modal_ordenamients_icons.jpg" />
     <Content Include="images\ep_naturalwhite.png" />
     <Content Include="images\fondo1.png" />
@@ -86,6 +87,7 @@
     <Content Include="js\drilldown.js" />
     <Content Include="js\dropzone.js" />
     <Content Include="js\exporting.js" />
+    <Content Include="js\select2.full.js" />
     <Content Include="packages.config" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.eot" />
     <Content Include="fonts\alpina-dashicons\fonts\alpina-dashicons.ttf" />
@@ -142,7 +144,6 @@
     <Content Include="js\modals.js" />
     <Content Include="js\modernizr-custom.js" />
     <Content Include="js\progressbar.js" />
-    <Content Include="js\select2.js" />
     <Content Include="js\sweet-alert.js" />
     <Content Include="Web.config" />
   </ItemGroup>

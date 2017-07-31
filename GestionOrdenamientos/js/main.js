@@ -1,11 +1,12 @@
 
 var colores = ['#F44336', '#E91E63', '#9C27B0', '#3F51B5', '#2196F3', '#009688', '#4CAF50', '#CDDC39', '#76FF03', '#FFEB3B', '#FF9800', '#795548', '#9E9E9E', '#FFFF00'];
-var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard,nombrearchivo;
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard,nombrearchivo,listacupsout;
 var idtipoidaux = "CC";
 
 var archivos = [];
 ; (function (window) {
-   
+  
+
     //Animacion para los graficos dashboard
     Math.easeOutBounce = function (pos) {
         if ((pos) < (1 / 2.75)) {
@@ -71,18 +72,34 @@ var archivos = [];
         location.reload();
     });
 
+    
+    $("#btnAddcups").on("click", function (e) {
+        SeleccionarCUPS();
+    });
+   
+    $("#ddlCups").select2({
+        placeholder: "Selecciona el CUPS"
+    });
+
+    $("#ddlEmpleado").select2({
+        placeholder: "Selecciona el Responsable"
+    });
+
+    $("#ddlCupsout").select2({
+        placeholder: "Selecciona la Descripción"
+    });
+
     var cboEmpleado = $('#ddlEmpleado');
     llenarCombos(cboEmpleado, "spOrdenamientos_ObtenerUsuarios");
 
     var cboCups = $('#ddlCups');
-    llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");
+    llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");   
 
     
 
-    $("#ddlCups").select2({
-        placeholder: "Select a state"
-    });
-
+    //var cboCups = $('#selecttest');
+    //llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");
+    //$("#selecttest").select2();
     
     $("#btnAdd").on("click", function (e) {
         AsignarResponsables();
@@ -91,7 +108,7 @@ var archivos = [];
     //Reparte las ordenes entre los responsables asignados
     $("#btnRepartir").on("click", function (e) {
         $("#loaderepartir").show();
-        RepartirOrdenes("spGestionOrdenamientos_asignarCUPSResposables");
+        RepartirOrdenes();
     }); 
 
     $("#btnreportes").on("click", function (e) {
@@ -320,6 +337,10 @@ function iniciarSesion(usuario, clave) {
 	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
 	                    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");	                    
 	                    $('#btnMenu').removeAttr('style');
+
+	                    var cboCupsOut = $('#ddlCupsout');
+	                    llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
+
 	                }else  if (lista.Table[0].idtipousuario == "1") {
 	                    //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
 
@@ -524,11 +545,12 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_mod"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
-    body += '<p>Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico.">';
-    body += '<p>Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos.">';
-    body += '<p>CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico">';
-    body += '<p>Profesional:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional">';
-    body += '<p>Selecciona un Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="form-control color-blue"></select>';
+    body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
+    body += '<p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">';
+    body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
+    body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
+    body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
+    body += '<p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
 
     footer += '<button id="btnAsignarProveedor_' + posicion +
                                 '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + posiciontabla + ')">Guardar</button>';
@@ -539,10 +561,60 @@ function abrirModalAcciones(posicion, posiciontabla) {
     var combo = $('#ddl_Proveedoress_' + posicion);
     llenarCombos(combo, "spsuministros_Proveedores_ObtenerNew");
 
-    document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla - 1].Codigo_Solicitud_Ciklos;
+    $('#ddl_Proveedoress_' + posicion).select2({
+        placeholder: "Selecciona el Proveedor"
+    });
+
+    $('#txtCIE10Desc_' + posicion).prop('disabled', true);
+     document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla - 1].Codigo_Solicitud_Ciklos;
 
     $("#ModalAcciones").modal();
 
+    //Despues de ingresar el diagnostico se detecta el ENTER
+    $('#txtCIE10_' + posicion).keypress(function (e) {
+
+        $('#txtCIE10Desc_' + posicion).val('');
+
+        if (e.which == 13) {
+            //Se obtienen los valores de los controles
+            var diagnostico = $('#txtCIE10_' + posicion).val();
+          
+            if (diagnostico.length == 0) {
+                swal('Evolution Ordenamientos', 'Lo sentimos, El campo de diagnóstico no puede estar vacío, debes ingresar un diagnóstico valido.', 'warning');
+               
+            } else {
+                ObtenerDiagnosticos(diagnostico, posicion);
+            }
+        }
+    });
+
+}
+
+function ObtenerDiagnosticos(diagnostico, posicion) {
+
+    var controldiagnostico = $('#txtCIE10Desc_' + posicion);
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/buscarDiagnostico",
+        data: "{ diagnostico: '" + diagnostico + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        type: 'POST'
+    }).done(function (rest) {
+
+        if (rest.d != '') {
+            //Convierte la lista Json 
+            var listaDatos = JSON.parse(rest.d);
+
+            if (listaDatos.Table.length > 0) {
+                controldiagnostico.val(listaDatos.Table[0].Descripcion);
+            } else {
+                controldiagnostico.val('');
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontró el diagnóstico que ingresado.', 'warning');
+            }
+        }
+    })
 }
 
 function FiltrarTablaSede() {
@@ -575,9 +647,12 @@ function GuardarProovedor(posicion, posiciontabla) {
         var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
 
         var cie10 = $('#txtCIE10_' + posicion).val();
+        var cie10desc = $('#txtCIE10Desc_' + posicion).val();
         var profesional = $('#txtProfesional_' + posicion).val();
         var at4 = 0;
         var adecuado = 0;
+
+
         if (!$('#checkAt4_' + posicion).is(':checked')) {
             at4 = 0;
         } else {
@@ -588,12 +663,17 @@ function GuardarProovedor(posicion, posiciontabla) {
             adecuado = 0;
         } else {
             adecuado = 1;
-        }
+        }        
 
-        if (proveedorasignado == "0") {
+        //console.log(cie10)
+        //console.log(cie10desc)
+
+        if (cie10.length > 0 && cie10desc.length == 0) {
+            swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
+        } else if (proveedorasignado == "0") {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
-        } else {
 
+         } else {
             $.ajax({
                 url: "GestionOrdenamientos.aspx/actualizarOrdenes",
                 data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
@@ -737,7 +817,91 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
                 }
             });           
         }    
+}
+
+function SeleccionarCUPS() {   
+
+    $('#tablaCUPS tbody').html('');
+    var descripcion = $('#ddlCupsout').val();
+
+
+    if (descripcion.length == 0 || descripcion == "") {
+        swal('Evolution Ordenamientos', 'Lo sentimos, debes selecionar una descripcion valida.', 'warning');
+    } else {
+        for (var i = 0; i < listacupsout.Table.length; i++) {
+            if (listacupsout.Table[i].Nit == descripcion) {
+                var tbl = '';
+                tbl += '<tr>';
+                tbl += '<td>' + '<input type="text" id="txtOrden_' + i + '" placeholder="Ingresa el CUPS">' + '</td>';
+                tbl += '<td>' + listacupsout.Table[i].Nit + '</td>';
+                tbl += '<td>' + '<button id="btnAsignarCups_' + i +
+                        '" class="btn btn-primary" onclick="GuardarCUPS(' + i + ')">Guardar</button>' + '</td>';
+                tbl += '</tr>';
+
+                $("#tablaCUPS").append(tbl);
+            }
+        }
     }
+
+    
+}
+
+function GuardarCUPS(i) {
+
+    //$('#tablaCUPS td').remove();
+
+    var descripcion = $('#ddlCupsout').val();
+    var cups = $('#txtOrden_' + i).val();
+
+    if (cups.length == 0) {
+        swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un CUPS.', 'warning');
+    } else {
+
+         $.ajax({
+        url: "GestionOrdenamientos.aspx/actualizarCups",
+        data: "{ DescripcionCUPS: '" + descripcion + "', CUPS: '" + cups + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+        } else {
+            //Obtenemos la lista
+            var lista = JSON.parse(rest.d);
+
+            if (lista.Table.length > 0) {
+
+                if (lista.Table[0].Respuesta == "OK") {                   
+                   
+                    ////Recarga el combo y limpia la pantalla
+                    $('#tablaCUPS tbody').html('');
+                    //$('#ddlCupsout').attr('title','');
+                    $('#ddlCupsout').html('');
+                    var cboCupsOut = $('#ddlCupsout');
+                    llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
+
+                    swal('Evolution Ordenamientos', 'Bien, la asignación se realizó correctamente.', 'success');
+                    
+
+                } else {
+                    swal('Evolution Ordenamientos', 'Lo sentimos, la descripcion seleccionada ya ah sido asignada, favor comunicarse con sistemas para revisar.', 'warning');
+                }
+            }
+            else {
+                swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+            }     
+        }
+
+    });
+
+    }
+    
+
+    
+
+}
 
 //llenar combos o select
 function llenarCombos(combo, spP) {
@@ -761,6 +925,12 @@ function llenarCombos(combo, spP) {
                 for (var i = 0; i < lista.Table.length; i++) {
 
                     $(combo).append('<option value="' + lista.Table[i].Nit + '">' + lista.Table[i].RazonSocial + '</option>');
+
+
+                    if (combo.selector == "#ddlCupsout") {
+                        listacupsout = lista;
+                    }
+                   
                 }
                 // });
             }
@@ -867,7 +1037,7 @@ function subirArchivos() {
         return false;
     })
 
-    function procesarArchivo() {
+function procesarArchivo() {
 
              
         if (archivos.length == 0 || nombrearchivo == archivos || archivos.toString().indexOf("error") != -1) {
@@ -954,10 +1124,16 @@ function AsignarResponsables() {
         var responsable = $("#ddlEmpleado :selected").text();
         var cups = $('#ddlCups').val();
         var descripcion = $("#ddlCups :selected").text();      
-        //var rowCount = $('#tablaParametros tr').length;       
+    //var rowCount = $('#tablaParametros tr').length;       
 
-        if (cups.length = 0 || cups == "null") {
-            swal('EvolutionNet', 'Debes seleccionar un cups valido.', 'warning');
+        //console.log(idresponsable)
+        //console.log(cups)
+        //console.log($('#selecttest').val())
+
+        if (idresponsable.length == 0 || cups == "null" || idresponsable == 0) {
+            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un resposable de la lista.', 'warning');
+        }else if (cups.length = 0 || cups == "null" || cups == 0) {
+            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un cups de la lista.', 'warning');
         } else {
             
             $.ajax({
@@ -1058,11 +1234,11 @@ function FiltrarResponsables() {
 
 }
 
-function RepartirOrdenes(spP) {
-
+function RepartirOrdenes() {
+   
     $.ajax({
-        url: "GestionOrdenamientos.aspx/cargarDatos",
-        data: "{ sp: '" + spP + "'}",
+        url: "GestionOrdenamientos.aspx/actualizarDistribuir_Ordenes",
+        data: "{ IdtipoOpt: '" + IdtipoOpt + "', IdOpt: '" + IdOpt + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,

@@ -258,6 +258,115 @@ namespace GestionOrdenamientos
             }
         }
 
+
+        //Elimina el responsable asignado
+        public string BuscarDiagnostico(string diagnostico)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDiagnosticos" + "'" + diagnostico + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string buscarDiagnostico(string diagnostico)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.BuscarDiagnostico(diagnostico);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Elimina el responsable asignado
+        public string ActualizarDistribuir_Ordenes(string IdtipoOpt,string IdOpt)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_asignarCUPSResposables" + "'" + IdtipoOpt + "','" + IdOpt + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string actualizarDistribuir_Ordenes(string IdtipoOpt,string IdOpt)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ActualizarDistribuir_Ordenes(IdtipoOpt, IdOpt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Elimina el responsable asignado
+        public string ActualizarCups(string DescripcionCUPS, string CUPS)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string actualizarCups(string DescripcionCUPS, string CUPS)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         //carga los datos de los combos
         public string CargarDatos(string sp)
         {
