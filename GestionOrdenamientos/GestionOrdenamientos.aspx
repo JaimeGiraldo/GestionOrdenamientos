@@ -73,13 +73,13 @@
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
         --%>
         
-        <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar Archivo</a></div>
-        <div id="MenuResponsables" class="pages-nav__item"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Configurar Responsables</a></div>
-        <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Asignar AT4 </a></div>
+        <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
+        <div id="MenuResponsables" class="pages-nav__item"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
+        <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
         <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
-        <div id="MenuReportes" class="pages-nav__item"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Reportes</a></div>
-        <div id="MenuCUPS" class="pages-nav__item"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Administrar CUPS</a></div>
-       
+        <div id="MenuCUPS" class="pages-nav__item"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
+        <div id="MenuReportes" class="pages-nav__item"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Dashboard</a></div>
+        
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
         <div class="pages-nav__item" id="Fortalezas" style="display:none"><a id="btnGrafico2" class="link link--page" href="#page-Fortalezas"><span class="icon-padnote"></span>Fortalezas - Oportunidad Mejora</a></div>
@@ -271,6 +271,7 @@
                                     <tr>
                                         <th>CUPS</th>
                                         <th>DESCRIPCION</th>
+                                        <th>DESCRIPCION CIKLOS</th>
                                         <th>CANTIDAD</th>
                                     </tr>
                                 </thead>
@@ -719,6 +720,7 @@
                                     <tr>                                        
                                         <th>Cups</th>
                                         <th>Descripción </th>
+                                        <th>Acción </th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

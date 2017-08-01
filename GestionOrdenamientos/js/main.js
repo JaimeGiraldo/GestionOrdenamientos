@@ -49,7 +49,8 @@ var archivos = [];
     });
 
     $("#btnActualizartabla").on("click", function (e) {
-       //remueve el cuerpo de la tabala
+        //remueve el cuerpo de la tabala
+
         var tbl = document.getElementById("tablaAsignar"); // Get the table
         tbl.removeChild(tbl.getElementsByTagName("tbody")[0]);
 
@@ -348,11 +349,13 @@ function iniciarSesion(usuario, clave) {
 	                    $('#MenuCargaArchivo').hide();
 	                    $('#MenuResponsables').hide();
 	                    $('#MenuProveedor').hide();
+	                    $('#MenuCUPS').hide();
 
                         //esconde las paginas	                        
 	                    $('#page-ImportarArchivo').hide();
 	                    $('#page-Responsables').hide();
 	                    $('#page-Proveedores').hide();
+	                    $('#page-CUPS').hide();
 
 	                    openMenu();
 	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
@@ -362,10 +365,12 @@ function iniciarSesion(usuario, clave) {
 	                    $('#MenuOptimizador').hide();
 	                    $('#MenuCargaArchivo').hide();
 	                    $('#MenuResponsables').hide();
+	                    $('#MenuCUPS').hide();
 
 	                    $('#page-AsignarAT4').hide();
 	                    $('#page-ImportarArchivo').hide();
 	                    $('#page-Responsables').hide();
+	                    $('#page-CUPS').hide();
 
 	                    openMenu();
 	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
@@ -416,18 +421,20 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 
 	                for (var i = 0; i < datos.length; i++) {
 	                       
-	                    var tbl = '';
-	                    tbl += '<tr>';
+	                   // console.log(datos[i].idConsecutivo)
 
+	                    var tbl = '';
+	                    //tbl += '<tr>';
+	                    tbl += '<tr id="tr_' + datos[i].idConsecutivo + '">';
 	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
 	                    tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
 	                    tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
 	                    tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
-	                    tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                    tbl += '<td>' + datos[i].DescripcionNew + '</td>';
 	                    tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
-                                '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + (i + 1) + ')">Auditar</button>' + '</td>';
+                                '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + i + ')">Auditar</button>' + '</td>';
 	                    tbl += '</tr>';	                        
                         
 	                    $("#tablaAsignar").append(tbl);
@@ -470,7 +477,7 @@ function consultarOrdenesProveedor(proveedor) {
 	                tbl += '<tr>';
 	                tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
 	                tbl += '<td>' + datos[i].Cups + '</td>';
-	                tbl += '<td>' + datos[i].Descripcion + '</td>';
+	                tbl += '<td>' + datos[i].DescripcionNew + '</td>';
 	                tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
 	                tbl += '<td>' + '<input type="text" id="txtOrden_' + datos[i].idConsecutivo + '" placeholder="Ingresa la orden">' + '</td>';
 	                tbl += '<td>' + '<button id="btnAdjunto_' + datos[i].idConsecutivo +
@@ -537,6 +544,8 @@ $(window).on("load resize ", function () {
 
 function abrirModalAcciones(posicion, posiciontabla) {
 
+    //console.log(posiciontabla)
+
     $("#ModalAcciones .modal-body").html('');
     $("#ModalAcciones .modal-footer").html('');
 
@@ -553,7 +562,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
 
     footer += '<button id="btnAsignarProveedor_' + posicion +
-                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + posiciontabla + ')">Guardar</button>';
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ')">Guardar</button>';
    
     $("#ModalAcciones .modal-body").append(body);
     $("#ModalAcciones .modal-footer").append(footer);
@@ -566,7 +575,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
     });
 
     $('#txtCIE10Desc_' + posicion).prop('disabled', true);
-     document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla - 1].Codigo_Solicitud_Ciklos;
+     document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
 
     $("#ModalAcciones").modal();
 
@@ -635,7 +644,7 @@ function FiltrarTablaSede() {
     }
 }
 
-function GuardarProovedor(posicion, posiciontabla) {
+function GuardarProovedor(posicion) {
 
         var input, filter, table, tr, td, i;
         table = document.getElementById("tablaAsignar");
@@ -695,8 +704,12 @@ function GuardarProovedor(posicion, posiciontabla) {
 
                         if (datos[0].Respuesta == "OK") {
                             swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
-                            //tr[posiciontabla].style.display = "none";
-                            document.getElementById("tablaAsignar").deleteRow(posiciontabla);
+                            ////tr[posiciontabla].style.display = "none";
+                            //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
+
+                            //borra la fila de la tabla en pantalla
+                            $('#tr_' + posicion).html('');
+
                             totalpendientes = totalpendientes - 1;
                             document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
                             $("#ModalAcciones").modal('hide');
@@ -715,12 +728,10 @@ function GuardarProovedor(posicion, posiciontabla) {
 function MasInformacion(posicion) {
   
         document.getElementById('myModaltittle').innerHTML ='Detalle de la Orden ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
-
         document.getElementById('lblsolicitud').innerHTML = datosorden[posicion].Cups;
         document.getElementById('lblpaciente').innerHTML = datosorden[posicion].Id_Afiliado;
         document.getElementById('lbltiposervicio').innerHTML = datosorden[posicion].Tipo_de_servicio;
-        document.getElementById('lblestadoservicio').innerHTML = datosorden[posicion].Estado_servicio;
-    
+        document.getElementById('lblestadoservicio').innerHTML = datosorden[posicion].Estado_servicio;    
         document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Nivel_Autorizacion;
         document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Centro_generador_de_autorizacion;
     
@@ -1384,7 +1395,8 @@ function obtenerDashboard(spP) {
                         var tbl = '';
                         tbl += '<tr>';
                         tbl += '<td>' + datos[i].cups + '</td>';
-                        tbl += '<td>' + datos[i].Descripcion + '</td>';
+                        tbl += '<td>' + datos[i].DescripcionNew + '</td>';
+                        tbl += '<td>' + datos[i].Descripcion + '</td>';                        
                         tbl += '<td>' + datos[i].cantidad + '</td>';
                         tbl += '</tr>';
 

@@ -1,0 +1,51 @@
+ALTER Procedure [dbo].[spOrdenamientos_gestionarOrdenes]'9000389264','6','prueba123'
+(	
+	
+	@Proveedor Varchar(50),
+	@IdConsecutivo Varchar(50),
+	@OrdenProveedor Varchar(50)
+)
+as
+Begin
+	
+If Exists(Select * From A_estructura_carge_represa_Ciklos Where  ProveedorAsignado = @Proveedor and IdConsecutivo = @IdConsecutivo)
+Begin
+   Update A_estructura_carge_represa_Ciklos 
+	Set 			
+		EstadoProveedor = '1',
+		OrdenProveedor = @OrdenProveedor,
+		FechaActualizoProveedor = getdate()
+									
+	Where ProveedorAsignado = @Proveedor and IdConsecutivo = @IdConsecutivo
+
+	Select 'OK' as Respuesta
+		
+End	
+
+else 
+		Select 'KO' as Respuesta
+end
+
+
+------------------------------------------
+
+
+
+select * from historiaclinica_recibocajadet d
+inner join historiaclinica_agendasemanalprofesional e
+on e.cedulapaciente = d.usuarioatendido
+
+where d.usuarioregistro='susanabs'
+and convert(varchar(10),d.FechaRegistro,112)=20170717 and convert(varchar(10),e.Fecha,112)=20170717
+
+
+
+
+ORTOPEDIA TELECONCEPTO
+Paciente de 20 años, masculino, con cuadro crónico de dolor en ambas rodillas que se asocia a actividad deportiva, el cual ha aumentado en los últimos meses, con dolor persistente y limitaciones para las actividades diarias. Tiene RX de rodillas comparativas que son reportadas normales.
+ Por cuadro clínico descrito y edad del paciente, lo más importante es descartar patología a nivel patelofemoral, por lo cual considero conducta pertinente cita por ortopedia . 
+Hago orden de:
+1.	Cita ortopedia general Promedan.
+2, TAC AXIAL COMP DE ROTULAS A 0, 20, 40 Y 60
+ simple. DEBE ASISTIR A LA CITA CON TODOS LOS ESTUDIOS ASI COMO HISTORIA DE SITIOS DE ATENCIÓN
+.
