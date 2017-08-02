@@ -295,7 +295,7 @@ namespace GestionOrdenamientos
         }
 
 
-        //Elimina el responsable asignado
+        //Distribuye las ordenes
         public string ActualizarDistribuir_Ordenes(string IdtipoOpt,string IdOpt)
         {
             try
@@ -331,12 +331,12 @@ namespace GestionOrdenamientos
         }
 
 
-        //Elimina el responsable asignado
-        public string ActualizarCups(string DescripcionCUPS, string CUPS)
+        //Acttualiza los cups
+        public string ActualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "','" + nuevadescripcion + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -353,12 +353,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarCups(string DescripcionCUPS, string CUPS)
+        public static string actualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS);
+                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS, nuevadescripcion);
             }
             catch (Exception ex)
             {

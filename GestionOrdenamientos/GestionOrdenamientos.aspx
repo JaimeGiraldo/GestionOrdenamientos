@@ -393,6 +393,7 @@
                                             <th>Codigo S. Ciklos</th>
                                             <th>Fecha Registro</th>
                                             <th>Fecha Esperada</th>
+                                            <th>Dias Espera</th>
                                             <th>IPS Solicitante</th>
                                             <th>CUPS</th>
                                             <th>Descripción</th>
@@ -717,9 +718,10 @@
                         <div class="card-content table-responsive">
                             <table id="tablaCUPS" <%--style="visibility:hidden"--%> class="table table-hover table-action">
                                 <thead>
-                                    <tr>                                        
+                                    <tr>                
+                                        <th>Descripción </th>                        
                                         <th>Cups</th>
-                                        <th>Descripción </th>
+                                        <th>Nueva Descripción</th>                                       
                                         <th>Acción </th>
                                     </tr>
                                 </thead>

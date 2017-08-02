@@ -429,6 +429,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
 	                    tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
 	                    tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
+	                    tbl += '<td>' + datos[i].DiasEspera + '</td>';
 	                    tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
 	                    tbl += '<td>' + datos[i].DescripcionNew + '</td>';
@@ -843,8 +844,9 @@ function SeleccionarCUPS() {
             if (listacupsout.Table[i].Nit == descripcion) {
                 var tbl = '';
                 tbl += '<tr>';
-                tbl += '<td>' + '<input type="text" id="txtOrden_' + i + '" placeholder="Ingresa el CUPS">' + '</td>';
                 tbl += '<td>' + listacupsout.Table[i].Nit + '</td>';
+                tbl += '<td>' + '<input type="text" id="txtCupss_' + i + '" placeholder="Ingresa el CUPS" class="form-control">' + '</td>';
+                tbl += '<td>' + '<input type="text" id="txtNuevaDescripcion_' + i + '" placeholder="Ingresa la nueva descripción" class="form-control">' + '</td>';
                 tbl += '<td>' + '<button id="btnAsignarCups_' + i +
                         '" class="btn btn-primary" onclick="GuardarCUPS(' + i + ')">Guardar</button>' + '</td>';
                 tbl += '</tr>';
@@ -862,15 +864,20 @@ function GuardarCUPS(i) {
     //$('#tablaCUPS td').remove();
 
     var descripcion = $('#ddlCupsout').val();
-    var cups = $('#txtOrden_' + i).val();
+    var cups = $('#txtCupss_' + i).val();
+    var nuevadescripcion = $('#txtNuevaDescripcion_' + i).val();
 
-    if (cups.length == 0) {
-        swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un CUPS.', 'warning');
+    //console.log(descripcion)
+    //console.log(cups)
+    //console.log(nuevadescripcion)
+
+    if (cups.length == 0 || nuevadescripcion.length == 0) {
+        swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un CUPS y la nueva descripción segun la resolución 1132.', 'warning');
     } else {
 
          $.ajax({
         url: "GestionOrdenamientos.aspx/actualizarCups",
-        data: "{ DescripcionCUPS: '" + descripcion + "', CUPS: '" + cups + "'}",
+        data: "{ DescripcionCUPS: '" + descripcion + "', CUPS: '" + cups + "', nuevadescripcion: '" + nuevadescripcion + "'}",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         async: true,
