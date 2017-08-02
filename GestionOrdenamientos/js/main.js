@@ -561,20 +561,41 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
     body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
     body += '<p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
-
+    body += '<select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
     footer += '<button id="btnAsignarProveedor_' + posicion +
                                 '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ')">Guardar</button>';
    
     $("#ModalAcciones .modal-body").append(body);
     $("#ModalAcciones .modal-footer").append(footer);
 
-    var combo = $('#ddl_Proveedoress_' + posicion);
-    llenarCombos(combo, "spsuministros_Proveedores_ObtenerNew");
-
-    $('#ddl_Proveedoress_' + posicion).select2({
+    var proveedor = $('#ddl_Proveedoress_' + posicion);
+    proveedor.select2({
         placeholder: "Selecciona el Proveedor"
-    });
+    });    
+    llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
+  
+    var sedes = $('#ddl_PromedanSede_' + posicion);  
+    sedes.hide();
+      
+    proveedor.on('change', function () {
+        var value = $(this).val();
 
+        if (value == "9000389264") {
+            sedes.show();
+            sedes.prop('disabled', false);
+            llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
+            sedes.select2({
+                placeholder: "Selecciona la sede Promedan"
+            });
+
+        } else {            
+            sedes.prop('disabled', true);
+            sedes.val('').trigger('change')//limpia el combito
+        }
+        //alert(value);
+    });
+       
+    
     $('#txtCIE10Desc_' + posicion).prop('disabled', true);
      document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
 
@@ -647,6 +668,7 @@ function FiltrarTablaSede() {
 
 function GuardarProovedor(posicion) {
 
+        
         var input, filter, table, tr, td, i;
         table = document.getElementById("tablaAsignar");
         tr = table.getElementsByTagName("tr");    
@@ -655,7 +677,8 @@ function GuardarProovedor(posicion) {
         var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
         var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
         var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
-
+        var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
+    
         var cie10 = $('#txtCIE10_' + posicion).val();
         var cie10desc = $('#txtCIE10Desc_' + posicion).val();
         var profesional = $('#txtProfesional_' + posicion).val();
@@ -675,21 +698,22 @@ function GuardarProovedor(posicion) {
             adecuado = 1;
         }        
 
-        //console.log(cie10)
-        //console.log(cie10desc)
+        //console.log(proveedorasignado)
+        //console.log(sedepromedan)
 
         if (cie10.length > 0 && cie10desc.length == 0) {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
-        } else if (proveedorasignado == "0") {
+        } else if (proveedorasignado == "0" || proveedorasignado == null) {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
-
-         } else {
+        } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
+            swal('Evolution Ordenamientos', 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
+        } else {
             $.ajax({
                 url: "GestionOrdenamientos.aspx/actualizarOrdenes",
                 data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
                     + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
                     + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
-                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "'}",
+                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '" + sedepromedan + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
@@ -897,6 +921,8 @@ function GuardarCUPS(i) {
                     $('#tablaCUPS tbody').html('');
                     //$('#ddlCupsout').attr('title','');
                     $('#ddlCupsout').html('');
+
+                    $('#ddlCupsout').val('').trigger('change')
                     var cboCupsOut = $('#ddlCupsout');
                     llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
 

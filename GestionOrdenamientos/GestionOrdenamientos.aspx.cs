@@ -97,9 +97,9 @@ namespace GestionOrdenamientos
         }
                        
         //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
-        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional)
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional,string sedepromedan)
         {
-            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observacionesaudit + "','" + observacionesagen + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "'");
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observacionesaudit + "','" + observacionesagen + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "','" + sedepromedan + "'");
             if (dt.Tables.Count > 0)
             {
                 return JsonConvert.SerializeObject(dt);
@@ -111,10 +111,10 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional,string sedepromedan)
         {
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
-            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional);
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional, sedepromedan);
         }
         
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
