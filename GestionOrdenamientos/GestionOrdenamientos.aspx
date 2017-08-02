@@ -112,7 +112,7 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
@@ -299,9 +299,9 @@
                                             <p class="service-description">Informe detallado del número de ordenes asignadas por cada persona responsable de la gestión.</p>
                                         </div>
                                         <div class="col-md-12 service-item">
-                                            <div class="service-icon"><i class="fa fa-bar-chart" id="reporte2"></i></div>
-                                            <h4 class="service-title"><a href="">Reporte 2</a></h4>
-                                            <p class="service-description">Descripción reporte 2.</p>
+                                            <div class="service-icon"><i class="fa fa-bar-chart" id="reportecups"></i></div>
+                                            <h4 class="service-title"><a href="">Reporte CUPS</a></h4>
+                                            <p class="service-description">Informe detallado de los cupos que se han ingresado al sistema y su correspondiente asignación.</p>
                                         </div>                                        
                                     </div>                               
                             </section>
@@ -327,6 +327,26 @@
                                         <th>Cups</th>
                                         <th>Ordenes Asignadas</th>
                                         <th>Ordenes Auditadas</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                   <div class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <%--tabla para generar el reporte de asignaciones, se oculta dentro de un modal--%>
+                            <table id="tablacupsreporte" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>CUPS</th>
+                                        <th>Descripcion</th>
+                                        <th>Descripcion Ciklos</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -470,6 +490,55 @@
                     </div>
                 </div>
             </div>
+
+            
+            <div class="container">
+                <!-- Modal para ingresar al detalle -->
+                <div class="modal fade" id="Modalnoadecuado" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="Modalnoadecuadotittle"></h4>
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="cinta_whit_sh">
+                                    <span>Cups:</span>
+                                    <label id="lblcups"></label>
+                                </div>
+                                 <div class="cinta_whit_sh">
+                                    <span>Detalle:</span>
+                                    <label id="lbldescrip"></label>
+                                </div>
+                                <div class="cinta_whit_sh">
+                                    <span>Paciente:</span>
+                                    <label id="lblpacie"></label>
+                                </div>
+
+                               <div class="col-lg-12 col-md-12" style="padding:0px">
+                                   <p style="margin:5px 0px 0px">Profesional Solicitante:</p>
+                                   <input type="text" id="txtP" placeholder="Ingresa el nombre del profesional" class="form-control">
+                                
+                                </div>
+
+                                <div class="cinta_whit_sh">
+                                    <span>Nivel Autorización:</span>
+                                    <label id="lblestagdoserv"></label>
+                                </div>
+                                <div class="cinta_whit_sh">
+                                    <span>Centro Generador de la Autorización:</span>
+                                    <label id="lbltigposerv"></label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <%--Pagina de asignacion de responsables--%>
         <div class="page" id="page-Responsables">

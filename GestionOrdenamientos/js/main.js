@@ -119,6 +119,10 @@ var archivos = [];
     $('#reporteasignaciones').on("click", function (e) {
         ObtenerResponsablesAsignaciones("spGestionOrdenamientos_ObtenerReporteResponsables");
     });
+
+    $('#reportecups').on("click", function (e) {
+        ObtenerReporteCUPS("spGestionOrdenamientos_ReporteCups");
+    });
     //////////////////////////////////////////////////////////////////////////////////////
     
 	var support = { transitions: Modernizr.csstransitions },
@@ -554,7 +558,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
     var footer = '';
 
     body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
-    body += '<div class="box_swith_mod"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_mod"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox" onclick="NoAdecuado(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
     body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
     body += '<p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">';
     body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
@@ -567,6 +571,8 @@ function abrirModalAcciones(posicion, posiciontabla) {
    
     $("#ModalAcciones .modal-body").append(body);
     $("#ModalAcciones .modal-footer").append(footer);
+
+    $('#checkAdecuado_' + posicion).prop('checked', true);
 
     var proveedor = $('#ddl_Proveedoress_' + posicion);
     proveedor.select2({
@@ -618,6 +624,21 @@ function abrirModalAcciones(posicion, posiciontabla) {
             }
         }
     });
+
+}
+
+function NoAdecuado(id,posiciontabla) {
+
+   console.log(id)
+   $('#ModalAcciones').modal('hide');
+
+   document.getElementById('Modalnoadecuadotittle').innerHTML = 'Reporte de no adecuado para la orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
+   document.getElementById('lblcups').innerHTML = datosorden[posiciontabla].Cups;
+   document.getElementById('lbldescrip').innerHTML = datosorden[posiciontabla].DescripcionNew;
+   document.getElementById('lblpacie').innerHTML = datosorden[posiciontabla].Id_Afiliado;
+
+   
+   $("#Modalnoadecuado").modal();
 
 }
 
@@ -698,6 +719,7 @@ function GuardarProovedor(posicion) {
             adecuado = 1;
         }        
 
+    console.log(adecuado)
         //console.log(proveedorasignado)
         //console.log(sedepromedan)
 
@@ -708,45 +730,45 @@ function GuardarProovedor(posicion) {
         } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
             swal('Evolution Ordenamientos', 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
         } else {
-            $.ajax({
-                url: "GestionOrdenamientos.aspx/actualizarOrdenes",
-                data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
-                    + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
-                    + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
-                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '" + sedepromedan + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
-                type: 'POST'
-            }).done(function (rest) {
-                if (rest.Error != undefined) {
-                    alert(rest.Error);
-                } else {
-                    var listaDatos = JSON.parse(rest.d);
-                    var datos = listaDatos.Table;
+            //$.ajax({
+            //    url: "GestionOrdenamientos.aspx/actualizarOrdenes",
+            //    data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
+            //        + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
+            //        + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
+            //        + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '" + sedepromedan + "'}",
+            //    contentType: "application/json; charset=utf-8",
+            //    dataType: "json",
+            //    async: true,
+            //    type: 'POST'
+            //}).done(function (rest) {
+            //    if (rest.Error != undefined) {
+            //        alert(rest.Error);
+            //    } else {
+            //        var listaDatos = JSON.parse(rest.d);
+            //        var datos = listaDatos.Table;
 
-                    if (listaDatos.Table.length > 0) {
+            //        if (listaDatos.Table.length > 0) {
 
-                        if (datos[0].Respuesta == "OK") {
-                            swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
-                            ////tr[posiciontabla].style.display = "none";
-                            //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
+            //            if (datos[0].Respuesta == "OK") {
+            //                swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
+            //                ////tr[posiciontabla].style.display = "none";
+            //                //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
 
-                            //borra la fila de la tabla en pantalla
-                            $('#tr_' + posicion).html('');
+            //                //borra la fila de la tabla en pantalla
+            //                $('#tr_' + posicion).html('');
 
-                            totalpendientes = totalpendientes - 1;
-                            document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
-                            $("#ModalAcciones").modal('hide');
-                        } else {
-                            swal('Evolution Ordenamientos', 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
-                        }
-                    }
-                    else {
-                        swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
-                    }
-                }
-            });
+            //                totalpendientes = totalpendientes - 1;
+            //                document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
+            //                $("#ModalAcciones").modal('hide');
+            //            } else {
+            //                swal('Evolution Ordenamientos', 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
+            //            }
+            //        }
+            //        else {
+            //            swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+            //        }
+            //    }
+            //});
         }
     }
 
@@ -1372,6 +1394,48 @@ function ObtenerResponsablesAsignaciones(spP) {
 
 }
 
+function ObtenerReporteCUPS(spP) {
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/cargarDatos",
+        data: "{ sp: '" + spP + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            //$('#tblasignacionesresponsables td').remove();
+            $('#tablacupsreporte tbody').html('');
+
+            if (listaDatos.Table.length > 0) {
+
+                for (var i = 0; i < datos.length; i++) {
+
+                    var tbl = '';
+                    tbl += '<tr>';
+                    tbl += '<td>' + datos[i].Codigo_Cups + '</td>';
+                    tbl += '<td>' + datos[i].DescripcionNew + '</td>';
+                    tbl += '<td>' + datos[i].Servicio + '</td>';
+                    tbl += '</tr>';
+
+                    $("#tablacupsreporte").append(tbl);
+                }
+
+                ExportToReportCups();
+            }
+            else {
+                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+            }
+        }
+    });
+
+}
+
 function obtenerDashboard(spP) {
 
         var cups = [];
@@ -1507,6 +1571,12 @@ function ExportToExcel() {
 
 function ExportToExcelResponsables() {
     var htmltable = document.getElementById('tblasignacionesresponsables');
+    var html = htmltable.outerHTML;
+    window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+}
+
+function ExportToReportCups() {
+    var htmltable = document.getElementById('tablacupsreporte');
     var html = htmltable.outerHTML;
     window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
 }
