@@ -560,17 +560,17 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox" onclick="GeneroAt4(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_mod" style="margin-bottom:5px"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox" onclick="NoAdecuado(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
 
-    body += '<select id="ddl_Noat4_' + posicion + '" style="width:100%" class="js-example-basic-single js-states form-control" ></select>';
+    body += '<div id="ddl_Div_' + posicion + '"><p style="margin:5px 0px 0px">Motivo AT4:</p><select id="ddl_Noat4_' + posicion + '" style="width:100%" class="js-example-basic-single js-states form-control" ></select></div>';
 
     body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
     body += '<p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">';
     body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
     body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
     body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
-    body += '<p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
-    body += '<select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>';
+    body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
     footer += '<button id="btnAsignarProveedor_' + posicion +
-                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ')">Guardar</button>';
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
    
     $("#ModalAcciones .modal-body").append(body);
     $("#ModalAcciones .modal-footer").append(footer);
@@ -581,10 +581,9 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
     var noat4 = $('#ddl_Noat4_' + posicion);
     noat4.select2({
-        placeholder: "Selecciona el porqué no se generó AT4 si es el caso"
-    });
-    noat4.prop('disabled', true);
-    
+        placeholder: "Selecciona el porqué no se generó AT4"
+    });   
+    $('#ddl_Div_' + posicion).hide();
 
     var proveedor = $('#ddl_Proveedoress_' + posicion);
     proveedor.select2({
@@ -593,21 +592,20 @@ function abrirModalAcciones(posicion, posiciontabla) {
     llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
   
     var sedes = $('#ddl_PromedanSede_' + posicion);  
-    sedes.hide();
+    $('#ddl_DivSede_' + posicion).hide();
       
     proveedor.on('change', function () {
         var value = $(this).val();
 
         if (value == "9000389264") {
-            sedes.show();
-            sedes.prop('disabled', false);
+            $('#ddl_DivSede_' + posicion).show();
             llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
             sedes.select2({
                 placeholder: "Selecciona la sede Promedan"
             });
 
         } else {            
-            sedes.prop('disabled', true);
+            $('#ddl_DivSede_' + posicion).hide();
             sedes.val('').trigger('change')//limpia el combito y la descripcion
             sedes.html('');
            
@@ -643,26 +641,48 @@ function abrirModalAcciones(posicion, posiciontabla) {
 
 function GeneroAt4(posicion, posiciontabla) {
 
-
     if (!$('#checkAt4_' + posicion).is(':checked')) {
         //at4 = 0;
-        $('#ddl_Noat4_' + posicion).prop('disabled', false);
+        //oculta proveedores y restea el valor
+        $('#ddl_Div_Proveedor' + posicion).hide();
+        $('#ddl_Proveedoress_' + posicion).val('');
+
+        //oculta las sedes y resetea el valor
+        $('#ddl_DivSede_' + posicion).hide();
+        $('#ddl_PromedanSede_' + posicion).val('');
+
+        $('#ddl_Div_' + posicion).show();        
         $('#ddl_Noat4_' + posicion).html('');
         $('#ddl_Noat4_' + posicion).append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Razon 1" + '">' + "Razon 1" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Razon 2" + '">' + "Razon 2" + '</option>');
     } else {
         //at4 = 1;
-        $('#ddl_Noat4_' + posicion).prop('disabled', true);
+        $('#ddl_Div_' + posicion).hide();       
         $('#ddl_Noat4_' + posicion).val('').trigger('change')
+        $('#ddl_Div_Proveedor' + posicion).show();
     }   
 
 }
 
-function NoAdecuado(id,posiciontabla) {
-
+function NoAdecuado(posicion, posiciontabla) {
    
-   $('#ModalAcciones').modal('hide');
+    $('#ModalAcciones').modal('hide');
+    $("#Modalnoadecuado .modal-body").html('');
+    $("#Modalnoadecuado .modal-footer").html('');
+
+    var footer = '';
+    var body = '';
+
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Motivo no Adecuada:</p><input type="text" id="txtObservacionesmotivo" placeholder="Ingresa el porque se considera no adecuada la orden." class="form-control"></div>';
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesaud" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control"></div> ';
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesgenera" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control"></div>';
+    body += '<div class="col-lg-12 col-md-12" style="padding-bottom:10px;padding-left:0px;padding-right:0px"><p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesionalsolicita" placeholder="Ingresa el nombre del profesional" class="form-control"></div>';
+    footer += '<button id="btnguardarNoAdecuado_' + posicion +
+                               '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 1 + ')">Guardar</button>';
+   
+    $("#Modalnoadecuado .modal-body").append(body);
+    $("#Modalnoadecuado .modal-footer").append(footer);
 
    document.getElementById('Modalnoadecuadotittle').innerHTML = 'Reporte de no adecuada para la orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
   
@@ -715,26 +735,23 @@ function FiltrarTablaSede() {
     }
 }
 
-function GuardarProovedor(posicion) {
-
-        
+function GuardarProovedor(posicion,opcion) {
+            
         var input, filter, table, tr, td, i;
         table = document.getElementById("tablaAsignar");
-        tr = table.getElementsByTagName("tr");    
-   
+        tr = table.getElementsByTagName("tr");      
         var idconsecutivo = posicion;
         var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
         var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
         var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
         var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
-        var noAt4motivo = $('#ddl_Noat4_' + posicion).val();
-    
+        var noAt4motivo = $('#ddl_Noat4_' + posicion).val();    
         var cie10 = $('#txtCIE10_' + posicion).val();
         var cie10desc = $('#txtCIE10Desc_' + posicion).val();
         var profesional = $('#txtProfesional_' + posicion).val();
         var at4 = 0;
         var adecuado = 0;
-
+        var motivonadecuado = $('#txtObservacionesmotivo').val();
 
         if (!$('#checkAt4_' + posicion).is(':checked')) {
             at4 = 0;
@@ -748,11 +765,21 @@ function GuardarProovedor(posicion) {
             adecuado = 1;
         }        
 
-        //console.log(at4)
-        //console.log(noAt4motivo)
-        //console.log(sedepromedan)
-
-        if (cie10.length > 0 && cie10desc.length == 0) {
+        if (opcion == 1) {
+            proveedorasignado = 'No Aplica';
+            observacionesaudit = $('#txtObservacionesaud').val();
+            observacionesagen = $('#txtObservacionesgenera').val();
+            profesional = $('#txtProfesionalsolicita').val();
+            at4 = 0;
+            sedepromedan = 'No Aplica';
+            noAt4motivo = 'No Aplica';
+        } else {
+            motivonadecuado = '';
+        }
+       
+        if (opcion == 1 && motivonadecuado.length == 0) {
+            swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar el motivo del porqué no se generó AT4.', 'warning');
+        }else if (cie10.length > 0 && cie10desc.length == 0) {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
         } else if ((proveedorasignado == "0" && at4 == 1) || (proveedorasignado == null && at4 == 1)) {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
@@ -760,13 +787,28 @@ function GuardarProovedor(posicion) {
             swal('Evolution Ordenamientos', 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
         } else if (at4 == 0 && noAt4motivo == 0) {
             swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4.', 'warning');
-        }else {
+        } else {
+            ////TEST VALUES
+            //console.log(noAt4motivo)
+            //console.log(at4)
+            //console.log(adecuado)
+            //console.log(observacionesaudit)
+            //console.log(observacionesagen)
+            //console.log(cie10)
+            //console.log(profesional)
+            //console.log(proveedorasignado)           
+            //console.log(sedepromedan)
+
+            //console.log(motivonadecuado)                 
+
+
             $.ajax({
                 url: "GestionOrdenamientos.aspx/actualizarOrdenes",
                 data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
                     + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
                     + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
-                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '" + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "'}",
+                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '"
+                    + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
@@ -791,6 +833,7 @@ function GuardarProovedor(posicion) {
                             totalpendientes = totalpendientes - 1;
                             document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
                             $("#ModalAcciones").modal('hide');
+                            $("#Modalnoadecuado").modal('hide');
                         } else {
                             swal('Evolution Ordenamientos', 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
                         }
