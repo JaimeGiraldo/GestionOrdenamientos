@@ -503,35 +503,30 @@
                                 <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
-                                <div class="cinta_whit_sh">
-                                    <span>Cups:</span>
-                                    <label id="lblcups"></label>
-                                </div>
-                                 <div class="cinta_whit_sh">
-                                    <span>Detalle:</span>
-                                    <label id="lbldescrip"></label>
-                                </div>
-                                <div class="cinta_whit_sh">
-                                    <span>Paciente:</span>
-                                    <label id="lblpacie"></label>
-                                </div>
 
-                               <div class="col-lg-12 col-md-12" style="padding:0px">
-                                   <p style="margin:5px 0px 0px">Profesional Solicitante:</p>
-                                   <input type="text" id="txtP" placeholder="Ingresa el nombre del profesional" class="form-control">
                                 
+                                  <div class="col-lg-12 col-md-12" style="padding:0px">
+                                    <p style="margin:5px 0px 0px">Motivo no Adecuada:</p>
+                                    <input type="text" id="txtObservacionesmotivo" placeholder="Ingresa el porque se considera no adecuada la orden." class="form-control">
                                 </div>
 
-                                <div class="cinta_whit_sh">
-                                    <span>Nivel Autorización:</span>
-                                    <label id="lblestagdoserv"></label>
+                                 <div class="col-lg-12 col-md-12" style="padding:0px">
+                                    <p style="margin:5px 0px 0px">Observaciones Generales:</p>
+                                    <input type="text" id="txtObservacionesgenera" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">
                                 </div>
-                                <div class="cinta_whit_sh">
-                                    <span>Centro Generador de la Autorización:</span>
-                                    <label id="lbltigposerv"></label>
+
+                                <div class="col-lg-12 col-md-12" style="padding:0px">
+                                    <p style="margin:5px 0px 0px">Observaciones Auditoria:</p>
+                                    <input type="text" id="txtObservacionesaud" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">
                                 </div>
+
+                                 <div class="col-lg-12 col-md-12" style="padding:0px">
+                                   <p style="margin:5px 0px 0px">Profesional Solicitante:</p>
+                                   <input type="text" id="txtProfesionalsolicita" placeholder="Ingresa el nombre del profesional" class="form-control">                                
+                                </div>
+
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer" >
                                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
                             </div>
                         </div>
