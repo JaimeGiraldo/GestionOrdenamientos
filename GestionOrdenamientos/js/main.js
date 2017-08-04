@@ -78,30 +78,7 @@ var archivos = [];
         SeleccionarCUPS();
     });
    
-    $("#ddlCups").select2({
-        placeholder: "Selecciona el CUPS"
-    });
-
-    $("#ddlEmpleado").select2({
-        placeholder: "Selecciona el Responsable"
-    });
-
-    $("#ddlCupsout").select2({
-        placeholder: "Selecciona la Descripción"
-    });
-
-    var cboEmpleado = $('#ddlEmpleado');
-    llenarCombos(cboEmpleado, "spOrdenamientos_ObtenerUsuarios");
-
-    var cboCups = $('#ddlCups');
-    llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");   
-
-    
-
-    //var cboCups = $('#selecttest');
-    //llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");
-    //$("#selecttest").select2();
-    
+        
     $("#btnAdd").on("click", function (e) {
         AsignarResponsables();
     });
@@ -324,64 +301,81 @@ function iniciarSesion(usuario, clave) {
 	    } else {
 
 	        var lista = JSON.parse(rest.d);
+	        var datos = lista.Table;
 
 	        if (lista.Table.length > 0) {
 
 	            if (lista.Table[0].respuesta == "OK") {
 
-                    //obtiene los datos para el dashboard
-	                obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
+                   for (var i = 0; i < datos.length; i++) {
+                        //Muestra el menu y la pagina correspondiente
+	                    $('#' + datos[i].Menu).show();
+	                    $('#' + datos[i].Pagina).show();
+	                    ObtenerDatosIniciales(datos[i].Menu, lista);
+                   }
+                  
+                   IdtipoOpt = lista.Table[0].idtipoid;
+                   IdOpt = lista.Table[0].identificacion;
+                   openMenu();                  
+                   $('#btnMenu').removeAttr('style');
+                   //ObtenerDatosIniciales(lista.Table[0].idtipousuario, lista);
 
-	                IdtipoOpt = lista.Table[0].idtipoid;
-	                IdOpt = lista.Table[0].identificacion;
+	                //if (lista.Table[0].idtipousuario == "0") {
+	                //    //si es un tipo usu o admin, vera todo el menu
+	                //    openMenu();
+	                //    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                //    consultarOrdenesProveedor(lista.Table[0].identificacion);
+	                //    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");	                    
+	                //    $('#btnMenu').removeAttr('style');
 
-	                if (lista.Table[0].idtipousuario == "0") {
-	                    //si es un tipo usu o admin, vera todo el menu
-	                    openMenu();
-	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
-	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                    consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");	                    
-	                    $('#btnMenu').removeAttr('style');
+	                //    var cboCupsOut = $('#ddlCupsout');
+	                //    llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
 
-	                    var cboCupsOut = $('#ddlCupsout');
-	                    llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
+	                //}else  if (lista.Table[0].idtipousuario == "1") {
+	                //    //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
 
-	                }else  if (lista.Table[0].idtipousuario == "1") {
-	                    //si es un tipo usu 1 optimizador, solo vera menu asignar y reportes
+                    //    //esconde los menus
+	                //    //$('#MenuCargaArchivo').show();
+	                //    //$('#MenuResponsables').show();
+	                //    //$('#MenuProveedor').show();
+	                //    //$('#MenuCUPS').show();
 
-                        //esconde los menus
-	                    $('#MenuCargaArchivo').hide();
-	                    $('#MenuResponsables').hide();
-	                    $('#MenuProveedor').hide();
-	                    $('#MenuCUPS').hide();
+                    //    //esconde las paginas	                        
+	                //    //$('#page-ImportarArchivo').show();
+	                //    //$('#page-Responsables').show();
+	                //    //$('#page-Proveedores').show();
+	                //    //$('#page-CUPS').show();
 
-                        //esconde las paginas	                        
-	                    $('#page-ImportarArchivo').hide();
-	                    $('#page-Responsables').hide();
-	                    $('#page-Proveedores').hide();
-	                    $('#page-CUPS').hide();
 
-	                    openMenu();
-	                    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
-	                    $('#btnMenu').removeAttr('style');
-	                } else if (lista.Table[0].idtipousuario == "2") {
-	                    //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
-	                    $('#MenuOptimizador').hide();
-	                    $('#MenuCargaArchivo').hide();
-	                    $('#MenuResponsables').hide();
-	                    $('#MenuCUPS').hide();
+	                //    var row_id = "MenuOptimizador";
+	                //    $('#' + row_id).show()
+	                //    //$('#MenuOptimizador').show();
+	                //    $('#page-AsignarAT4').show();
 
-	                    $('#page-AsignarAT4').hide();
-	                    $('#page-ImportarArchivo').hide();
-	                    $('#page-Responsables').hide();
-	                    $('#page-CUPS').hide();
+	                //    $('#MenuReportes').show();
+	                //    $('#page-DashBoard').show();
 
-	                    openMenu();
-	                    consultarOrdenesProveedor(lista.Table[0].identificacion);
-	                    $('#btnMenu').removeAttr('style');
-	                } else {
-	                    swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
-	                }
+	                //    openMenu();
+	                //    consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+	                //    $('#btnMenu').removeAttr('style');
+	                //} else if (lista.Table[0].idtipousuario == "2") {
+	                //    //si es un tipo usu 2 proveedor, solo vera el menu de proveedor y reportes
+	                //    $('#MenuOptimizador').hide();
+	                //    $('#MenuCargaArchivo').hide();
+	                //    $('#MenuResponsables').hide();
+	                //    $('#MenuCUPS').hide();
+
+	                //    $('#page-AsignarAT4').hide();
+	                //    $('#page-ImportarArchivo').hide();
+	                //    $('#page-Responsables').hide();
+	                //    $('#page-CUPS').hide();
+
+	                //    openMenu();
+	                //    consultarOrdenesProveedor(lista.Table[0].identificacion);
+	                //    $('#btnMenu').removeAttr('style');
+	                //} else {
+	                //    swal('Evolution Ordenamientos', 'Lo sentimos, el usuario no tiene un rol valido definido, favor comunicarse con el área de sistemas.', 'warning');
+	                //}
 
 	                $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
@@ -395,6 +389,40 @@ function iniciarSesion(usuario, clave) {
 	        }
 	    }
 	});
+}
+
+function ObtenerDatosIniciales(Menu, lista) {
+    switch (Menu) {
+        case "MenuResponsables":
+            consultarAsignaciones("spGestionOrdenamiento_ListarResponsables");
+            $("#ddlCups").select2({
+                placeholder: "Selecciona el CUPS"
+            });
+            $("#ddlEmpleado").select2({
+                placeholder: "Selecciona el Responsable"
+            });
+            var cboEmpleado = $('#ddlEmpleado');
+            llenarCombos(cboEmpleado, "spOrdenamientos_ObtenerUsuarios");
+            var cboCups = $('#ddlCups');
+            llenarCombos(cboCups, "spOrdenamientos_Obtener_ListaCUPS");
+            break;
+        case "MenuOptimizador":
+            consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
+            break;
+        case "MenuProveedor":
+            consultarOrdenesProveedor(lista.Table[0].identificacion);
+            break;
+        case "MenuCUPS":
+            $("#ddlCupsout").select2({
+                placeholder: "Selecciona la descripcion dada desde ciklos"
+            });
+            var cboCupsOut = $('#ddlCupsout');
+            llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
+            break;
+        case "MenuReportes":
+            obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
+            
+    }
 }
     
 //consultar ordenes para optimizar
@@ -1322,7 +1350,7 @@ function AsignarResponsables() {
         //console.log($('#selecttest').val())
 
         if (idresponsable.length == 0 || cups == "null" || idresponsable == 0) {
-            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un resposable de la lista.', 'warning');
+            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un responsable de la lista.', 'warning');
         }else if (cups.length = 0 || cups == "null" || cups == 0) {
             swal('EvolutionNet', 'Lo sentimos, debes seleccionar un cups de la lista.', 'warning');
         } else {

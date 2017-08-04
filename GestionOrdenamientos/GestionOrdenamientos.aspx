@@ -73,12 +73,12 @@
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
         --%>
         
-        <div id="MenuCargaArchivo" class="pages-nav__item"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
-        <div id="MenuResponsables" class="pages-nav__item"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
-        <div id="MenuOptimizador" class="pages-nav__item"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
-        <div id="MenuProveedor" class="pages-nav__item"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
-        <div id="MenuCUPS" class="pages-nav__item"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
-        <div id="MenuReportes" class="pages-nav__item"><a id="btnGrafico" class="link link--page" href="#page-Resultado1"><span class="icon-stats"></span>Dashboard</a></div>
+        <div id="MenuCargaArchivo" class="pages-nav__item" style="display:none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
+        <div id="MenuResponsables" class="pages-nav__item" style="display:none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
+        <div id="MenuOptimizador" class="pages-nav__item" style="display:none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
+        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
+        <div id="MenuCUPS" class="pages-nav__item" style="display:none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
+        <div id="MenuReportes" class="pages-nav__item" style="display:none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
         
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
@@ -127,7 +127,7 @@
         </div>
 	   
         
-        <div class="page" id="page-Resultado1">
+        <div class="page" id="page-DashBoard" style="display:none">
            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Análisis y Reportes</h1>
@@ -358,7 +358,7 @@
 
         </div>
        <%-- pagina para optimizacion--%>
-        <div class="page" id="page-AsignarAT4">
+        <div class="page" id="page-AsignarAT4" style="display:none">
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
                 <p id="optimi">Favor consultar la orden y asignarle el provedor correspondiente.</p>
@@ -516,7 +516,7 @@
 
         </div>
         <%--Pagina de asignacion de responsables--%>
-        <div class="page" id="page-Responsables">
+        <div class="page" id="page-Responsables" style="display:none">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
                 <p>Seleccione el personal que va a realizar la optimización.</p>
@@ -534,12 +534,12 @@
 
                         <div class="col-md-3">
                             <label class="s16 color-white">Responsable:</label>
-                            <select id="ddlEmpleado" class="form-control color-blue"></select>
+                            <select id="ddlEmpleado" class="form-control color-blue" style="width:100%"></select>
                         </div>
 
                         <div class="col-md-5">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCups"  class="js-example-basic-single js-states form-control" ></select>
+                            <select id="ddlCups"  class="js-example-basic-single js-states form-control" style="width:100%"></select>
                         </div>
 
                         <div class="col-md-2" >
@@ -574,7 +574,7 @@
             </div>
         </div>
        <%-- pagina para importacion de archivo--%>
-        <div class="page" id="page-ImportarArchivo">
+        <div class="page" id="page-ImportarArchivo" style="display:none">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Importar Archivo</h1>
                 <p>Ingresar el archivo de ordenes generadas para los prestadores al sistema.</p>
@@ -635,7 +635,7 @@
             </div>
         </div>
 
-        <div class="page" id="page-Proveedores">
+        <div class="page" id="page-Proveedores" style="display:none">
             <header class="bp-header cf">
                 <h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>
                 <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes e incluir soportes de ejecución.</p>
@@ -735,7 +735,7 @@
             </div>
         </div>
 
-          <div class="page" id="page-CUPS">
+          <div class="page" id="page-CUPS" style="display:none">
             <header class="bp-header cf">
                 <h1  class="bp-header__title">Administrar CUPS</h1>
                 <p>Sistema para administración y control de los CUPS que usa el programa en general y su parametrización.</p>
@@ -747,7 +747,7 @@
                        
                         <div class="col-md-10">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCupsout"  class="js-example-basic-single js-states form-control" ></select>
+                            <select id="ddlCupsout"  class="js-example-basic-single js-states form-control" style="width:100%"></select>
                         </div>
                                               
 
