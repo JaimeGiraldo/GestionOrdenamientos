@@ -823,17 +823,32 @@ function GuardarProovedor(posicion,opcion) {
                     if (listaDatos.Table.length > 0) {
 
                         if (datos[0].Respuesta == "OK") {
-                            swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
-                            ////tr[posiciontabla].style.display = "none";
-                            //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
 
-                            //borra la fila de la tabla en pantalla
-                            $('#tr_' + posicion).html('');
+                            if (opcion == 1) {
+                                //envia un correo con el reporte de la orden no adecuada
+                                EnviarEmailNoAdecuado(posicion);
+                                //borra la fila de la tabla en pantalla
+                                $('#tr_' + posicion).html('');
 
-                            totalpendientes = totalpendientes - 1;
-                            document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
-                            $("#ModalAcciones").modal('hide');
-                            $("#Modalnoadecuado").modal('hide');
+                                totalpendientes = totalpendientes - 1;
+                                document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
+                                $("#ModalAcciones").modal('hide');
+                                $("#Modalnoadecuado").modal('hide');
+
+                            } else {
+                                swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
+                                ////tr[posiciontabla].style.display = "none";
+                                //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
+
+                                //borra la fila de la tabla en pantalla
+                                $('#tr_' + posicion).html('');
+
+                                totalpendientes = totalpendientes - 1;
+                                document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
+                                $("#ModalAcciones").modal('hide');
+                                $("#Modalnoadecuado").modal('hide');
+                            }
+
                         } else {
                             swal('Evolution Ordenamientos', 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
                         }
@@ -845,6 +860,42 @@ function GuardarProovedor(posicion,opcion) {
             });
         }
     }
+
+function EnviarEmailNoAdecuado(posicion) {
+
+    //console.log(posicion)
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/enviarEmail",
+        data: "{ posicion: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+        } else {
+            //Obtenemos la lista
+            var lista = JSON.parse(rest.d);
+
+            // $.each(lista, function (index, value) {
+            //Incrustamos las opciones del SelectList
+            for (var i = 0; i < lista.Table.length; i++) {
+
+                if (lista.Table[i].Respuesta == "OK") {
+                    swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente y se envió un correo con el detalle de inadecuación.', 'success');
+                } else {
+                    swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo, favor comunicarse con sistemas.', 'warning');
+                }
+
+            }
+            // });
+        }
+
+    });
+
+}
+
 
 function MasInformacion(posicion) {
   

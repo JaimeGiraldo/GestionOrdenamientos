@@ -366,6 +366,43 @@ namespace GestionOrdenamientos
             }
         }
 
+        
+
+        //Enviar Email cuando la orden es no adecuada
+        public string EnviarEmail(string posicion)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_EnviarEmailNoAdecuadas" + "'" + posicion + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string enviarEmail(string posicion)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.EnviarEmail(posicion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //carga los datos de los combos
         public string CargarDatos(string sp)
