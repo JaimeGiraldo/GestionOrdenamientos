@@ -2,6 +2,7 @@
 var colores = ['#FC1404', '#E91E63', '#9C27B0', '#0E2DDC', '#1ecbf2', '#009688', '#8B092E', '#DDF02B', '#FF7103', '#ffcb8e', '#64F510', '#FFFF00'];
 var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard,nombrearchivo,listacupsout;
 var idtipoidaux = "CC";
+var swalheadertxt = "Ordenamientos";
 
 var archivos = [];
 ; (function (window) {
@@ -27,7 +28,7 @@ var archivos = [];
             usuario = $('#txtUsuario').val();
             var clave = $('#txtContraseña').val();
             if (usuario.length == 0 || clave.length == 0) {
-                swal('Evolution', 'Los campos usuario y contraseña son necesarios!', 'warning');
+                swal(swalheadertxt, 'Los campos usuario y contraseña son necesarios!', 'warning');
                 return;
             }
             iniciarSesion(usuario, clave);
@@ -39,7 +40,7 @@ var archivos = [];
         usuario = $('#txtUsuario').val();
         var clave = $('#txtContraseña').val();
         if (usuario.length == 0 || clave.length == 0) {
-            swal('Evolution', 'Los campos usuario y contraseña son necesarios.', 'warning');
+            swal(swalheadertxt, 'Los campos usuario y contraseña son necesarios.', 'warning');
             return;
         }
 
@@ -381,11 +382,21 @@ function iniciarSesion(usuario, clave) {
 	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
 	                    
 	            } else {
-	                swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'warning');
+	                swal({
+	                    title: swalheadertxt,
+	                    text: "Lo sentimos, no tienes permisos para ingresar.",
+	                    type: "error",
+	                    confirmButtonText: "ACEPTAR"
+	                });	                
 	            }
 	        }
 	        else {
-	            swal('Evolution Ordenamientos', 'Lo sentimos, no tienes permisos para ingresar.', 'error');
+	            swal({
+	                title: swalheadertxt,
+	                text: "Lo sentimos, no tienes permisos para ingresar.",
+	                type: "error",
+	                confirmButtonText: "ACEPTAR"
+	            });
 	        }
 	    }
 	});
@@ -657,7 +668,13 @@ function abrirModalAcciones(posicion, posiciontabla) {
             var diagnostico = $('#txtCIE10_' + posicion).val();
           
             if (diagnostico.length == 0) {
-                swal('Evolution Ordenamientos', 'Lo sentimos, El campo de diagnóstico no puede estar vacío, debes ingresar un diagnóstico valido.', 'warning');
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, el campo diagnóstico no puede estar vacío, debes ingresar un diagnóstico valido, ejemplo: S017.",
+                    type: "info",
+                    confirmButtonText: "ACEPTAR"
+                });
+               
                
             } else {
                 ObtenerDiagnosticos(diagnostico, posicion);
@@ -739,7 +756,13 @@ function ObtenerDiagnosticos(diagnostico, posicion) {
                 controldiagnostico.val(listaDatos.Table[0].Descripcion);
             } else {
                 controldiagnostico.val('');
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontró el diagnóstico que ingresado.', 'warning');
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se encontró el diagnóstico ingresado.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+                
             }
         }
     })
@@ -806,15 +829,15 @@ function GuardarProovedor(posicion,opcion) {
         }
        
         if (opcion == 1 && motivonadecuado.length == 0) {
-            swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar el motivo del porqué no se generó AT4.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes ingresar el motivo del porqué no se generó AT4.', 'warning');
         }else if (cie10.length > 0 && cie10desc.length == 0) {
-            swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
         } else if ((proveedorasignado == "0" && at4 == 1) || (proveedorasignado == null && at4 == 1)) {
-            swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista', 'warning');
         } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
-            swal('Evolution Ordenamientos', 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
         } else if (at4 == 0 && noAt4motivo == 0) {
-            swal('Evolution Ordenamientos', 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4.', 'warning');
         } else {
             ////TEST VALUES
             //console.log(noAt4motivo)
@@ -864,7 +887,7 @@ function GuardarProovedor(posicion,opcion) {
                                 $("#Modalnoadecuado").modal('hide');
 
                             } else {
-                                swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente.', 'success');
+                                swal(swalheadertxt, 'Bien, la orden se auditó correctamente.', 'success');
                                 ////tr[posiciontabla].style.display = "none";
                                 //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
 
@@ -878,11 +901,11 @@ function GuardarProovedor(posicion,opcion) {
                             }
 
                         } else {
-                            swal('Evolution Ordenamientos', 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
+                            swal(swalheadertxt, 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
                         }
                     }
                     else {
-                        swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
                     }
                 }
             });
@@ -901,7 +924,7 @@ function EnviarEmailNoAdecuado(posicion) {
         type: 'POST'
     }).done(function (rest) {
         if (rest.Error != undefined) {
-            swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+            swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
         } else {
             //Obtenemos la lista
             var lista = JSON.parse(rest.d);
@@ -911,9 +934,9 @@ function EnviarEmailNoAdecuado(posicion) {
             for (var i = 0; i < lista.Table.length; i++) {
 
                 if (lista.Table[i].Respuesta == "OK") {
-                    swal('Evolution Ordenamientos', 'Bien, la orden se auditó correctamente y se envió un correo con el detalle de inadecuación.', 'success');
+                    swal(swalheadertxt, 'Bien, la orden se auditó correctamente y se envió un correo con el detalle de inadecuación.', 'success');
                 } else {
-                    swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo, favor comunicarse con sistemas.', 'warning');
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo, favor comunicarse con sistemas.', 'warning');
                 }
 
             }
@@ -986,12 +1009,12 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
         var adjunto = archivos.toString();
 
         if (orden.length == 0) {
-            swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar el número de la orden para continuar.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes ingresar el número de la orden para continuar.', 'warning');
             $('#check_' + posicion).prop('checked', false);
 
         } else  if (!$('#check_' + posicion).is(':checked')) {
             $('#check_' + posicion).prop('checked', true);
-            swal('Evolution Ordenamientos', 'Lo sentimos, esta orden ya fue diligenciada y no es posible cambiar el estado.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, esta orden ya fue diligenciada y no es posible cambiar el estado.', 'warning');
         } else {
            
 
@@ -1015,14 +1038,14 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
 
                             $('#txtOrden_' + idorden).prop("disabled", true);
                             $('#btnAdjunto_' + idorden).prop("disabled", true);
-                            swal('Evolution Ordenamientos', 'Bien, la orden se diligenció correctamente.', 'success');
+                            swal(swalheadertxt, 'Bien, la orden se diligenció correctamente.', 'success');
                       
                         } else {
-                            swal('Evolution Ordenamientos', 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
+                            swal(swalheadertxt, 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
                         }
                     }
                     else {
-                        swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
                     }
                 }
             });           
@@ -1036,7 +1059,7 @@ function SeleccionarCUPS() {
 
 
     if (descripcion.length == 0 || descripcion == "") {
-        swal('Evolution Ordenamientos', 'Lo sentimos, debes selecionar una descripcion valida.', 'warning');
+        swal(swalheadertxt, 'Lo sentimos, debes selecionar una descripcion valida.', 'warning');
     } else {
         for (var i = 0; i < listacupsout.Table.length; i++) {
             if (listacupsout.Table[i].Nit == descripcion) {
@@ -1070,7 +1093,7 @@ function GuardarCUPS(i) {
     //console.log(nuevadescripcion)
 
     if (cups.length == 0 || nuevadescripcion.length == 0) {
-        swal('Evolution Ordenamientos', 'Lo sentimos, debes ingresar un CUPS y la nueva descripción segun la resolución 1132.', 'warning');
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar un CUPS y la nueva descripción segun la resolución 1132.', 'warning');
     } else {
 
          $.ajax({
@@ -1082,7 +1105,7 @@ function GuardarCUPS(i) {
         type: 'POST'
     }).done(function (rest) {
         if (rest.Error != undefined) {
-            swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+            swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
         } else {
             //Obtenemos la lista
             var lista = JSON.parse(rest.d);
@@ -1100,15 +1123,15 @@ function GuardarCUPS(i) {
                     var cboCupsOut = $('#ddlCupsout');
                     llenarCombos(cboCupsOut, "spGestionOrdenamientos_ObtenerCupsSinAsignar");
 
-                    swal('Evolution Ordenamientos', 'Bien, la asignación se realizó correctamente.', 'success');
+                    swal(swalheadertxt, 'Bien, la asignación se realizó correctamente.', 'success');
                     
 
                 } else {
-                    swal('Evolution Ordenamientos', 'Lo sentimos, la descripcion seleccionada ya ah sido asignada, favor comunicarse con sistemas para revisar.', 'warning');
+                    swal(swalheadertxt, 'Lo sentimos, la descripcion seleccionada ya ah sido asignada, favor comunicarse con sistemas para revisar.', 'warning');
                 }
             }
             else {
-                swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
             }     
         }
 
@@ -1133,7 +1156,7 @@ function llenarCombos(combo, spP) {
             type: 'POST'
         }).done(function (rest) {
             if (rest.Error != undefined) {
-                swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+                swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
             } else {
                 //Obtenemos la lista
                 var lista = JSON.parse(rest.d);
@@ -1259,7 +1282,7 @@ function procesarArchivo() {
 
              
         if (archivos.length == 0 || nombrearchivo == archivos || archivos.toString().indexOf("error") != -1) {
-        swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron archivos o el archivo ya fue procesado anteriormente.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, no se encontraron archivos o el archivo ya fue procesado anteriormente.', 'warning');
         } else {
 
         $.ajax({
@@ -1276,10 +1299,10 @@ function procesarArchivo() {
 
             if (rest.d == "KO") {
                 //alert(rest.Error);
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron archivos con el formato adecuado.', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, no se encontraron archivos con el formato adecuado.', 'warning');
             } else {
                 nombrearchivo = archivos;
-                swal('Evolution Ordenamientos', 'Bien, proceso realizado con exito.', 'success');
+                swal(swalheadertxt, 'Bien, proceso realizado con exito.', 'success');
             }
 
             //if (rest.Error != undefined) {
@@ -1303,7 +1326,7 @@ function consultarAsignaciones(spP) {
             type: 'POST'
         }).done(function (rest) {
             if (rest.Error != undefined) {
-                swal('EvolutionNet', 'No tiene permisos para ingresar', 'warning');
+                swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
             } else {
                
                 var listaDatos = JSON.parse(rest.d);
@@ -1349,9 +1372,9 @@ function AsignarResponsables() {
         //console.log($('#selecttest').val())
 
         if (idresponsable.length == 0 || cups == "null" || idresponsable == 0) {
-            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un responsable de la lista.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un responsable de la lista.', 'warning');
         }else if (cups.length = 0 || cups == "null" || cups == 0) {
-            swal('EvolutionNet', 'Lo sentimos, debes seleccionar un cups de la lista.', 'warning');
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un cups de la lista.', 'warning');
         } else {
             
             $.ajax({
@@ -1383,14 +1406,14 @@ function AsignarResponsables() {
 
                             $("#tablaParametros").append(tbl);
                            
-                            swal('Evolution Ordenamientos', 'Bien, la asignación se realizó correctamente.', 'success');
+                            swal(swalheadertxt, 'Bien, la asignación se realizó correctamente.', 'success');
 
                         } else {
-                            swal('Evolution Ordenamientos', 'Lo sentimos, el CUPS ' + cups + ' ya fue asignado a ' + responsable +'.', 'warning');
+                            swal(swalheadertxt, 'Lo sentimos, el CUPS ' + cups + ' ya fue asignado a ' + responsable + '.', 'warning');
                         }
                     }
                     else {
-                        swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se actualizo.', 'warning');
+                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
                     }
                 }
             });
@@ -1419,13 +1442,13 @@ function EliminarResponsable(idasignacion) {
                         //borra la fila de la tabla en pantalla
                         $('#tr_' + idasignacion).html('');
                         //tr[posicion].style.display = "none";
-                        swal('Evolution Ordenamientos', 'Bien, la asignación se eliminó correctamente.', 'success');
+                        swal(swalheadertxt, 'Bien, la asignación se eliminó correctamente.', 'success');
                     } else {
-                        swal('Evolution Ordenamientos', 'Lo sentimos, la asignación no se eliminó correctamente.', 'warning');
+                        swal(swalheadertxt, 'Lo sentimos, la asignación no se eliminó correctamente.', 'error');
                     }
                 }
                 else {
-                    swal('Evolution Ordenamientos', 'Lo sentimos, el registro no se eliminó.', 'warning');
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se eliminó.', 'error');
                 }
             }
         });
@@ -1494,7 +1517,7 @@ function RepartirOrdenes() {
                 }
             }
             else {
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos, todas las ordenes ya fueron asignadas.', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, no se encontraron datos, todas las ordenes ya fueron asignadas.', 'info');
                 $("#loaderepartir").hide();
             }
         }
@@ -1539,7 +1562,7 @@ function ObtenerResponsablesAsignaciones(spP) {
                 ExportToExcelResponsables();
             }
             else {
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, no se encontraron datos.', 'warning');
             }
         }
     });
@@ -1581,7 +1604,7 @@ function ObtenerReporteCUPS(spP) {
                 ExportToReportCups();
             }
             else {
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, no se encontraron datos.', 'warning');
             }
         }
     });
@@ -1653,7 +1676,7 @@ function obtenerDashboard(spP) {
                     }
                 }
                 else {
-                    swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos.', 'warning');
+                    swal(swalheadertxt, 'Lo sentimos, no se encontraron datos.', 'warning');
                     $("#loaderdashboard").hide();
                 }
             }
@@ -1748,7 +1771,7 @@ function pintarGrafico2() {
         type: 'POST'
     }).done(function (rest) {
         if (rest.Error != undefined) {
-            swal('Evolution Ordenamientos', 'No tiene permisos para ingresar', 'warning');
+            swal(swalheadertxt, 'No se encontraron datos', 'error');
         } else {
             var listaDatos = JSON.parse(rest.d);
             var TipoServicio = listaDatos.Table;
@@ -1765,7 +1788,7 @@ function pintarGrafico2() {
                 MostrarGrafico2(Servicios, Cantidades, 10);
 
             } else {
-                swal('Evolution Ordenamientos', 'Lo sentimos, no se encontraron datos', 'warning');
+                swal(swalheadertxt, 'Lo sentimos, no se encontraron datos', 'warning');
             }
     
         }
@@ -1856,4 +1879,26 @@ function pintarGrafico3() {
         }]
     });
         
- }
+}
+
+function showNotification(from, align) {
+
+    //type = ['default','primary', 'info', 'success', 'warning', 'danger'];
+    //color = Math.floor((Math.random() * 4) + 1);
+
+    $.notify({
+        icon: "help_outline",
+        message: "<b>Responsables: </b>Se asignan las personas que optimizaran las ordenes en funcion del CUPS."
+
+    }, {
+        //type: type[color],
+        type: 'info',
+        timer: 4000,
+        placement: {
+            from: from,
+            align: align
+        }
+    });
+
+
+}

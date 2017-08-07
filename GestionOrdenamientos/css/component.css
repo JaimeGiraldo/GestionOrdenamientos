@@ -2288,3 +2288,9 @@ select, input {
     margin-bottom: 0;
 }
 
+.helpicon {
+    cursor:pointer;
+    text-align:end;
+    padding-top:20px;
+    padding-right:20px;
+}

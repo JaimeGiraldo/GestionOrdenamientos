@@ -81,9 +81,11 @@
     <Content Include="images\fondo5.jpg" />
     <Content Include="images\fondo6.png" />
     <Content Include="images\fondo_reportes.png" />
+    <Content Include="images\icons8-Idea-40.png" />
     <Content Include="images\ic_search.png" />
     <Content Include="images\logoNuevo.png" />
     <Content Include="images\up_archivos_btn.png" />
+    <Content Include="js\bootstrap-notify.js" />
     <Content Include="js\drilldown.js" />
     <Content Include="js\dropzone.js" />
     <Content Include="js\exporting.js" />

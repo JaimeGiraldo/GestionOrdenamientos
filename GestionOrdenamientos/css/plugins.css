@@ -3205,14 +3205,15 @@ body.waitMe_container {
 }
 .sweet-alert {
   background-color: #fff;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 478px;
-  padding: 17px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 15px;
   text-align: center;
   position: fixed;
   left: 50%;
   top: 50%;
-  margin-left: -256px;
+  margin-left: -240px;
   margin-top: -200px;
   overflow: hidden;
   display: none;
@@ -3227,6 +3228,43 @@ body.waitMe_container {
     right: 15px;
   }
 }
+.sweet-alert h2 {
+    color: #575757;
+    font-size: 25px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: none;
+    position: relative;
+    /*margin: 25px 0;*/
+    padding: 0;
+    line-height: 40px;
+    display: block; }
+.sweet-alert p {
+    color: #797979;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 300;
+    position: relative;
+    text-align: inherit;
+    float: none;
+    margin: 0;
+    padding: 0;
+    line-height: normal; }
+.sweet-alert button {
+    background-color: #0fd0b6;
+    color: white;
+    border: none;
+    box-shadow: none;
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-border-radius: 4px;
+    border-radius: 100em;
+    padding: 10px 32px;
+    margin: 26px 5px 0 5px;
+    cursor: pointer; 
+    width:10em;
+    display:initial;
+}
 .sweet-alert .icon {
   width: 80px;
   height: 80px;
@@ -3236,6 +3274,7 @@ body.waitMe_container {
   position: relative;
   box-sizing: content-box;
 }
+
 .sweet-alert .icon.error {
   border-color: #db5565;
 }
@@ -3402,6 +3441,8 @@ body.waitMe_container {
   background-position: center center;
   background-repeat: no-repeat;
 }
+
+
 .sweet-alert .btn-default {
   margin-right: 10px;
 }

@@ -26,6 +26,7 @@
 
     <!-- jQuery -->
     <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap-notify.js"></script>
     <%--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>--%>
     <!-- jQuery easing plugin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" type="text/javascript"></script>
@@ -517,9 +518,14 @@
         </div>
         <%--Pagina de asignacion de responsables--%>
         <div class="page" id="page-Responsables" style="display:none">
+             <div class="col-lg-12 col-md-12 helpicon">
+                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right')" style="width:30px;height:30px"/>
+                </div>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
                 <p>Seleccione el personal que va a realizar la optimización.</p>
+
+                 
                <%-- <div class="col-md-3">
                     <label class="s16">Responsable:</label>
                     <select id="selecttest" class="js-example-basic-single js-states form-control" multiple="multiple">
