@@ -113,7 +113,7 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="admin" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
@@ -470,6 +470,64 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="container">
+                <!-- Modal para ingresar al detalle de una orde repetida -->
+                <div class="modal fade" id="ModalOrdenRepetida" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom:0px">
+                                <h4 id="ModaltittleOrdenRepetida">Detalle de la Orden ya Optimizada</h4>
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Codigo Ciklos:</span>
+                                    <label id="lblcodigo"></label>
+                                </div>
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Fecha Registro:</span>
+                                    <label id="lblFecha"></label>
+                                </div>
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Fecha Optimización:</span>
+                                    <label id="lblFechaOpt"></label>
+                                </div>
+
+                                <div class="cinta_whit_sh">
+                                    <span>Responsable:</span>
+                                    <label id="lblresponsable"></label>
+                                </div>
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Paciente:</span>
+                                    <label id="lblpacientet"></label>
+                                </div> 
+
+                                <div class="cinta_whit_sh">
+                                    <span>Cups:</span>
+                                    <label id="lblCups"></label>
+                                </div>
+
+                                 <div>                                    
+                                    <label id="lbldetalle" style="text-align:center"></label>
+                                </div>
+
+                                                            
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btnOmitirOrden" class="btn btn-success">Omitir Orden</button>
+                                <button type="button" id="btnAuditarOrden" class="btn btn-success">Auditar Orden</button>
                             </div>
                         </div>
                     </div>

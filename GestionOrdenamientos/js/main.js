@@ -478,7 +478,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                    tbl += '<td>' + datos[i].DescripcionNew + '</td>';
 	                    tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
-                                '" class="btn btn-primary" onclick="abrirModalAcciones(' + datos[i].idConsecutivo + ',' + i + ')">Auditar</button>' + '</td>';
+                                '" class="btn btn-primary" onclick="ValidarOrden(' + datos[i].idConsecutivo + ',' + i + ')">Auditar</button>' + '</td>';
 	                    tbl += '</tr>';	                        
                         
 	                    $("#tablaAsignar").append(tbl);
@@ -586,7 +586,141 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
 
+
+function ValidarOrden(posicion, posiciontabla) {
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/validarOrden",
+        data: "{ Id: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            if (listaDatos.Table.length > 0) {
+                if (datos[0].Respuesta == "OK") {
+
+                    swal({
+                        title: swalheadertxt,
+                        text: "Ya existe una orden similar que anteriormente fue optimizada!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "Volver",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Continuar",
+                        closeOnConfirm: true
+                    },
+                    function () {
+                        document.getElementById('lblcodigo').innerHTML = datos[0].Codigo_Solicitud_Ciklos;
+                        document.getElementById('lblFecha').innerHTML = datos[0].Fecha_Registro_Solicitud;
+                        document.getElementById('lblFechaOpt').innerHTML = datos[0].Fecha_Registro_Solicitud;
+                        document.getElementById('lblresponsable').innerHTML = datos[0].NombreCompleto;
+                        document.getElementById('lblCups').innerHTML = datos[0].Cups;
+                        document.getElementById('lbldetalle').innerHTML = datos[0].Descripcion;
+                        document.getElementById('lblpacientet').innerHTML = datos[0].id_afiliado;
+
+                        $("#ModalOrdenRepetida").modal();
+
+
+                        $("#btnOmitirOrden").on("click", function (e) {
+                          
+                            swal({
+                                title: swalheadertxt,
+                                text: "¿Estas segur@ que la orden debe ser omitida?",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Si",
+                                cancelButtonText: "No",
+                                closeOnConfirm: false
+                            }, function () {
+                                GuardarOrdenRepetida(posicion);                              
+                             });
+                        });
+
+                        $("#btnAuditarOrden").on("click", function (e) {
+                            $('#ModalOrdenRepetida').modal('hide');
+                            //$('#ModalOrdenRepetida').modal('toggle');
+                            abrirModalAcciones(posicion, posiciontabla);
+                        });
+
+                        //swal(swalheadertxt, "La Orden se omitio correctamente.", "success");
+                   });
+
+                } else {
+                    //console.log("ko")
+                    abrirModalAcciones(posicion, posiciontabla);
+                }
+                //datos[i].FechaOptimizacion
+            }else {
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+                
+
+            }
+        }
+    });
+}
+
+function GuardarOrdenRepetida(posicion) {
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/guardarOrdenrepetida",
+        data: "{ Id: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            if (listaDatos.Table.length > 0) {
+                if (datos[0].Respuesta == "OK") {
+
+                    //borra la fila de la tabla en pantalla
+                    $('#tr_' + posicion).html('');
+
+                    swal(swalheadertxt, "Bien, la orden se omitio correctamente", "success");
+                    $('#ModalOrdenRepetida').modal('hide');
+
+                } else {
+                    swal({
+                        title: swalheadertxt,
+                        text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                        type: "error",
+                        confirmButtonText: "ACEPTAR"
+                    });
+                }
+            } else {
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+
+
+            }
+        }
+    });
+
+}
+
 function abrirModalAcciones(posicion, posiciontabla) {
+
 
     //console.log(posiciontabla)
 
@@ -719,7 +853,7 @@ function NoAdecuado(posicion, posiciontabla) {
     var footer = '';
     var body = '';
 
-    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Motivo no Adecuada:</p><input type="text" id="txtObservacionesmotivo" placeholder="Ingresa el porque se considera no adecuada la orden." class="form-control"></div>';
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Motivo no Adecuada:</p><select id="txtObservacionesmotivo" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
     body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesaud" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control"></div> ';
     body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesgenera" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control"></div>';
     body += '<div class="col-lg-12 col-md-12" style="padding-bottom:10px;padding-left:0px;padding-right:0px"><p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesionalsolicita" placeholder="Ingresa el nombre del profesional" class="form-control"></div>';
@@ -728,6 +862,16 @@ function NoAdecuado(posicion, posiciontabla) {
    
     $("#Modalnoadecuado .modal-body").append(body);
     $("#Modalnoadecuado .modal-footer").append(footer);
+
+    $("#txtObservacionesmotivo").select2({
+        placeholder: "Selecciona el motivo"
+    });
+    $("#txtObservacionesmotivo").append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
+    $("#txtObservacionesmotivo").append('<option value="' + "Completar HC" + '">' + "Completar HC" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Completar Estudios" + '">' + "Completar Estudios" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Anulada" + '">' + "Anulada" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Repetida" + '">' + "Repetida" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Innecesaria" + '">' + "Innecesaria" + '</option>');
 
    document.getElementById('Modalnoadecuadotittle').innerHTML = 'Reporte de no adecuada para la orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
   
@@ -828,8 +972,8 @@ function GuardarProovedor(posicion,opcion) {
             motivonadecuado = '';
         }
        
-        if (opcion == 1 && motivonadecuado.length == 0) {
-            swal(swalheadertxt, 'Lo sentimos, debes ingresar el motivo del porqué no se generó AT4.', 'warning');
+        if (opcion == 1 && motivonadecuado == 0) {
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4.', 'warning');
         }else if (cie10.length > 0 && cie10desc.length == 0) {
             swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
         } else if ((proveedorasignado == "0" && at4 == 1) || (proveedorasignado == null && at4 == 1)) {
@@ -1796,7 +1940,6 @@ function pintarGrafico2() {
     });   
            
 }
-
 
 function MostrarGrafico2(tiporeque, totalreque, totalgeneral) {
     

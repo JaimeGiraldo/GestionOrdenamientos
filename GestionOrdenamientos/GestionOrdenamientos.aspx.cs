@@ -366,7 +366,76 @@ namespace GestionOrdenamientos
             }
         }
 
-        
+
+        //Validar Orden
+        public string ValidarOrden(string Id)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ValidarOrden" + "'" + Id + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string validarOrden(string Id)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ValidarOrden(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Guardar Orden Repetida
+        public string GuardarOrdenrepetida(string Id)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_GuardarOrdenrepetida" + "'" + Id + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarOrdenrepetida(string Id)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarOrdenrepetida(Id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         //Enviar Email cuando la orden es no adecuada
         public string EnviarEmail(string posicion)
