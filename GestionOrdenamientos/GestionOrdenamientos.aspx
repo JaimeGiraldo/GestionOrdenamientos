@@ -113,7 +113,7 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="123" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field" value="1234" placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>                                
                             </div>
                             <div class="control-group">
@@ -703,6 +703,20 @@
             <header class="bp-header cf">
                 <h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>
                 <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes e incluir soportes de ejecución.</p>
+
+                 <div class="col-md-3">
+                    <label>Estado de la Orden:</label>
+                    <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>
+
+                <div class="col-md-6" id="divSedeProveedor">
+                    <label>Sede:</label>
+                    <select id="ddlSedeProveedor" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>
+                 <div class="col-md-3" style="text-align:end;padding-top:25px">
+                    <button id="btnConsultarOrdenesProveedor">Consultar</button>
+                </div>
+                 
             </header>
             <div class="container">
                 <div class="scroll_header_fixed">
