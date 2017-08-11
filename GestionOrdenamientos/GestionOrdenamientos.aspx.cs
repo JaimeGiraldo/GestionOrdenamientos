@@ -118,12 +118,12 @@ namespace GestionOrdenamientos
         }
         
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
-        public string ConsultarOrdenesxProveedor(string proveedor)
+        public string ConsultarOrdenesxProveedor(string proveedor,string estado,string idtipoid,string identificacion,string fechainicial,string fechafinal)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "','" + estado + "','" + idtipoid + "','" + identificacion + "','" + fechainicial + "','" + fechafinal + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -140,12 +140,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string consultarOrdenesxProveedor(string proveedor)
+        public static string consultarOrdenesxProveedor(string proveedor, string estado, string idtipoid,string identificacion, string fechainicial, string fechafinal)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor);
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor, estado, idtipoid, identificacion, fechainicial,fechafinal);
             }
             catch (Exception ex)
             {

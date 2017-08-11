@@ -54,7 +54,8 @@
                 <span id="lblNombreUsuario" class="nombre_usuario"></span>       
             </div>
             <div class="col-lg-3 col-md-3">
-                 <h4 id="lblUsuario" class="nombre_usuario"></h4>  
+                 <span id="lblUsuario" class="nombre_usuario"></span> 
+                 <h4 id="lblProveedor" class="nombre_usuario"></h4>  
             </div>
             <div class="col-lg-2 col-md-2" style="padding-right:11px">
                 <input type="button" id="btnSalir" value="Salir" />
@@ -77,7 +78,8 @@
         <div id="MenuCargaArchivo" class="pages-nav__item" style="display:none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
         <div id="MenuResponsables" class="pages-nav__item" style="display:none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
         <div id="MenuOptimizador" class="pages-nav__item" style="display:none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
-        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Proveedores</a></div>
+        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Contacto</a></div>
+        <div id="MenuProveedor2" class="pages-nav__item" style="display:none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-record "></span>Gestión</a></div>
         <div id="MenuCUPS" class="pages-nav__item" style="display:none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display:none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
         
@@ -701,19 +703,36 @@
 
         <div class="page" id="page-Proveedores" style="display:none">
             <header class="bp-header cf">
-                <h1 id="headerproveedor" class="bp-header__title">Proveedores</h1>
-                <p id="lblheaderproveedor">Favor confirmar las ordenes realizadas a los pacientes e incluir soportes de ejecución.</p>
+                <h1 id="headerproveedor" class="bp-header__title">Proveedores - Contacto</h1>
+                <p id="lblheaderproveedor">Favor validar las ordenes asignadas, contactar con el paciente para programar la atención y guardar la gestión realizada.</p>
 
-                 <div class="col-md-3">
+<%--                 <div class="col-md-3">
                     <label>Estado de la Orden:</label>
                     <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>--%>
+
+                 <div class="col-md-3">
+                    <label>Fecha Inicial:</label>
+                    <input type="date" id="ProveedorFechaInicial" class="form-control color-dark" />
                 </div>
 
-                <div class="col-md-6" id="divSedeProveedor">
-                    <label>Sede:</label>
-                    <select id="ddlSedeProveedor" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                 <div class="col-md-3">
+                    <label>Fecha Final:</label>
+                    <input type="date" id="ProveedorFechaFinal" class="form-control color-dark"/>
                 </div>
-                 <div class="col-md-3" style="text-align:end;padding-top:25px">
+
+
+                <div class="col-md-2">
+                    <label>Filtrar por:</label>
+                    <input id="txtfiltroespecialidad" class="form-control"  placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')"/>
+                </div>
+                                
+                <div class="col-md-2">
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede" class="form-control"  placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','1')"/>
+                </div>
+                              
+                 <div class="col-md-2" style="text-align:end;padding-top:25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
                 </div>
                  
@@ -732,12 +751,12 @@
                                     <thead>
                                         <tr>
                                             <th>Fecha Asignacion</th>
-                                            <th>Cups</th>
+                                            <th>Sede</th>
+                                            <th>Especialidad</th>
                                             <th>Descripción</th>
+                                            <th>Paciente</th>
                                             <th>Detalle</th>
-                                            <th>Orden</th>
-                                            <th>Soporte</th>
-                                            <th>Estado</th>
+                                            <th>Acción</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -758,30 +777,37 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body" style="padding: 40px 50px;">
+                                    
                                     <div class="cinta_whit_sh">
-                                        <span>Cups:</span>
-                                        <label id="lblcupsPro"></label>
-                                    </div>
-                                    <div class="cinta_whit_sh">
-                                        <span>Paciente:</span>
+                                        <span>ID Paciente:</span>
                                         <label id="lblpacientePro"></label>
                                     </div>
+                                   
                                     <div class="cinta_whit_sh">
-                                        <span>Usuario Asigno:</span>
-                                        <label id="lblusuregistroPro"></label>
-                                    </div>
-                                    <div class="cinta_whit_sh">
-                                        <span>Estado Solicitud:</span>
-                                        <label id="lblestadosoliPro"></label>
-                                    </div>
-                                    <div class="cinta_whit_sh">
-                                        <span>Estado Servicio:</span>
-                                        <label id="lblestadoservPro"></label>
-                                    </div>
-                                    <div class="cinta_whit_sh">
-                                        <span>Observaciones:</span>
-                                        <label id="lbltiposervPro"></label>
-                                    </div>
+                                        <span>Nombre Paciente:</span>
+                                        <label id="lblpacientenombre"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Contacto:</span>
+                                        <label id="lblcontacto"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Estado de la Orden:</span>
+                                        <label id="lblestado"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Observaciones Generales:</span>
+                                        <label id="lblobgene"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Observaciones Auditoria:</span>
+                                        <label id="lblobaud"></label>
+                                    </div> 
+                                   
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
@@ -812,6 +838,80 @@
                 </div>
             </div>
         </div>
+
+
+
+         <div class="page" id="page-Proveedores2" style="display:none">
+            <header class="bp-header cf">
+                <h1 id="headerproveedor2" class="bp-header__title">Proveedores 2</h1>
+                <p id="lblheaderproveedor2">Favor confirmar las ordenes realizadas a los pacientes e incluir soportes de ejecución.</p>
+
+<%--                 <div class="col-md-3">
+                    <label>Estado de la Orden:</label>
+                    <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>--%>
+
+                 <div class="col-md-3">
+                    <label>Fecha Inicial:</label>
+                    <input type="date" id="ProveedorFechaInicial2" class="form-control color-dark" />
+                </div>
+
+                 <div class="col-md-3">
+                    <label>Fecha Final:</label>
+                    <input type="date" id="ProveedorFechaFinal2" class="form-control color-dark"/>
+                </div>
+
+                <div class="col-md-2">
+                    <label>Filtro 1:</label>
+                    <input id="ddlEstadoOrden2" class="js-example-basic-single js-states form-control" style="width: 100%"/>
+                </div>
+
+                <div class="col-md-2">
+                    <label>Filtro 2:</label>
+                    <input id="ddlEsdstadoOrden2" class="js-example-basic-single js-states form-control" style="width: 100%"/>
+                </div>
+                              
+                 <div class="col-md-2" style="text-align:end;padding-top:25px">
+                    <button id="btnConsultarOrdenesProveedor2">Consultar</button>
+                </div>
+                 
+            </header>
+            <div class="container">
+                <div class="scroll_header_fixed">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="bluee">
+                                <h4 class="title">Listado de Ordenes</h4>
+                                <p class="category">Ordenes pendientes por gestión del proveedor</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="tablaProveedores2" class="table table-hover table-action">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha Asignacion</th>
+                                            <th>Cups</th>
+                                            <th>Descripción</th>
+                                            <th>Paciente</th>
+                                            <th>Detalle</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+          
+
+          
+            </div>
+        </div>
+
+
+
 
           <div class="page" id="page-CUPS" style="display:none">
             <header class="bp-header cf">
