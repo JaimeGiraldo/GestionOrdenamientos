@@ -241,7 +241,7 @@ html.js,
 .js .page {
 	position: relative;
 	z-index: 5;
-	overflow: auto;
+	/*overflow: auto;*/
 	width: 100%;
 	height: 100vh;
 	pointer-events: auto;
@@ -704,7 +704,7 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
 
 /* for custom scrollbar for webkit browser*/
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 ::-webkit-scrollbar-thumb { 
   background-color: #00b4ec;
@@ -742,6 +742,15 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
    color:white;
 }
 #btnConsultarOrdenesProveedor:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+#btnConsultarOrdenesProveedor2 {
+   background-color:#0c9688;   
+   color:white;
+}
+#btnConsultarOrdenesProveedor2:hover {   
     /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
     box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
 }

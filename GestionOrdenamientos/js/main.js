@@ -1,13 +1,13 @@
 
 var colores = ['#FC1404', '#E91E63', '#9C27B0', '#0E2DDC', '#1ecbf2', '#009688', '#8B092E', '#DDF02B', '#FF7103', '#ffcb8e', '#64F510', '#FFFF00'];
-var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard,nombrearchivo,listacupsout;
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard, nombrearchivo, listacupsout, datosordenproveedor, proveedorasignado, datosordenproveedor2;
 var idtipoidaux = "CC";
 var swalheadertxt = "Ordenamientos";
 
 var archivos = [];
 ; (function (window) {
   
-
+    
     //Animacion para los graficos dashboard
     Math.easeOutBounce = function (pos) {
         if ((pos) < (1 / 2.75)) {
@@ -432,14 +432,21 @@ function ObtenerDatosIniciales(Menu, lista) {
             //});
 
             $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
+            proveedorasignado = lista.Table[0].ProveedorAsignado;
                          
-            $("#btnConsultarOrdenesProveedor").on("click", function (e) {
-                if (lista.Table[0].ProveedorAsignado == '9000389264') {
-                    consultarOrdenesProveedor(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
-                } else {                   
-                    consultarOrdenesProveedor(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
-                }                
+            $("#btnConsultarOrdenesProveedor").on("click", function (e) {                                
+                consultarOrdenesProveedor(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);                                
             });           
+            break;
+            
+        case "MenuProveedor2":
+            $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
+            proveedorasignado = lista.Table[0].ProveedorAsignado;
+
+            $("#btnConsultarOrdenesProveedor2").on("click", function (e) {
+                consultarOrdenesProveedor2(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
+            });
+
             break;
         case "MenuCUPS":
             $("#ddlCupsout").select2({
@@ -514,7 +521,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	});
 }   
 	
-//consultar ordenes para optimizar
+//consultar ordenes desde el proveedor para contactar
 function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
    
     //var estado = $('#ddlEstadoOrden').val();
@@ -554,19 +561,20 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                     for (var i = 0; i < datos.length; i++) {
 
                         var tbl = '';
-                        tbl += '<tr>';
+                        tbl += '<tr id="tr_ContactoProveedor' + datos[i].idConsecutivo + '">';
                         tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
                         tbl += '<td>' + datos[i].SedePromedan + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
                         tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
                         tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
-                        tbl += '<td>' + '<button id="btngestion_' + datos[i].idConsecutivo + '" class="btn btn-primary">Gestionar</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btngestion_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor1(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
 
                         tbl += '</tr>';
                         $("#tablaProveedores").append(tbl);                       
                     }
-                    datosorden = datos; //
+                    datosordenproveedor = datos; //
+                   
                 } else {
                     swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
                     $('#tablaProveedores td').remove();
@@ -579,6 +587,71 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
 	
 }
    
+    //consultar ordenes desde el proveedor para la gestion final
+function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
+
+    //var estado = $('#ddlEstadoOrden').val();
+    var estado = "Impresa";
+    var fechainicial = $('#ProveedorFechaInicial2').val();
+    var fechafinal = $('#ProveedorFechaFinal2').val();
+
+    //console.log(fechainicial)
+
+    //if (estado == "0") {
+    //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
+    //} else
+
+    if (fechainicial == "") {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha inicial.', 'warning');
+    } else if (fechafinal == "") {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha final.', 'warning');
+    } else {
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+            data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
+                + idtipoid + "', identificacion: '" + identificacion + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+                $('#tablaProveedores2 td').remove();
+
+                if (listaDatos.Table.length > 0) {
+
+                    for (var i = 0; i < datos.length; i++) {
+
+                        var tbl = '';
+                        tbl += '<tr id="tr_ContactoProveedor2' + datos[i].idConsecutivo + '">';
+                        tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
+                        tbl += '<td>' + datos[i].SedePromedan + '</td>';
+                        tbl += '<td>' + datos[i].Especialidad + '</td>';
+                        tbl += '<td>' + datos[i].DescripcionNew + '</td>';
+                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
+                        tbl += '<td>' + '<button id="btninfoPro2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor2(' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btngestion2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor2(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
+
+                        tbl += '</tr>';
+                        $("#tablaProveedores2").append(tbl);
+                    }
+                    datosordenproveedor2 = datos; //
+
+                } else {
+                    swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
+                    $('#tablaProveedores2 td').remove();
+                }
+            }
+        });
+
+    }
+
+
+}
 
 // gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
 function getStackPagesIdxs(excludePageIdx) {
@@ -613,6 +686,155 @@ $(window).on("load resize ", function () {
   var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
+
+
+
+function AccionesProveedor2(posicion, i) {
+
+    $("#ModalAccionesProveedor2 .modal-body").html('');
+    $("#ModalAccionesProveedor2 .modal-footer").html('');
+
+    var body = '';
+    var footer = '';
+    body += '<div class="box_swith_mod"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_mod" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control color-dark" /></div>';
+    body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="Respecto al contacto del usuario." class="form-control">';
+    body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    footer += '<button id="btnGuardarContacto_' + posicion +
+                                   '" class="btn btn-primary" onclick="GuardarContactoProveedor(' + posicion + ')">Guardar</button>';
+
+    $("#ModalAccionesProveedor2 .modal-body").append(body);
+    $("#ModalAccionesProveedor2 .modal-footer").append(footer);
+    $('#checkContacto_' + posicion).prop('checked', true);
+
+    $('#dateFechaAsignacion_' + posicion).datetimepicker();
+
+    document.getElementById('ModaltittleAccionesProveedor2').innerHTML = 'Gestión de contacto para la Orden ' + datosordenproveedor2[i].Codigo_Solicitud_Ciklos;
+
+
+    $("#ModalAccionesProveedor2").modal();
+}
+
+
+function AccionesProveedor1(posicion,i) {
+
+    $("#ModalAccionesProveedor1 .modal-body").html('');
+    $("#ModalAccionesProveedor1 .modal-footer").html('');
+
+    body += '<div class="row"><div class="col-sm-3"><div class="form-group"><div class="input-group date" id="dateFechaAsignacion_' + posicion + '"><input type="text" class="form-control" /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span></div></div></div></div>';
+
+    var body = '';
+    var footer = '';
+    body += '<div class="box_swith_mod"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_mod" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control" /></div>';
+    body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="Respecto al contacto del usuario." class="form-control">';
+    body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    footer += '<button id="btnGuardarContacto_' + posicion +
+                                   '" class="btn btn-primary" onclick="GuardarContactoProveedor(' + posicion + ')">Guardar</button>';
+ 
+    $("#ModalAccionesProveedor1 .modal-body").append(body);
+    $("#ModalAccionesProveedor1 .modal-footer").append(footer);
+    $('#checkContacto_' + posicion).prop('checked', true);
+
+    
+    $('#dateFechaAsignacion_' + posicion).datetimepicker();
+
+    document.getElementById('ModaltittleAccionesProveedor1').innerHTML = 'Gestión de contacto para la Orden ' + datosordenproveedor[i].Codigo_Solicitud_Ciklos;
+
+    if (proveedorasignado == '9000389264') {
+
+        var profesional = $('#ddl_profesionalContacto_' + posicion);
+        profesional.select2({
+            placeholder: "Selecciona el Profesional"
+        });
+        llenarCombos(profesional, "spGestionOrdenamientos_ObtenerProfesionales");
+    } else {
+        $('#ddl_Div_Profesional' + posicion).hide();
+    }    
+
+    $("#ModalAccionesProveedor1").modal();
+}
+
+function ContactoUsuario(posicion) {
+
+    if (!$('#checkContacto_' + posicion).is(':checked')) {
+
+        $('#dateFechaAsignacion_' + posicion).prop('disabled', true);
+        $('#dateFechaAsignacion_' + posicion).val('');
+
+        $('#ddl_profesionalContacto_' + posicion).prop('disabled', true);
+        $('#ddl_profesionalContacto_' + posicion).val('');
+    } else {
+        $('#dateFechaAsignacion_' + posicion).prop('disabled', false);
+        $('#ddl_profesionalContacto_' + posicion).prop('disabled', false);
+
+    }
+}
+
+function GuardarContactoProveedor(posicion) {
+
+    var idorden = posicion;
+    var contactousuario = 0;
+    var fechaasigncion = $('#dateFechaAsignacion_' + posicion).val();
+    var observacionescontacto = $('#txtObservacionesContacto_' + posicion).val();
+    var profesional = $('#ddl_profesionalContacto_' + posicion).val();
+   
+     
+
+    if (!$('#checkContacto_' + posicion).is(':checked')) {
+        contactousuario = 0;
+    } else {
+        contactousuario = 1;
+    }
+
+    //console.log(contactousuario)
+    //console.log(fechaasigncion)
+    //console.log(observacionescontacto)
+    //console.log(profesional)
+    //console.log(posicion)
+
+    if (contactousuario == 1 && fechaasigncion == '') {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar la FECHA y HORA de asignación para continuar.', 'warning');
+    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && profesional == '0') {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un profesional de la lista para continuar.', 'warning');
+    } else if (contactousuario == 0 && observacionescontacto.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el detalle del porqué no se logró contactar al usuario en las observaciones.', 'warning');
+    } else {
+        
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/contactoProveedor",
+            data: "{ idorden: '" + idorden + "', contactousuario: '" + contactousuario + "', fechaasigncion: '" + fechaasigncion + "', observacionescontacto: '" + observacionescontacto + "', profesional: '" + profesional + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                if (listaDatos.Table.length > 0) {
+
+                    if (datos[0].Respuesta == "OK") {
+                        //borra la fila de la tabla en pantalla
+                        $('#tr_ContactoProveedor' + posicion).html('');
+                        $("#ModalAccionesProveedor1").modal('hide');
+                        swal(swalheadertxt, 'Bien, la orden se diligenció correctamente.', 'success');
+
+                    } else {
+                        swal(swalheadertxt, 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
+                    }
+                }
+                else {
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
+                }
+            }
+        });
+    }
+
+}
 
 function ProveedorOrdenesImpresa() {
 
@@ -1254,17 +1476,32 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
 
     function MasInformacionProveedor(posicion) {
 
-        document.getElementById('lblpacientePro').innerHTML = datosorden[posicion].Id_Afiliado;
-        document.getElementById('lblpacientenombre').innerHTML = datosorden[posicion].NombreCompleto;
-        document.getElementById('lblcontacto').innerHTML = datosorden[posicion].Contacto;
-        document.getElementById('lblestado').innerHTML = datosorden[posicion].EstadoProveedor;
-        document.getElementById('lblobgene').innerHTML = datosorden[posicion].ObservacionesGen;
-        document.getElementById('lblobaud').innerHTML = datosorden[posicion].ObservacionesAud;
+        document.getElementById('DetalleModalProveedortitle').innerHTML = 'Gestión de la Orden ' + datosordenproveedor[posicion].Codigo_Solicitud_Ciklos;
 
-       
+        document.getElementById('lblpacientePro').innerHTML = datosordenproveedor[posicion].Id_Afiliado;
+        document.getElementById('lblpacientenombre').innerHTML = datosordenproveedor[posicion].NombreCompleto;
+        document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
+        document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
+        document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
+        document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
 
         $("#DetalleModalProveedor").modal();
     }
+
+function MasInformacionProveedor2(posicion) {
+
+    document.getElementById('DetalleModalProveedortitle2').innerHTML = 'Gestión de la Orden ' + datosordenproveedor2[posicion].Codigo_Solicitud_Ciklos;
+
+    document.getElementById('lblpacientePro2').innerHTML = datosordenproveedor2[posicion].Id_Afiliado;
+    document.getElementById('lblpacientenombre2').innerHTML = datosordenproveedor2[posicion].NombreCompleto;
+    document.getElementById('lblcontacto2').innerHTML = datosordenproveedor2[posicion].Contacto;
+    document.getElementById('lblestado2').innerHTML = datosordenproveedor2[posicion].EstadoProveedor;
+    document.getElementById('lblobgene2').innerHTML = datosordenproveedor2[posicion].ObservacionesGen;
+    document.getElementById('lblobaud2').innerHTML = datosordenproveedor2[posicion].ObservacionesAud; 
+    document.getElementById('lblfechaeje').innerHTML = datosordenproveedor2[posicion].FechaAsignacion;
+
+    $("#DetalleModalProveedor2").modal();
+}
 
     function SeleccionarCUPS() {   
 

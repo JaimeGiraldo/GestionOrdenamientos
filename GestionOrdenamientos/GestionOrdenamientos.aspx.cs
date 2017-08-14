@@ -545,6 +545,44 @@ namespace GestionOrdenamientos
                 //return "KO";
             }
         }
-        
+
+
+        //hace la gestion del proveedor para contactar al usuario y programar el servicio o atencion
+        public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional)
+        {
+            try
+            {
+
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ContactoUsuarioProveedor" + "'" + idorden + "','" + contactousuario + "','" + fechaasigncion + "','" + observacionescontacto + "','" + profesional + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string contactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ContactoProveedor(idorden, contactousuario, fechaasigncion, observacionescontacto, profesional);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

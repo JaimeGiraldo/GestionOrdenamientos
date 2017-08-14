@@ -8,8 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Ordenamientos</title>
-    <meta name="description" content="Confirmamos tus fortalezas y actuamos con respecto a las necesidades más apremiantes." />
-    <meta name="author" content="Intelsa.co" />
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Latest compiled and minified CSS -->
@@ -23,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="fonts/alpina-dashicons/style.css" />
     <link href="css/select2.min.css" rel="stylesheet" />
     <script src="js/modernizr-custom.js"></script>
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet" />
 
     <!-- jQuery -->
     <script src="js/jquery-2.1.1.min.js"></script>
@@ -78,7 +77,7 @@
         <div id="MenuCargaArchivo" class="pages-nav__item" style="display:none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
         <div id="MenuResponsables" class="pages-nav__item" style="display:none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
         <div id="MenuOptimizador" class="pages-nav__item" style="display:none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
-        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-record "></span>Contacto</a></div>
+        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-calendar "></span>Contacto</a></div>
         <div id="MenuProveedor2" class="pages-nav__item" style="display:none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-record "></span>Gestión</a></div>
         <div id="MenuCUPS" class="pages-nav__item" style="display:none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display:none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
@@ -410,6 +409,7 @@
 
                             </div>
                             <div class="card-content table-responsive">
+                             <div class="scroll_header_fixed">
                                 <table id="tablaAsignar" class="table table-hover table-action">
                                     <thead>
                                         <tr>
@@ -427,6 +427,7 @@
                                     <tbody></tbody>
                                 </table>
                             </div>
+                           </div>
                         </div>
                     </div>
        
@@ -711,6 +712,9 @@
                     <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>--%>
 
+
+           
+
                  <div class="col-md-3">
                     <label>Fecha Inicial:</label>
                     <input type="date" id="ProveedorFechaInicial" class="form-control color-dark" />
@@ -738,14 +742,14 @@
                  
             </header>
             <div class="container">
-                <div class="scroll_header_fixed">
-
+                 <div class="scroll_header_fixed">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
                                 <h4 class="title">Listado de Ordenes</h4>
                                 <p class="category">Ordenes pendientes por gestión del proveedor</p>
                             </div>
+                           <div class="scroll_header_fixed">
                             <div class="card-content table-responsive">
                                 <table id="tablaProveedores" class="table table-hover table-action">
                                     <thead>
@@ -759,9 +763,10 @@
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody ></tbody>
                                 </table>
                             </div>
+                         </div>
                         </div>
                     </div>
 
@@ -773,7 +778,7 @@
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                    <h4 id="DetalleModalProveedortitle"><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body" style="padding: 40px 50px;">
@@ -836,6 +841,23 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="ModalAccionesProveedor1" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 id="ModaltittleAccionesProveedor1">Gestión de Contacto</h4>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
             </div>
         </div>
 
@@ -843,8 +865,8 @@
 
          <div class="page" id="page-Proveedores2" style="display:none">
             <header class="bp-header cf">
-                <h1 id="headerproveedor2" class="bp-header__title">Proveedores 2</h1>
-                <p id="lblheaderproveedor2">Favor confirmar las ordenes realizadas a los pacientes e incluir soportes de ejecución.</p>
+                <h1 id="headerproveedor2" class="bp-header__title">Proveedores - Gestión</h1>
+                <p id="lblheaderproveedor2">Favor confirmar las ordenes programadas a los pacientes e incluir los soportes de ejecución.</p>
 
 <%--                 <div class="col-md-3">
                     <label>Estado de la Orden:</label>
@@ -862,13 +884,13 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label>Filtro 1:</label>
-                    <input id="ddlEstadoOrden2" class="js-example-basic-single js-states form-control" style="width: 100%"/>
+                    <label>Filtrar por:</label>
+                    <input id="txtfiltroespecialidad2" class="form-control"  placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','2')"/>
                 </div>
-
+                                
                 <div class="col-md-2">
-                    <label>Filtro 2:</label>
-                    <input id="ddlEsdstadoOrden2" class="js-example-basic-single js-states form-control" style="width: 100%"/>
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede2" class="form-control"  placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede2','tablaProveedores2','1')"/>
                 </div>
                               
                  <div class="col-md-2" style="text-align:end;padding-top:25px">
@@ -883,14 +905,15 @@
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
                                 <h4 class="title">Listado de Ordenes</h4>
-                                <p class="category">Ordenes pendientes por gestión del proveedor</p>
+                                <p class="category">Ordenes pendientes por gestión del proveedor después de contactar al usuario.</p>
                             </div>
                             <div class="card-content table-responsive">
                                 <table id="tablaProveedores2" class="table table-hover table-action">
                                     <thead>
                                         <tr>
                                             <th>Fecha Asignacion</th>
-                                            <th>Cups</th>
+                                            <th>Sede</th>
+                                            <th>Especialidad</th>
                                             <th>Descripción</th>
                                             <th>Paciente</th>
                                             <th>Detalle</th>
@@ -905,7 +928,77 @@
 
                 </div>
           
+                   <div class="container">
+                    <!-- Modal para ingresar en la pantalla detalle de la orden -->
+                    <div class="modal fade" id="DetalleModalProveedor2" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 id="DetalleModalProveedortitle2"><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body" style="padding: 40px 50px;">
+                                    
+                                    <div class="cinta_whit_sh">
+                                        <span>ID Paciente:</span>
+                                        <label id="lblpacientePro2"></label>
+                                    </div>
+                                   
+                                    <div class="cinta_whit_sh">
+                                        <span>Nombre Paciente:</span>
+                                        <label id="lblpacientenombre2"></label>
+                                    </div> 
 
+                                     <div class="cinta_whit_sh">
+                                        <span>Contacto:</span>
+                                        <label id="lblcontacto2"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Estado de la Orden:</span>
+                                        <label id="lblestado2"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Observaciones Generales:</span>
+                                        <label id="lblobgene2"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Observaciones Auditoria:</span>
+                                        <label id="lblobaud2"></label>
+                                    </div> 
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Fecha esperada de Ejecución:</span>
+                                        <label id="lblfechaeje"></label>
+                                    </div> 
+                                   
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="ModalAccionesProveedor2" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 id="ModaltittleAccionesProveedor2">Gestión de Contacto</h4>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
           
             </div>
         </div>
@@ -962,7 +1055,10 @@
 
     <%-- <script src="js/jquery-2.1.1.min.js"></script>--%>
 <%--    <script src="js/select2.js"></script>--%>
+
+    <script src="js/moment.js"></script>
     <script src="js/select2.full.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/main.js"></script>
     <script src="js/sweet-alert.js"></script>
