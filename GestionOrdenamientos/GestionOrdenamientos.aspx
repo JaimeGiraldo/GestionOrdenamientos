@@ -45,43 +45,42 @@
     <div class="usuario_name">
 
         <div class="col-lg-12 col-md-12">
-              <div class="col-lg-3 col-md-3">   
-               <%-- <span id="lblNombreUsuario" class="nombre_usuario"></span> --%>
-                <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">   
+            <div class="col-lg-3 col-md-3">
+                <%-- <span id="lblNombreUsuario" class="nombre_usuario"></span> --%>
+                <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">
             </div>
-            <div class="col-lg-4 col-md-4"> 
-                <span id="lblNombreUsuario" class="nombre_usuario"></span>       
+            <div class="col-lg-4 col-md-4">
+                <span id="lblNombreUsuario" class="nombre_usuario"></span>
             </div>
             <div class="col-lg-3 col-md-3">
-                 <span id="lblUsuario" class="nombre_usuario"></span> 
-                 <h4 id="lblProveedor" class="nombre_usuario"></h4>  
+                <span id="lblUsuario" class="nombre_usuario"></span>
+                <h4 id="lblProveedor" class="nombre_usuario"></h4>
             </div>
-            <div class="col-lg-2 col-md-2" style="padding-right:11px">
+            <div class="col-lg-2 col-md-2" style="padding-right: 11px">
                 <input type="button" id="btnSalir" value="Salir" />
             </div>
         </div>
-
-
+        
 
         <%--<span id="Csambiar contraseña" class="cargo_lab"></span>--%>
-        
     </div>
 
     <!-- navigation -->
-   
+
     <nav class="pages-nav">
         <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
         <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
         --%>
-        
-        <div id="MenuCargaArchivo" class="pages-nav__item" style="display:none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
-        <div id="MenuResponsables" class="pages-nav__item" style="display:none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
-        <div id="MenuOptimizador" class="pages-nav__item" style="display:none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
-        <div id="MenuProveedor" class="pages-nav__item" style="display:none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-calendar "></span>Contacto</a></div>
-        <div id="MenuProveedor2" class="pages-nav__item" style="display:none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-record "></span>Gestión</a></div>
-        <div id="MenuCUPS" class="pages-nav__item" style="display:none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
-        <div id="MenuReportes" class="pages-nav__item" style="display:none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
-        
+
+        <div id="MenuCargaArchivo" class="pages-nav__item" style="display: none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
+        <div id="MenuResponsables" class="pages-nav__item" style="display: none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
+        <div id="MenuOptimizador" class="pages-nav__item" style="display: none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
+        <div id="MenuProveedor" class="pages-nav__item" style="display: none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-headphones"></span>Contacto</a></div>
+        <div id="MenuProveedor2" class="pages-nav__item" style="display: none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-clock"></span>Asistencia</a></div>
+        <div id="MenuProveedor3" class="pages-nav__item" style="display: none"><a id="pgProveedores3" class="link link--page" href="#page-Proveedores3"><span class="icon-record"></span>Ejecución</a></div>
+        <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
+        <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
+
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
         <div class="pages-nav__item" id="Fortalezas" style="display:none"><a id="btnGrafico2" class="link link--page" href="#page-Fortalezas"><span class="icon-padnote"></span>Fortalezas - Oportunidad Mejora</a></div>
@@ -89,20 +88,20 @@
         <div class="pages-nav__item"><a id="btnPerfil"  class="link link--page" href="#page-perfil"><span class="icon-profile"></span>Perfil</a></div>
         <div class="pages-nav__item"><a id="btnAyuda" class="link link--page" href="#ayuda_user"><span class="icon-info"></span>Instrucciones</a></div>--%>
     </nav>
-   
+
     <!-- /navigation-->
-	<!-- pages stack -->
-	<div class="pages-stack">
-		<div class="page" id="page-home">
-			<!-- Header -->
-			<header class="bp-header cf">					
-				<!--<nav class="bp-nav">
+    <!-- pages stack -->
+    <div class="pages-stack">
+        <div class="page" id="page-home">
+            <!-- Header -->
+            <header class="bp-header cf">
+                <!--<nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
 					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
 					<a class="bp-nav__item bp-icon bp-icon--drop" href="#" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
 					<a class="bp-nav__item bp-icon bp-icon--archive" href="#" data-info="Blueprints archive"><span>Go to the archive</span></a>
 				</nav>-->
-			</header>
+            </header>
             <div class="mylogin_eval">
                 <div class="login">
                     <div class="login-screen">
@@ -115,7 +114,7 @@
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
                                 <input type="text" id="txtUsuario" class="login-field" value="1234" placeholder="Usuario">
-                                <label class="login-field-icon fui-user" for="login-name"></label>                                
+                                <label class="login-field-icon fui-user" for="login-name"></label>
                             </div>
                             <div class="control-group">
                                 <input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
@@ -127,145 +126,145 @@
                 </div>
             </div>
         </div>
-	   
-        
-        <div class="page" id="page-DashBoard" style="display:none">
-           <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
+
+
+        <div class="page" id="page-DashBoard" style="display: none">
+            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Análisis y Reportes</h1>
                 <p>Información detallada sobre la cantidad de ordenes y el proceso de optimización.</p>
-                
-                <!-- indicador de wait -->  
-                 <div class="col-lg-6 col-md-4" ></div>
-                 <div class="col-lg-2 col-md-2" >
-                     <div class="loader" id="loaderdashboard" ></div>
-                 </div>
-                 
+
+                <!-- indicador de wait -->
+                <div class="col-lg-6 col-md-4"></div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="loader" id="loaderdashboard"></div>
+                </div>
+
 
                 <%-- <p>A continuación, encontraras tus resultados.<br />
                     No olvides que la retroalimentación es un regalo y es la clave del éxito está en que construyas y ejecutes tu plan de desarrollo tomando en cuenta esta información.
-                </p>--%>                
+                </p>--%>
             </header>
-                      
-                <div class="container">                   
-                  
-                        <div class="col-lg-12 col-md-12"></div>                     
-                        
-                        <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
 
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="green">
-                                        <i class="material-icons">assignment</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Ingresadas al Sistema</p>
-                                        <h3 class="title" id="lblgeneradas">0</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">receipt</i> Importadas desde Excel
-                                        </div>
-                                    </div>
+            <div class="container">
+
+                <div class="col-lg-12 col-md-12"></div>
+
+                <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Ingresadas al Sistema</p>
+                                <h3 class="title" id="lblgeneradas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">receipt</i> Importadas desde Excel
                                 </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="red">
-                                        <i class="material-icons">help</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Pendientes de Optimización</p>
-                                        <h3 class="title" id="lblpendientes">0</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">date_range</i> En espera de Optimización
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header" data-background-color="blue">
-                                        <i class="material-icons">comment</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Asignadas a Responsable</p>
-                                        <h3 class="title" id="lbladecuadas">0</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">check_circle</i> Personal de optimización
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="card card-stats">
-                                    <div class="card-header"  data-background-color="orange">
-                                        <i class="material-icons">info_outline</i>
-                                    </div>
-                                    <div class="card-content">
-                                        <p class="category">Asignadas Faltantes</p>
-                                        <h3 class="title" id="lblnoadecuadas">0</h3>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="stats">
-                                            <i class="material-icons">report_problem</i> Asignadas sin optimizar 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
-                                <button id="btngrafico2" class="btn btn-primary">Grafico 2</button>
-                            </div>
-
-                            <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
-                                <button id="btngrafico3" class="btn btn-primary">Grafico 3</button>
-                            </div>
-
-                             <div class="col-lg-4 col-md-4 col-sm-4" style="text-align:center">
-                                <button id="btnreportes" class="btn btn-primary">Reportes</button>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-6 col-md-6">
-                           
-                            <div id="container" style="height:400px"></div>
-                             <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: end">
-                                <label onclick="ExportToExcel()" style="font:menu"><u>Ver detalle</u></label>
-                            </div>
-                        </div>                   
-
-                </div>       
-            
-              <div class="modal fade" id="ModalGrafico2" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 id="ModalGrafico2tittle">TITULO</h4>
-                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                 <div id="containergrafico2" style="width:472px"></div>                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="red">
+                                <i class="material-icons">help</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Pendientes de Optimización</p>
+                                <h3 class="title" id="lblpendientes">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> En espera de Optimización
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">comment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Asignadas a Responsable</p>
+                                <h3 class="title" id="lbladecuadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">check_circle</i> Personal de optimización
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">info_outline</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Asignadas Faltantes</p>
+                                <h3 class="title" id="lblnoadecuadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">report_problem</i> Asignadas sin optimizar 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center">
+                        <button id="btngrafico2" class="btn btn-primary">Grafico 2</button>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center">
+                        <button id="btngrafico3" class="btn btn-primary">Grafico 3</button>
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="text-align: center">
+                        <button id="btnreportes" class="btn btn-primary">Reportes</button>
+                    </div>
+
                 </div>
+
+                <div class="col-lg-6 col-md-6">
+
+                    <div id="container" style="height: 400px"></div>
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: end">
+                        <label onclick="ExportToExcel()" style="font: menu"><u>Ver detalle</u></label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal fade" id="ModalGrafico2" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="ModalGrafico2tittle">TITULO</h4>
+                            <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div id="containergrafico2" style="width: 472px"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal fade" role="dialog">
                 <div class="modal-dialog">
-                    <div class="modal-content">                       
+                    <div class="modal-content">
                         <div class="modal-body">
                             <%--tabla para generar el archivo excel del graficio icianial en el dashboard, se oculta dentro de un modal--%>
                             <table id="tbldetallegraficodash" class="table table-hover table-action">
@@ -279,41 +278,41 @@
                                 </thead>
                                 <tbody></tbody>
                             </table>
-                        </div>                       
-                    </div>
-                </div>
-            </div>     
-            
-             <div class="modal fade" id="ModalReportes" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 id="ModalReportestittle">REPORTES</h4>
-                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            
-                            <section id="services">         
-                                    <div class="row">
-                                        <div class="col-md-12 service-item">
-                                            <div class="service-icon"><i class="fa fa-desktop" id="reporteasignaciones"></i></div>
-                                            <h4 class="service-title"><a href="">Reporte de Asignaciones</a></h4>
-                                            <p class="service-description">Informe detallado del número de ordenes asignadas por cada persona responsable de la gestión.</p>
-                                        </div>
-                                        <div class="col-md-12 service-item">
-                                            <div class="service-icon"><i class="fa fa-bar-chart" id="reportecups"></i></div>
-                                            <h4 class="service-title"><a href="">Reporte CUPS</a></h4>
-                                            <p class="service-description">Informe detallado de los cupos que se han ingresado al sistema y su correspondiente asignación.</p>
-                                        </div>                                        
-                                    </div>                               
-                            </section>
-                            
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="modal fade" id="ModalReportes" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 id="ModalReportestittle">REPORTES</h4>
+                            <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+
+                        <section id="services">
+                            <div class="row">
+                                <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-desktop" id="reporteasignaciones"></i></div>
+                                    <h4 class="service-title"><a href="">Reporte de Asignaciones</a></h4>
+                                    <p class="service-description">Informe detallado del número de ordenes asignadas por cada persona responsable de la gestión.</p>
+                                </div>
+                                <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-bar-chart" id="reportecups"></i></div>
+                                    <h4 class="service-title"><a href="">Reporte CUPS</a></h4>
+                                    <p class="service-description">Informe detallado de los cupos que se han ingresado al sistema y su correspondiente asignación.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -338,7 +337,7 @@
                 </div>
             </div>
 
-                   <div class="modal fade" role="dialog">
+            <div class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
@@ -359,15 +358,15 @@
             </div>
 
         </div>
-       <%-- pagina para optimizacion--%>
-        <div class="page" id="page-AsignarAT4" style="display:none">
+        <%-- pagina para optimizacion--%>
+        <div class="page" id="page-AsignarAT4" style="display: none">
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
                 <p id="optimi">Favor consultar la orden y asignarle el provedor correspondiente.</p>
             </header>
             <div class="container">
                 <div class="scroll_header_fixed">
-                  <%-- <div class="listar_nambers">
+                    <%-- <div class="listar_nambers">
                         <div class="col-md-2">
                             <label>TOTAL<br>
                                 ASIGNADO:</label>
@@ -385,53 +384,57 @@
 
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
-                           
-                            <div class="col-lg-12 col-md-12"  data-background-color="bluee" style="margin:-20px 5px 0; padding:15px; border-radius:3px">
-                              
-                                <div class="col-md-3" >
+
+                            <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 15px; border-radius: 3px">
+
+                                <div class="col-md-2">
                                     <label>TOTAL ASIGNADO:</label>
                                     <label id="lbltotalasignados"></label>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label>TOTAL PENDIENTES:</label>
                                     <label id="lbltotalpendientes"></label>
                                 </div>
 
+                                  <div class="col-md-2">
+                                    <label>TOTAL VENCIDAS:</label>
+                                    <label id="lbltotalvencidas"></label>
+                                </div>
+                                
                                 <div class="col-md-3">
                                     <label>FILTRAR:</label>
-                                    <input class="myinput" type="text" id="txtfiltro"  placeholder="Ingresa el número de CUPS" onkeyup="FiltrarTablaSede()">
+                                    <input class="myinput" type="text" id="txtfiltro" placeholder="Ingresa el número de CUPS" onkeyup="FiltrarTablaSede()">
                                 </div>
 
-                                <div class="col-md-3" style="text-align:end;padding-top:25px">
-                                      <button id="btnActualizartabla">Listar</button>
+                                <div class="col-md-3" style="text-align: end; padding-top: 25px">
+                                    <button id="btnActualizartabla">Listar</button>
                                 </div>
 
                             </div>
                             <div class="card-content table-responsive">
-                             <div class="scroll_header_fixed">
-                                <table id="tablaAsignar" class="table table-hover table-action">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo S. Ciklos</th>
-                                            <th>Fecha Registro</th>
-                                            <th>Fecha Esperada</th>
-                                            <th>Dias Espera</th>
-                                            <th>IPS Solicitante</th>
-                                            <th>CUPS</th>
-                                            <th>Descripción</th>
-                                            <th>Detalle</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                                <div class="scroll_header_fixed">
+                                    <table id="tablaAsignar" class="table table-hover table-action">
+                                        <thead>
+                                            <tr>
+                                                <th>Codigo S. Ciklos</th>
+                                                <th>Fecha Sistema</th>
+                                                <th>Dias Espera</th>
+                                                <th>IPS Solicitante</th>
+                                                <th>CUPS</th>
+                                                <th>Descripción</th>
+                                                <th>Detalle</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
-                           </div>
                         </div>
                     </div>
-       
-                    
+
+
                 </div>
             </div>
 
@@ -447,8 +450,8 @@
                             </div>
                             <div class="modal-body">
                                 <div class="cinta_whit_sh">
-                                    <span>Cups:</span>
-                                    <label id="lblsolicitud"></label>
+                                    <span>Fecha Registro Ciklos:</span>
+                                    <label id="lblfechacicklos"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
                                     <span>Paciente:</span>
@@ -459,8 +462,8 @@
                                     <label id="lbltiposervicio"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
-                                    <span>Estado Servicio:</span>
-                                    <label id="lblestadoservicio"></label>
+                                    <span>Ciudad:</span>
+                                    <label id="lblciudad"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
                                     <span>Nivel Autorización:</span>
@@ -479,29 +482,29 @@
                 </div>
             </div>
 
-             <div class="container">
+            <div class="container">
                 <!-- Modal para ingresar al detalle de una orde repetida -->
                 <div class="modal fade" id="ModalOrdenRepetida" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header" style="padding-bottom:0px">
+                            <div class="modal-header" style="padding-bottom: 0px">
                                 <h4 id="ModaltittleOrdenRepetida">Detalle de la Orden ya Optimizada</h4>
                                 <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
                             <div class="modal-body">
 
-                                 <div class="cinta_whit_sh">
+                                <div class="cinta_whit_sh">
                                     <span>Codigo Ciklos:</span>
                                     <label id="lblcodigo"></label>
                                 </div>
 
-                                 <div class="cinta_whit_sh">
+                                <div class="cinta_whit_sh">
                                     <span>Fecha Registro:</span>
                                     <label id="lblFecha"></label>
                                 </div>
 
-                                 <div class="cinta_whit_sh">
+                                <div class="cinta_whit_sh">
                                     <span>Fecha Optimización:</span>
                                     <label id="lblFechaOpt"></label>
                                 </div>
@@ -511,22 +514,22 @@
                                     <label id="lblresponsable"></label>
                                 </div>
 
-                                 <div class="cinta_whit_sh">
+                                <div class="cinta_whit_sh">
                                     <span>Paciente:</span>
                                     <label id="lblpacientet"></label>
-                                </div> 
+                                </div>
 
                                 <div class="cinta_whit_sh">
                                     <span>Cups:</span>
                                     <label id="lblCups"></label>
                                 </div>
 
-                                 <div>                                    
-                                    <label id="lbldetalle" style="text-align:center"></label>
+                                <div>
+                                    <label id="lbldetalle" style="text-align: center"></label>
                                 </div>
 
-                                                            
-                                
+
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" id="btnOmitirOrden" class="btn btn-success">Omitir Orden</button>
@@ -537,39 +540,36 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="ModalAcciones" role="dialog" >
+            <div class="modal fade" id="ModalAcciones" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
-                        <div class="modal-header" style="padding:0px">
-                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 id="ModaltittleAcciones"></h4>                           
+                        <div class="modal-header" style="padding: 0px">
+                            <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 id="ModaltittleAcciones"></h4>
                         </div>
-                        <div class="modal-body" style="padding-top:5px">
+                        <div class="modal-body" style="padding-top: 5px">
                         </div>
-                        <div class="modal-footer" style="padding-top:0px;padding-bottom:0px">
+                        <div class="modal-footer" style="padding-top: 0px; padding-bottom: 0px">
                         </div>
                     </div>
                 </div>
             </div>
 
-            
+
             <div class="container">
                 <!-- Modal para ingresar al detalle -->
                 <div class="modal fade" id="Modalnoadecuado" role="dialog">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header" style="padding-bottom:0px">
+                            <div class="modal-header" style="padding-bottom: 0px">
                                 <h4 id="Modalnoadecuadotittle"></h4>
                                 <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             </div>
-                            <div class="modal-body" style="padding-top:0px">
-                                                                
-                                                                 
-
+                            <div class="modal-body" style="padding-top: 0px">
                             </div>
-                            <div class="modal-footer" >                                
+                            <div class="modal-footer">
                             </div>
                         </div>
                     </div>
@@ -578,38 +578,38 @@
 
         </div>
         <%--Pagina de asignacion de responsables--%>
-        <div class="page" id="page-Responsables" style="display:none">
-             <div class="col-lg-12 col-md-12 helpicon">
-                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right')" style="width:30px;height:30px"/>
-                </div>
+        <div class="page" id="page-Responsables" style="display: none">
+            <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right')" style="width: 30px; height: 30px" />
+            </div>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
                 <p>Seleccione el personal que va a realizar la optimización.</p>
 
-                 
-               <%-- <div class="col-md-3">
+
+                <%-- <div class="col-md-3">
                     <label class="s16">Responsable:</label>
                     <select id="selecttest" class="js-example-basic-single js-states form-control" multiple="multiple">
                         <option value="AL">Alabama</option>
                         <option value="WY">Wyoming</option>
                     </select>
-                </div>--%>                
+                </div>--%>
             </header>
             <div class="container">
-                <div class="card" style="margin:0">
+                <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
                         <div class="col-md-3">
                             <label class="s16 color-white">Responsable:</label>
-                            <select id="ddlEmpleado" class="form-control color-blue" style="width:100%"></select>
+                            <select id="ddlEmpleado" class="form-control color-blue" style="width: 100%"></select>
                         </div>
 
                         <div class="col-md-5">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCups"  class="js-example-basic-single js-states form-control" style="width:100%"></select>
+                            <select id="ddlCups" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                         </div>
 
-                        <div class="col-md-2" >
+                        <div class="col-md-2">
                             <label>FILTRAR:</label>
                             <input type="text" class="myinput1" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()">
                         </div>
@@ -640,8 +640,8 @@
                 </div>
             </div>
         </div>
-       <%-- pagina para importacion de archivo--%>
-        <div class="page" id="page-ImportarArchivo" style="display:none">
+        <%-- pagina para importacion de archivo--%>
+        <div class="page" id="page-ImportarArchivo" style="display: none">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Importar Archivo</h1>
                 <p>Ingresar el archivo de ordenes generadas para los prestadores al sistema.</p>
@@ -653,21 +653,21 @@
                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
                     <br />
                 </div>
-                <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
-                   <%-- <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar Archivo" onclick="procesarArchivo();" />--%>
+                <div class="col-lg-3 col-md-3" style="text-align: center; padding-top: 50px">
+                    <%-- <input type="button" id="btnProcesarArchivo" class="btn btn-primary" value="Procesar Archivo" onclick="procesarArchivo();" />--%>
                     <button id="btnProcesarArchivo" class="btn btn-primary" onclick="procesarArchivo();">Procesar Archivo</button>
                 </div>
-                 <div class="col-lg-3 col-md-3" style="text-align:center;padding-top:50px">
+                <div class="col-lg-3 col-md-3" style="text-align: center; padding-top: 50px">
                     <button id="btnRepartir" class="btn btn-primary">Distribuir Cups</button>
                 </div>
 
                 <div class="col-lg-12 col-md-12"></div>
-                 <!-- indicador de wait -->  
-                 <div class="col-lg-6 col-md-6" ></div>
-                 <div class="col-lg-4 col-md-4" >
-                     <div class="loader" id="loaderepartir" style="display:none" ></div>
-                 </div>
-                
+                <!-- indicador de wait -->
+                <div class="col-lg-6 col-md-6"></div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="loader" id="loaderepartir" style="display: none"></div>
+                </div>
+
 
 
                 <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: end">
@@ -697,76 +697,76 @@
                             </table>
                         </div>
                     </div>
-                    </div>
+                </div>
 
             </div>
         </div>
 
-        <div class="page" id="page-Proveedores" style="display:none">
+        <div class="page" id="page-Proveedores" style="display: none">
             <header class="bp-header cf">
                 <h1 id="headerproveedor" class="bp-header__title">Proveedores - Contacto</h1>
                 <p id="lblheaderproveedor">Favor validar las ordenes asignadas, contactar con el paciente para programar la atención y guardar la gestión realizada.</p>
 
-<%--                 <div class="col-md-3">
+                <%--                 <div class="col-md-3">
                     <label>Estado de la Orden:</label>
                     <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>--%>
 
 
-           
 
-                 <div class="col-md-3">
+
+                <div class="col-md-3">
                     <label>Fecha Inicial:</label>
                     <input type="date" id="ProveedorFechaInicial" class="form-control color-dark" />
                 </div>
 
-                 <div class="col-md-3">
+                <div class="col-md-3">
                     <label>Fecha Final:</label>
-                    <input type="date" id="ProveedorFechaFinal" class="form-control color-dark"/>
+                    <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
                 </div>
 
 
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad" class="form-control"  placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')"/>
+                    <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')" />
                 </div>
-                                
+
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede" class="form-control"  placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','1')"/>
+                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','1')" />
                 </div>
-                              
-                 <div class="col-md-2" style="text-align:end;padding-top:25px">
+
+                <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
                 </div>
-                 
+
             </header>
             <div class="container">
-                 <div class="scroll_header_fixed">
+                <div class="scroll_header_fixed">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
                                 <h4 class="title">Listado de Ordenes</h4>
-                                <p class="category">Ordenes pendientes por gestión del proveedor</p>
+                                <p class="category">Ordenes pendientes por gestión del proveedor - contacto con el usuario.</p>
                             </div>
-                           <div class="scroll_header_fixed">
-                            <div class="card-content table-responsive">
-                                <table id="tablaProveedores" class="table table-hover table-action">
-                                    <thead>
-                                        <tr>
-                                            <th>Fecha Asignacion</th>
-                                            <th>Sede</th>
-                                            <th>Especialidad</th>
-                                            <th>Descripción</th>
-                                            <th>Paciente</th>
-                                            <th>Detalle</th>
-                                            <th>Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody ></tbody>
-                                </table>
+                            <div class="scroll_header_fixed">
+                                <div class="card-content table-responsive">
+                                    <table id="tablaProveedores" class="table table-hover table-action">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha Asignacion</th>
+                                                <th>Sede</th>
+                                                <th>Especialidad</th>
+                                                <th>Descripción</th>
+                                                <th>Paciente</th>
+                                                <th>Detalle</th>
+                                                <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
-                         </div>
                         </div>
                     </div>
 
@@ -781,38 +781,38 @@
                                     <h4 id="DetalleModalProveedortitle"><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
-                                <div class="modal-body" style="padding: 40px 50px;">
-                                    
+                                <div class="modal-body" style="padding-top: 0px">
+
                                     <div class="cinta_whit_sh">
                                         <span>ID Paciente:</span>
                                         <label id="lblpacientePro"></label>
                                     </div>
-                                   
+
                                     <div class="cinta_whit_sh">
                                         <span>Nombre Paciente:</span>
                                         <label id="lblpacientenombre"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Contacto:</span>
                                         <label id="lblcontacto"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Estado de la Orden:</span>
                                         <label id="lblestado"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Observaciones Generales:</span>
                                         <label id="lblobgene"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Observaciones Auditoria:</span>
                                         <label id="lblobaud"></label>
-                                    </div> 
-                                   
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
@@ -822,7 +822,7 @@
                     </div>
                 </div>
 
-                <div class="container">
+                <%-- <div class="container">
                     <!-- Modal para ingresar en la pantalla de adjunto proveedor-->
                     <div class="modal fade" id="ModalAdjuntoProveedor" role="dialog">
                         <div class="modal-dialog">
@@ -840,7 +840,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="modal fade" id="ModalAccionesProveedor1" role="dialog">
                     <div class="modal-dialog">
@@ -856,47 +856,42 @@
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
 
             </div>
         </div>
 
 
 
-         <div class="page" id="page-Proveedores2" style="display:none">
+        <div class="page" id="page-Proveedores2" style="display: none">
             <header class="bp-header cf">
-                <h1 id="headerproveedor2" class="bp-header__title">Proveedores - Gestión</h1>
-                <p id="lblheaderproveedor2">Favor confirmar las ordenes programadas a los pacientes e incluir los soportes de ejecución.</p>
+                <h1 id="headerproveedor2" class="bp-header__title">Proveedores - Asistencia</h1>
+                <p id="lblheaderproveedor2">Favor confirmar la asistencia o no del paciente al servicio programado e incluir soportes si es el caso.</p>
 
-<%--                 <div class="col-md-3">
-                    <label>Estado de la Orden:</label>
-                    <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
-                </div>--%>
-
-                 <div class="col-md-3">
+                <div class="col-md-3">
                     <label>Fecha Inicial:</label>
                     <input type="date" id="ProveedorFechaInicial2" class="form-control color-dark" />
                 </div>
 
-                 <div class="col-md-3">
+                <div class="col-md-3">
                     <label>Fecha Final:</label>
-                    <input type="date" id="ProveedorFechaFinal2" class="form-control color-dark"/>
+                    <input type="date" id="ProveedorFechaFinal2" class="form-control color-dark" />
                 </div>
 
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad2" class="form-control"  placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','2')"/>
+                    <input id="txtfiltroespecialidad2" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','2')" />
                 </div>
-                                
+
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede2" class="form-control"  placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede2','tablaProveedores2','1')"/>
+                    <input type="text" id="txtfiltrosede2" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede2','tablaProveedores2','1')" />
                 </div>
-                              
-                 <div class="col-md-2" style="text-align:end;padding-top:25px">
+
+                <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor2">Consultar</button>
                 </div>
-                 
+
             </header>
             <div class="container">
                 <div class="scroll_header_fixed">
@@ -905,13 +900,13 @@
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
                                 <h4 class="title">Listado de Ordenes</h4>
-                                <p class="category">Ordenes pendientes por gestión del proveedor después de contactar al usuario.</p>
+                                <p class="category">Ordenes pendientes por gestión del proveedor para registrar la asistencia del paciente.</p>
                             </div>
                             <div class="card-content table-responsive">
                                 <table id="tablaProveedores2" class="table table-hover table-action">
                                     <thead>
                                         <tr>
-                                            <th>Fecha Asignacion</th>
+                                            <th>Fecha Asignación</th>
                                             <th>Sede</th>
                                             <th>Especialidad</th>
                                             <th>Descripción</th>
@@ -927,8 +922,8 @@
                     </div>
 
                 </div>
-          
-                   <div class="container">
+
+                <div class="container">
                     <!-- Modal para ingresar en la pantalla detalle de la orden -->
                     <div class="modal fade" id="DetalleModalProveedor2" role="dialog">
                         <div class="modal-dialog">
@@ -938,43 +933,43 @@
                                     <h4 id="DetalleModalProveedortitle2"><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
-                                <div class="modal-body" style="padding: 40px 50px;">
-                                    
+                                <div class="modal-body" style="padding-top: 0px">
+
                                     <div class="cinta_whit_sh">
                                         <span>ID Paciente:</span>
                                         <label id="lblpacientePro2"></label>
                                     </div>
-                                   
+
                                     <div class="cinta_whit_sh">
                                         <span>Nombre Paciente:</span>
                                         <label id="lblpacientenombre2"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Contacto:</span>
                                         <label id="lblcontacto2"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Estado de la Orden:</span>
                                         <label id="lblestado2"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Observaciones Generales:</span>
                                         <label id="lblobgene2"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Observaciones Auditoria:</span>
                                         <label id="lblobaud2"></label>
-                                    </div> 
+                                    </div>
 
-                                     <div class="cinta_whit_sh">
+                                    <div class="cinta_whit_sh">
                                         <span>Fecha esperada de Ejecución:</span>
                                         <label id="lblfechaeje"></label>
-                                    </div> 
-                                   
+                                    </div>
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
@@ -988,39 +983,177 @@
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header" style="padding-bottom: 0px">
                                 <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 id="ModaltittleAccionesProveedor2">Gestión de Contacto</h4>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" style="padding-top: 0px">
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer" style="padding-bottom: 7px">
                             </div>
                         </div>
                     </div>
                 </div>
-          
+
+            </div>
+        </div>
+
+        <div class="page" id="page-Proveedores3" style="display: none">
+            <header class="bp-header cf">
+                <h1 id="headerproveedor3" class="bp-header__title">Proveedores - Ejecución</h1>
+                <p id="lblheaderproveedor3">Favor confirmar las ordenes ejecutadas e incluir los soportes correspondientes.</p>
+
+                <%--                 <div class="col-md-3">
+                    <label>Estado de la Orden:</label>
+                    <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>--%>
+
+                <div class="col-md-3">
+                    <label>Fecha Inicial:</label>
+                    <input type="date" id="ProveedorFechaInicial3" class="form-control color-dark" />
+                </div>
+
+                <div class="col-md-3">
+                    <label>Fecha Final:</label>
+                    <input type="date" id="ProveedorFechaFinal3" class="form-control color-dark" />
+                </div>
+
+                <div class="col-md-2">
+                    <label>Filtrar por:</label>
+                    <input id="txtfiltroespecialidad3" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad3','tablaProveedores3','2')" />
+                </div>
+
+                <div class="col-md-2">
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede3" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede3','tablaProveedores3','1')" />
+                </div>
+
+                <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                    <button id="btnConsultarOrdenesProveedor3">Consultar</button>
+                </div>
+
+            </header>
+            <div class="container">
+                <div class="scroll_header_fixed">
+
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header" data-background-color="bluee">
+                                <h4 class="title">Listado de Ordenes</h4>
+                                <p class="category">Ordenes pendientes por gestión del proveedor después de asistencia del usuario - Ejecución final.</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table id="tablaProveedores3" class="table table-hover table-action">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha Asignación</th>
+                                            <th>Sede</th>
+                                            <th>Especialidad</th>
+                                            <th>Descripción</th>
+                                            <th>Paciente</th>
+                                            <th>Detalle</th>
+                                            <th>Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="container">
+                    <!-- Modal para ingresar en la pantalla detalle de la orden -->
+                    <div class="modal fade" id="DetalleModalProveedor3" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 id="DetalleModalProveedortitle3"><span class="glyphicon glyphicon-plus"></span>Detalle de la Orden</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body" style="padding-top: 0px">
+
+                                    <div class="cinta_whit_sh">
+                                        <span>ID Paciente:</span>
+                                        <label id="lblpacientePro3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Nombre Paciente:</span>
+                                        <label id="lblpacientenombre3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Contacto:</span>
+                                        <label id="lblcontacto3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Estado de la Orden:</span>
+                                        <label id="lblestado3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Observaciones Asistencia:</span>
+                                        <label id="lblobgene3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Fecha esperada de Ejecución:</span>
+                                        <label id="lblfechaeje3"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Fecha Asistencia Usuario:</span>
+                                        <label id="lblfechaasisusu"></label>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="ModalAccionesProveedor3" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding-bottom: 0px">
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 id="ModaltittleAccionesProveedor3">Gestión de Contacto</h4>
+                            </div>
+                            <div class="modal-body" style="padding-top: 0px">
+                            </div>
+                            <div class="modal-footer" style="padding-bottom: 7px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
 
-
-
-          <div class="page" id="page-CUPS" style="display:none">
+        <div class="page" id="page-CUPS" style="display: none">
             <header class="bp-header cf">
-                <h1  class="bp-header__title">Administrar CUPS</h1>
+                <h1 class="bp-header__title">Administrar CUPS</h1>
                 <p>Sistema para administración y control de los CUPS que usa el programa en general y su parametrización.</p>
             </header>
-             <div class="container">
-                <div class="card" style="margin:0">
+            <div class="container">
+                <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
-                       
+
                         <div class="col-md-10">
                             <label class="s16 color-white">Cups:</label>
-                            <select id="ddlCupsout"  class="js-example-basic-single js-states form-control" style="width:100%"></select>
+                            <select id="ddlCupsout" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                         </div>
-                                              
+
 
                         <div class="col-md-2" style="text-align: end; padding-top: 25px">
                             <button id="btnAddcups">Seleccionar</button>
@@ -1033,10 +1166,10 @@
                         <div class="card-content table-responsive">
                             <table id="tablaCUPS" <%--style="visibility:hidden"--%> class="table table-hover table-action">
                                 <thead>
-                                    <tr>                
-                                        <th>Descripción </th>                        
+                                    <tr>
+                                        <th>Descripción </th>
                                         <th>Cups</th>
-                                        <th>Nueva Descripción</th>                                       
+                                        <th>Nueva Descripción</th>
                                         <th>Acción </th>
                                     </tr>
                                 </thead>

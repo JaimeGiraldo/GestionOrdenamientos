@@ -1,10 +1,11 @@
 
 var colores = ['#FC1404', '#E91E63', '#9C27B0', '#0E2DDC', '#1ecbf2', '#009688', '#8B092E', '#DDF02B', '#FF7103', '#ffcb8e', '#64F510', '#FFFF00'];
-var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard, nombrearchivo, listacupsout, datosordenproveedor, proveedorasignado, datosordenproveedor2;
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard, nombrearchivo, listacupsout, datosordenproveedor, proveedorasignado, datosordenproveedor2, datosordenproveedor3;
 var idtipoidaux = "CC";
 var swalheadertxt = "Ordenamientos";
 
 var archivos = [];
+var archivos2 = [];
 ; (function (window) {
   
     
@@ -448,6 +449,16 @@ function ObtenerDatosIniciales(Menu, lista) {
             });
 
             break;
+
+        case "MenuProveedor3":
+            $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
+            proveedorasignado = lista.Table[0].ProveedorAsignado;
+
+            $("#btnConsultarOrdenesProveedor3").on("click", function (e) {
+                consultarOrdenesProveedor3(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
+            });
+
+            break;
         case "MenuCUPS":
             $("#ddlCupsout").select2({
                 placeholder: "Selecciona la descripcion dada desde ciklos"
@@ -477,7 +488,8 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	        var listaDatos = JSON.parse(rest.d);
 	        var datos = listaDatos.Table;
 	        var datos1 = listaDatos.Table1;
-	        var datos2 = listaDatos.Table2;	           
+	        var datos2 = listaDatos.Table2;
+	        var datos3 = listaDatos.Table3;
 
 	        $('#tablaAsignar td').remove();
 
@@ -486,6 +498,8 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                totalpendientes = datos2[0].cantidadPendientes;
 	                document.getElementById('lbltotalasignados').innerHTML = datos1[0].cantidadTotal;
 	                document.getElementById('lbltotalpendientes').innerHTML = datos2[0].cantidadPendientes;
+	                document.getElementById('lbltotalvencidas').innerHTML = datos3[0].cantidadVencidas;
+
 
 	                for (var i = 0; i < datos.length; i++) {
 	                       
@@ -495,18 +509,23 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                    //tbl += '<tr>';
 	                    tbl += '<tr id="tr_' + datos[i].idConsecutivo + '">';
 	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
-	                    tbl += '<td>' + datos[i].Fecha_Registro_Solicitud + '</td>';
-	                    tbl += '<td>' + datos[i].Fecha_Esperada_de_Respuesta + '</td>';
-	                    tbl += '<td>' + datos[i].DiasEspera + '</td>';
+	                    tbl += '<td>' + datos[i].FechaCargueSistema + '</td>';
+	                    tbl += '<td id="td_dias' + datos[i].idConsecutivo + '">' + datos[i].DiasEspera + '</td>';
 	                    tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
 	                    tbl += '<td>' + datos[i].Cups + '</td>';
 	                    tbl += '<td>' + datos[i].DescripcionNew + '</td>';
 	                    tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
                                 '" class="btn btn-primary" onclick="ValidarOrden(' + datos[i].idConsecutivo + ',' + i + ')">Auditar</button>' + '</td>';
-	                    tbl += '</tr>';	                        
+	                    tbl += '</tr>';
+                        
                         
 	                    $("#tablaAsignar").append(tbl);
+
+                        //muestra en color rojo la celda del registro para mostrar alerta por demora en la gestion de la orden
+	                    if (datos[i].DiasEspera > 3) {
+	                        $('#td_dias' + datos[i].idConsecutivo).css('background-color', '#f9dde2');
+	                    }
                            
 	                }
 	                datosorden = datos;
@@ -587,11 +606,11 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
 	
 }
    
-    //consultar ordenes desde el proveedor para la gestion final
+//consultar ordenes desde el proveedor para la gestion final
 function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
 
     //var estado = $('#ddlEstadoOrden').val();
-    var estado = "Impresa";
+    var estado = "Contactada";
     var fechainicial = $('#ProveedorFechaInicial2').val();
     var fechafinal = $('#ProveedorFechaFinal2').val();
 
@@ -627,8 +646,8 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
                     for (var i = 0; i < datos.length; i++) {
 
                         var tbl = '';
-                        tbl += '<tr id="tr_ContactoProveedor2' + datos[i].idConsecutivo + '">';
-                        tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
+                        tbl += '<tr id="tr_AsistenciaProveedor2' + datos[i].idConsecutivo + '">';
+                        tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';                       
                         tbl += '<td>' + datos[i].SedePromedan + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
@@ -647,10 +666,69 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
                 }
             }
         });
-
     }
+}
 
+function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
 
+    //var estado = $('#ddlEstadoOrden').val();
+    var estado = "Impresa";
+    var fechainicial = $('#ProveedorFechaInicial3').val();
+    var fechafinal = $('#ProveedorFechaFinal3').val();
+
+    //console.log(fechainicial)
+
+    //if (estado == "0") {
+    //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
+    //} else
+
+    if (fechainicial == "") {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha inicial.', 'warning');
+    } else if (fechafinal == "") {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha final.', 'warning');
+    } else {
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+            data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
+                + idtipoid + "', identificacion: '" + identificacion + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+                $('#tablaProveedores3 td').remove();
+
+                if (listaDatos.Table.length > 0) {
+
+                    for (var i = 0; i < datos.length; i++) {
+
+                        var tbl = '';
+                        tbl += '<tr id="tr_EjecucionProveedor' + datos[i].idConsecutivo + '">';
+                        tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
+                        tbl += '<td>' + datos[i].SedePromedan + '</td>';
+                        tbl += '<td>' + datos[i].Especialidad + '</td>';
+                        tbl += '<td>' + datos[i].DescripcionNew + '</td>';
+                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
+                        tbl += '<td>' + '<button id="btninfoPro3_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor3(' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btngestion3_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor3(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
+
+                        tbl += '</tr>';
+                        $("#tablaProveedores3").append(tbl);
+                    }
+                    datosordenproveedor3 = datos; //
+
+                } else {
+                    swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
+                    $('#tablaProveedores2 td').remove();
+                }
+            }
+        });
+    }
 }
 
 // gets the current stack pages indexes. If any of them is the excludePage then this one is not part of the returned array
@@ -687,34 +765,136 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
 
+function AccionesProveedor3(posicion, i) {
 
+    $("#ModalAccionesProveedor3 .modal-body").html('');
+    $("#ModalAccionesProveedor3 .modal-footer").html('');
+    archivos2 = [];
+    var body = '';
+    var footer = '';
+
+    body += '<p style="margin:5px 0px 0px;text-align:center">Observaciones:</p><input type="text" id="txtObserpro3_' + posicion + '" placeholder="Detalles generales del proceso de ejecución de la orden" style="text-align:center" class="form-control">';
+    body += '<div><label style="text-align:center;padding-top: 7px">Arrastra o toca para seleccionar los archivos de soporte</label></div><div id="mydropzone2_' + posicion + '" class="dropzone"></div>';
+    footer += '<button id="btnGuardarGestion3_' + posicion +
+                                   '" class="btn btn-primary" onclick="GuardarProovedorGestionEjecucion(' + posicion + ')">Guardar</button>';
+
+    $("#ModalAccionesProveedor3 .modal-body").append(body);
+    $("#ModalAccionesProveedor3 .modal-footer").append(footer);
+
+    document.getElementById('ModaltittleAccionesProveedor3').innerHTML = 'Ejecución Final de la Orden ' + datosordenproveedor3[i].Codigo_Solicitud_Ciklos;
+
+    Dropzone.autoDiscover = false;
+
+    $("#mydropzone2_" + posicion).dropzone({
+        url: "ImportarArchivo.ashx",
+        addRemoveLinks: true,
+        success: function (file, response) {
+            var filename = response;
+            archivos2.push(filename);
+            //console.log(archivos)
+            //console.log(archivos.toString())
+            sessionStorage.setItem('archivos', archivos2);
+        },
+        error: function (file, response) {
+            alert("Error cargando el archivo");
+        }
+    });
+
+    $("#ModalAccionesProveedor3").modal();
+}
+
+function GuardarProovedorGestionEjecucion(posicion) {
+        
+    var observaciones = $('#txtObserpro3_' + posicion).val();
+    var adjunto = archivos2.toString();
+    var idorden = posicion;
+   
+    //console.log(idorden)
+    //console.log(observaciones)
+    //console.log(adjunto)
+
+    if (adjunto.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el adjunto de soporte.', 'warning');
+        //} else if (adjunto.length == 0 && asistiousuario == 1) {
+        //    swal(swalheadertxt, 'Lo sentimos, debes adjuntar los soportes de ejecución correspondientes.', 'warning');
+    } else {
+
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/guardarGestionProveedor3",
+            data: "{ idorden: '" + idorden + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                if (listaDatos.Table.length > 0) {
+
+                    if (datos[0].Respuesta == "OK") {
+                        //borra la fila de la tabla en pantalla
+                        $('#tr_EjecucionProveedor' + posicion).html('');
+                        $("#ModalAccionesProveedor3").modal('hide');
+                        swal(swalheadertxt, 'Bien, la orden se diligenció correctamente.', 'success');
+
+                    } else {
+                        swal(swalheadertxt, 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
+                    }
+                }
+                else {
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'error');
+                }
+            }
+        });
+    }
+}
 
 function AccionesProveedor2(posicion, i) {
 
     $("#ModalAccionesProveedor2 .modal-body").html('');
     $("#ModalAccionesProveedor2 .modal-footer").html('');
-
+    archivos = [];
     var body = '';
     var footer = '';
-    body += '<div class="box_swith_mod"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
-    body += '<div class="box_swith_mod" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control color-dark" /></div>';
-    body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="Respecto al contacto del usuario." class="form-control">';
-    body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    body += '<div style="text-align:-webkit-center;padding-bottom:7px"><div class="box_swith_mod"><p>Usuario asistió:</p><label class="switch"><input id="checkAsitencia_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div></div>';
+    body += '<p style="margin:5px 0px 0px;text-align:center">Observaciones:</p><input type="text" id="txtObserpro2_' + posicion + '" placeholder="Detalles generales o de inasistencia del usuario" style="text-align:center" class="form-control">';
+
+    body += '<div><label style="text-align:center;padding-top: 7px">Arrastra o toca para seleccionar los archivos de soporte</label></div><div id="mydropzone1_' + posicion + '" class="dropzone"></div>';
+
+
     footer += '<button id="btnGuardarContacto_' + posicion +
-                                   '" class="btn btn-primary" onclick="GuardarContactoProveedor(' + posicion + ')">Guardar</button>';
+                                   '" class="btn btn-primary" onclick="GuardarProovedorGestionAsistencia(' + posicion + ')">Guardar</button>';
 
     $("#ModalAccionesProveedor2 .modal-body").append(body);
     $("#ModalAccionesProveedor2 .modal-footer").append(footer);
-    $('#checkContacto_' + posicion).prop('checked', true);
 
-    $('#dateFechaAsignacion_' + posicion).datetimepicker();
+    $('#checkAsitencia_' + posicion).prop('checked', true);
 
-    document.getElementById('ModaltittleAccionesProveedor2').innerHTML = 'Gestión de contacto para la Orden ' + datosordenproveedor2[i].Codigo_Solicitud_Ciklos;
+    document.getElementById('ModaltittleAccionesProveedor2').innerHTML = 'Asistencia de la Orden ' + datosordenproveedor2[i].Codigo_Solicitud_Ciklos;
 
+    Dropzone.autoDiscover = false;
+
+    $("#mydropzone1_" + posicion).dropzone({
+        url: "ImportarArchivo.ashx",
+        addRemoveLinks: true,
+        success: function (file, response) {
+            var filename = response;
+            archivos.push(filename);
+            //console.log(archivos)
+            //console.log(archivos.toString())
+            sessionStorage.setItem('archivos', archivos);
+        },
+        error: function (file, response) {
+            alert("Error cargando el archivo");
+        }
+    });
 
     $("#ModalAccionesProveedor2").modal();
 }
-
 
 function AccionesProveedor1(posicion,i) {
 
@@ -867,26 +1047,490 @@ function ProveedorOrdenesImpresa() {
 
 }
 
-function GuardarProovedorGestion(posicion, posiciontabla) {
+function GuardarProovedorGestionAsistencia(posicion) {
 
-    var orden = $('#txtOrden_' + posicion).val();
-    var idorden = posicion;
-    var proveedor = IdOpt;
+    var asistiousuario = 0;
+    var observaciones = $('#txtObserpro2_' + posicion).val();    
     var adjunto = archivos.toString();
-
-    if (orden.length == 0) {
-        swal(swalheadertxt, 'Lo sentimos, debes ingresar el número de la orden para continuar.', 'warning');
-        $('#check_' + posicion).prop('checked', false);
-
-    } else if (!$('#check_' + posicion).is(':checked')) {
-        $('#check_' + posicion).prop('checked', true);
-        swal(swalheadertxt, 'Lo sentimos, esta orden ya fue diligenciada y no es posible cambiar el estado.', 'warning');
+    var idorden = posicion;
+    
+    if (!$('#checkAsitencia_' + posicion).is(':checked')) {
+        asistiousuario = 0;
     } else {
+        asistiousuario = 1;
+    }
+    
+    //console.log(asistiousuario)
+    //console.log(observaciones)
+    //console.log(adjunto)
+   
+    if (asistiousuario == 0 && observaciones.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el detalle de la inasistencia en las observaciones.', 'warning');
+    //} else if (adjunto.length == 0 && asistiousuario == 1) {
+    //    swal(swalheadertxt, 'Lo sentimos, debes adjuntar los soportes de ejecución correspondientes.', 'warning');
+    } else {
+        
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/guardarGestionProveedor2",
+            data: "{ idorden: '" + idorden + "', asistiousuario: '" + asistiousuario + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                if (listaDatos.Table.length > 0) {
+
+                    if (datos[0].Respuesta == "OK") {
+                        //borra la fila de la tabla en pantalla
+                        $('#tr_AsistenciaProveedor2' + posicion).html('');
+                        $("#ModalAccionesProveedor2").modal('hide');
+                        swal(swalheadertxt, 'Bien, la orden se diligenció correctamente.', 'success');
+
+                    } else {
+                        swal(swalheadertxt, 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
+                    }
+                }
+                else {
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'error');
+                }
+            }
+        });
+    }
+}
+
+function ValidarOrden(posicion, posiciontabla) {
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/validarOrden",
+        data: "{ Id: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            if (listaDatos.Table.length > 0) {
+                if (datos[0].Respuesta == "OK") {
+
+                    swal({
+                        title: swalheadertxt,
+                        text: "Ya existe una orden similar que anteriormente fue optimizada!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "Volver",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Continuar",
+                        closeOnConfirm: true
+                    },
+                    function () {
+                        document.getElementById('lblcodigo').innerHTML = datos[0].Codigo_Solicitud_Ciklos;
+                        document.getElementById('lblFecha').innerHTML = datos[0].Fecha_Registro_Solicitud;
+                        document.getElementById('lblFechaOpt').innerHTML = datos[0].Fecha_Registro_Solicitud;
+                        document.getElementById('lblresponsable').innerHTML = datos[0].NombreCompleto;
+                        document.getElementById('lblCups').innerHTML = datos[0].Cups;
+                        document.getElementById('lbldetalle').innerHTML = datos[0].Descripcion;
+                        document.getElementById('lblpacientet').innerHTML = datos[0].id_afiliado;
+
+                        $("#ModalOrdenRepetida").modal();
+
+
+                        $("#btnOmitirOrden").on("click", function (e) {
+                          
+                            swal({
+                                title: swalheadertxt,
+                                text: "¿Estas segur@ que la orden debe ser omitida?",
+                                type: "warning",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Si",
+                                cancelButtonText: "No",
+                                closeOnConfirm: false
+                            }, function () {
+                                GuardarOrdenRepetida(posicion);                              
+                            });
+                        });
+
+                        $("#btnAuditarOrden").on("click", function (e) {
+                            $('#ModalOrdenRepetida').modal('hide');
+                            //$('#ModalOrdenRepetida').modal('toggle');
+                            abrirModalAcciones(posicion, posiciontabla);
+                        });
+
+                        //swal(swalheadertxt, "La Orden se omitio correctamente.", "success");
+                    });
+
+                } else {
+                    //console.log("ko")
+                    abrirModalAcciones(posicion, posiciontabla);
+                }
+                //datos[i].FechaOptimizacion
+            }else {
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+                
+
+            }
+        }
+    });
+}
+
+function GuardarOrdenRepetida(posicion) {
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/guardarOrdenrepetida",
+        data: "{ Id: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            alert(rest.Error);
+        } else {
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+
+            if (listaDatos.Table.length > 0) {
+                if (datos[0].Respuesta == "OK") {
+
+                    //borra la fila de la tabla en pantalla
+                    $('#tr_' + posicion).html('');
+
+                    swal(swalheadertxt, "Bien, la orden se omitio correctamente", "success");
+                    $('#ModalOrdenRepetida').modal('hide');
+
+                } else {
+                    swal({
+                        title: swalheadertxt,
+                        text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                        type: "error",
+                        confirmButtonText: "ACEPTAR"
+                    });
+                }
+            } else {
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+
+
+            }
+        }
+    });
+
+}
+
+function abrirModalAcciones(posicion, posiciontabla) {
+
+
+    //console.log(posiciontabla)
+
+    $("#ModalAcciones .modal-body").html('');
+    $("#ModalAcciones .modal-footer").html('');
+
+    var body = '';
+    var footer = '';
+
+    body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox" onclick="GeneroAt4(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_mod" style="margin-bottom:5px"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox" onclick="NoAdecuado(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
+
+    body += '<div id="ddl_Div_' + posicion + '"><p style="margin:5px 0px 0px">Motivo AT4:</p><select id="ddl_Noat4_' + posicion + '" style="width:100%" class="js-example-basic-single js-states form-control" ></select></div>';
+
+    body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
+    body += '<p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">';
+    body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
+    body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
+    body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
+    body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    footer += '<button id="btnAsignarProveedor_' + posicion +
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
+   
+    $("#ModalAcciones .modal-body").append(body);
+    $("#ModalAcciones .modal-footer").append(footer);
+
+    $('#checkAt4_' + posicion).prop('checked', true);
+    $('#checkAdecuado_' + posicion).prop('checked', true);
+
+
+    var noat4 = $('#ddl_Noat4_' + posicion);
+    noat4.select2({
+        placeholder: "Selecciona el porqué no se generó AT4"
+    });   
+    $('#ddl_Div_' + posicion).hide();
+
+    var proveedor = $('#ddl_Proveedoress_' + posicion);
+    proveedor.select2({
+        placeholder: "Selecciona el Proveedor"
+    });    
+    llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
+  
+    var sedes = $('#ddl_PromedanSede_' + posicion);  
+    $('#ddl_DivSede_' + posicion).hide();
+      
+    proveedor.on('change', function () {
+        var value = $(this).val();
+
+        if (value == "9000389264") {
+            $('#ddl_DivSede_' + posicion).show();
+            llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
+            sedes.select2({
+                placeholder: "Selecciona la sede Promedan"
+            });
+
+        } else {            
+            $('#ddl_DivSede_' + posicion).hide();
+            sedes.val('').trigger('change')//limpia el combito y la descripcion
+            sedes.html('');
+           
+        }
+        //alert(value);
+    });
+       
+    
+    $('#txtCIE10Desc_' + posicion).prop('disabled', true);
+    document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
+
+    $("#ModalAcciones").modal();
+
+    //Despues de ingresar el diagnostico se detecta el ENTER
+    $('#txtCIE10_' + posicion).keypress(function (e) {
+
+        $('#txtCIE10Desc_' + posicion).val('');
+
+        if (e.which == 13) {
+            //Se obtienen los valores de los controles
+            var diagnostico = $('#txtCIE10_' + posicion).val();
+          
+            if (diagnostico.length == 0) {
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, el campo diagnóstico no puede estar vacío, debes ingresar un diagnóstico valido, ejemplo: S017.",
+                    type: "info",
+                    confirmButtonText: "ACEPTAR"
+                });
+               
+               
+            } else {
+                ObtenerDiagnosticos(diagnostico, posicion);
+            }
+        }
+    });
+
+}
+
+function GeneroAt4(posicion, posiciontabla) {
+
+    if (!$('#checkAt4_' + posicion).is(':checked')) {
+        //at4 = 0;
+        //oculta proveedores y restea el valor
+        $('#ddl_Div_Proveedor' + posicion).hide();
+        $('#ddl_Proveedoress_' + posicion).val('');
+
+        //oculta las sedes y resetea el valor
+        $('#ddl_DivSede_' + posicion).hide();
+        $('#ddl_PromedanSede_' + posicion).val('');
+
+        $('#ddl_Div_' + posicion).show();        
+        $('#ddl_Noat4_' + posicion).html('');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Solicitud mal ingresada (Back1 - Back2)" + '">' + "Solicitud mal ingresada (Back1 - Back2)" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Error en aplicativo Ciklos" + '">' + "Error en aplicativo Ciklos" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Procedimiento no contratado con la IPS del Afiliado" + '">' + "Procedimiento no contratado con la IPS del Afiliado" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS CON recobro" + '">' + "Se redirecciona orden a EPS CON recobro" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS SIN recobro" + '">' + "Se redirecciona orden a EPS SIN recobro" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se anula la orden" + '">' + "Se anula la orden" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '">' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "El servicio no es de PGP" + '">' + "El servicio no es de PGP" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "El afiliado no tiene solicitudes pendientes de auditoría" + '">' + "El afiliado no tiene solicitudes pendientes de auditoría" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se deja pendiente" + '">' + "Se deja pendiente" + '</option>');
+        $('#ddl_Noat4_' + posicion).append('<option value="' + "Otras" + '">' + "Otras" + '</option>');
+
+    } else {
+        //at4 = 1;
+        $('#ddl_Div_' + posicion).hide();       
+        $('#ddl_Noat4_' + posicion).val('').trigger('change')
+        $('#ddl_Div_Proveedor' + posicion).show();
+    }   
+
+}
+
+function NoAdecuado(posicion, posiciontabla) {
+   
+    $('#ModalAcciones').modal('hide');
+    $("#Modalnoadecuado .modal-body").html('');
+    $("#Modalnoadecuado .modal-footer").html('');
+
+    var footer = '';
+    var body = '';
+
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Motivo no Adecuada:</p><select id="txtObservacionesmotivo" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesaud" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control"></div> ';
+    body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesgenera" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control"></div>';
+    body += '<div class="col-lg-12 col-md-12" style="padding-bottom:10px;padding-left:0px;padding-right:0px"><p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesionalsolicita" placeholder="Ingresa el nombre del profesional" class="form-control"></div>';
+    footer += '<button id="btnguardarNoAdecuado_' + posicion +
+                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 1 + ')">Guardar</button>';
+   
+    $("#Modalnoadecuado .modal-body").append(body);
+    $("#Modalnoadecuado .modal-footer").append(footer);
+
+    $("#txtObservacionesmotivo").select2({
+        placeholder: "Selecciona el motivo"
+    });
+    $("#txtObservacionesmotivo").append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
+    $("#txtObservacionesmotivo").append('<option value="' + "Completar HC" + '">' + "Completar HC" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Completar Estudios" + '">' + "Completar Estudios" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Anulada" + '">' + "Anulada" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Repetida" + '">' + "Repetida" + '</option>');
+    $("#txtObservacionesmotivo").append('<option value="' + "Innecesaria" + '">' + "Innecesaria" + '</option>');
+
+    document.getElementById('Modalnoadecuadotittle').innerHTML = 'Reporte de no adecuada para la orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
+  
+    $("#Modalnoadecuado").modal();
+
+}
+
+function ObtenerDiagnosticos(diagnostico, posicion) {
+
+    var controldiagnostico = $('#txtCIE10Desc_' + posicion);
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/buscarDiagnostico",
+        data: "{ diagnostico: '" + diagnostico + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        type: 'POST'
+    }).done(function (rest) {
+
+        if (rest.d != '') {
+            //Convierte la lista Json 
+            var listaDatos = JSON.parse(rest.d);
+
+            if (listaDatos.Table.length > 0) {
+                controldiagnostico.val(listaDatos.Table[0].Descripcion);
+            } else {
+                controldiagnostico.val('');
+                swal({
+                    title: swalheadertxt,
+                    text: "Lo sentimos, no se encontró el diagnóstico ingresado.",
+                    type: "error",
+                    confirmButtonText: "ACEPTAR"
+                });
+                
+            }
+        }
+    })
+}
+
+function FiltrarTablaSede() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("txtfiltro");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tablaAsignar");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[4];
+        if (td) {
+            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}
+
+function GuardarProovedor(posicion,opcion) {
+            
+    var input, filter, table, tr, td, i;
+    table = document.getElementById("tablaAsignar");
+    tr = table.getElementsByTagName("tr");      
+    var idconsecutivo = posicion;
+    var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
+    var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
+    var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
+    var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
+    var noAt4motivo = $('#ddl_Noat4_' + posicion).val();    
+    var cie10 = $('#txtCIE10_' + posicion).val();
+    var cie10desc = $('#txtCIE10Desc_' + posicion).val();
+    var profesional = $('#txtProfesional_' + posicion).val();
+    var at4 = 0;
+    var adecuado = 0;
+    var motivonadecuado = $('#txtObservacionesmotivo').val();
+
+    if (!$('#checkAt4_' + posicion).is(':checked')) {
+        at4 = 0;
+    } else {
+        at4 = 1;
+    }
+
+    if (!$('#checkAdecuado_' + posicion).is(':checked')) {
+        adecuado = 0;
+    } else {
+        adecuado = 1;
+    }        
+
+    if (opcion == 1) {
+        proveedorasignado = 'No Aplica';
+        observacionesaudit = $('#txtObservacionesaud').val();
+        observacionesagen = $('#txtObservacionesgenera').val();
+        profesional = $('#txtProfesionalsolicita').val();
+        at4 = 0;
+        sedepromedan = 'No Aplica';
+        noAt4motivo = 'No Aplica';
+    } else {
+        motivonadecuado = '';
+    }
+       
+    if (opcion == 1 && (motivonadecuado == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || profesional.length == 0)) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no es adecuada la orden y completar los demás campos para continuar.', 'warning');
+    }else if (cie10.length > 0 && cie10desc.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
+    } else if (at4 == 1 && (proveedorasignado == "0" || proveedorasignado == null || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista y completar los demás campos para continuar.', 'warning');
+    } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
+        swal(swalheadertxt, 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
+    } else if (at4 == 0 && adecuado == 1 && (noAt4motivo == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4 y completar los demás campos para continuar.', 'warning');
+    } else {
+        ////TEST VALUES
+        //console.log(noAt4motivo)
+        //console.log(at4)
+        //console.log(adecuado)
+        //console.log(observacionesaudit)
+        //console.log(observacionesagen)
+        //console.log(cie10)
+        //console.log(profesional)
+        //console.log(proveedorasignado)           
+        //console.log(sedepromedan)
+
+        //console.log(motivonadecuado)                 
 
 
         $.ajax({
-            url: "GestionOrdenamientos.aspx/guardarOrdenesEstadoProveedor",
-            data: "{ proveedor: '" + proveedor + "', idorden: '" + idorden + "', orden: '" + orden + "', adjunto: '" + adjunto + "'}",
+            url: "GestionOrdenamientos.aspx/actualizarOrdenes",
+            data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
+                + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
+                + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
+                + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '"
+                + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -902,12 +1546,33 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
 
                     if (datos[0].Respuesta == "OK") {
 
-                        $('#txtOrden_' + idorden).prop("disabled", true);
-                        $('#btnAdjunto_' + idorden).prop("disabled", true);
-                        swal(swalheadertxt, 'Bien, la orden se diligenció correctamente.', 'success');
+                        if (opcion == 1) {
+                            //envia un correo con el reporte de la orden no adecuada
+                            EnviarEmailNoAdecuado(posicion);
+                            //borra la fila de la tabla en pantalla
+                            $('#tr_' + posicion).html('');
+
+                            totalpendientes = totalpendientes - 1;
+                            document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
+                            $("#ModalAcciones").modal('hide');
+                            $("#Modalnoadecuado").modal('hide');
+
+                        } else {
+                            swal(swalheadertxt, 'Bien, la orden se auditó correctamente.', 'success');
+                            ////tr[posiciontabla].style.display = "none";
+                            //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
+
+                            //borra la fila de la tabla en pantalla
+                            $('#tr_' + posicion).html('');
+
+                            totalpendientes = totalpendientes - 1;
+                            document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
+                            $("#ModalAcciones").modal('hide');
+                            $("#Modalnoadecuado").modal('hide');
+                        }
 
                     } else {
-                        swal(swalheadertxt, 'Lo sentimos, la no orden se diligenció correctamente.', 'warning');
+                        swal(swalheadertxt, 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
                     }
                 }
                 else {
@@ -918,579 +1583,100 @@ function GuardarProovedorGestion(posicion, posiciontabla) {
     }
 }
 
-    function ValidarOrden(posicion, posiciontabla) {
+function EnviarEmailNoAdecuado(posicion) {
 
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/validarOrden",
-            data: "{ Id: '" + posicion + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                alert(rest.Error);
-            } else {
-                var listaDatos = JSON.parse(rest.d);
-                var datos = listaDatos.Table;
+    //console.log(posicion)
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/enviarEmail",
+        data: "{ posicion: '" + posicion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: true,
+        type: 'POST'
+    }).done(function (rest) {
+        if (rest.Error != undefined) {
+            swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
+        } else {
+            //Obtenemos la lista
+            var lista = JSON.parse(rest.d);
 
-                if (listaDatos.Table.length > 0) {
-                    if (datos[0].Respuesta == "OK") {
+            // $.each(lista, function (index, value) {
+            //Incrustamos las opciones del SelectList
+            for (var i = 0; i < lista.Table.length; i++) {
 
-                        swal({
-                            title: swalheadertxt,
-                            text: "Ya existe una orden similar que anteriormente fue optimizada!",
-                            type: "warning",
-                            showCancelButton: true,
-                            cancelButtonText: "Volver",
-                            confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Continuar",
-                            closeOnConfirm: true
-                        },
-                        function () {
-                            document.getElementById('lblcodigo').innerHTML = datos[0].Codigo_Solicitud_Ciklos;
-                            document.getElementById('lblFecha').innerHTML = datos[0].Fecha_Registro_Solicitud;
-                            document.getElementById('lblFechaOpt').innerHTML = datos[0].Fecha_Registro_Solicitud;
-                            document.getElementById('lblresponsable').innerHTML = datos[0].NombreCompleto;
-                            document.getElementById('lblCups').innerHTML = datos[0].Cups;
-                            document.getElementById('lbldetalle').innerHTML = datos[0].Descripcion;
-                            document.getElementById('lblpacientet').innerHTML = datos[0].id_afiliado;
-
-                            $("#ModalOrdenRepetida").modal();
-
-
-                            $("#btnOmitirOrden").on("click", function (e) {
-                          
-                                swal({
-                                    title: swalheadertxt,
-                                    text: "¿Estas segur@ que la orden debe ser omitida?",
-                                    type: "warning",
-                                    showCancelButton: true,
-                                    confirmButtonColor: "#DD6B55",
-                                    confirmButtonText: "Si",
-                                    cancelButtonText: "No",
-                                    closeOnConfirm: false
-                                }, function () {
-                                    GuardarOrdenRepetida(posicion);                              
-                                });
-                            });
-
-                            $("#btnAuditarOrden").on("click", function (e) {
-                                $('#ModalOrdenRepetida').modal('hide');
-                                //$('#ModalOrdenRepetida').modal('toggle');
-                                abrirModalAcciones(posicion, posiciontabla);
-                            });
-
-                            //swal(swalheadertxt, "La Orden se omitio correctamente.", "success");
-                        });
-
-                    } else {
-                        //console.log("ko")
-                        abrirModalAcciones(posicion, posiciontabla);
-                    }
-                    //datos[i].FechaOptimizacion
-                }else {
-                    swal({
-                        title: swalheadertxt,
-                        text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
-                        type: "error",
-                        confirmButtonText: "ACEPTAR"
-                    });
-                
-
-                }
-            }
-        });
-    }
-
-    function GuardarOrdenRepetida(posicion) {
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/guardarOrdenrepetida",
-            data: "{ Id: '" + posicion + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                alert(rest.Error);
-            } else {
-                var listaDatos = JSON.parse(rest.d);
-                var datos = listaDatos.Table;
-
-                if (listaDatos.Table.length > 0) {
-                    if (datos[0].Respuesta == "OK") {
-
-                        //borra la fila de la tabla en pantalla
-                        $('#tr_' + posicion).html('');
-
-                        swal(swalheadertxt, "Bien, la orden se omitio correctamente", "success");
-                        $('#ModalOrdenRepetida').modal('hide');
-
-                    } else {
-                        swal({
-                            title: swalheadertxt,
-                            text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
-                            type: "error",
-                            confirmButtonText: "ACEPTAR"
-                        });
-                    }
+                if (lista.Table[i].Respuesta == "OK") {
+                    swal(swalheadertxt, 'Bien, la orden se auditó correctamente y se envió un correo con el detalle de inadecuación.', 'success');
                 } else {
-                    swal({
-                        title: swalheadertxt,
-                        text: "Lo sentimos, no se pudo validar la orden, favor comunicarse con sistemas.",
-                        type: "error",
-                        confirmButtonText: "ACEPTAR"
-                    });
-
-
+                    swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo, favor comunicarse con sistemas.', 'warning');
                 }
+
             }
-        });
+            // });
+        }
 
-    }
+    });
 
-    function abrirModalAcciones(posicion, posiciontabla) {
+}
 
-
-        //console.log(posiciontabla)
-
-        $("#ModalAcciones .modal-body").html('');
-        $("#ModalAcciones .modal-footer").html('');
-
-        var body = '';
-        var footer = '';
-
-        body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox" onclick="GeneroAt4(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
-        body += '<div class="box_swith_mod" style="margin-bottom:5px"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox" onclick="NoAdecuado(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
-
-        body += '<div id="ddl_Div_' + posicion + '"><p style="margin:5px 0px 0px">Motivo AT4:</p><select id="ddl_Noat4_' + posicion + '" style="width:100%" class="js-example-basic-single js-states form-control" ></select></div>';
-
-        body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
-        body += '<p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesGene_' + posicion + '" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control">';
-        body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
-        body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
-        body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
-        body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
-        body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
-        footer += '<button id="btnAsignarProveedor_' + posicion +
-                                    '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
-   
-        $("#ModalAcciones .modal-body").append(body);
-        $("#ModalAcciones .modal-footer").append(footer);
-
-        $('#checkAt4_' + posicion).prop('checked', true);
-        $('#checkAdecuado_' + posicion).prop('checked', true);
-
-
-        var noat4 = $('#ddl_Noat4_' + posicion);
-        noat4.select2({
-            placeholder: "Selecciona el porqué no se generó AT4"
-        });   
-        $('#ddl_Div_' + posicion).hide();
-
-        var proveedor = $('#ddl_Proveedoress_' + posicion);
-        proveedor.select2({
-            placeholder: "Selecciona el Proveedor"
-        });    
-        llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
+function MasInformacion(posicion) {
   
-        var sedes = $('#ddl_PromedanSede_' + posicion);  
-        $('#ddl_DivSede_' + posicion).hide();
-      
-        proveedor.on('change', function () {
-            var value = $(this).val();
-
-            if (value == "9000389264") {
-                $('#ddl_DivSede_' + posicion).show();
-                llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
-                sedes.select2({
-                    placeholder: "Selecciona la sede Promedan"
-                });
-
-            } else {            
-                $('#ddl_DivSede_' + posicion).hide();
-                sedes.val('').trigger('change')//limpia el combito y la descripcion
-                sedes.html('');
-           
-            }
-            //alert(value);
-        });
-       
+    document.getElementById('myModaltittle').innerHTML ='Detalle de la Orden ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('lblfechacicklos').innerHTML = datosorden[posicion].Fecha_Registro_Solicitud;
+    document.getElementById('lblpaciente').innerHTML = datosorden[posicion].Id_Afiliado;
+    document.getElementById('lbltiposervicio').innerHTML = datosorden[posicion].Tipo_de_servicio;
+    document.getElementById('lblciudad').innerHTML = datosorden[posicion].Ciudad_del_centro_generador_de_autorizacion;
+    document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Nivel_Autorizacion;
+    document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Centro_generador_de_autorizacion;
     
-        $('#txtCIE10Desc_' + posicion).prop('disabled', true);
-        document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
+    $("#myModal").modal();   
+}
 
-        $("#ModalAcciones").modal();
-
-        //Despues de ingresar el diagnostico se detecta el ENTER
-        $('#txtCIE10_' + posicion).keypress(function (e) {
-
-            $('#txtCIE10Desc_' + posicion).val('');
-
-            if (e.which == 13) {
-                //Se obtienen los valores de los controles
-                var diagnostico = $('#txtCIE10_' + posicion).val();
-          
-                if (diagnostico.length == 0) {
-                    swal({
-                        title: swalheadertxt,
-                        text: "Lo sentimos, el campo diagnóstico no puede estar vacío, debes ingresar un diagnóstico valido, ejemplo: S017.",
-                        type: "info",
-                        confirmButtonText: "ACEPTAR"
-                    });
-               
-               
-                } else {
-                    ObtenerDiagnosticos(diagnostico, posicion);
-                }
-            }
-        });
-
-    }
-
-    function GeneroAt4(posicion, posiciontabla) {
-
-        if (!$('#checkAt4_' + posicion).is(':checked')) {
-            //at4 = 0;
-            //oculta proveedores y restea el valor
-            $('#ddl_Div_Proveedor' + posicion).hide();
-            $('#ddl_Proveedoress_' + posicion).val('');
-
-            //oculta las sedes y resetea el valor
-            $('#ddl_DivSede_' + posicion).hide();
-            $('#ddl_PromedanSede_' + posicion).val('');
-
-            $('#ddl_Div_' + posicion).show();        
-            $('#ddl_Noat4_' + posicion).html('');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Solicitud mal ingresada (Back1 - Back2)" + '">' + "Solicitud mal ingresada (Back1 - Back2)" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Error en aplicativo Ciklos" + '">' + "Error en aplicativo Ciklos" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Procedimiento no contratado con la IPS del Afiliado" + '">' + "Procedimiento no contratado con la IPS del Afiliado" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS CON recobro" + '">' + "Se redirecciona orden a EPS CON recobro" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS SIN recobro" + '">' + "Se redirecciona orden a EPS SIN recobro" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Se anula la orden" + '">' + "Se anula la orden" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '">' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "El servicio no es de PGP" + '">' + "El servicio no es de PGP" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "El afiliado no tiene solicitudes pendientes de auditoría" + '">' + "El afiliado no tiene solicitudes pendientes de auditoría" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Se deja pendiente" + '">' + "Se deja pendiente" + '</option>');
-            $('#ddl_Noat4_' + posicion).append('<option value="' + "Otras" + '">' + "Otras" + '</option>');
-
-        } else {
-            //at4 = 1;
-            $('#ddl_Div_' + posicion).hide();       
-            $('#ddl_Noat4_' + posicion).val('').trigger('change')
-            $('#ddl_Div_Proveedor' + posicion).show();
-        }   
-
-    }
-
-    function NoAdecuado(posicion, posiciontabla) {
-   
-        $('#ModalAcciones').modal('hide');
-        $("#Modalnoadecuado .modal-body").html('');
-        $("#Modalnoadecuado .modal-footer").html('');
-
-        var footer = '';
-        var body = '';
-
-        body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Motivo no Adecuada:</p><select id="txtObservacionesmotivo" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
-        body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesaud" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control"></div> ';
-        body += '<div class="col-lg-12 col-md-12" style="padding:0px"><p style="margin:5px 0px 0px">Observaciones Generales:</p><input type="text" id="txtObservacionesgenera" placeholder="Relacionadas con cambios de servicio y datos administrativos." class="form-control"></div>';
-        body += '<div class="col-lg-12 col-md-12" style="padding-bottom:10px;padding-left:0px;padding-right:0px"><p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesionalsolicita" placeholder="Ingresa el nombre del profesional" class="form-control"></div>';
-        footer += '<button id="btnguardarNoAdecuado_' + posicion +
-                                   '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 1 + ')">Guardar</button>';
-   
-        $("#Modalnoadecuado .modal-body").append(body);
-        $("#Modalnoadecuado .modal-footer").append(footer);
-
-        $("#txtObservacionesmotivo").select2({
-            placeholder: "Selecciona el motivo"
-        });
-        $("#txtObservacionesmotivo").append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
-        $("#txtObservacionesmotivo").append('<option value="' + "Completar HC" + '">' + "Completar HC" + '</option>');
-        $("#txtObservacionesmotivo").append('<option value="' + "Completar Estudios" + '">' + "Completar Estudios" + '</option>');
-        $("#txtObservacionesmotivo").append('<option value="' + "Anulada" + '">' + "Anulada" + '</option>');
-        $("#txtObservacionesmotivo").append('<option value="' + "Repetida" + '">' + "Repetida" + '</option>');
-        $("#txtObservacionesmotivo").append('<option value="' + "Innecesaria" + '">' + "Innecesaria" + '</option>');
-
-        document.getElementById('Modalnoadecuadotittle').innerHTML = 'Reporte de no adecuada para la orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
-  
-        $("#Modalnoadecuado").modal();
-
-    }
-
-    function ObtenerDiagnosticos(diagnostico, posicion) {
-
-        var controldiagnostico = $('#txtCIE10Desc_' + posicion);
-
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/buscarDiagnostico",
-            data: "{ diagnostico: '" + diagnostico + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: false,
-            type: 'POST'
-        }).done(function (rest) {
-
-            if (rest.d != '') {
-                //Convierte la lista Json 
-                var listaDatos = JSON.parse(rest.d);
-
-                if (listaDatos.Table.length > 0) {
-                    controldiagnostico.val(listaDatos.Table[0].Descripcion);
-                } else {
-                    controldiagnostico.val('');
-                    swal({
-                        title: swalheadertxt,
-                        text: "Lo sentimos, no se encontró el diagnóstico ingresado.",
-                        type: "error",
-                        confirmButtonText: "ACEPTAR"
-                    });
-                
-                }
-            }
-        })
-    }
-
-    function FiltrarTablaSede() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("txtfiltro");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("tablaAsignar");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[4];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-    function GuardarProovedor(posicion,opcion) {
-            
-        var input, filter, table, tr, td, i;
-        table = document.getElementById("tablaAsignar");
-        tr = table.getElementsByTagName("tr");      
-        var idconsecutivo = posicion;
-        var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
-        var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
-        var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
-        var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
-        var noAt4motivo = $('#ddl_Noat4_' + posicion).val();    
-        var cie10 = $('#txtCIE10_' + posicion).val();
-        var cie10desc = $('#txtCIE10Desc_' + posicion).val();
-        var profesional = $('#txtProfesional_' + posicion).val();
-        var at4 = 0;
-        var adecuado = 0;
-        var motivonadecuado = $('#txtObservacionesmotivo').val();
-
-        if (!$('#checkAt4_' + posicion).is(':checked')) {
-            at4 = 0;
-        } else {
-            at4 = 1;
-        }
-
-        if (!$('#checkAdecuado_' + posicion).is(':checked')) {
-            adecuado = 0;
-        } else {
-            adecuado = 1;
-        }        
-
-        if (opcion == 1) {
-            proveedorasignado = 'No Aplica';
-            observacionesaudit = $('#txtObservacionesaud').val();
-            observacionesagen = $('#txtObservacionesgenera').val();
-            profesional = $('#txtProfesionalsolicita').val();
-            at4 = 0;
-            sedepromedan = 'No Aplica';
-            noAt4motivo = 'No Aplica';
-        } else {
-            motivonadecuado = '';
-        }
-       
-        if (opcion == 1 && (motivonadecuado == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || profesional.length == 0)) {
-            swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no es adecuada la orden y completar los demás campos para continuar.', 'warning');
-        }else if (cie10.length > 0 && cie10desc.length == 0) {
-            swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
-        } else if (at4 == 1 && (proveedorasignado == "0" || proveedorasignado == null || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
-            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista y completar los demás campos para continuar.', 'warning');
-        } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
-            swal(swalheadertxt, 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
-        } else if (at4 == 0 && adecuado == 1 && (noAt4motivo == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
-            swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no se generó AT4 y completar los demás campos para continuar.', 'warning');
-        } else {
-            ////TEST VALUES
-            //console.log(noAt4motivo)
-            //console.log(at4)
-            //console.log(adecuado)
-            //console.log(observacionesaudit)
-            //console.log(observacionesagen)
-            //console.log(cie10)
-            //console.log(profesional)
-            //console.log(proveedorasignado)           
-            //console.log(sedepromedan)
-
-            //console.log(motivonadecuado)                 
-
-
-            $.ajax({
-                url: "GestionOrdenamientos.aspx/actualizarOrdenes",
-                data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
-                    + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
-                    + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
-                    + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '"
-                    + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: true,
-                type: 'POST'
-            }).done(function (rest) {
-                if (rest.Error != undefined) {
-                    alert(rest.Error);
-                } else {
-                    var listaDatos = JSON.parse(rest.d);
-                    var datos = listaDatos.Table;
-
-                    if (listaDatos.Table.length > 0) {
-
-                        if (datos[0].Respuesta == "OK") {
-
-                            if (opcion == 1) {
-                                //envia un correo con el reporte de la orden no adecuada
-                                EnviarEmailNoAdecuado(posicion);
-                                //borra la fila de la tabla en pantalla
-                                $('#tr_' + posicion).html('');
-
-                                totalpendientes = totalpendientes - 1;
-                                document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
-                                $("#ModalAcciones").modal('hide');
-                                $("#Modalnoadecuado").modal('hide');
-
-                            } else {
-                                swal(swalheadertxt, 'Bien, la orden se auditó correctamente.', 'success');
-                                ////tr[posiciontabla].style.display = "none";
-                                //document.getElementById("tablaAsignar").deleteRow(posiciontabla);
-
-                                //borra la fila de la tabla en pantalla
-                                $('#tr_' + posicion).html('');
-
-                                totalpendientes = totalpendientes - 1;
-                                document.getElementById('lbltotalpendientes').innerHTML = totalpendientes;
-                                $("#ModalAcciones").modal('hide');
-                                $("#Modalnoadecuado").modal('hide');
-                            }
-
-                        } else {
-                            swal(swalheadertxt, 'Lo sentimos, la orden no se auditó correctamente.', 'warning');
-                        }
-                    }
-                    else {
-                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
-                    }
-                }
-            });
-        }
-    }
-
-    function EnviarEmailNoAdecuado(posicion) {
-
-        //console.log(posicion)
-        $.ajax({
-            url: "GestionOrdenamientos.aspx/enviarEmail",
-            data: "{ posicion: '" + posicion + "'}",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            async: true,
-            type: 'POST'
-        }).done(function (rest) {
-            if (rest.Error != undefined) {
-                swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
-            } else {
-                //Obtenemos la lista
-                var lista = JSON.parse(rest.d);
-
-                // $.each(lista, function (index, value) {
-                //Incrustamos las opciones del SelectList
-                for (var i = 0; i < lista.Table.length; i++) {
-
-                    if (lista.Table[i].Respuesta == "OK") {
-                        swal(swalheadertxt, 'Bien, la orden se auditó correctamente y se envió un correo con el detalle de inadecuación.', 'success');
-                    } else {
-                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo, favor comunicarse con sistemas.', 'warning');
-                    }
-
-                }
-                // });
-            }
-
-        });
-
-    }
-
-    function MasInformacion(posicion) {
-  
-        document.getElementById('myModaltittle').innerHTML ='Detalle de la Orden ' + datosorden[posicion].Codigo_Solicitud_Ciklos;
-        document.getElementById('lblsolicitud').innerHTML = datosorden[posicion].Cups;
-        document.getElementById('lblpaciente').innerHTML = datosorden[posicion].Id_Afiliado;
-        document.getElementById('lbltiposervicio').innerHTML = datosorden[posicion].Tipo_de_servicio;
-        document.getElementById('lblestadoservicio').innerHTML = datosorden[posicion].Estado_servicio;    
-        document.getElementById('lblestadoserv').innerHTML = datosorden[posicion].Nivel_Autorizacion;
-        document.getElementById('lbltiposerv').innerHTML = datosorden[posicion].Centro_generador_de_autorizacion;
+function GuardarAdjuntoProveedor(id) {
     
-        $("#myModal").modal();   
-    }
-
-    function GuardarAdjuntoProveedor(id) {
-    
-        archivos = [];
-        $("#ModalAdjuntoProveedor .modal-body").html('');
+    archivos = [];
+    $("#ModalAdjuntoProveedor .modal-body").html('');
    
-        var body='';
-        body += '<div class="cinta_whit_sh"><label>Arrastra el archivo o toca para seleccionar</label></div><div id="mydropzone1_' + id + '" class="dropzone"></div>';
-        $("#ModalAdjuntoProveedor .modal-body").append(body);
-        $("#ModalAdjuntoProveedor").modal();
+    var body='';
+    body += '<div class="cinta_whit_sh"><label>Arrastra el archivo o toca para seleccionar</label></div><div id="mydropzone1_' + id + '" class="dropzone"></div>';
+    $("#ModalAdjuntoProveedor .modal-body").append(body);
+    $("#ModalAdjuntoProveedor").modal();
        
-        Dropzone.autoDiscover = false;
+    Dropzone.autoDiscover = false;
 
-        $("#mydropzone1_"+id).dropzone({
-            url: "ImportarArchivo.ashx",
-            addRemoveLinks: true,
-            success: function (file, response) {
-                var filename = response;               
-                archivos.push(filename);
-                //console.log(archivos)
-                //console.log(archivos.toString())
-                sessionStorage.setItem('archivos', archivos);
-            },
-            error: function (file, response) {
-                alert("Error cargando el archivo");
-            }
-        });
+    $("#mydropzone1_"+id).dropzone({
+        url: "ImportarArchivo.ashx",
+        addRemoveLinks: true,
+        success: function (file, response) {
+            var filename = response;               
+            archivos.push(filename);
+            //console.log(archivos)
+            //console.log(archivos.toString())
+            sessionStorage.setItem('archivos', archivos);
+        },
+        error: function (file, response) {
+            alert("Error cargando el archivo");
+        }
+    });
 
-    }
+}
 
-    function MasInformacionProveedor(posicion) {
+function MasInformacionProveedor(posicion) {
 
-        document.getElementById('DetalleModalProveedortitle').innerHTML = 'Gestión de la Orden ' + datosordenproveedor[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('DetalleModalProveedortitle').innerHTML = 'Contacto de la Orden ' + datosordenproveedor[posicion].Codigo_Solicitud_Ciklos;
 
-        document.getElementById('lblpacientePro').innerHTML = datosordenproveedor[posicion].Id_Afiliado;
-        document.getElementById('lblpacientenombre').innerHTML = datosordenproveedor[posicion].NombreCompleto;
-        document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
-        document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
-        document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
-        document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
+    document.getElementById('lblpacientePro').innerHTML = datosordenproveedor[posicion].Id_Afiliado;
+    document.getElementById('lblpacientenombre').innerHTML = datosordenproveedor[posicion].NombreCompleto;
+    document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
+    document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
+    document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
+    document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
 
-        $("#DetalleModalProveedor").modal();
-    }
+    $("#DetalleModalProveedor").modal();
+}
 
 function MasInformacionProveedor2(posicion) {
 
-    document.getElementById('DetalleModalProveedortitle2').innerHTML = 'Gestión de la Orden ' + datosordenproveedor2[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('DetalleModalProveedortitle2').innerHTML = 'Gestión de asistencia para la Orden ' + datosordenproveedor2[posicion].Codigo_Solicitud_Ciklos;
 
     document.getElementById('lblpacientePro2').innerHTML = datosordenproveedor2[posicion].Id_Afiliado;
     document.getElementById('lblpacientenombre2').innerHTML = datosordenproveedor2[posicion].NombreCompleto;
@@ -1501,6 +1687,21 @@ function MasInformacionProveedor2(posicion) {
     document.getElementById('lblfechaeje').innerHTML = datosordenproveedor2[posicion].FechaAsignacion;
 
     $("#DetalleModalProveedor2").modal();
+}
+
+function MasInformacionProveedor3(posicion) {
+
+    document.getElementById('DetalleModalProveedortitle3').innerHTML = 'Gestión Final de la Orden ' + datosordenproveedor3[posicion].Codigo_Solicitud_Ciklos;
+
+    document.getElementById('lblpacientePro3').innerHTML = datosordenproveedor3[posicion].Id_Afiliado;
+    document.getElementById('lblpacientenombre3').innerHTML = datosordenproveedor3[posicion].NombreCompleto;
+    document.getElementById('lblcontacto3').innerHTML = datosordenproveedor3[posicion].Contacto;
+    document.getElementById('lblestado3').innerHTML = datosordenproveedor3[posicion].EstadoProveedor;
+    document.getElementById('lblobgene3').innerHTML = datosordenproveedor3[posicion].ObservacionesAsistencia;
+    document.getElementById('lblfechaeje3').innerHTML = datosordenproveedor3[posicion].FechaAsignacion; 
+    document.getElementById('lblfechaasisusu').innerHTML = datosordenproveedor3[posicion].FechaAsistenciaProveedor;
+
+    $("#DetalleModalProveedor3").modal();
 }
 
     function SeleccionarCUPS() {   

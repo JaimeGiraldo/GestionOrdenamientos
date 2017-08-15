@@ -152,41 +152,6 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-
-        //Guarda el estado de las ordenes gestionadas por el proveedor
-        public string GuardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden, string adjunto)
-        {
-            try
-            {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes_Proveedor" + "'" + proveedor + "','" + idorden + "','" + orden + "','" + adjunto + "'");
-                if (dtOrdenes.Tables.Count > 0)
-                {
-                    return JsonConvert.SerializeObject(dtOrdenes);
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        [System.Web.Services.WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string guardarOrdenesEstadoProveedor(string proveedor, string idorden, string orden,string adjunto)
-        {
-            try
-            {
-                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.GuardarOrdenesEstadoProveedor(proveedor, idorden, orden, adjunto);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         
         //Guarda el responsable asignado
         public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion)
@@ -547,7 +512,7 @@ namespace GestionOrdenamientos
         }
 
 
-        //hace la gestion del proveedor para contactar al usuario y programar el servicio o atencion
+        //Hace la gestion del proveedor para contactar al usuario y programar el servicio o atencion
         public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional)
         {
             try
@@ -583,6 +548,74 @@ namespace GestionOrdenamientos
             }
         }
 
+        //Guarda el estado de las ordenes cuando el paciente contactado asiste al servicio
+        public string GuardarGestionProveedor2(string idorden, string asistiousuario, string observaciones, string adjunto)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_AsistenciaProveedor" + "'" + idorden + "','" + asistiousuario + "','" + observaciones + "','" + adjunto + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarGestionProveedor2(string idorden, string asistiousuario, string observaciones, string adjunto)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarGestionProveedor2(idorden, asistiousuario, observaciones, adjunto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        //Guarda el estado de las ordenes ya gestionadas por el proveedor depues de la asitencia del usuario (Ejecucion Final)
+        public string GuardarGestionProveedor3(string idorden, string observaciones, string adjunto)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_EjecucionProveedor" + "'" + idorden + "','" + observaciones + "','" + adjunto + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarGestionProveedor3(string idorden, string observaciones, string adjunto)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarGestionProveedor3(idorden, observaciones, adjunto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
