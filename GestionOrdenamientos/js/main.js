@@ -8,6 +8,18 @@ var archivos = [];
 var archivos2 = [];
 ; (function (window) {
   
+    var user = sessionStorage.getItem("UsuarioSistema"); 
+    var contra = sessionStorage.getItem("ContraseñaSistema");
+
+
+    if (user != null) {
+        $("#txtUsuario").val(user);    
+    }
+
+    if (user != null && contra != null) {
+        iniciarSesion(user, contra);
+    } 
+     
     
     //Animacion para los graficos dashboard
     Math.easeOutBounce = function (pos) {
@@ -72,6 +84,8 @@ var archivos2 = [];
     });
 
     $("#btnSalir").on("click", function (e) {
+        //sessionStorage.removeItem("UsuarioSistema");
+        sessionStorage.removeItem("ContraseñaSistema");
         location.reload();
     });
 
@@ -309,8 +323,8 @@ function iniciarSesion(usuario, clave) {
 
 	            if (lista.Table[0].respuesta == "OK") {
 
-	                localStorage.setItem("UsuarioSistema", usuario);
-	                //localStorage.setItem("ContraseñaSistema", clave);
+	                sessionStorage.setItem("UsuarioSistema", usuario);
+	                sessionStorage.setItem("ContraseñaSistema", clave);
 
 	                $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
