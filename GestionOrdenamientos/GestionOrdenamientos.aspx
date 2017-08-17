@@ -45,33 +45,34 @@
     <div class="usuario_name">
 
         <div class="col-lg-12 col-md-12">
-            <div class="col-lg-3 col-md-3">
-                <%-- <span id="lblNombreUsuario" class="nombre_usuario"></span> --%>
+
+            <div class="col-lg-2 col-md-2">
                 <img src="images/LogoNuevo.png" alt="Promedan" class="logo_promedan_app">
             </div>
-            <div class="col-lg-4 col-md-4">
-                <span id="lblNombreUsuario" class="nombre_usuario"></span>
+
+            <div class="col-lg-3 col-md-4">
+                <h4 id="lblNombreUsuario" class="nombre_usuario"></h4>
             </div>
+
+            <div class="col-lg-2 col-md-2">
+                <h4 id="lblUsuario" class="nombre_usuario"></h4>
+            </div>
+
             <div class="col-lg-3 col-md-3">
-                <span id="lblUsuario" class="nombre_usuario"></span>
                 <h4 id="lblProveedor" class="nombre_usuario"></h4>
             </div>
+
             <div class="col-lg-2 col-md-2" style="padding-right: 11px">
                 <input type="button" id="btnSalir" value="Salir" />
             </div>
-        </div>
-        
 
-        <%--<span id="Csambiar contraseña" class="cargo_lab"></span>--%>
+        </div>
+
     </div>
 
     <!-- navigation -->
 
     <nav class="pages-nav">
-        <%--   <div class="pages-nav__item bg-primary" id="Parametrizacion" style="display:none"><a class="link link--page" href="#page-parametrizacion"><span class="icon-graph-8"></span>Parametrización</a></div>
-        <div class="pages-nav__item bg-primary" id="ParametrizacionJefe" style="display:none"><a id="pgParametrizacionVisualizacion" class="link link--page" href="#parametrizacion_jefe"><span class="icon-settings-1"></span>Administrar Usuarios</a></div>
-        --%>
-
         <div id="MenuCargaArchivo" class="pages-nav__item" style="display: none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
         <div id="MenuResponsables" class="pages-nav__item" style="display: none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
         <div id="MenuOptimizador" class="pages-nav__item" style="display: none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
@@ -95,12 +96,12 @@
         <div class="page" id="page-home">
             <!-- Header -->
             <header class="bp-header cf">
-                <!--<nav class="bp-nav">
+               <%-- <nav class="bp-nav">
 					<a class="bp-nav__item bp-icon bp-icon--prev" href="#" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
-					a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
+					<a class="bp-nav__item bp-icon bp-icon--next" href="" data-info="next Blueprint"><span>Next Blueprint</span></a
 					<a class="bp-nav__item bp-icon bp-icon--drop" href="#" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
 					<a class="bp-nav__item bp-icon bp-icon--archive" href="#" data-info="Blueprints archive"><span>Go to the archive</span></a>
-				</nav>-->
+				</nav>--%>
             </header>
             <div class="mylogin_eval">
                 <div class="login">
@@ -113,11 +114,11 @@
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
-                                <input type="text" id="txtUsuario" class="login-field" value="1234" placeholder="Usuario">
+                                <input type="text" id="txtUsuario" class="login-field"  placeholder="Usuario">
                                 <label class="login-field-icon fui-user" for="login-name"></label>
                             </div>
                             <div class="control-group">
-                                <input type="password" id="txtContraseña" class="login-field" value="12345" placeholder="Contraseña">
+                                <input type="password" id="txtContraseña" class="login-field"  placeholder="Contraseña">
                                 <label class="login-field-icon fui-lock" for="login-pass"></label>
                             </div>
                             <a id="btnLogin" class="btn btn-primary btn-large btn-block" href="#">Iniciar sesión</a>
@@ -140,10 +141,6 @@
                     <div class="loader" id="loaderdashboard"></div>
                 </div>
 
-
-                <%-- <p>A continuación, encontraras tus resultados.<br />
-                    No olvides que la retroalimentación es un regalo y es la clave del éxito está en que construyas y ejecutes tu plan de desarrollo tomando en cuenta esta información.
-                </p>--%>
             </header>
 
             <div class="container">
@@ -360,32 +357,20 @@
         </div>
         <%-- pagina para optimizacion--%>
         <div class="page" id="page-AsignarAT4" style="display: none">
+            <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 20 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
+            </div>
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
                 <p id="optimi">Favor consultar la orden y asignarle el provedor correspondiente.</p>
             </header>
             <div class="container">
-                <div class="scroll_header_fixed">
-                    <%-- <div class="listar_nambers">
-                        <div class="col-md-2">
-                            <label>TOTAL<br>
-                                ASIGNADO:</label>
-                            <label id="lbltotalasignados"></label>
-                        </div>
-                        <div class="col-md-2">
-                            <label>TOTAL<br>
-                                PENDIENTES:</label>
-                            <label id="lbltotalpendientes"></label>
-                        </div>
-                        <div class="col-md-2 col-md-offset-6">
-                            <button id="btnActualizartabla" class="btn btn-primary">Listar</button>
-                        </div>
-                    </div>--%>
+               <%-- <div class="scroll_header_fixed">   --%>                
 
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
 
-                            <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 15px; border-radius: 3px">
+                            <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 8px; border-radius: 3px">
 
                                 <div class="col-md-2">
                                     <label>TOTAL ASIGNADO:</label>
@@ -402,40 +387,50 @@
                                     <label id="lbltotalvencidas"></label>
                                 </div>
                                 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label>FILTRAR:</label>
-                                    <input class="myinput" type="text" id="txtfiltro" placeholder="Ingresa el número de CUPS" onkeyup="FiltrarTablaSede()">
+                                    <input class="myinput" type="text" id="txtfiltro" placeholder="Descripción" onkeyup="FiltrarTablaSede()">
                                 </div>
 
-                                <div class="col-md-3" style="text-align: end; padding-top: 25px">
+                                <div class="col-md-2">
+                                    <label>FILTRAR:</label>
+                                    <input class="myinput" type="text" id="txtfiltroespecialidadd" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidadd','tablaAsignar','6')"">
+                                </div>
+
+                                <div class="col-md-2" style="text-align: end; padding-top: 25px">
                                     <button id="btnActualizartabla">Listar</button>
                                 </div>
 
                             </div>
                             <div class="card-content table-responsive">
-                                <div class="scroll_header_fixed">
-                                    <table id="tablaAsignar" class="table table-hover table-action">
-                                        <thead>
-                                            <tr>
-                                                <th>Codigo S. Ciklos</th>
-                                                <th>Fecha Sistema</th>
-                                                <th>Dias Espera</th>
-                                                <th>IPS Solicitante</th>
-                                                <th>CUPS</th>
-                                                <th>Descripción</th>
-                                                <th>Detalle</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+                                <%-- <div class="scroll_header_fixed">--%>
+                                <div class="table-wrapper">
+                                    <div class="table-scroll">
+                                        <table id="tablaAsignar" class="table table-hover table-action">
+                                            <thead>
+                                                <tr>
+                                                    <th><span class="text">Codigo S. Ciklos</span></th>
+                                                    <th><span class="text">Fecha Sistema</span></th>
+                                                    <th><span class="text">Dias Espera</span></th>
+                                                    <th><span class="text">IPS Solicitante</span></th>
+                                                    <th><span class="text">Descripción</span></th>
+                                                    <th><span class="text">CUPS</span></th>  
+                                                    <th><span class="text">Especialidad</span></th>                                                    
+                                                    <th><span class="text">Detalle</span></th>
+                                                    <th><span class="text">Acción</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <%-- </div>--%>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
 
-                </div>
+                <%-- </div>--%>
             </div>
 
             <div class="container">
@@ -466,7 +461,7 @@
                                     <label id="lblciudad"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
-                                    <span>Nivel Autorización:</span>
+                                    <span>IPS Primaria:</span>
                                     <label id="lblestadoserv"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
@@ -579,8 +574,8 @@
         </div>
         <%--Pagina de asignacion de responsables--%>
         <div class="page" id="page-Responsables" style="display: none">
-            <div class="col-lg-12 col-md-12 helpicon">
-                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right')" style="width: 30px; height: 30px" />
+           <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el responsable y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un responsable sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
@@ -596,6 +591,7 @@
                 </div>--%>
             </header>
             <div class="container">
+              <div class="scroll_header_fixed">
                 <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
@@ -620,7 +616,7 @@
 
                     </div>
                 </div>
-                <div class="scroll_header_fixed">
+               
                     <div class="col-lg-12 col-md-12">
                         <div class="card-content table-responsive">
                             <table id="tablaParametros" <%--style="visibility:hidden"--%> class="table table-hover table-action">
@@ -637,17 +633,24 @@
                             </table>
                         </div>
                     </div>
-                </div>
+               
+
+              </div>
+
             </div>
         </div>
         <%-- pagina para importacion de archivo--%>
         <div class="page" id="page-ImportarArchivo" style="display: none">
+              <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Importar</b><p>- Se debe adjuntar el archivo una única vez por día y en el formato de Excel especificado.</p><p>- Después de adjuntar el archivo se debe presionar en el botón PROCESAR ARCHIVO para actualizar la base de datos y luego en DISTRIBUIR CUPS para completar el proceso.</p><p>- Al mismo tiempo, se repartirán automáticamente las ordenes en función de los responsables y se muestra el resultado en la tabla.</p>')" style="width: 30px; height: 30px" />
+            </div>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Importar Archivo</h1>
                 <p>Ingresar el archivo de ordenes generadas para los prestadores al sistema.</p>
             </header>
 
             <div class="container">
+               <div class="scroll_header_fixed">
                 <div class="col-lg-6 col-md-6">
                     <label>Arrastra o selecciona el archivo en formato Excel.</label>
                     <div id="mydropzone" action="/uploads" title="Importar" class="dropzone"></div>
@@ -676,6 +679,7 @@
 
 
                 <div class="col-lg-12 col-md-12">
+
                     <div class="card">
                         <div class="card-header" data-background-color="bluee">
                             <h4 class="title">Listado de Asignaciones</h4>
@@ -698,7 +702,7 @@
                         </div>
                     </div>
                 </div>
-
+              </div>
             </div>
         </div>
 
@@ -724,14 +728,13 @@
                     <label>Fecha Final:</label>
                     <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
                 </div>
-
-
+                
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
                     <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')" />
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','1')" />
                 </div>
@@ -749,24 +752,28 @@
                                 <h4 class="title">Listado de Ordenes</h4>
                                 <p class="category">Ordenes pendientes por gestión del proveedor - contacto con el usuario.</p>
                             </div>
-                            <div class="scroll_header_fixed">
-                                <div class="card-content table-responsive">
-                                    <table id="tablaProveedores" class="table table-hover table-action">
-                                        <thead>
-                                            <tr>
-                                                <th>Fecha Asignacion</th>
-                                                <th>Sede</th>
-                                                <th>Especialidad</th>
-                                                <th>Descripción</th>
-                                                <th>Paciente</th>
-                                                <th>Detalle</th>
-                                                <th>Acción</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
+
+                            <div class="card-content table-responsive">
+                                <div class="table-wrapper">
+                                    <div class="table-scroll">
+                                        <table id="tablaProveedores" class="table table-hover table-action">
+                                            <thead>
+                                                <tr>
+                                                    <th><span class="text">Fecha Asignacion</span></th>
+                                                    <th id="th_Sede1"><span class="text">Sede</span></th>
+                                                    <th><span class="text">Especialidad</span></th>
+                                                    <th><span class="text">Descripción</span></th>
+                                                    <th><span class="text">Paciente</span></th>
+                                                    <th><span class="text">Detalle</span></th>
+                                                    <th><span class="text">Acción</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
 
@@ -883,7 +890,7 @@
                     <input id="txtfiltroespecialidad2" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','2')" />
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2" id="div_filtrosede2">
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede2" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede2','tablaProveedores2','1')" />
                 </div>
@@ -907,7 +914,7 @@
                                     <thead>
                                         <tr>
                                             <th>Fecha Asignación</th>
-                                            <th>Sede</th>
+                                            <th id="th_Sede2">Sede</th>
                                             <th>Especialidad</th>
                                             <th>Descripción</th>
                                             <th>Paciente</th>
@@ -944,15 +951,15 @@
                                         <span>Nombre Paciente:</span>
                                         <label id="lblpacientenombre2"></label>
                                     </div>
-
-                                    <div class="cinta_whit_sh">
-                                        <span>Contacto:</span>
-                                        <label id="lblcontacto2"></label>
-                                    </div>
-
+                                    
                                     <div class="cinta_whit_sh">
                                         <span>Estado de la Orden:</span>
                                         <label id="lblestado2"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Observaciones Contacto:</span>
+                                        <label id="lblcontacto2"></label>
                                     </div>
 
                                     <div class="cinta_whit_sh">
@@ -1023,7 +1030,7 @@
                     <input id="txtfiltroespecialidad3" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad3','tablaProveedores3','2')" />
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-2" id="div_filtrosede3">
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede3" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede3','tablaProveedores3','1')" />
                 </div>
@@ -1047,7 +1054,7 @@
                                     <thead>
                                         <tr>
                                             <th>Fecha Asignación</th>
-                                            <th>Sede</th>
+                                            <th id="th_Sede3">Sede</th>
                                             <th>Especialidad</th>
                                             <th>Descripción</th>
                                             <th>Paciente</th>
@@ -1170,6 +1177,7 @@
                                         <th>Descripción </th>
                                         <th>Cups</th>
                                         <th>Nueva Descripción</th>
+                                        <th>Especialidad</th>
                                         <th>Acción </th>
                                     </tr>
                                 </thead>
