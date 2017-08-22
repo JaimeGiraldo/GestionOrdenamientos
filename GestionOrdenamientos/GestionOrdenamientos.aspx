@@ -420,7 +420,7 @@
                                                     <th><span class="text">Acción</span></th>
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody id="bodytablaAsignar"></tbody>
                                         </table>
                                         <%-- </div>--%>
                                     </div>
@@ -744,7 +744,7 @@
                 </div>
 
             </header>
-            <div class="container">
+            <div class="container" style="width:90%">
                 <div class="scroll_header_fixed">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
@@ -768,7 +768,7 @@
                                                     <th><span class="text">Acción</span></th>
                                                 </tr>
                                             </thead>
-                                            <tbody></tbody>
+                                            <tbody id="bodyproveedores"></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -887,7 +887,7 @@
 
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad2" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','2')" />
+                    <input id="txtfiltroespecialidad2" class="form-control" placeholder="Paciente" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad2','tablaProveedores2','4')" />
                 </div>
 
                 <div class="col-md-2" id="div_filtrosede2">
@@ -922,7 +922,7 @@
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody id="bodyproveedores2"></tbody>
                                 </table>
                             </div>
                         </div>
@@ -1062,7 +1062,7 @@
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody id="bodyproveedores3"></tbody>
                                 </table>
                             </div>
                         </div>

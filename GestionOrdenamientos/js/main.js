@@ -519,6 +519,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	        var datos3 = listaDatos.Table3;
 
 	        $('#tablaAsignar td').remove();
+	        $("#bodytablaAsignar").empty();
 
 	            if (listaDatos.Table.length > 0) {	                    
 
@@ -535,7 +536,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                    var tbl = '';
 	                    //tbl += '<tr>';
 	                    tbl += '<tr id="tr_' + datos[i].idConsecutivo + '">';
-	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + '</td>';
+	                    tbl += '<td>' + datos[i].Codigo_Solicitud_Ciklos + ' - ' + datos[i].idConsecutivo + '</td>';
 	                    tbl += '<td>' + datos[i].FechaCargueSistema + '</td>';
 	                    tbl += '<td id="td_dias' + datos[i].idConsecutivo + '">' + datos[i].DiasEspera + '</td>';
 	                    tbl += '<td>' + datos[i].Prestador_Solicitante + '</td>';
@@ -563,6 +564,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                document.getElementById('optimi').innerHTML = "";	                    
 	                //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');
 	                $('#tablaAsignar td').remove();
+	                $("#bodytablaAsignar").empty();
 	        }
 	    }
 	});
@@ -601,7 +603,9 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
             } else {
                 var listaDatos = JSON.parse(rest.d);
                 var datos = listaDatos.Table;
-                $('#tablaProveedores td').remove();
+
+                $("#bodyproveedores").empty();
+                //$('#tablaProveedores td').remove();
 
                 if (listaDatos.Table.length > 0) {
 
@@ -629,7 +633,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                    
                 } else {
                     swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
-                    $('#tablaProveedores td').remove();
+                    $("#bodyproveedores").empty();
                 }
             }
         });
@@ -659,7 +663,7 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha final.', 'warning');
     } else {
         $.ajax({
-            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor2",
             data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
                 + idtipoid + "', identificacion: '" + identificacion + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
             contentType: "application/json; charset=utf-8",
@@ -672,7 +676,7 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
             } else {
                 var listaDatos = JSON.parse(rest.d);
                 var datos = listaDatos.Table;
-                $('#tablaProveedores2 td').remove();
+                $("#bodyproveedores2").empty();
 
                 if (listaDatos.Table.length > 0) {
 
@@ -699,7 +703,7 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
 
                 } else {
                     swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
-                    $('#tablaProveedores2 td').remove();
+                    $("#bodyproveedores2").empty();
                 }
             }
         });
@@ -738,7 +742,7 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
             } else {
                 var listaDatos = JSON.parse(rest.d);
                 var datos = listaDatos.Table;
-                $('#tablaProveedores3 td').remove();
+                $("#bodyproveedores3").empty();
 
                 if (listaDatos.Table.length > 0) {
 
@@ -765,7 +769,7 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
 
                 } else {
                     swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
-                    $('#tablaProveedores3 td').remove();
+                    $("#bodyproveedores3").empty();
                 }
             }
         });
@@ -963,8 +967,8 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
     body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
     body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
-    footer += '<button id="btnAsignarProveedor_' + posicion +
-                                '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
+    footer += '<button  class="btn btn-primary" data-dismiss="modal">Volver</button>';
+    footer += '<button id="btnAsignarProveedor_' + posicion + '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
    
     $("#ModalAcciones .modal-body").append(body);
     $("#ModalAcciones .modal-footer").append(footer);
@@ -997,6 +1001,10 @@ function abrirModalAcciones(posicion, posiciontabla) {
             sedes.select2({
                 placeholder: "Selecciona la sede Promedan"
             });
+                      
+            if (datosorden[posiciontabla].IPSUsuario != null) {
+                showNotificationOptmizacionsede('top', 'center', datosorden[posiciontabla].IPSUsuario);
+            }           
 
         } else {            
             $('#ddl_DivSede_' + posicion).hide();
@@ -1011,6 +1019,7 @@ function abrirModalAcciones(posicion, posiciontabla) {
     $('#txtCIE10Desc_' + posicion).prop('disabled', true);
     document.getElementById('ModaltittleAcciones').innerHTML = 'Gestión de la Orden ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos;
 
+    $('#ModalAcciones').modal({ backdrop: 'static', keyboard: false })
     $("#ModalAcciones").modal();
 
     //Despues de ingresar el diagnostico se detecta el ENTER
@@ -2547,6 +2556,26 @@ function llenarCombos(combo, spP) {
             //type: type[color],
             type: 'info',
             timer: 4000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+
+
+    }
+
+    function showNotificationOptmizacionsede(from, align, sede) {
+
+        type = ['default','primary', 'success', 'warning', 'danger'];
+        color = Math.floor((Math.random() * 4) + 1);
+
+        $.notify({
+            message: 'Recuerda que la sede asignada al usuario es: ' + sede
+        }, {
+            type: type[color],
+            //type: 'danger',
+            timer: 1000,
             placement: {
                 from: from,
                 align: align
