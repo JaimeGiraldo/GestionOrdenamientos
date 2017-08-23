@@ -361,8 +361,8 @@
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 20 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
-                <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada</h1>
-                <p id="optimi">Favor consultar la orden y asignarle el provedor correspondiente.</p>
+                <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada - Optimización</h1>
+                <p id="optimi">Favor consultar las ordenes asignadas y realizar el proceso de Optimización.</p>
             </header>
             <div class="container">
                <%-- <div class="scroll_header_fixed">   --%>                
@@ -900,7 +900,7 @@
                 </div>
 
             </header>
-            <div class="container">
+            <div class="container" style="width:90%">
                 <div class="scroll_header_fixed">
 
                     <div class="col-lg-12 col-md-12">
@@ -1016,31 +1016,27 @@
                 </div>--%>
 
                 <div class="col-md-3">
-                    <label>Fecha Inicial:</label>
-                    <input type="date" id="ProveedorFechaInicial3" class="form-control color-dark" />
+                    <label>Tipo ID:</label>
+                    <select id="ddlTipoID" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>
 
                 <div class="col-md-3">
-                    <label>Fecha Final:</label>
-                    <input type="date" id="ProveedorFechaFinal3" class="form-control color-dark" />
+                    <label>Identificación:</label>
+                    <input type="text" id="Proveedor3Identificacion" class="form-control color-dark" />
                 </div>
+             
+                
 
-                <div class="col-md-2">
-                    <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad3" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad3','tablaProveedores3','2')" />
-                </div>
 
-                <div class="col-md-2" id="div_filtrosede3">
-                    <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede3" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede3','tablaProveedores3','1')" />
-                </div>
 
-                <div class="col-md-2" style="text-align: end; padding-top: 25px">
+
+
+                <div class="col-md-6" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor3">Consultar</button>
                 </div>
 
             </header>
-            <div class="container">
+            <div class="container" style="width:90%">
                 <div class="scroll_header_fixed">
 
                     <div class="col-lg-12 col-md-12">

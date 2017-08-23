@@ -481,6 +481,12 @@ function ObtenerDatosIniciales(Menu, lista) {
             $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
             proveedorasignado = lista.Table[0].ProveedorAsignado;
 
+            $("#ddlTipoID").select2({
+                placeholder: "Selecciona el tipo de documento."
+            });
+            var tipoid = $('#ddlTipoID');
+            llenarCombos(tipoid, "spGestionOrdenamientos_TipoIdObtener");
+
             $("#btnConsultarOrdenesProveedor3").on("click", function (e) {
                 consultarOrdenesProveedor3(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
             });
@@ -545,7 +551,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 	                    tbl += '<td>' + datos[i].Especialidad + '</td>';
 	                    tbl += '<td>' + '<button id="btninfo_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacion(' + i + ')">Ver</button>' + '</td>';
 	                    tbl += '<td>' + '<button id="btnAsignarProveedor_' + datos[i].idConsecutivo +
-                                '" class="btn btn-primary" onclick="ValidarOrden(' + datos[i].idConsecutivo + ',' + i + ')">Auditar</button>' + '</td>';
+                                '" class="btn btn-primary" onclick="ValidarOrden(' + datos[i].idConsecutivo + ',' + i + ')">Optimizar</button>' + '</td>';
 	                    tbl += '</tr>';
                         
                         
@@ -714,8 +720,8 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
 
     //var estado = $('#ddlEstadoOrden').val();
     var estado = "Impresa";
-    var fechainicial = $('#ProveedorFechaInicial3').val();
-    var fechafinal = $('#ProveedorFechaFinal3').val();
+    var tipoidpaciente = $('#ddlTipoID').val();
+    var idpaciente = $('#Proveedor3Identificacion').val();
 
     //console.log(fechainicial)
 
@@ -723,15 +729,15 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
     //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
     //} else
 
-    if (fechainicial == "") {
-        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha inicial.', 'warning');
-    } else if (fechafinal == "") {
-        swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha final.', 'warning');
+    if (tipoidpaciente == "0" || tipoidpaciente == null) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un tipo de documento.', 'warning');
+    } else if (idpaciente == "" || idpaciente.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el documento del paciente.', 'warning');
     } else {
         $.ajax({
-            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
+            url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor3",
             data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
-                + idtipoid + "', identificacion: '" + identificacion + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
+                + idtipoid + "', identificacion: '" + identificacion + "', tipoidpaciente: '" + tipoidpaciente + "', idpaciente: '" + idpaciente + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -2571,11 +2577,11 @@ function llenarCombos(combo, spP) {
         color = Math.floor((Math.random() * 4) + 1);
 
         $.notify({
-            message: 'Recuerda que la sede asignada al usuario es: ' + sede
+            message: 'Recuerda que la sede asignada al usuario es: ' + sede + ', y el proveedor sugerido es: ' + 'PROVEEDOR'
         }, {
             type: type[color],
             //type: 'danger',
-            timer: 1000,
+            timer: 6000,
             placement: {
                 from: from,
                 align: align

@@ -190,6 +190,42 @@ namespace GestionOrdenamientos
             }
         }
 
+        //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
+        public string ConsultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string tipoidpaciente, string idpaciente)
+        {
+            try
+            {
+
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor3" + "'" + proveedor + "','" + estado + "','" + idtipoid + "','" + identificacion + "','" + tipoidpaciente + "','" + idpaciente + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string consultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string tipoidpaciente, string idpaciente)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor3(proveedor, estado, idtipoid, identificacion, tipoidpaciente, idpaciente);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //Guarda el responsable asignado
         public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion)
