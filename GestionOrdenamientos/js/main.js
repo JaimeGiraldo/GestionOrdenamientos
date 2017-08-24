@@ -80,7 +80,7 @@ var archivos2 = [];
 
     $("#btngrafico3").on("click", function (e) {
         pintarGrafico3();
-        $("#ModalGrafico2").modal();
+        $("#ModalGrafico2").modal();       
     });
 
     $("#btnSalir").on("click", function (e) {
@@ -115,6 +115,12 @@ var archivos2 = [];
 
     $('#reportecups').on("click", function (e) {
         ObtenerReporteCUPS("spGestionOrdenamientos_ReporteCups");
+    });
+
+    $('#reportegeneral').on("click", function (e) {
+        //window.open('VisorReporting.aspx', '',
+        //                'width=450,height=300,status=yes,resizable=yes,scrollbars=yes')
+        window.open('VisorReporting.aspx?Id=311', '');
     });
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -623,8 +629,9 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         tbl += '<td id="td_sedepromedan1' + datos[i].idConsecutivo + '">' + datos[i].SedePromedan + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
-                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
+                        tbl += '<td>' + datos[i].Id_Afiliado +', '+ datos[i].NombreCompleto + '</td>';
                         tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btnImprimirOrden_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="ImprimirOrden(' + datos[i].idConsecutivo + ')">Imprimir</button>' + '</td>';
                         tbl += '<td>' + '<button id="btngestion_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor1(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
                                                
                         tbl += '</tr>';
@@ -648,8 +655,9 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
 
 	
 }
+
    
-//consultar ordenes desde el proveedor para la gestion final
+//consultar ordenes desde el proveedor para la gestion finaltablaProveedores
 function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
 
     //var estado = $('#ddlEstadoOrden').val();
@@ -816,7 +824,11 @@ $(window).on("load resize ", function () {
   $('.tbl-header').css({'padding-right':scrollWidth});
 }).resize();
 
+function ImprimirOrden(idorden) {
+    
+    window.open("VisorOrdenes.aspx?IdOrdenamiento=" + idorden + "&Id=313", '');
 
+}
 
 function ValidarOrden(posicion, posiciontabla) {
 

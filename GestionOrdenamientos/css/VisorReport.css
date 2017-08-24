@@ -1,0 +1,71 @@
+﻿.bp-header__title {
+    font-size: 2.125em;
+    text-align:center;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.bp-body__title {
+    font-size: 0.8em;
+    text-align:center;
+    line-height: 3;
+    margin: 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #bceae4;
+}
+
+.headvisor {
+    background: linear-gradient(60deg,#00bdda, #0fd0b6);
+}
+
+.title_parameters {
+    font-size: 1.5em;
+    text-align:center;
+    font-weight:700;    
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #01bed9;
+}
+
+.panel-bodybackgroud {
+    background-image: url('/images/fondo1.png');
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+
+.mybutton {
+    border-radius: 100em !Important;
+    letter-spacing: 0 !IMPORTANT;
+    text-transform: uppercase !IMPORTANT;
+    font-size: 13px !IMPORTANT;
+    font-weight: 500 !IMPORTANT;
+    padding: 0.7em 2em !IMPORTANT;
+    display: inline-block !IMPORTANT;
+    width: auto !IMPORTANT;
+    margin: 0 auto !IMPORTANT;
+    text-align: center !IMPORTANT;
+    border:none;
+    color:white;
+    outline:none;
+}
+
+#btnConsultar {
+   background-color:#0ecfb9;
+}
+#btnConsultar:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+.label_placeholder {
+    font-size: 1em;
+    text-align:right;
+    font-weight:700;    
+    letter-spacing: 2px;
+    color: #0ecfb6;
+}

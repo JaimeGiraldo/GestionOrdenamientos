@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.ApplicationBlocks.Data;
+using System.Data.SqlClient;
 
 namespace GestionOrdenamientos.BD
 {
@@ -35,7 +36,18 @@ namespace GestionOrdenamientos.BD
             }
         }
 
-       
+        public DataSet llenarDataSet(string sp, params SqlParameter[] listaParametros)
+        {
+            try
+            {
+                return SqlHelper.ExecuteDataset(retonarStringConexion(), sp, listaParametros);
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw ex;
+            }
+        }
 
 
 

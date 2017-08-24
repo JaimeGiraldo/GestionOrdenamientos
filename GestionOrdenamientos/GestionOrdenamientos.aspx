@@ -301,6 +301,11 @@
                                     <h4 class="service-title"><a href="">Reporte CUPS</a></h4>
                                     <p class="service-description">Informe detallado de los cupos que se han ingresado al sistema y su correspondiente asignación.</p>
                                 </div>
+                                <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-bar-chart" id="reportegeneral"></i></div>
+                                    <h4 class="service-title"><a href="">Reporte General</a></h4>
+                                    <p class="service-description">Informe general de todas las ordenes ingresadas al sistema y su estado actual.</p>
+                                </div>
                             </div>
                         </section>
 
@@ -765,6 +770,7 @@
                                                     <th><span class="text">Descripción</span></th>
                                                     <th><span class="text">Paciente</span></th>
                                                     <th><span class="text">Detalle</span></th>
+                                                    <th><span class="text">Orden</span></th>
                                                     <th><span class="text">Acción</span></th>
                                                 </tr>
                                             </thead>
