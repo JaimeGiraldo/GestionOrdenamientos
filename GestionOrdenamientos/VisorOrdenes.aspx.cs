@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -31,15 +32,15 @@ namespace GestionOrdenamientos
                     idMenu = Request.QueryString["Id"].ToString();
                 }
 
-                DataSet dsMenu = oRetornarDatos.llenarDataSet("sp_menu_obtenerxid" + "'" + idMenu + "'");
+                DataSet dsMenu = oRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerReportesxid" + "'" + idMenu + "'");
                 DataTable menu = dsMenu.Tables[0];
                 DataTable parametros = dsMenu.Tables[1];
                 string procedimiento = menu.Rows[0]["Procedimiento"].ToString();
                 string nombreReporte = menu.Rows[0]["Reporte"].ToString();
-                Session["dtParametros"] = parametros;
+                Session["dtParametros1"] = parametros;
                 int numeroParametros = parametros.Rows.Count;
-                Session["sp"] = procedimiento;
-                Session["nombreReporte"] = nombreReporte;
+                Session["sp1"] = procedimiento;
+                Session["nombreReporte1"] = nombreReporte;
 
                 DataView dv = new DataView(parametros);
                 dv.RowFilter = "Tipo = 'Interno'";
@@ -103,45 +104,15 @@ namespace GestionOrdenamientos
             try
             {
 
-                string sp = Session["sp"].ToString();
-                string nombreReporte = Session["nombreReporte"].ToString();
+                string sp = Session["sp1"].ToString();
+                string nombreReporte = Session["nombreReporte1"].ToString();
 
-                DataTable dtParametros = (DataTable)Session["dtParametros"];
-                //SqlParameter[] listaParametros = new SqlParameter[dtParametros.Rows.Count];
-
-                //Recuperar la lista de controles
-                List<Object> listaControles = Session["listaControles"] as List<object>;
-
-
+                DataTable dtParametros = (DataTable)Session["dtParametros1"];
+               
                 for (int i = 0; i < dtParametros.Rows.Count; i++)
                 {
                     //Obtiene el nombre del parametro
-                    string nombreParametro = dtParametros.Rows[i]["Parametro"].ToString();
-
-                    if (listaControles != null)
-                    {
-                        string tipo = listaControles.ElementAt(i).GetType().ToString();
-
-
-                        if (tipo.Equals("System.Web.UI.WebControls.DropDownList"))
-                        {
-                            DropDownList ddl = listaControles.ElementAt(i) as DropDownList;
-                            SqlParameter p = new SqlParameter(nombreParametro, ddl.SelectedValue);
-                            listaParametros[i] = p;
-
-                            ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), ddl.SelectedValue);
-                            parametrosReporte.Add(rp);
-                        }
-                        else if (tipo.Equals("System.Web.UI.WebControls.TextBox"))
-                        {
-                            TextBox txt = listaControles.ElementAt(i) as TextBox;
-                            SqlParameter p = new SqlParameter(nombreParametro, txt.Text);
-                            listaParametros[i] = p;
-
-                            ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), txt.Text);
-                            parametrosReporte.Add(rp);
-                        }
-                    }
+                    string nombreParametro = dtParametros.Rows[i]["Parametro"].ToString();      
                 }
 
                 //se llena el dataset o datos a mostrar desde un procedimiento almacenado que recibe 2 parametros en este caso
@@ -167,7 +138,28 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
-                
+
+   
+        protected void ReportViewer_OnLoad(object sender, EventArgs e)
+        {
+            string exportOption = "EXCELOPENXML";
+            string exportOption1 = "WORDOPENXML";
+            //string exportOption = "PDF";
+            RenderingExtension extension = ReportViewer1.LocalReport.ListRenderingExtensions().ToList().Find(x => x.Name.Equals(exportOption, StringComparison.CurrentCultureIgnoreCase));
+            if (extension != null)
+            {
+                System.Reflection.FieldInfo fieldInfo = extension.GetType().GetField("m_isVisible", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                fieldInfo.SetValue(extension, false);
+            }
+
+            RenderingExtension extension1 = ReportViewer1.LocalReport.ListRenderingExtensions().ToList().Find(x => x.Name.Equals(exportOption1, StringComparison.CurrentCultureIgnoreCase));
+            if (extension1 != null)
+            {
+                System.Reflection.FieldInfo fieldInfo = extension1.GetType().GetField("m_isVisible", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                fieldInfo.SetValue(extension1, false);
+            }
+        }
+
         #endregion
     }
 }

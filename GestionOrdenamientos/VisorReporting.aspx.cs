@@ -38,7 +38,7 @@ namespace GestionOrdenamientos
 
             //DataSet dsMenu = oRetornarDatos.llenarDataSet("sp_menu_obtenerxid" + "'311'");
 
-            DataSet dsMenu = oRetornarDatos.llenarDataSet("sp_menu_obtenerxid" + "'" + idMenu + "'");
+            DataSet dsMenu = oRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerReportesxid" + "'" + idMenu + "'");
             DataTable menu = dsMenu.Tables[0];
             DataTable parametros = dsMenu.Tables[1];
             string procedimiento = menu.Rows[0]["Procedimiento"].ToString();
@@ -220,6 +220,26 @@ namespace GestionOrdenamientos
             LlenarDatos();
         }
 
-  
+
+        protected void ReportViewer_OnLoad(object sender, EventArgs e)
+        {
+            //string exportOption = "EXCELOPENXML";
+            string exportOption1 = "WORDOPENXML";
+            string exportOption = "PDF";
+            RenderingExtension extension = ReportViewer1.LocalReport.ListRenderingExtensions().ToList().Find(x => x.Name.Equals(exportOption, StringComparison.CurrentCultureIgnoreCase));
+            if (extension != null)
+            {
+                System.Reflection.FieldInfo fieldInfo = extension.GetType().GetField("m_isVisible", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                fieldInfo.SetValue(extension, false);
+            }
+
+            RenderingExtension extension1 = ReportViewer1.LocalReport.ListRenderingExtensions().ToList().Find(x => x.Name.Equals(exportOption1, StringComparison.CurrentCultureIgnoreCase));
+            if (extension1 != null)
+            {
+                System.Reflection.FieldInfo fieldInfo = extension1.GetType().GetField("m_isVisible", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                fieldInfo.SetValue(extension1, false);
+            }
+        }
+
     }
 }

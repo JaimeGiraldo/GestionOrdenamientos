@@ -81,6 +81,7 @@
         <div id="MenuProveedor3" class="pages-nav__item" style="display: none"><a id="pgProveedores3" class="link link--page" href="#page-Proveedores3"><span class="icon-record"></span>Ejecución</a></div>
         <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
+        <div id="MenuDashProveedor" class="pages-nav__item" style="display: none"><a id="pgDashProveedores" class="link link--page" href="#page-DashBoardProveedores"><span class="icon-stats"></span>Dashboard</a></div>
 
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
@@ -127,8 +128,7 @@
                 </div>
             </div>
         </div>
-
-
+        
         <div class="page" id="page-DashBoard" style="display: none">
             <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
@@ -360,6 +360,109 @@
             </div>
 
         </div>
+
+
+        <div class="page" id="page-DashBoardProveedores" style="display: none">
+            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Análisis y Reportes</h1>
+                <p>Información detallada sobre la prestación del servicio por parte del proveedor.</p>
+
+                <!-- indicador de wait -->
+                <div class="col-lg-6 col-md-4"></div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="loader" id="loaderdashboardProveedores"></div>
+                </div>
+
+            </header>
+
+            <div class="container">
+
+                <div class="col-lg-12 col-md-12"></div>
+
+                <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Asignadas</p>
+                                <h3 class="title" id="lblasignadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">receipt</i> Asignadas por Prestador
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="red">
+                                <i class="material-icons">help</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Pendientes</p>
+                                <h3 class="title" id="lblpendientesPro">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">alarm</i> En espera de Ejecución
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">comment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Programadas</p>
+                                <h3 class="title" id="lblprogramadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> Programadas con Usuario
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">info_outline</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes en Gestión</p>
+                                <h3 class="title" id="lblengestion">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">report_problem</i> Sin contacto o Impresas 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                               
+                    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center">
+                        <button id="btnreporteprovee" class="btn btn-primary">Reporte</button>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div id="containerProvee" style="height: 400px"></div>
+                </div>
+
+            </div>
+        </div>
+
         <%-- pagina para optimizacion--%>
         <div class="page" id="page-AsignarAT4" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
@@ -512,6 +615,11 @@
                                 <div class="cinta_whit_sh">
                                     <span>Responsable:</span>
                                     <label id="lblresponsable"></label>
+                                </div>
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Estado Orden:</span>
+                                    <label id="lblestadoorden"></label>
                                 </div>
 
                                 <div class="cinta_whit_sh">
@@ -712,6 +820,9 @@
         </div>
 
         <div class="page" id="page-Proveedores" style="display: none">
+            <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Proveedores - Contacto</b><p>- Se muestran las ordenes organizadas por fecha de asignación.</p><p>- Las ordenes donde el usuario no pudo ser contactado se deben gestionar igualmente, pero se siguen mostrando de color rojo hasta lograr el contacto.</p><p>- Si se logra el contacto con el usuario, la fecha de asignación es la fecha para la que usted programó la prestación del servicio.</p>')" style="width: 30px; height: 30px" />
+            </div>
             <header class="bp-header cf">
                 <h1 id="headerproveedor" class="bp-header__title">Proveedores - Contacto</h1>
                 <p id="lblheaderproveedor">Favor validar las ordenes asignadas, contactar con el paciente para programar la atención y guardar la gestión realizada.</p>
@@ -873,9 +984,7 @@
 
             </div>
         </div>
-
-
-
+                
         <div class="page" id="page-Proveedores2" style="display: none">
             <header class="bp-header cf">
                 <h1 id="headerproveedor2" class="bp-header__title">Proveedores - Asistencia</h1>
@@ -925,6 +1034,7 @@
                                             <th>Descripción</th>
                                             <th>Paciente</th>
                                             <th>Detalle</th>
+                                            <th>Orden</th>
                                             <th>Acción</th>
                                         </tr>
                                     </thead>
@@ -1021,23 +1131,20 @@
                     <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>--%>
 
-                <div class="col-md-3">
+<%--                <div class="col-md-3">
                     <label>Tipo ID:</label>
                     <select id="ddlTipoID" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
-                </div>
+                </div>--%>
+
 
                 <div class="col-md-3">
-                    <label>Identificación:</label>
-                    <input type="text" id="Proveedor3Identificacion" class="form-control color-dark" />
+                    <label>Nº de Solicitud:</label>
+                    <input type="number" id="Proveedor3numsolicitud" class="form-control color-dark" />
                 </div>
              
                 
 
-
-
-
-
-                <div class="col-md-6" style="text-align: end; padding-top: 25px">
+                <div class="col-md-9" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor3">Consultar</button>
                 </div>
 
@@ -1048,8 +1155,8 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
-                                <h4 class="title">Listado de Ordenes</h4>
-                                <p class="category">Ordenes pendientes por gestión del proveedor después de asistencia del usuario - Ejecución final.</p>
+                                <h4 class="title">Detalle de la Orden</h4>
+                                <p class="category">Ingrese los soportes de ejecución del servicio según el caso.</p>
                             </div>
                             <div class="card-content table-responsive">
                                 <table id="tablaProveedores3" class="table table-hover table-action">
@@ -1146,8 +1253,7 @@
 
             </div>
         </div>
-
-
+        
         <div class="page" id="page-CUPS" style="display: none">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Administrar CUPS</h1>

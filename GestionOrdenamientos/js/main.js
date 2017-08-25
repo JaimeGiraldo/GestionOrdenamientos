@@ -10,6 +10,7 @@ var archivos2 = [];
   
     var user = sessionStorage.getItem("UsuarioSistema"); 
     var contra = sessionStorage.getItem("ContraseñaSistema");
+    usuario = sessionStorage.getItem("ContraseñaSistema");
 
 
     if (user != null) {
@@ -462,7 +463,6 @@ function ObtenerDatosIniciales(Menu, lista) {
             break;
             
         case "MenuProveedor2":
-
             if (lista.Table[0].ProveedorAsignado != "9000389264") {
                 $('#th_Sede2').hide();
                 $('#div_filtrosede2').css("visibility", "hidden");
@@ -478,7 +478,6 @@ function ObtenerDatosIniciales(Menu, lista) {
             break;
 
         case "MenuProveedor3":
-
             if (lista.Table[0].ProveedorAsignado != "9000389264") {
                 $('#th_Sede3').hide();
                 $('#div_filtrosede3').css("visibility", "hidden");
@@ -487,16 +486,15 @@ function ObtenerDatosIniciales(Menu, lista) {
             $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
             proveedorasignado = lista.Table[0].ProveedorAsignado;
 
-            $("#ddlTipoID").select2({
-                placeholder: "Selecciona el tipo de documento."
-            });
-            var tipoid = $('#ddlTipoID');
-            llenarCombos(tipoid, "spGestionOrdenamientos_TipoIdObtener");
+            //$("#ddlTipoID").select2({
+            //    placeholder: "Selecciona el tipo de documento."
+            //});
+            //var tipoid = $('#ddlTipoID');
+            //llenarCombos(tipoid, "spGestionOrdenamientos_TipoIdObtener");
 
             $("#btnConsultarOrdenesProveedor3").on("click", function (e) {
                 consultarOrdenesProveedor3(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);
             });
-
             break;
         case "MenuCUPS":
             $("#ddlCupsout").select2({
@@ -507,6 +505,9 @@ function ObtenerDatosIniciales(Menu, lista) {
             break;
         case "MenuReportes":
             obtenerDashboard("spGestionOrdenamientos_ObtenerDashboard");
+            break;
+        case "MenuDashProveedor":
+            obtenerDashboardProveedores("spGestionOrdenamientos_ObtenerDashboardProveedores", lista.Table[0].ProveedorAsignado);
             
     }
 }
@@ -630,8 +631,8 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
                         tbl += '<td>' + datos[i].Id_Afiliado +', '+ datos[i].NombreCompleto + '</td>';
-                        tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + i + ')">Ver</button>' + '</td>';
-                        tbl += '<td>' + '<button id="btnImprimirOrden_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="ImprimirOrden(' + datos[i].idConsecutivo + ')">Imprimir</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + datos[i].idConsecutivo + ',' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btnImprimirOrden_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="ImprimirOrden(' + datos[i].idConsecutivo + ')">Generar</button>' + '</td>';
                         tbl += '<td>' + '<button id="btngestion_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor1(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
                                                
                         tbl += '</tr>';
@@ -640,6 +641,12 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
 
                         if (proveedor != "9000389264") {                           
                             $('#td_sedepromedan1' + datos[i].idConsecutivo).hide();                   
+                        }
+                        //si el proveedor no pudo contactar al usuario la orden va a seguir saliendo en el sistema pero con una sombre de color rojo
+                        if (datos[i].SeContactoUsuario == '0') {
+                            $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#f9dde2');
+                        } else if (datos[i].SeContactoUsuario == '2') {//cuando ya se le actualizo el contacto
+                            $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#D1FEE5');
                         }
                     }
                     datosordenproveedor = datos; //
@@ -702,8 +709,9 @@ function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
                         tbl += '<td id="td_sedepromedan2' + datos[i].idConsecutivo + '">' + datos[i].SedePromedan + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
-                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
-                        tbl += '<td>' + '<button id="btninfoPro2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor2(' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + datos[i].Id_Afiliado + ', ' + datos[i].NombreCompleto + '</td>';
+                        tbl += '<td>' + '<button id="btninfoPro2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor2(' + datos[i].idConsecutivo + ',' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + '<button id="btnordenPro2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="ImprimirOrden(' + datos[i].idConsecutivo + ')">Generar</button>' + '</td>';
                         tbl += '<td>' + '<button id="btngestion2_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor2(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
 
                         tbl += '</tr>';
@@ -728,8 +736,8 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
 
     //var estado = $('#ddlEstadoOrden').val();
     var estado = "Impresa";
-    var tipoidpaciente = $('#ddlTipoID').val();
-    var idpaciente = $('#Proveedor3Identificacion').val();
+    //var tipoidpaciente = $('#ddlTipoID').val();
+    var numorden = $('#Proveedor3numsolicitud').val();
 
     //console.log(fechainicial)
 
@@ -737,15 +745,14 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
     //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
     //} else
 
-    if (tipoidpaciente == "0" || tipoidpaciente == null) {
-        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un tipo de documento.', 'warning');
-    } else if (idpaciente == "" || idpaciente.length == 0) {
-        swal(swalheadertxt, 'Lo sentimos, debes ingresar el documento del paciente.', 'warning');
+    if (numorden == "" || numorden.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el Nº de Solicitud que se encuentra en la parte superior de la orden.', 'warning');
+        $("#bodyproveedores3").empty();
     } else {
         $.ajax({
             url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor3",
             data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
-                + idtipoid + "', identificacion: '" + identificacion + "', tipoidpaciente: '" + tipoidpaciente + "', idpaciente: '" + idpaciente + "'}",
+                + idtipoid + "', identificacion: '" + identificacion + "', numorden: '" + numorden + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -768,8 +775,8 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
                         tbl += '<td id="td_sedepromedan3' + datos[i].idConsecutivo + '">' + datos[i].SedePromedan + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
-                        tbl += '<td>' + datos[i].Id_Afiliado + '</td>';
-                        tbl += '<td>' + '<button id="btninfoPro3_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor3(' + i + ')">Ver</button>' + '</td>';
+                        tbl += '<td>' + datos[i].Id_Afiliado + ', ' + datos[i].NombreCompleto + '</td>';
+                        tbl += '<td>' + '<button id="btninfoPro3_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor3(' + datos[i].idConsecutivo + ',' + i + ')">Ver</button>' + '</td>';
                         tbl += '<td>' + '<button id="btngestion3_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor3(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
 
                         tbl += '</tr>';
@@ -782,7 +789,7 @@ function consultarOrdenesProveedor3(proveedor, idtipoid, identificacion) {
                     datosordenproveedor3 = datos; //
 
                 } else {
-                    swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes con los datos ingresados.', 'warning');
+                    swal(swalheadertxt, 'Lo sentimos, no se encontraron ordenes en estado impresa con los datos ingresados.', 'warning');
                     $("#bodyproveedores3").empty();
                 }
             }
@@ -867,6 +874,7 @@ function ValidarOrden(posicion, posiciontabla) {
                         document.getElementById('lblCups').innerHTML = datos[0].Cups;
                         document.getElementById('lbldetalle').innerHTML = datos[0].Descripcion;
                         document.getElementById('lblpacientet').innerHTML = datos[0].id_afiliado;
+                        document.getElementById('lblestadoorden').innerHTML = datos[0].estadoproveedor;
 
                         $("#ModalOrdenRepetida").modal();
 
@@ -1364,9 +1372,9 @@ function MasInformacion(posicion) {
 
 
 //Menu Proveedor 1 - Contacto usuario
-function MasInformacionProveedor(posicion) {
+function MasInformacionProveedor(idconsecutivo,posicion) {
 
-    document.getElementById('DetalleModalProveedortitle').innerHTML = 'Contacto de la Orden ' + datosordenproveedor[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('DetalleModalProveedortitle').innerHTML = 'Contacto de la Orden ' + datosordenproveedor[posicion].Codigo_Solicitud_Ciklos + ' - ' + idconsecutivo;
 
     document.getElementById('lblpacientePro').innerHTML = datosordenproveedor[posicion].Id_Afiliado;
     document.getElementById('lblpacientenombre').innerHTML = datosordenproveedor[posicion].NombreCompleto;
@@ -1424,7 +1432,7 @@ function GuardarContactoProveedor(posicion) {
     var fechaasigncion = $('#dateFechaAsignacion_' + posicion).val();
     var observacionescontacto = $('#txtObservacionesContacto_' + posicion).val();
     var profesional = $('#ddl_profesionalContacto_' + posicion).val();
-
+    var user = sessionStorage.getItem("UsuarioSistema");
     //console.log(usuario)
 
     if (!$('#checkContacto_' + posicion).is(':checked')) {
@@ -1449,7 +1457,7 @@ function GuardarContactoProveedor(posicion) {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/contactoProveedor",
-            data: "{ idorden: '" + idorden + "', contactousuario: '" + contactousuario + "', fechaasigncion: '" + fechaasigncion + "', observacionescontacto: '" + observacionescontacto + "', profesional: '" + profesional + "', usuario: '" + usuario + "'}",
+            data: "{ idorden: '" + idorden + "', contactousuario: '" + contactousuario + "', fechaasigncion: '" + fechaasigncion + "', observacionescontacto: '" + observacionescontacto + "', profesional: '" + profesional + "', usuario: '" + user + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -1499,9 +1507,9 @@ function ContactoUsuario(posicion) {
 }
 
 //Menu Proveedor 2 - Asistencia usuario
-function MasInformacionProveedor2(posicion) {
+function MasInformacionProveedor2(idconsecutivo, posicion) {
 
-    document.getElementById('DetalleModalProveedortitle2').innerHTML = 'Gestión de asistencia para la Orden ' + datosordenproveedor2[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('DetalleModalProveedortitle2').innerHTML = 'Gestión de asistencia para la Orden ' + datosordenproveedor2[posicion].Codigo_Solicitud_Ciklos + ' - ' + idconsecutivo;
 
     document.getElementById('lblpacientePro2').innerHTML = datosordenproveedor2[posicion].Id_Afiliado;
     document.getElementById('lblpacientenombre2').innerHTML = datosordenproveedor2[posicion].NombreCompleto;   
@@ -1563,6 +1571,7 @@ function GuardarProovedorGestionAsistencia(posicion) {
     var observaciones = $('#txtObserpro2_' + posicion).val();
     var adjunto = archivos.toString();
     var idorden = posicion;
+    var user = sessionStorage.getItem("UsuarioSistema");
 
     if (!$('#checkAsitencia_' + posicion).is(':checked')) {
         asistiousuario = 0;
@@ -1582,7 +1591,7 @@ function GuardarProovedorGestionAsistencia(posicion) {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/guardarGestionProveedor2",
-            data: "{ idorden: '" + idorden + "', asistiousuario: '" + asistiousuario + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "', usuario: '" + usuario + "'}",
+            data: "{ idorden: '" + idorden + "', asistiousuario: '" + asistiousuario + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "', usuario: '" + user + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -1616,9 +1625,9 @@ function GuardarProovedorGestionAsistencia(posicion) {
 
 
 //Menu Proveedor 3 - Ejecucion servicio
-function MasInformacionProveedor3(posicion) {
+function MasInformacionProveedor3(idconsecutivo,posicion) {
 
-    document.getElementById('DetalleModalProveedortitle3').innerHTML = 'Gestión Final de la Orden ' + datosordenproveedor3[posicion].Codigo_Solicitud_Ciklos;
+    document.getElementById('DetalleModalProveedortitle3').innerHTML = 'Gestión Final de la Orden ' + datosordenproveedor3[posicion].Codigo_Solicitud_Ciklos + ' - ' + idconsecutivo;
 
     document.getElementById('lblpacientePro3').innerHTML = datosordenproveedor3[posicion].Id_Afiliado;
     document.getElementById('lblpacientenombre3').innerHTML = datosordenproveedor3[posicion].NombreCompleto;
@@ -1674,6 +1683,7 @@ function GuardarProovedorGestionEjecucion(posicion) {
     var observaciones = $('#txtObserpro3_' + posicion).val();
     var adjunto = archivos2.toString();
     var idorden = posicion;
+    var user = sessionStorage.getItem("UsuarioSistema");
 
     //console.log(idorden)
     //console.log(observaciones)
@@ -1687,7 +1697,7 @@ function GuardarProovedorGestionEjecucion(posicion) {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/guardarGestionProveedor3",
-            data: "{ idorden: '" + idorden + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "', usuario: '" + usuario + "'}",
+            data: "{ idorden: '" + idorden + "', observaciones: '" + observaciones + "', adjunto: '" + adjunto + "', usuario: '" + user + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -2366,6 +2376,112 @@ function llenarCombos(combo, spP) {
         });
     }
 
+    function obtenerDashboardProveedores(spP,proveedor) {
+
+        var cups = [];
+        var cantidades = [];
+        var coloress = [];
+
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/dashboardProveedor",
+            data: "{ sp: '" + spP + "', proveedor: '" + proveedor + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+                var datos1 = listaDatos.Table1;
+                var datos2 = listaDatos.Table2;
+                var datos3 = listaDatos.Table3;
+                var datos4 = listaDatos.Table4;
+
+                if (listaDatos.Table.length > 0) {
+                    coloress = colores.sort(function () { return Math.random() - 0.5 });
+
+                    if (datos.length <= 10) {
+                        for (var i = 0; i < datos.length; i++) {
+                            cups.push(datos[i].cups);
+                            cantidades.push(datos[i].cantidad);
+                        }
+                    } else {
+                        for (var i = 0; i < 10; i++) {
+                            cups.push(datos[i].cups);
+                            cantidades.push(datos[i].cantidad);
+                        }
+                    }
+
+                    coloress.push(colores);
+
+                    $("#lblasignadas").html(datos1[0].TotalOrdenes);
+                    $("#lblpendientesPro").html(datos2[0].TotalPendientes);
+                    $("#lblprogramadas").html(datos3[0].TotalProgramadas);
+                    $("#lblengestion").html(datos4[0].TotalNoAdecuadas);
+
+                    pintarGrafico1Proveedores(cups, cantidades, coloress);
+
+                    
+                }
+                else {
+                    swal(swalheadertxt, 'Lo sentimos, no se encontraron datos.', 'warning');
+                    $("#loaderdashboardProveedores").hide();
+                }
+            }
+        });
+    }
+
+    function pintarGrafico1Proveedores(motivos, cantidades, colores) {
+
+        //console.log(cantidades.map(Number));
+        var chart = Highcharts.chart('containerProvee', {
+
+            title: {
+                text: 'TOTAL ORDENES ASIGNADAS'
+            },
+
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: 'Total: {point.y}'
+            },
+            plotOptions: {
+                series: {
+                    borderWidth: 2,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutBounce'
+                    }
+                }
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Total por mes'
+                }
+            },
+
+            xAxis: {
+                categories: motivos
+            },
+
+            series: [{
+                type: 'column',
+                colors: colores,
+                colorByPoint: true,
+                data: cantidades.map(Number),
+                showInLegend: false
+            }]
+
+        });
+
+        $("#loaderdashboardProveedores").hide();
+    }
     function pintarGrafico1(motivos, cantidades, colores) {
 
         //console.log(cantidades.map(Number));

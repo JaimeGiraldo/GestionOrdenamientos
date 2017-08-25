@@ -14,8 +14,9 @@
 
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnableScriptGlobalization="true"></asp:ScriptManager>
 
+
         <div class="col-lg-12 col-md-12 mt20">
-            <rsweb:reportviewer id="ReportViewer1" runat="server" font-names="Calibri Light" font-size="8pt" height="1000px" waitmessagefont-names="Calibri Light" waitmessagefont-size="14pt" width="700px">
+            <rsweb:reportviewer id="ReportViewer1" runat="server" font-names="Calibri Light" font-size="8pt" height="1000px" waitmessagefont-names="Calibri Light" waitmessagefont-size="14pt" width="700px" OnLoad="ReportViewer_OnLoad">
                         </rsweb:reportviewer>
         </div>
     </form>

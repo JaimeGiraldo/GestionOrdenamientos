@@ -89,7 +89,7 @@
                 </div>
 
                 <div class="col-lg-12" style="padding-top:3px">
-                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Calibri Light" Font-Size="8pt" Height="500px" WaitMessageFont-Names="Calibri Light" WaitMessageFont-Size="14pt" Width="100%" style="margin-right: 32px">
+                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Calibri Light" Font-Size="8pt" Height="500px" WaitMessageFont-Names="Calibri Light" WaitMessageFont-Size="14pt" Width="100%" style="margin-right: 32px" OnLoad="ReportViewer_OnLoad">
                     </rsweb:ReportViewer>
                 </div>
             </div>

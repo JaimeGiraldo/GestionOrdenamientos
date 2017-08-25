@@ -191,12 +191,12 @@ namespace GestionOrdenamientos
         }
 
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
-        public string ConsultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string tipoidpaciente, string idpaciente)
+        public string ConsultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string numorden)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor3" + "'" + proveedor + "','" + estado + "','" + idtipoid + "','" + identificacion + "','" + tipoidpaciente + "','" + idpaciente + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor3" + "'" + proveedor + "','" + estado + "','" + idtipoid + "','" + identificacion + "','" + numorden + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -213,12 +213,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string consultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string tipoidpaciente, string idpaciente)
+        public static string consultarOrdenesxProveedor3(string proveedor, string estado, string idtipoid, string identificacion, string numorden)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ConsultarOrdenesxProveedor3(proveedor, estado, idtipoid, identificacion, tipoidpaciente, idpaciente);
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor3(proveedor, estado, idtipoid, identificacion, numorden);
             }
             catch (Exception ex)
             {
@@ -691,5 +691,45 @@ namespace GestionOrdenamientos
                 throw ex;
             }
         }
+
+        //Obtiene el dashboard de proveedores por proveedor
+        public string DashboardProveedor(string proveedor)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDashboardProveedores" + "'" + proveedor + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string dashboardProveedor(string proveedor)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.DashboardProveedor(proveedor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
     }
 }
