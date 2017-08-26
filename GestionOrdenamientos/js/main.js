@@ -12,7 +12,6 @@ var archivos2 = [];
     var contra = sessionStorage.getItem("ContraseñaSistema");
     usuario = sessionStorage.getItem("ContraseñaSistema");
 
-
     if (user != null) {
         $("#txtUsuario").val(user);    
     }
@@ -122,6 +121,15 @@ var archivos2 = [];
         //window.open('VisorReporting.aspx', '',
         //                'width=450,height=300,status=yes,resizable=yes,scrollbars=yes')
         window.open('VisorReporting.aspx?Id=311', '');
+    });
+
+    $('#btnreporteprovee').on("click", function (e) {
+        var proveedorsistema = sessionStorage.getItem("Proveedor");
+        window.open('VisorReporting.aspx?Id=314&Proveedor=' + proveedorsistema, '');
+    });
+
+    $('#reportefaltantescontacto').on("click", function (e) {
+        window.open('VisorReporting.aspx?Id=315', '');
     });
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -448,6 +456,9 @@ function ObtenerDatosIniciales(Menu, lista) {
             consultarOrdenesFecha(lista.Table[0].idtipoid, lista.Table[0].identificacion);
             break;
         case "MenuProveedor":
+
+            sessionStorage.setItem("Proveedor", lista.Table[0].ProveedorAsignado);
+
             //si el proveedor no es promedan se ocultan los campos de sede
             if (lista.Table[0].ProveedorAsignado != "9000389264") {
                 $('#th_Sede1').hide();
@@ -2482,6 +2493,7 @@ function llenarCombos(combo, spP) {
 
         $("#loaderdashboardProveedores").hide();
     }
+
     function pintarGrafico1(motivos, cantidades, colores) {
 
         //console.log(cantidades.map(Number));

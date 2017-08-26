@@ -28,6 +28,10 @@ namespace GestionOrdenamientos {
         
         private spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable tablespGestionOrdenamientos_ImprimirOrdenamiento_Obtener;
         
+        private spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores;
+        
+        private spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable tablespGestionOrdenamietos_ReporteUsuariosSinContacto;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -61,6 +65,12 @@ namespace GestionOrdenamientos {
                 }
                 if ((ds.Tables["spGestionOrdenamientos_ImprimirOrdenamiento_Obtener"] != null)) {
                     base.Tables.Add(new spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable(ds.Tables["spGestionOrdenamientos_ImprimirOrdenamiento_Obtener"]));
+                }
+                if ((ds.Tables["spGestionOrdenamietos_ObtenerReporteGeneralProveedores"] != null)) {
+                    base.Tables.Add(new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable(ds.Tables["spGestionOrdenamietos_ObtenerReporteGeneralProveedores"]));
+                }
+                if ((ds.Tables["spGestionOrdenamietos_ReporteUsuariosSinContacto"] != null)) {
+                    base.Tables.Add(new spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable(ds.Tables["spGestionOrdenamietos_ReporteUsuariosSinContacto"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -97,6 +107,26 @@ namespace GestionOrdenamientos {
         public spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable spGestionOrdenamientos_ImprimirOrdenamiento_Obtener {
             get {
                 return this.tablespGestionOrdenamientos_ImprimirOrdenamiento_Obtener;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable spGestionOrdenamietos_ObtenerReporteGeneralProveedores {
+            get {
+                return this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable spGestionOrdenamietos_ReporteUsuariosSinContacto {
+            get {
+                return this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto;
             }
         }
         
@@ -173,6 +203,12 @@ namespace GestionOrdenamientos {
                 if ((ds.Tables["spGestionOrdenamientos_ImprimirOrdenamiento_Obtener"] != null)) {
                     base.Tables.Add(new spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable(ds.Tables["spGestionOrdenamientos_ImprimirOrdenamiento_Obtener"]));
                 }
+                if ((ds.Tables["spGestionOrdenamietos_ObtenerReporteGeneralProveedores"] != null)) {
+                    base.Tables.Add(new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable(ds.Tables["spGestionOrdenamietos_ObtenerReporteGeneralProveedores"]));
+                }
+                if ((ds.Tables["spGestionOrdenamietos_ReporteUsuariosSinContacto"] != null)) {
+                    base.Tables.Add(new spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable(ds.Tables["spGestionOrdenamietos_ReporteUsuariosSinContacto"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -218,6 +254,18 @@ namespace GestionOrdenamientos {
                     this.tablespGestionOrdenamientos_ImprimirOrdenamiento_Obtener.InitVars();
                 }
             }
+            this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores = ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable)(base.Tables["spGestionOrdenamietos_ObtenerReporteGeneralProveedores"]));
+            if ((initTable == true)) {
+                if ((this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores != null)) {
+                    this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.InitVars();
+                }
+            }
+            this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto = ((spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable)(base.Tables["spGestionOrdenamietos_ReporteUsuariosSinContacto"]));
+            if ((initTable == true)) {
+                if ((this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto != null)) {
+                    this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -232,6 +280,10 @@ namespace GestionOrdenamientos {
             base.Tables.Add(this.tablespGestionOrdenamietos_ObtenerReporteGeneral);
             this.tablespGestionOrdenamientos_ImprimirOrdenamiento_Obtener = new spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable();
             base.Tables.Add(this.tablespGestionOrdenamientos_ImprimirOrdenamiento_Obtener);
+            this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores = new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable();
+            base.Tables.Add(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores);
+            this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto = new spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable();
+            base.Tables.Add(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -243,6 +295,18 @@ namespace GestionOrdenamientos {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializespGestionOrdenamientos_ImprimirOrdenamiento_Obtener() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializespGestionOrdenamietos_ObtenerReporteGeneralProveedores() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializespGestionOrdenamietos_ReporteUsuariosSinContacto() {
             return false;
         }
         
@@ -306,6 +370,12 @@ namespace GestionOrdenamientos {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerRowChangeEventHandler(object sender, spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEventHandler(object sender, spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEventHandler(object sender, spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2056,6 +2126,1358 @@ namespace GestionOrdenamientos {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable : global::System.Data.TypedTableBase<spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow> {
+            
+            private global::System.Data.DataColumn columnIdConsecutivo;
+            
+            private global::System.Data.DataColumn columnId_Afiliado;
+            
+            private global::System.Data.DataColumn columnDescripcion;
+            
+            private global::System.Data.DataColumn columnDescripcion1132;
+            
+            private global::System.Data.DataColumn columnCups;
+            
+            private global::System.Data.DataColumn columnTipoIdCargo;
+            
+            private global::System.Data.DataColumn columnIdCargo;
+            
+            private global::System.Data.DataColumn columnFechaCargueSistema;
+            
+            private global::System.Data.DataColumn columnTipoIdOptimizador;
+            
+            private global::System.Data.DataColumn columnOptimizador;
+            
+            private global::System.Data.DataColumn columnNombreCompleto;
+            
+            private global::System.Data.DataColumn columnFechaOptimizacion;
+            
+            private global::System.Data.DataColumn columnCIE10;
+            
+            private global::System.Data.DataColumn columnDetalleDiagnostico;
+            
+            private global::System.Data.DataColumn columnPorfesionalSolicita;
+            
+            private global::System.Data.DataColumn columnObservacionesAud;
+            
+            private global::System.Data.DataColumn columnObservacionesGen;
+            
+            private global::System.Data.DataColumn columnProveedorAsignado;
+            
+            private global::System.Data.DataColumn columnNombreProveedor;
+            
+            private global::System.Data.DataColumn columnSedePromedan;
+            
+            private global::System.Data.DataColumn columnDetalleSedePromedan;
+            
+            private global::System.Data.DataColumn columnEstadoProveedor;
+            
+            private global::System.Data.DataColumn columnSeContactoUsuario;
+            
+            private global::System.Data.DataColumn columnObservacionesContacto;
+            
+            private global::System.Data.DataColumn columnFechaEsperadaEjecucion;
+            
+            private global::System.Data.DataColumn columnProfesionalAsignado;
+            
+            private global::System.Data.DataColumn columnFechaActualizoContacto;
+            
+            private global::System.Data.DataColumn columnUsuarioActualizoContacto;
+            
+            private global::System.Data.DataColumn columnUsuarioAsistio;
+            
+            private global::System.Data.DataColumn columnObservacionesAsistencia;
+            
+            private global::System.Data.DataColumn columnAdjuntoAsistencia;
+            
+            private global::System.Data.DataColumn columnFechaAsistenciaProveedor;
+            
+            private global::System.Data.DataColumn columnUsuarioActualizoAsistencia;
+            
+            private global::System.Data.DataColumn columnAdjuntoEjecucion;
+            
+            private global::System.Data.DataColumn columnObservacionesEjecucion;
+            
+            private global::System.Data.DataColumn columnUsuarioActualizoEjecucion;
+            
+            private global::System.Data.DataColumn columnFechaEjecucionProveedor;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable() {
+                this.TableName = "spGestionOrdenamietos_ObtenerReporteGeneralProveedores";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdConsecutivoColumn {
+                get {
+                    return this.columnIdConsecutivo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Id_AfiliadoColumn {
+                get {
+                    return this.columnId_Afiliado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DescripcionColumn {
+                get {
+                    return this.columnDescripcion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Descripcion1132Column {
+                get {
+                    return this.columnDescripcion1132;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CupsColumn {
+                get {
+                    return this.columnCups;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoIdCargoColumn {
+                get {
+                    return this.columnTipoIdCargo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdCargoColumn {
+                get {
+                    return this.columnIdCargo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaCargueSistemaColumn {
+                get {
+                    return this.columnFechaCargueSistema;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TipoIdOptimizadorColumn {
+                get {
+                    return this.columnTipoIdOptimizador;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OptimizadorColumn {
+                get {
+                    return this.columnOptimizador;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreCompletoColumn {
+                get {
+                    return this.columnNombreCompleto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaOptimizacionColumn {
+                get {
+                    return this.columnFechaOptimizacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CIE10Column {
+                get {
+                    return this.columnCIE10;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DetalleDiagnosticoColumn {
+                get {
+                    return this.columnDetalleDiagnostico;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PorfesionalSolicitaColumn {
+                get {
+                    return this.columnPorfesionalSolicita;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesAudColumn {
+                get {
+                    return this.columnObservacionesAud;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesGenColumn {
+                get {
+                    return this.columnObservacionesGen;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProveedorAsignadoColumn {
+                get {
+                    return this.columnProveedorAsignado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreProveedorColumn {
+                get {
+                    return this.columnNombreProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SedePromedanColumn {
+                get {
+                    return this.columnSedePromedan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DetalleSedePromedanColumn {
+                get {
+                    return this.columnDetalleSedePromedan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EstadoProveedorColumn {
+                get {
+                    return this.columnEstadoProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SeContactoUsuarioColumn {
+                get {
+                    return this.columnSeContactoUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesContactoColumn {
+                get {
+                    return this.columnObservacionesContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaEsperadaEjecucionColumn {
+                get {
+                    return this.columnFechaEsperadaEjecucion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProfesionalAsignadoColumn {
+                get {
+                    return this.columnProfesionalAsignado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaActualizoContactoColumn {
+                get {
+                    return this.columnFechaActualizoContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioActualizoContactoColumn {
+                get {
+                    return this.columnUsuarioActualizoContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioAsistioColumn {
+                get {
+                    return this.columnUsuarioAsistio;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesAsistenciaColumn {
+                get {
+                    return this.columnObservacionesAsistencia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AdjuntoAsistenciaColumn {
+                get {
+                    return this.columnAdjuntoAsistencia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaAsistenciaProveedorColumn {
+                get {
+                    return this.columnFechaAsistenciaProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioActualizoAsistenciaColumn {
+                get {
+                    return this.columnUsuarioActualizoAsistencia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AdjuntoEjecucionColumn {
+                get {
+                    return this.columnAdjuntoEjecucion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesEjecucionColumn {
+                get {
+                    return this.columnObservacionesEjecucion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioActualizoEjecucionColumn {
+                get {
+                    return this.columnUsuarioActualizoEjecucion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaEjecucionProveedorColumn {
+                get {
+                    return this.columnFechaEjecucionProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow this[int index] {
+                get {
+                    return ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEventHandler spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEventHandler spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEventHandler spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEventHandler spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow(spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow AddspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow(
+                        string Id_Afiliado, 
+                        string Descripcion, 
+                        string Descripcion1132, 
+                        string Cups, 
+                        string TipoIdCargo, 
+                        string IdCargo, 
+                        System.DateTime FechaCargueSistema, 
+                        string TipoIdOptimizador, 
+                        string Optimizador, 
+                        string NombreCompleto, 
+                        System.DateTime FechaOptimizacion, 
+                        string CIE10, 
+                        string DetalleDiagnostico, 
+                        string PorfesionalSolicita, 
+                        string ObservacionesAud, 
+                        string ObservacionesGen, 
+                        string ProveedorAsignado, 
+                        string NombreProveedor, 
+                        string SedePromedan, 
+                        string DetalleSedePromedan, 
+                        string EstadoProveedor, 
+                        string SeContactoUsuario, 
+                        string ObservacionesContacto, 
+                        System.DateTime FechaEsperadaEjecucion, 
+                        string ProfesionalAsignado, 
+                        System.DateTime FechaActualizoContacto, 
+                        string UsuarioActualizoContacto, 
+                        string UsuarioAsistio, 
+                        string ObservacionesAsistencia, 
+                        string AdjuntoAsistencia, 
+                        System.DateTime FechaAsistenciaProveedor, 
+                        string UsuarioActualizoAsistencia, 
+                        string AdjuntoEjecucion, 
+                        string ObservacionesEjecucion, 
+                        string UsuarioActualizoEjecucion, 
+                        System.DateTime FechaEjecucionProveedor) {
+                spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow rowspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow = ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Id_Afiliado,
+                        Descripcion,
+                        Descripcion1132,
+                        Cups,
+                        TipoIdCargo,
+                        IdCargo,
+                        FechaCargueSistema,
+                        TipoIdOptimizador,
+                        Optimizador,
+                        NombreCompleto,
+                        FechaOptimizacion,
+                        CIE10,
+                        DetalleDiagnostico,
+                        PorfesionalSolicita,
+                        ObservacionesAud,
+                        ObservacionesGen,
+                        ProveedorAsignado,
+                        NombreProveedor,
+                        SedePromedan,
+                        DetalleSedePromedan,
+                        EstadoProveedor,
+                        SeContactoUsuario,
+                        ObservacionesContacto,
+                        FechaEsperadaEjecucion,
+                        ProfesionalAsignado,
+                        FechaActualizoContacto,
+                        UsuarioActualizoContacto,
+                        UsuarioAsistio,
+                        ObservacionesAsistencia,
+                        AdjuntoAsistencia,
+                        FechaAsistenciaProveedor,
+                        UsuarioActualizoAsistencia,
+                        AdjuntoEjecucion,
+                        ObservacionesEjecucion,
+                        UsuarioActualizoEjecucion,
+                        FechaEjecucionProveedor};
+                rowspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow);
+                return rowspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow FindByIdConsecutivo(int IdConsecutivo) {
+                return ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(this.Rows.Find(new object[] {
+                            IdConsecutivo})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable cln = ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIdConsecutivo = base.Columns["IdConsecutivo"];
+                this.columnId_Afiliado = base.Columns["Id_Afiliado"];
+                this.columnDescripcion = base.Columns["Descripcion"];
+                this.columnDescripcion1132 = base.Columns["Descripcion1132"];
+                this.columnCups = base.Columns["Cups"];
+                this.columnTipoIdCargo = base.Columns["TipoIdCargo"];
+                this.columnIdCargo = base.Columns["IdCargo"];
+                this.columnFechaCargueSistema = base.Columns["FechaCargueSistema"];
+                this.columnTipoIdOptimizador = base.Columns["TipoIdOptimizador"];
+                this.columnOptimizador = base.Columns["Optimizador"];
+                this.columnNombreCompleto = base.Columns["NombreCompleto"];
+                this.columnFechaOptimizacion = base.Columns["FechaOptimizacion"];
+                this.columnCIE10 = base.Columns["CIE10"];
+                this.columnDetalleDiagnostico = base.Columns["DetalleDiagnostico"];
+                this.columnPorfesionalSolicita = base.Columns["PorfesionalSolicita"];
+                this.columnObservacionesAud = base.Columns["ObservacionesAud"];
+                this.columnObservacionesGen = base.Columns["ObservacionesGen"];
+                this.columnProveedorAsignado = base.Columns["ProveedorAsignado"];
+                this.columnNombreProveedor = base.Columns["NombreProveedor"];
+                this.columnSedePromedan = base.Columns["SedePromedan"];
+                this.columnDetalleSedePromedan = base.Columns["DetalleSedePromedan"];
+                this.columnEstadoProveedor = base.Columns["EstadoProveedor"];
+                this.columnSeContactoUsuario = base.Columns["SeContactoUsuario"];
+                this.columnObservacionesContacto = base.Columns["ObservacionesContacto"];
+                this.columnFechaEsperadaEjecucion = base.Columns["FechaEsperadaEjecucion"];
+                this.columnProfesionalAsignado = base.Columns["ProfesionalAsignado"];
+                this.columnFechaActualizoContacto = base.Columns["FechaActualizoContacto"];
+                this.columnUsuarioActualizoContacto = base.Columns["UsuarioActualizoContacto"];
+                this.columnUsuarioAsistio = base.Columns["UsuarioAsistio"];
+                this.columnObservacionesAsistencia = base.Columns["ObservacionesAsistencia"];
+                this.columnAdjuntoAsistencia = base.Columns["AdjuntoAsistencia"];
+                this.columnFechaAsistenciaProveedor = base.Columns["FechaAsistenciaProveedor"];
+                this.columnUsuarioActualizoAsistencia = base.Columns["UsuarioActualizoAsistencia"];
+                this.columnAdjuntoEjecucion = base.Columns["AdjuntoEjecucion"];
+                this.columnObservacionesEjecucion = base.Columns["ObservacionesEjecucion"];
+                this.columnUsuarioActualizoEjecucion = base.Columns["UsuarioActualizoEjecucion"];
+                this.columnFechaEjecucionProveedor = base.Columns["FechaEjecucionProveedor"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIdConsecutivo = new global::System.Data.DataColumn("IdConsecutivo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdConsecutivo);
+                this.columnId_Afiliado = new global::System.Data.DataColumn("Id_Afiliado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Afiliado);
+                this.columnDescripcion = new global::System.Data.DataColumn("Descripcion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion);
+                this.columnDescripcion1132 = new global::System.Data.DataColumn("Descripcion1132", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion1132);
+                this.columnCups = new global::System.Data.DataColumn("Cups", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCups);
+                this.columnTipoIdCargo = new global::System.Data.DataColumn("TipoIdCargo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoIdCargo);
+                this.columnIdCargo = new global::System.Data.DataColumn("IdCargo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdCargo);
+                this.columnFechaCargueSistema = new global::System.Data.DataColumn("FechaCargueSistema", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaCargueSistema);
+                this.columnTipoIdOptimizador = new global::System.Data.DataColumn("TipoIdOptimizador", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTipoIdOptimizador);
+                this.columnOptimizador = new global::System.Data.DataColumn("Optimizador", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOptimizador);
+                this.columnNombreCompleto = new global::System.Data.DataColumn("NombreCompleto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreCompleto);
+                this.columnFechaOptimizacion = new global::System.Data.DataColumn("FechaOptimizacion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaOptimizacion);
+                this.columnCIE10 = new global::System.Data.DataColumn("CIE10", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCIE10);
+                this.columnDetalleDiagnostico = new global::System.Data.DataColumn("DetalleDiagnostico", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDetalleDiagnostico);
+                this.columnPorfesionalSolicita = new global::System.Data.DataColumn("PorfesionalSolicita", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPorfesionalSolicita);
+                this.columnObservacionesAud = new global::System.Data.DataColumn("ObservacionesAud", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesAud);
+                this.columnObservacionesGen = new global::System.Data.DataColumn("ObservacionesGen", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesGen);
+                this.columnProveedorAsignado = new global::System.Data.DataColumn("ProveedorAsignado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProveedorAsignado);
+                this.columnNombreProveedor = new global::System.Data.DataColumn("NombreProveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreProveedor);
+                this.columnSedePromedan = new global::System.Data.DataColumn("SedePromedan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSedePromedan);
+                this.columnDetalleSedePromedan = new global::System.Data.DataColumn("DetalleSedePromedan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDetalleSedePromedan);
+                this.columnEstadoProveedor = new global::System.Data.DataColumn("EstadoProveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstadoProveedor);
+                this.columnSeContactoUsuario = new global::System.Data.DataColumn("SeContactoUsuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeContactoUsuario);
+                this.columnObservacionesContacto = new global::System.Data.DataColumn("ObservacionesContacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesContacto);
+                this.columnFechaEsperadaEjecucion = new global::System.Data.DataColumn("FechaEsperadaEjecucion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaEsperadaEjecucion);
+                this.columnProfesionalAsignado = new global::System.Data.DataColumn("ProfesionalAsignado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProfesionalAsignado);
+                this.columnFechaActualizoContacto = new global::System.Data.DataColumn("FechaActualizoContacto", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaActualizoContacto);
+                this.columnUsuarioActualizoContacto = new global::System.Data.DataColumn("UsuarioActualizoContacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioActualizoContacto);
+                this.columnUsuarioAsistio = new global::System.Data.DataColumn("UsuarioAsistio", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioAsistio);
+                this.columnObservacionesAsistencia = new global::System.Data.DataColumn("ObservacionesAsistencia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesAsistencia);
+                this.columnAdjuntoAsistencia = new global::System.Data.DataColumn("AdjuntoAsistencia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdjuntoAsistencia);
+                this.columnFechaAsistenciaProveedor = new global::System.Data.DataColumn("FechaAsistenciaProveedor", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaAsistenciaProveedor);
+                this.columnUsuarioActualizoAsistencia = new global::System.Data.DataColumn("UsuarioActualizoAsistencia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioActualizoAsistencia);
+                this.columnAdjuntoEjecucion = new global::System.Data.DataColumn("AdjuntoEjecucion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdjuntoEjecucion);
+                this.columnObservacionesEjecucion = new global::System.Data.DataColumn("ObservacionesEjecucion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesEjecucion);
+                this.columnUsuarioActualizoEjecucion = new global::System.Data.DataColumn("UsuarioActualizoEjecucion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioActualizoEjecucion);
+                this.columnFechaEjecucionProveedor = new global::System.Data.DataColumn("FechaEjecucionProveedor", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaEjecucionProveedor);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdConsecutivo}, true));
+                this.columnIdConsecutivo.AutoIncrement = true;
+                this.columnIdConsecutivo.AutoIncrementSeed = -1;
+                this.columnIdConsecutivo.AutoIncrementStep = -1;
+                this.columnIdConsecutivo.AllowDBNull = false;
+                this.columnIdConsecutivo.ReadOnly = true;
+                this.columnIdConsecutivo.Unique = true;
+                this.columnId_Afiliado.MaxLength = 500;
+                this.columnDescripcion.MaxLength = 500;
+                this.columnDescripcion1132.MaxLength = 2000;
+                this.columnCups.MaxLength = 50;
+                this.columnTipoIdCargo.MaxLength = 2;
+                this.columnIdCargo.MaxLength = 20;
+                this.columnTipoIdOptimizador.MaxLength = 2;
+                this.columnOptimizador.MaxLength = 50;
+                this.columnNombreCompleto.MaxLength = 200;
+                this.columnCIE10.MaxLength = 20;
+                this.columnDetalleDiagnostico.MaxLength = 255;
+                this.columnPorfesionalSolicita.MaxLength = 100;
+                this.columnObservacionesAud.MaxLength = 5000;
+                this.columnObservacionesGen.MaxLength = 5000;
+                this.columnProveedorAsignado.MaxLength = 50;
+                this.columnNombreProveedor.MaxLength = 250;
+                this.columnSedePromedan.MaxLength = 50;
+                this.columnDetalleSedePromedan.MaxLength = 100;
+                this.columnEstadoProveedor.MaxLength = 50;
+                this.columnSeContactoUsuario.ReadOnly = true;
+                this.columnSeContactoUsuario.MaxLength = 2;
+                this.columnObservacionesContacto.MaxLength = 5000;
+                this.columnProfesionalAsignado.MaxLength = 50;
+                this.columnUsuarioActualizoContacto.MaxLength = 50;
+                this.columnUsuarioAsistio.ReadOnly = true;
+                this.columnUsuarioAsistio.MaxLength = 2;
+                this.columnObservacionesAsistencia.MaxLength = 2000;
+                this.columnAdjuntoAsistencia.MaxLength = 1000;
+                this.columnUsuarioActualizoAsistencia.MaxLength = 50;
+                this.columnAdjuntoEjecucion.MaxLength = 1000;
+                this.columnObservacionesEjecucion.MaxLength = 2000;
+                this.columnUsuarioActualizoEjecucion.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow NewspGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow() {
+                return ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanged != null)) {
+                    this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanged(this, new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent(((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanging != null)) {
+                    this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChanging(this, new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent(((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleted != null)) {
+                    this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleted(this, new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent(((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleting != null)) {
+                    this.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowDeleting(this, new spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent(((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovespGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow(spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetReportes ds = new DataSetReportes();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable : global::System.Data.TypedTableBase<spGestionOrdenamietos_ReporteUsuariosSinContactoRow> {
+            
+            private global::System.Data.DataColumn columnIdConsecutivo;
+            
+            private global::System.Data.DataColumn columnProveedorAsignado;
+            
+            private global::System.Data.DataColumn columnNombreProveedor;
+            
+            private global::System.Data.DataColumn columnId_Afiliado;
+            
+            private global::System.Data.DataColumn columnNombreCompleto;
+            
+            private global::System.Data.DataColumn columnContacto;
+            
+            private global::System.Data.DataColumn columnSeContactoUsuario;
+            
+            private global::System.Data.DataColumn columnObservacionesContacto;
+            
+            private global::System.Data.DataColumn columnFechaActualizoContacto;
+            
+            private global::System.Data.DataColumn columnUsuarioActualizoContacto;
+            
+            private global::System.Data.DataColumn columnEstadoProveedor;
+            
+            private global::System.Data.DataColumn columnCups;
+            
+            private global::System.Data.DataColumn columnDescripcion1132;
+            
+            private global::System.Data.DataColumn columnFechaCargueSistema;
+            
+            private global::System.Data.DataColumn columnFechaOptimizacion;
+            
+            private global::System.Data.DataColumn columnSedePromedan;
+            
+            private global::System.Data.DataColumn columnDetalleSedePromedan;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable() {
+                this.TableName = "spGestionOrdenamietos_ReporteUsuariosSinContacto";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IdConsecutivoColumn {
+                get {
+                    return this.columnIdConsecutivo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ProveedorAsignadoColumn {
+                get {
+                    return this.columnProveedorAsignado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreProveedorColumn {
+                get {
+                    return this.columnNombreProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Id_AfiliadoColumn {
+                get {
+                    return this.columnId_Afiliado;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreCompletoColumn {
+                get {
+                    return this.columnNombreCompleto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ContactoColumn {
+                get {
+                    return this.columnContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SeContactoUsuarioColumn {
+                get {
+                    return this.columnSeContactoUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ObservacionesContactoColumn {
+                get {
+                    return this.columnObservacionesContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaActualizoContactoColumn {
+                get {
+                    return this.columnFechaActualizoContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UsuarioActualizoContactoColumn {
+                get {
+                    return this.columnUsuarioActualizoContacto;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EstadoProveedorColumn {
+                get {
+                    return this.columnEstadoProveedor;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CupsColumn {
+                get {
+                    return this.columnCups;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Descripcion1132Column {
+                get {
+                    return this.columnDescripcion1132;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaCargueSistemaColumn {
+                get {
+                    return this.columnFechaCargueSistema;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FechaOptimizacionColumn {
+                get {
+                    return this.columnFechaOptimizacion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SedePromedanColumn {
+                get {
+                    return this.columnSedePromedan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DetalleSedePromedanColumn {
+                get {
+                    return this.columnDetalleSedePromedan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRow this[int index] {
+                get {
+                    return ((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEventHandler spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEventHandler spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEventHandler spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEventHandler spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddspGestionOrdenamietos_ReporteUsuariosSinContactoRow(spGestionOrdenamietos_ReporteUsuariosSinContactoRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRow AddspGestionOrdenamietos_ReporteUsuariosSinContactoRow(
+                        string ProveedorAsignado, 
+                        string NombreProveedor, 
+                        string Id_Afiliado, 
+                        string NombreCompleto, 
+                        string Contacto, 
+                        string SeContactoUsuario, 
+                        string ObservacionesContacto, 
+                        System.DateTime FechaActualizoContacto, 
+                        string UsuarioActualizoContacto, 
+                        string EstadoProveedor, 
+                        string Cups, 
+                        string Descripcion1132, 
+                        System.DateTime FechaCargueSistema, 
+                        System.DateTime FechaOptimizacion, 
+                        string SedePromedan, 
+                        string DetalleSedePromedan) {
+                spGestionOrdenamietos_ReporteUsuariosSinContactoRow rowspGestionOrdenamietos_ReporteUsuariosSinContactoRow = ((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        ProveedorAsignado,
+                        NombreProveedor,
+                        Id_Afiliado,
+                        NombreCompleto,
+                        Contacto,
+                        SeContactoUsuario,
+                        ObservacionesContacto,
+                        FechaActualizoContacto,
+                        UsuarioActualizoContacto,
+                        EstadoProveedor,
+                        Cups,
+                        Descripcion1132,
+                        FechaCargueSistema,
+                        FechaOptimizacion,
+                        SedePromedan,
+                        DetalleSedePromedan};
+                rowspGestionOrdenamietos_ReporteUsuariosSinContactoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowspGestionOrdenamietos_ReporteUsuariosSinContactoRow);
+                return rowspGestionOrdenamietos_ReporteUsuariosSinContactoRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRow FindByIdConsecutivo(int IdConsecutivo) {
+                return ((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(this.Rows.Find(new object[] {
+                            IdConsecutivo})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable cln = ((spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIdConsecutivo = base.Columns["IdConsecutivo"];
+                this.columnProveedorAsignado = base.Columns["ProveedorAsignado"];
+                this.columnNombreProveedor = base.Columns["NombreProveedor"];
+                this.columnId_Afiliado = base.Columns["Id_Afiliado"];
+                this.columnNombreCompleto = base.Columns["NombreCompleto"];
+                this.columnContacto = base.Columns["Contacto"];
+                this.columnSeContactoUsuario = base.Columns["SeContactoUsuario"];
+                this.columnObservacionesContacto = base.Columns["ObservacionesContacto"];
+                this.columnFechaActualizoContacto = base.Columns["FechaActualizoContacto"];
+                this.columnUsuarioActualizoContacto = base.Columns["UsuarioActualizoContacto"];
+                this.columnEstadoProveedor = base.Columns["EstadoProveedor"];
+                this.columnCups = base.Columns["Cups"];
+                this.columnDescripcion1132 = base.Columns["Descripcion1132"];
+                this.columnFechaCargueSistema = base.Columns["FechaCargueSistema"];
+                this.columnFechaOptimizacion = base.Columns["FechaOptimizacion"];
+                this.columnSedePromedan = base.Columns["SedePromedan"];
+                this.columnDetalleSedePromedan = base.Columns["DetalleSedePromedan"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIdConsecutivo = new global::System.Data.DataColumn("IdConsecutivo", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdConsecutivo);
+                this.columnProveedorAsignado = new global::System.Data.DataColumn("ProveedorAsignado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProveedorAsignado);
+                this.columnNombreProveedor = new global::System.Data.DataColumn("NombreProveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreProveedor);
+                this.columnId_Afiliado = new global::System.Data.DataColumn("Id_Afiliado", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId_Afiliado);
+                this.columnNombreCompleto = new global::System.Data.DataColumn("NombreCompleto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreCompleto);
+                this.columnContacto = new global::System.Data.DataColumn("Contacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnContacto);
+                this.columnSeContactoUsuario = new global::System.Data.DataColumn("SeContactoUsuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeContactoUsuario);
+                this.columnObservacionesContacto = new global::System.Data.DataColumn("ObservacionesContacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnObservacionesContacto);
+                this.columnFechaActualizoContacto = new global::System.Data.DataColumn("FechaActualizoContacto", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaActualizoContacto);
+                this.columnUsuarioActualizoContacto = new global::System.Data.DataColumn("UsuarioActualizoContacto", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsuarioActualizoContacto);
+                this.columnEstadoProveedor = new global::System.Data.DataColumn("EstadoProveedor", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEstadoProveedor);
+                this.columnCups = new global::System.Data.DataColumn("Cups", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCups);
+                this.columnDescripcion1132 = new global::System.Data.DataColumn("Descripcion1132", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDescripcion1132);
+                this.columnFechaCargueSistema = new global::System.Data.DataColumn("FechaCargueSistema", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaCargueSistema);
+                this.columnFechaOptimizacion = new global::System.Data.DataColumn("FechaOptimizacion", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFechaOptimizacion);
+                this.columnSedePromedan = new global::System.Data.DataColumn("SedePromedan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSedePromedan);
+                this.columnDetalleSedePromedan = new global::System.Data.DataColumn("DetalleSedePromedan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDetalleSedePromedan);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIdConsecutivo}, true));
+                this.columnIdConsecutivo.AutoIncrement = true;
+                this.columnIdConsecutivo.AutoIncrementSeed = -1;
+                this.columnIdConsecutivo.AutoIncrementStep = -1;
+                this.columnIdConsecutivo.AllowDBNull = false;
+                this.columnIdConsecutivo.ReadOnly = true;
+                this.columnIdConsecutivo.Unique = true;
+                this.columnProveedorAsignado.MaxLength = 50;
+                this.columnNombreProveedor.MaxLength = 250;
+                this.columnId_Afiliado.MaxLength = 500;
+                this.columnNombreCompleto.ReadOnly = true;
+                this.columnNombreCompleto.MaxLength = 1003;
+                this.columnContacto.ReadOnly = true;
+                this.columnContacto.MaxLength = 136;
+                this.columnSeContactoUsuario.ReadOnly = true;
+                this.columnSeContactoUsuario.MaxLength = 2;
+                this.columnObservacionesContacto.MaxLength = 5000;
+                this.columnUsuarioActualizoContacto.MaxLength = 50;
+                this.columnEstadoProveedor.MaxLength = 50;
+                this.columnCups.MaxLength = 50;
+                this.columnDescripcion1132.MaxLength = 2000;
+                this.columnSedePromedan.MaxLength = 50;
+                this.columnDetalleSedePromedan.MaxLength = 100;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRow NewspGestionOrdenamietos_ReporteUsuariosSinContactoRow() {
+                return ((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new spGestionOrdenamietos_ReporteUsuariosSinContactoRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(spGestionOrdenamietos_ReporteUsuariosSinContactoRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanged != null)) {
+                    this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanged(this, new spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent(((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanging != null)) {
+                    this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowChanging(this, new spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent(((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleted != null)) {
+                    this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleted(this, new spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent(((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleting != null)) {
+                    this.spGestionOrdenamietos_ReporteUsuariosSinContactoRowDeleting(this, new spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent(((spGestionOrdenamietos_ReporteUsuariosSinContactoRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovespGestionOrdenamietos_ReporteUsuariosSinContactoRow(spGestionOrdenamietos_ReporteUsuariosSinContactoRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetReportes ds = new DataSetReportes();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4440,6 +5862,1566 @@ namespace GestionOrdenamientos {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow : global::System.Data.DataRow {
+            
+            private spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores = ((spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IdConsecutivo {
+                get {
+                    return ((int)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdConsecutivoColumn]));
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdConsecutivoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Id_Afiliado {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Id_AfiliadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Id_Afiliado\' de la tabla \'spGestionOrdenamietos_ObtenerRe" +
+                                "porteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Id_AfiliadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Descripcion {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DescripcionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descripcion\' de la tabla \'spGestionOrdenamietos_ObtenerRe" +
+                                "porteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DescripcionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Descripcion1132 {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Descripcion1132Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descripcion1132\' de la tabla \'spGestionOrdenamietos_Obten" +
+                                "erReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Descripcion1132Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cups {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CupsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cups\' de la tabla \'spGestionOrdenamietos_ObtenerReporteGe" +
+                                "neralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CupsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoIdCargo {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdCargoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoIdCargo\' de la tabla \'spGestionOrdenamietos_ObtenerRe" +
+                                "porteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdCargoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string IdCargo {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdCargoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'IdCargo\' de la tabla \'spGestionOrdenamietos_ObtenerReport" +
+                                "eGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdCargoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaCargueSistema {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaCargueSistemaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaCargueSistema\' de la tabla \'spGestionOrdenamietos_Ob" +
+                                "tenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaCargueSistemaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string TipoIdOptimizador {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdOptimizadorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'TipoIdOptimizador\' de la tabla \'spGestionOrdenamietos_Obt" +
+                                "enerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdOptimizadorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Optimizador {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.OptimizadorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Optimizador\' de la tabla \'spGestionOrdenamietos_ObtenerRe" +
+                                "porteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.OptimizadorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreCompleto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreCompletoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreCompleto\' de la tabla \'spGestionOrdenamietos_Obtene" +
+                                "rReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreCompletoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaOptimizacion {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaOptimizacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaOptimizacion\' de la tabla \'spGestionOrdenamietos_Obt" +
+                                "enerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaOptimizacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CIE10 {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CIE10Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CIE10\' de la tabla \'spGestionOrdenamietos_ObtenerReporteG" +
+                                "eneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CIE10Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DetalleDiagnostico {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleDiagnosticoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DetalleDiagnostico\' de la tabla \'spGestionOrdenamietos_Ob" +
+                                "tenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleDiagnosticoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string PorfesionalSolicita {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.PorfesionalSolicitaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'PorfesionalSolicita\' de la tabla \'spGestionOrdenamietos_O" +
+                                "btenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.PorfesionalSolicitaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesAud {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAudColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesAud\' de la tabla \'spGestionOrdenamietos_Obte" +
+                                "nerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAudColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesGen {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesGenColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesGen\' de la tabla \'spGestionOrdenamietos_Obte" +
+                                "nerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesGenColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProveedorAsignado {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProveedorAsignadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ProveedorAsignado\' de la tabla \'spGestionOrdenamietos_Obt" +
+                                "enerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProveedorAsignadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreProveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreProveedor\' de la tabla \'spGestionOrdenamietos_Obten" +
+                                "erReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SedePromedan {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SedePromedanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SedePromedan\' de la tabla \'spGestionOrdenamietos_ObtenerR" +
+                                "eporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SedePromedanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DetalleSedePromedan {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleSedePromedanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DetalleSedePromedan\' de la tabla \'spGestionOrdenamietos_O" +
+                                "btenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleSedePromedanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EstadoProveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.EstadoProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EstadoProveedor\' de la tabla \'spGestionOrdenamietos_Obten" +
+                                "erReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.EstadoProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SeContactoUsuario {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SeContactoUsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SeContactoUsuario\' de la tabla \'spGestionOrdenamietos_Obt" +
+                                "enerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SeContactoUsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesContacto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesContacto\' de la tabla \'spGestionOrdenamietos" +
+                                "_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaEsperadaEjecucion {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEsperadaEjecucionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaEsperadaEjecucion\' de la tabla \'spGestionOrdenamieto" +
+                                "s_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEsperadaEjecucionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProfesionalAsignado {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProfesionalAsignadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ProfesionalAsignado\' de la tabla \'spGestionOrdenamietos_O" +
+                                "btenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProfesionalAsignadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaActualizoContacto {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaActualizoContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaActualizoContacto\' de la tabla \'spGestionOrdenamieto" +
+                                "s_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaActualizoContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioActualizoContacto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioActualizoContacto\' de la tabla \'spGestionOrdenamie" +
+                                "tos_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioAsistio {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioAsistioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioAsistio\' de la tabla \'spGestionOrdenamietos_Obtene" +
+                                "rReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioAsistioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesAsistencia {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAsistenciaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesAsistencia\' de la tabla \'spGestionOrdenamiet" +
+                                "os_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAsistenciaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AdjuntoAsistencia {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoAsistenciaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'AdjuntoAsistencia\' de la tabla \'spGestionOrdenamietos_Obt" +
+                                "enerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoAsistenciaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaAsistenciaProveedor {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaAsistenciaProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaAsistenciaProveedor\' de la tabla \'spGestionOrdenamie" +
+                                "tos_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaAsistenciaProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioActualizoAsistencia {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoAsistenciaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioActualizoAsistencia\' de la tabla \'spGestionOrdenam" +
+                                "ietos_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoAsistenciaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string AdjuntoEjecucion {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoEjecucionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'AdjuntoEjecucion\' de la tabla \'spGestionOrdenamietos_Obte" +
+                                "nerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoEjecucionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesEjecucion {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesEjecucionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesEjecucion\' de la tabla \'spGestionOrdenamieto" +
+                                "s_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesEjecucionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioActualizoEjecucion {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoEjecucionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioActualizoEjecucion\' de la tabla \'spGestionOrdenami" +
+                                "etos_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoEjecucionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaEjecucionProveedor {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEjecucionProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaEjecucionProveedor\' de la tabla \'spGestionOrdenamiet" +
+                                "os_ObtenerReporteGeneralProveedores\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEjecucionProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsId_AfiliadoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Id_AfiliadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetId_AfiliadoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Id_AfiliadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DescripcionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DescripcionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcion1132Null() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Descripcion1132Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcion1132Null() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.Descripcion1132Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCupsNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CupsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCupsNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CupsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoIdCargoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdCargoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoIdCargoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdCargoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIdCargoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdCargoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIdCargoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.IdCargoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaCargueSistemaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaCargueSistemaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaCargueSistemaNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaCargueSistemaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTipoIdOptimizadorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdOptimizadorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTipoIdOptimizadorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.TipoIdOptimizadorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOptimizadorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.OptimizadorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOptimizadorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.OptimizadorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreCompletoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreCompletoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreCompletoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreCompletoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaOptimizacionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaOptimizacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaOptimizacionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaOptimizacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCIE10Null() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CIE10Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCIE10Null() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.CIE10Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDetalleDiagnosticoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleDiagnosticoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDetalleDiagnosticoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleDiagnosticoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPorfesionalSolicitaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.PorfesionalSolicitaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPorfesionalSolicitaNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.PorfesionalSolicitaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesAudNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAudColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesAudNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAudColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesGenNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesGenColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesGenNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesGenColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProveedorAsignadoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProveedorAsignadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProveedorAsignadoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProveedorAsignadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.NombreProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSedePromedanNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SedePromedanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSedePromedanNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SedePromedanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDetalleSedePromedanNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleSedePromedanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDetalleSedePromedanNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.DetalleSedePromedanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEstadoProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.EstadoProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEstadoProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.EstadoProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSeContactoUsuarioNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SeContactoUsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSeContactoUsuarioNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.SeContactoUsuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesContactoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaEsperadaEjecucionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEsperadaEjecucionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaEsperadaEjecucionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEsperadaEjecucionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProfesionalAsignadoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProfesionalAsignadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProfesionalAsignadoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ProfesionalAsignadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaActualizoContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaActualizoContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaActualizoContactoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaActualizoContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioActualizoContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioActualizoContactoNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioAsistioNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioAsistioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioAsistioNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioAsistioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesAsistenciaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAsistenciaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesAsistenciaNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesAsistenciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAdjuntoAsistenciaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoAsistenciaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAdjuntoAsistenciaNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoAsistenciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaAsistenciaProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaAsistenciaProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaAsistenciaProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaAsistenciaProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioActualizoAsistenciaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoAsistenciaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioActualizoAsistenciaNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoAsistenciaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsAdjuntoEjecucionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoEjecucionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetAdjuntoEjecucionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.AdjuntoEjecucionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesEjecucionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesEjecucionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesEjecucionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.ObservacionesEjecucionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioActualizoEjecucionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoEjecucionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioActualizoEjecucionNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.UsuarioActualizoEjecucionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaEjecucionProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEjecucionProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaEjecucionProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ObtenerReporteGeneralProveedores.FechaEjecucionProveedorColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class spGestionOrdenamietos_ReporteUsuariosSinContactoRow : global::System.Data.DataRow {
+            
+            private spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable tablespGestionOrdenamietos_ReporteUsuariosSinContacto;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal spGestionOrdenamietos_ReporteUsuariosSinContactoRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto = ((spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int IdConsecutivo {
+                get {
+                    return ((int)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.IdConsecutivoColumn]));
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.IdConsecutivoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ProveedorAsignado {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ProveedorAsignadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ProveedorAsignado\' de la tabla \'spGestionOrdenamietos_Rep" +
+                                "orteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ProveedorAsignadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreProveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreProveedor\' de la tabla \'spGestionOrdenamietos_Repor" +
+                                "teUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Id_Afiliado {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Id_AfiliadoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Id_Afiliado\' de la tabla \'spGestionOrdenamietos_ReporteUs" +
+                                "uariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Id_AfiliadoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreCompleto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreCompletoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreCompleto\' de la tabla \'spGestionOrdenamietos_Report" +
+                                "eUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreCompletoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Contacto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Contacto\' de la tabla \'spGestionOrdenamietos_ReporteUsuar" +
+                                "iosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SeContactoUsuario {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SeContactoUsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SeContactoUsuario\' de la tabla \'spGestionOrdenamietos_Rep" +
+                                "orteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SeContactoUsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string ObservacionesContacto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ObservacionesContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'ObservacionesContacto\' de la tabla \'spGestionOrdenamietos" +
+                                "_ReporteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ObservacionesContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaActualizoContacto {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaActualizoContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaActualizoContacto\' de la tabla \'spGestionOrdenamieto" +
+                                "s_ReporteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaActualizoContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UsuarioActualizoContacto {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.UsuarioActualizoContactoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'UsuarioActualizoContacto\' de la tabla \'spGestionOrdenamie" +
+                                "tos_ReporteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.UsuarioActualizoContactoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string EstadoProveedor {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.EstadoProveedorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'EstadoProveedor\' de la tabla \'spGestionOrdenamietos_Repor" +
+                                "teUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.EstadoProveedorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Cups {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.CupsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Cups\' de la tabla \'spGestionOrdenamietos_ReporteUsuariosS" +
+                                "inContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.CupsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Descripcion1132 {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Descripcion1132Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Descripcion1132\' de la tabla \'spGestionOrdenamietos_Repor" +
+                                "teUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Descripcion1132Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaCargueSistema {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaCargueSistemaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaCargueSistema\' de la tabla \'spGestionOrdenamietos_Re" +
+                                "porteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaCargueSistemaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public System.DateTime FechaOptimizacion {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaOptimizacionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'FechaOptimizacion\' de la tabla \'spGestionOrdenamietos_Rep" +
+                                "orteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaOptimizacionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string SedePromedan {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SedePromedanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'SedePromedan\' de la tabla \'spGestionOrdenamietos_ReporteU" +
+                                "suariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SedePromedanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DetalleSedePromedan {
+                get {
+                    try {
+                        return ((string)(this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.DetalleSedePromedanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DetalleSedePromedan\' de la tabla \'spGestionOrdenamietos_R" +
+                                "eporteUsuariosSinContacto\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.DetalleSedePromedanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsProveedorAsignadoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ProveedorAsignadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetProveedorAsignadoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ProveedorAsignadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsId_AfiliadoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Id_AfiliadoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetId_AfiliadoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Id_AfiliadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreCompletoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreCompletoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreCompletoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.NombreCompletoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetContactoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSeContactoUsuarioNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SeContactoUsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSeContactoUsuarioNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SeContactoUsuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsObservacionesContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ObservacionesContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetObservacionesContactoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.ObservacionesContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaActualizoContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaActualizoContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaActualizoContactoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaActualizoContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsuarioActualizoContactoNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.UsuarioActualizoContactoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsuarioActualizoContactoNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.UsuarioActualizoContactoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEstadoProveedorNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.EstadoProveedorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEstadoProveedorNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.EstadoProveedorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCupsNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.CupsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCupsNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.CupsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDescripcion1132Null() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Descripcion1132Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDescripcion1132Null() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.Descripcion1132Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaCargueSistemaNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaCargueSistemaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaCargueSistemaNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaCargueSistemaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFechaOptimizacionNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaOptimizacionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFechaOptimizacionNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.FechaOptimizacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSedePromedanNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SedePromedanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSedePromedanNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.SedePromedanColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDetalleSedePromedanNull() {
+                return this.IsNull(this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.DetalleSedePromedanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDetalleSedePromedanNull() {
+                this[this.tablespGestionOrdenamietos_ReporteUsuariosSinContacto.DetalleSedePromedanColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4493,6 +7475,74 @@ namespace GestionOrdenamientos {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent : global::System.EventArgs {
+            
+            private spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRowChangeEvent(spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent : global::System.EventArgs {
+            
+            private spGestionOrdenamietos_ReporteUsuariosSinContactoRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRowChangeEvent(spGestionOrdenamietos_ReporteUsuariosSinContactoRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public spGestionOrdenamietos_ReporteUsuariosSinContactoRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4960,6 +8010,459 @@ namespace GestionOrdenamientos.DataSetReportesTableAdapters {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             DataSetReportes.spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable dataTable = new DataSetReportes.spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class spGestionOrdenamietos_ObtenerReporteGeneralProveedoresTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public spGestionOrdenamietos_ObtenerReporteGeneralProveedoresTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "spGestionOrdenamietos_ObtenerReporteGeneralProveedores";
+            tableMapping.ColumnMappings.Add("IdConsecutivo", "IdConsecutivo");
+            tableMapping.ColumnMappings.Add("Id_Afiliado", "Id_Afiliado");
+            tableMapping.ColumnMappings.Add("Descripcion", "Descripcion");
+            tableMapping.ColumnMappings.Add("Descripcion1132", "Descripcion1132");
+            tableMapping.ColumnMappings.Add("Cups", "Cups");
+            tableMapping.ColumnMappings.Add("TipoIdCargo", "TipoIdCargo");
+            tableMapping.ColumnMappings.Add("IdCargo", "IdCargo");
+            tableMapping.ColumnMappings.Add("FechaCargueSistema", "FechaCargueSistema");
+            tableMapping.ColumnMappings.Add("TipoIdOptimizador", "TipoIdOptimizador");
+            tableMapping.ColumnMappings.Add("Optimizador", "Optimizador");
+            tableMapping.ColumnMappings.Add("NombreCompleto", "NombreCompleto");
+            tableMapping.ColumnMappings.Add("FechaOptimizacion", "FechaOptimizacion");
+            tableMapping.ColumnMappings.Add("CIE10", "CIE10");
+            tableMapping.ColumnMappings.Add("DetalleDiagnostico", "DetalleDiagnostico");
+            tableMapping.ColumnMappings.Add("PorfesionalSolicita", "PorfesionalSolicita");
+            tableMapping.ColumnMappings.Add("ObservacionesAud", "ObservacionesAud");
+            tableMapping.ColumnMappings.Add("ObservacionesGen", "ObservacionesGen");
+            tableMapping.ColumnMappings.Add("ProveedorAsignado", "ProveedorAsignado");
+            tableMapping.ColumnMappings.Add("NombreProveedor", "NombreProveedor");
+            tableMapping.ColumnMappings.Add("SedePromedan", "SedePromedan");
+            tableMapping.ColumnMappings.Add("DetalleSedePromedan", "DetalleSedePromedan");
+            tableMapping.ColumnMappings.Add("EstadoProveedor", "EstadoProveedor");
+            tableMapping.ColumnMappings.Add("SeContactoUsuario", "SeContactoUsuario");
+            tableMapping.ColumnMappings.Add("ObservacionesContacto", "ObservacionesContacto");
+            tableMapping.ColumnMappings.Add("FechaEsperadaEjecucion", "FechaEsperadaEjecucion");
+            tableMapping.ColumnMappings.Add("ProfesionalAsignado", "ProfesionalAsignado");
+            tableMapping.ColumnMappings.Add("FechaActualizoContacto", "FechaActualizoContacto");
+            tableMapping.ColumnMappings.Add("UsuarioActualizoContacto", "UsuarioActualizoContacto");
+            tableMapping.ColumnMappings.Add("UsuarioAsistio", "UsuarioAsistio");
+            tableMapping.ColumnMappings.Add("ObservacionesAsistencia", "ObservacionesAsistencia");
+            tableMapping.ColumnMappings.Add("AdjuntoAsistencia", "AdjuntoAsistencia");
+            tableMapping.ColumnMappings.Add("FechaAsistenciaProveedor", "FechaAsistenciaProveedor");
+            tableMapping.ColumnMappings.Add("UsuarioActualizoAsistencia", "UsuarioActualizoAsistencia");
+            tableMapping.ColumnMappings.Add("AdjuntoEjecucion", "AdjuntoEjecucion");
+            tableMapping.ColumnMappings.Add("ObservacionesEjecucion", "ObservacionesEjecucion");
+            tableMapping.ColumnMappings.Add("UsuarioActualizoEjecucion", "UsuarioActualizoEjecucion");
+            tableMapping.ColumnMappings.Add("FechaEjecucionProveedor", "FechaEjecucionProveedor");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dbEvolutionAdvancedConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.spGestionOrdenamietos_ObtenerReporteGeneralProveedores";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicial", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Proveedor", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(DataSetReportes.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable dataTable, string FechaInicial, string FechaFinal, string Proveedor) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((FechaInicial == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaInicial));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaFinal));
+            }
+            if ((Proveedor == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(Proveedor));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DataSetReportes.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable GetData(string FechaInicial, string FechaFinal, string Proveedor) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((FechaInicial == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaInicial));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaFinal));
+            }
+            if ((Proveedor == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(Proveedor));
+            }
+            DataSetReportes.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable dataTable = new DataSetReportes.spGestionOrdenamietos_ObtenerReporteGeneralProveedoresDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class spGestionOrdenamietos_ReporteUsuariosSinContactoTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public spGestionOrdenamietos_ReporteUsuariosSinContactoTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "spGestionOrdenamietos_ReporteUsuariosSinContacto";
+            tableMapping.ColumnMappings.Add("IdConsecutivo", "IdConsecutivo");
+            tableMapping.ColumnMappings.Add("ProveedorAsignado", "ProveedorAsignado");
+            tableMapping.ColumnMappings.Add("NombreProveedor", "NombreProveedor");
+            tableMapping.ColumnMappings.Add("Id_Afiliado", "Id_Afiliado");
+            tableMapping.ColumnMappings.Add("NombreCompleto", "NombreCompleto");
+            tableMapping.ColumnMappings.Add("Contacto", "Contacto");
+            tableMapping.ColumnMappings.Add("SeContactoUsuario", "SeContactoUsuario");
+            tableMapping.ColumnMappings.Add("ObservacionesContacto", "ObservacionesContacto");
+            tableMapping.ColumnMappings.Add("FechaActualizoContacto", "FechaActualizoContacto");
+            tableMapping.ColumnMappings.Add("UsuarioActualizoContacto", "UsuarioActualizoContacto");
+            tableMapping.ColumnMappings.Add("EstadoProveedor", "EstadoProveedor");
+            tableMapping.ColumnMappings.Add("Cups", "Cups");
+            tableMapping.ColumnMappings.Add("Descripcion1132", "Descripcion1132");
+            tableMapping.ColumnMappings.Add("FechaCargueSistema", "FechaCargueSistema");
+            tableMapping.ColumnMappings.Add("FechaOptimizacion", "FechaOptimizacion");
+            tableMapping.ColumnMappings.Add("SedePromedan", "SedePromedan");
+            tableMapping.ColumnMappings.Add("DetalleSedePromedan", "DetalleSedePromedan");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["dbEvolutionAdvancedConnectionString"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.spGestionOrdenamietos_ReporteUsuariosSinContacto";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaInicial", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FechaFinal", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(DataSetReportes.spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable dataTable, string FechaInicial, string FechaFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((FechaInicial == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaInicial));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaFinal));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DataSetReportes.spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable GetData(string FechaInicial, string FechaFinal) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((FechaInicial == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(FechaInicial));
+            }
+            if ((FechaFinal == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(FechaFinal));
+            }
+            DataSetReportes.spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable dataTable = new DataSetReportes.spGestionOrdenamietos_ReporteUsuariosSinContactoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

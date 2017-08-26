@@ -306,6 +306,11 @@
                                     <h4 class="service-title"><a href="">Reporte General</a></h4>
                                     <p class="service-description">Informe general de todas las ordenes ingresadas al sistema y su estado actual.</p>
                                 </div>
+                                 <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-bar-chart" id="reportefaltantescontacto"></i></div>
+                                    <h4 class="service-title"><a href="">Reporte de Usuarios no contactados</a></h4>
+                                    <p class="service-description">Informe general de ordenes aprobadas y asignadas a proveedor donde se reportaron inconvenientes para contactar al paciente.</p>
+                                </div>
                             </div>
                         </section>
 

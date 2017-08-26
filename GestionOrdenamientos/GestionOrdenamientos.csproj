@@ -310,8 +310,10 @@
     <Folder Include="Documentos\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\rptProveedores_ReporteGeneral.rdlc" />
     <EmbeddedResource Include="Reports\rptGestionOrdenamientos_ReporteGeneral.rdlc" />
     <EmbeddedResource Include="Reports\rptOrdenamientos_ImprimirOrden.rdlc" />
+    <EmbeddedResource Include="Reports\rptUsuariosSinContactar.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

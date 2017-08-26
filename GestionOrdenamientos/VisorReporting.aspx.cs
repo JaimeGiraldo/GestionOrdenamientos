@@ -28,6 +28,7 @@ namespace GestionOrdenamientos
         protected void Page_PreInit(object sender, EventArgs e)
         {
             string idMenu = string.Empty;
+            string idProveedor = string.Empty;
 
             //idMenu = "311";
 
@@ -36,11 +37,21 @@ namespace GestionOrdenamientos
                 idMenu = Request.QueryString["Id"].ToString();
             }
 
+            if (Request.QueryString["Proveedor"] != null)
+            {
+                idProveedor = Request.QueryString["Proveedor"].ToString();
+                Session["ProveedorAsignado"] = idProveedor;
+            }
+            else {
+                Session["ProveedorAsignado"] = null;
+            }
+            
+
             //DataSet dsMenu = oRetornarDatos.llenarDataSet("sp_menu_obtenerxid" + "'311'");
 
             DataSet dsMenu = oRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerReportesxid" + "'" + idMenu + "'");
-            DataTable menu = dsMenu.Tables[0];
-            DataTable parametros = dsMenu.Tables[1];
+            DataTable menu = dsMenu.Tables[0]; //1 tabla con todo el registro del menu
+            DataTable parametros = dsMenu.Tables[1]; //2 tabla con todo el registro de los parametros
             string procedimiento = menu.Rows[0]["Procedimiento"].ToString();
             string nombreReporte = menu.Rows[0]["Reporte"].ToString();
             Session["dtParametros"] = parametros;
@@ -87,10 +98,21 @@ namespace GestionOrdenamientos
                         break;
 
                     case "TextBox":
-                        TextBox txt = new TextBox();
-                        txt.CssClass = "form-control";
-                        placeHolder2.Controls.Add(txt);
-                        listaControles.Add(txt);
+                        //para generar reporte sin pintar ontroles
+                        if (Session["ProveedorAsignado"] != null)
+                        {
+                            TextBox txt = new TextBox();
+                            Page.FindControl("PlaceHolder5").Visible = false;
+                            Page.FindControl("PlaceHolder6").Visible = false;
+                            listaControles.Add(txt);
+                        }
+                        else
+                        {
+                            TextBox txt = new TextBox();
+                            txt.CssClass = "form-control";
+                            placeHolder2.Controls.Add(txt);
+                            listaControles.Add(txt);
+                        }                                               
                         break;
 
                     case "CalendarExtender":
@@ -158,12 +180,40 @@ namespace GestionOrdenamientos
                     }
                     else if (tipo.Equals("System.Web.UI.WebControls.TextBox"))
                     {
-                        TextBox txt = listaControles.ElementAt(i) as TextBox;
-                        SqlParameter p = new SqlParameter(nombreParametro, txt.Text);
-                        listaParametros[i] = p;
+                       
+                        if (Session["ProveedorAsignado"] != null)
+                        {
+                            string prov = Session["ProveedorAsignado"].ToString();
+                            //System.Diagnostics.Debug.WriteLine("proveedorparametor: " + prov);
 
-                        ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), txt.Text);
-                        parametrosReporte.Add(rp);
+                            if (nombreParametro == "@Proveedor")
+                            {
+                                
+                                SqlParameter p = new SqlParameter(nombreParametro, prov);
+                                listaParametros[i] = p;
+
+                                ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), prov);
+                                parametrosReporte.Add(rp);
+                            }
+                            else {
+
+                                TextBox txt = listaControles.ElementAt(i) as TextBox;
+                                SqlParameter p = new SqlParameter(nombreParametro, txt.Text);
+                                listaParametros[i] = p;
+
+                                ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), txt.Text);
+                                parametrosReporte.Add(rp);
+                            }
+
+                           
+                        }else {
+                            TextBox txt = listaControles.ElementAt(i) as TextBox;
+                            SqlParameter p = new SqlParameter(nombreParametro, txt.Text);
+                            listaParametros[i] = p;
+
+                            ReportParameter rp = new ReportParameter(nombreParametro.Replace("@", ""), txt.Text);
+                            parametrosReporte.Add(rp);
+                        }
                     }
 
                 }
