@@ -13,6 +13,7 @@ var archivos2 = [];
     usuario = sessionStorage.getItem("ContraseñaSistema");
 
     if (user != null) {
+
         $("#txtUsuario").val(user);    
     }
 
