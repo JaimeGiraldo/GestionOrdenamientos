@@ -659,6 +659,8 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                             $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#f9dde2');
                         } else if (datos[i].SeContactoUsuario == '2') {//cuando ya se le actualizo el contacto
                             $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#D1FEE5');
+                        } else if (datos[i].EstadoProveedor == 'No Asistencia') {
+                            $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#FCDEAB');
                         }
                     }
                     datosordenproveedor = datos; //
