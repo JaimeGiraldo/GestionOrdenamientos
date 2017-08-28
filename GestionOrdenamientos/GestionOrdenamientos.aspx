@@ -366,7 +366,6 @@
 
         </div>
 
-
         <div class="page" id="page-DashBoardProveedores" style="display: none">
             <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
@@ -427,7 +426,7 @@
                                 <i class="material-icons">comment</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Total Ordenes Programadas</p>
+                                <p class="category">Total Ordenes en Gestión</p>
                                 <h3 class="title" id="lblprogramadas">0</h3>
                             </div>
                             <div class="card-footer">
@@ -444,7 +443,7 @@
                                 <i class="material-icons">info_outline</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Total Ordenes en Gestión</p>
+                                <p class="category">Total Ordenes Represadas</p>
                                 <h3 class="title" id="lblengestion">0</h3>
                             </div>
                             <div class="card-footer">
@@ -468,7 +467,6 @@
             </div>
         </div>
 
-        <%-- pagina para optimizacion--%>
         <div class="page" id="page-AsignarAT4" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 20 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
@@ -618,7 +616,7 @@
                                 </div>
 
                                 <div class="cinta_whit_sh">
-                                    <span>Responsable:</span>
+                                    <span>Persona Optimizó:</span>
                                     <label id="lblresponsable"></label>
                                 </div>
 
@@ -690,7 +688,7 @@
             </div>
 
         </div>
-        <%--Pagina de asignacion de responsables--%>
+      
         <div class="page" id="page-Responsables" style="display: none">
            <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el responsable y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un responsable sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
@@ -757,7 +755,7 @@
 
             </div>
         </div>
-        <%-- pagina para importacion de archivo--%>
+
         <div class="page" id="page-ImportarArchivo" style="display: none">
               <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Importar</b><p>- Se debe adjuntar el archivo una única vez por día y en el formato de Excel especificado.</p><p>- Después de adjuntar el archivo se debe presionar en el botón PROCESAR ARCHIVO para actualizar la base de datos y luego en DISTRIBUIR CUPS para completar el proceso.</p><p>- Al mismo tiempo, se repartirán automáticamente las ordenes en función de los responsables y se muestra el resultado en la tabla.</p>')" style="width: 30px; height: 30px" />

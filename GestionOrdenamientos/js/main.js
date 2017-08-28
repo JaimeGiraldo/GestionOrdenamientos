@@ -882,8 +882,8 @@ function ValidarOrden(posicion, posiciontabla) {
                     },
                     function () {
                         document.getElementById('lblcodigo').innerHTML = datos[0].Codigo_Solicitud_Ciklos;
-                        document.getElementById('lblFecha').innerHTML = datos[0].Fecha_Registro_Solicitud;
-                        document.getElementById('lblFechaOpt').innerHTML = datos[0].Fecha_Registro_Solicitud;
+                        document.getElementById('lblFecha').innerHTML = datos[0].FechaCargueSistema;
+                        document.getElementById('lblFechaOpt').innerHTML = datos[0].FechaOptimizacion;
                         document.getElementById('lblresponsable').innerHTML = datos[0].NombreCompleto;
                         document.getElementById('lblCups').innerHTML = datos[0].Cups;
                         document.getElementById('lbldetalle').innerHTML = datos[0].Descripcion;
