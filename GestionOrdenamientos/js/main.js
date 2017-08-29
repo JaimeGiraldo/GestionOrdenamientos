@@ -1005,8 +1005,10 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<p style="margin:5px 0px 0px">CIE 10:</p><input type="text" id="txtCIE10_' + posicion + '" placeholder="Ingresa el diagnóstico y presiona ENTER para buscar" class="form-control">';
     body += '<input type="text" style="margin-top:2px" id="txtCIE10Desc_' + posicion + '" placeholder="Descripción diagnóstico" class="form-control">';
     body += '<p style="margin:5px 0px 0px">Profesional Solicitante:</p><input type="text" id="txtProfesional_' + posicion + '" placeholder="Ingresa el nombre del profesional" class="form-control">';
-    body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
-    body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+
+    //body += '<div id="ddl_Div_Proveedor' + posicion + '"><p style="margin:5px 0px 0px">Proveedor:</p><select id="ddl_Proveedoress_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    //body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede PROMEDAN:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+
     footer += '<button  class="btn btn-primary" data-dismiss="modal">Volver</button>';
     footer += '<button id="btnAsignarProveedor_' + posicion + '" class="btn btn-primary" onclick="GuardarProovedor(' + posicion + ',' + 0 + ')">Guardar</button>';
    
@@ -1023,37 +1025,37 @@ function abrirModalAcciones(posicion, posiciontabla) {
     });   
     $('#ddl_Div_' + posicion).hide();
 
-    var proveedor = $('#ddl_Proveedoress_' + posicion);
-    proveedor.select2({
-        placeholder: "Selecciona el Proveedor"
-    });    
-    llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
+    //var proveedor = $('#ddl_Proveedoress_' + posicion);
+    //proveedor.select2({
+    //    placeholder: "Selecciona el Proveedor"
+    //});    
+    //llenarCombos(proveedor, "spsuministros_Proveedores_ObtenerNew");
   
-    var sedes = $('#ddl_PromedanSede_' + posicion);  
-    $('#ddl_DivSede_' + posicion).hide();
+    //var sedes = $('#ddl_PromedanSede_' + posicion);  
+    //$('#ddl_DivSede_' + posicion).hide();
       
-    proveedor.on('change', function () {
-        var value = $(this).val();
+    //proveedor.on('change', function () {
+    //    var value = $(this).val();
 
-        if (value == "9000389264") {
-            $('#ddl_DivSede_' + posicion).show();
-            llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
-            sedes.select2({
-                placeholder: "Selecciona la sede Promedan"
-            });
+    //    if (value == "9000389264") {
+    //        $('#ddl_DivSede_' + posicion).show();
+    //        llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
+    //        sedes.select2({
+    //            placeholder: "Selecciona la sede Promedan"
+    //        });
                       
-            if (datosorden[posiciontabla].IPSUsuario != null) {
-                showNotificationOptmizacionsede('top', 'center', datosorden[posiciontabla].IPSUsuario);
-            }           
+    //        if (datosorden[posiciontabla].IPSUsuario != null) {
+    //            showNotificationOptmizacionsede('top', 'center', datosorden[posiciontabla].IPSUsuario);
+    //        }           
 
-        } else {            
-            $('#ddl_DivSede_' + posicion).hide();
-            sedes.val('').trigger('change')//limpia el combito y la descripcion
-            sedes.html('');
+    //    } else {            
+    //        $('#ddl_DivSede_' + posicion).hide();
+    //        sedes.val('').trigger('change')//limpia el combito y la descripcion
+    //        sedes.html('');
            
-        }
-        //alert(value);
-    });
+    //    }
+    //    //alert(value);
+    //});
        
     
     $('#txtCIE10Desc_' + posicion).prop('disabled', true);
@@ -1216,10 +1218,13 @@ function GuardarProovedor(posicion,opcion) {
     table = document.getElementById("tablaAsignar");
     tr = table.getElementsByTagName("tr");      
     var idconsecutivo = posicion;
-    var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
+    //var proveedorasignado = $('#ddl_Proveedoress_' + posicion).val();
+    //var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
+    var proveedorasignado = '';
+    var sedepromedan = '';
     var observacionesaudit = $('#txtObservacionesAud_' + posicion).val();
     var observacionesagen = $('#txtObservacionesGene_' + posicion).val();
-    var sedepromedan = $('#ddl_PromedanSede_' + posicion).val();
+    
     var noAt4motivo = $('#ddl_Noat4_' + posicion).val();    
     var cie10 = $('#txtCIE10_' + posicion).val();
     var cie10desc = $('#txtCIE10Desc_' + posicion).val();
@@ -1257,7 +1262,7 @@ function GuardarProovedor(posicion,opcion) {
     }else if (cie10.length > 0 && cie10desc.length == 0) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico valido.', 'warning');
     } else if (at4 == 1 && (proveedorasignado == "0" || proveedorasignado == null || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
-        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista y completar los demás campos para continuar.', 'warning');
+        swal(swalheadertxt, 'Lo sentimos, debes completar todos los campos para continuar.', 'warning');
     } else if (proveedorasignado == "9000389264" && sedepromedan == "00") {
         swal(swalheadertxt, 'Lo sentimos, al seleccionar como proveedor PROMEDAN debes seleccionar una sede de la lista.', 'warning');
     } else if (at4 == 0 && adecuado == 1 && (noAt4motivo == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || cie10.length == 0 || profesional.length == 0)) {
