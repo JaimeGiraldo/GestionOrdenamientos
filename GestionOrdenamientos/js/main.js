@@ -639,7 +639,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         var tbl = '';
                         tbl += '<tr id="tr_ContactoProveedor' + datos[i].idConsecutivo + '">';
                         tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
-                        tbl += '<td id="td_sedepromedan1' + datos[i].idConsecutivo + '">' + datos[i].SedePromedan + '</td>';
+                        tbl += '<td id="td_sedepromedan1' + datos[i].idConsecutivo + '">' + datos[i].IpsUsuario + '</td>';
                         tbl += '<td>' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
                         tbl += '<td>' + datos[i].Id_Afiliado +', '+ datos[i].NombreCompleto + '</td>';
@@ -1400,7 +1400,7 @@ function MasInformacionProveedor(idconsecutivo,posicion) {
     document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
     document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
     document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
-    document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
+    //document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
 
     $("#DetalleModalProveedor").modal();
 }
@@ -1418,6 +1418,10 @@ function AccionesProveedor1(posicion, i) {
     body += '<div class="box_swith_mod" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control" /></div>';
     body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="Respecto al contacto del usuario." class="form-control">';
     body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+
+    body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+
+
     footer += '<button id="btnGuardarContacto_' + posicion +
                                    '" class="btn btn-primary" onclick="GuardarContactoProveedor(' + posicion + ')">Guardar</button>';
 
@@ -1428,6 +1432,8 @@ function AccionesProveedor1(posicion, i) {
 
     $('#dateFechaAsignacion_' + posicion).datetimepicker();
 
+
+
     document.getElementById('ModaltittleAccionesProveedor1').innerHTML = 'Gestión de contacto para la Orden ' + datosordenproveedor[i].Codigo_Solicitud_Ciklos;
 
     if (proveedorasignado == '9000389264') {
@@ -1437,8 +1443,16 @@ function AccionesProveedor1(posicion, i) {
             placeholder: "Selecciona el Profesional"
         });
         llenarCombos(profesional, "spGestionOrdenamientos_ObtenerProfesionales");
+
+        var sedes = $('#ddl_PromedanSede_' + posicion);
+        sedes.select2({
+            placeholder: "Selecciona la sede donde se prestara el servicio"
+        });
+        llenarCombos(sedes, "spGestionOrdenamientos_ObtenerCentroCosto");
+              
     } else {
         $('#ddl_Div_Profesional' + posicion).hide();
+        $('#ddl_DivSede_' + posicion).hide();
     }
 
     $("#ModalAccionesProveedor1").modal();

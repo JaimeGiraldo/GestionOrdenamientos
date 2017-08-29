@@ -848,15 +848,17 @@
                     <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
                 </div>
                 
+                 <div class="col-md-2" id="div_filtrosede1">
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','3')" />
+                </div>
+
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
                     <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')" />
                 </div>
 
-                <div class="col-md-2" id="div_filtrosede1">
-                    <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Sede" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','1')" />
-                </div>
+               
 
                 <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
@@ -879,7 +881,7 @@
                                             <thead>
                                                 <tr>
                                                     <th><span class="text">Fecha Asignacion</span></th>
-                                                    <th id="th_Sede1"><span class="text">Sede</span></th>
+                                                    <th id="th_Sede1"><span class="text">IPS Usuario</span></th>
                                                     <th><span class="text">Especialidad</span></th>
                                                     <th><span class="text">Descripción</span></th>
                                                     <th><span class="text">Paciente</span></th>
@@ -930,15 +932,15 @@
                                         <label id="lblestado"></label>
                                     </div>
 
-                                    <div class="cinta_whit_sh">
-                                        <span>Observaciones Generales:</span>
+                                    <div style="text-align:center">
+                                        <span>Observaciones:</span>
                                         <label id="lblobgene"></label>
                                     </div>
 
-                                    <div class="cinta_whit_sh">
+                                   <%-- <div class="cinta_whit_sh">
                                         <span>Observaciones Auditoria:</span>
                                         <label id="lblobaud"></label>
-                                    </div>
+                                    </div>--%>
 
                                 </div>
                                 <div class="modal-footer">
