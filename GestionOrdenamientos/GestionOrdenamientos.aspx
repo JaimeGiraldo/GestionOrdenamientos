@@ -7,7 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendiente de Nombre</title>
+    <title>Optimización</title>
     <link rel="shortcut icon" href="favicon.ico">
 
     <!-- Latest compiled and minified CSS -->
@@ -1083,20 +1083,22 @@
                                         <label id="lblcontacto2"></label>
                                     </div>
 
-                                    <div class="cinta_whit_sh">
-                                        <span>Observaciones Generales:</span>
-                                        <label id="lblobgene2"></label>
-                                    </div>
-
-                                    <div class="cinta_whit_sh">
-                                        <span>Observaciones Auditoria:</span>
-                                        <label id="lblobaud2"></label>
-                                    </div>
-
-                                    <div class="cinta_whit_sh">
+                                     <div class="cinta_whit_sh">
                                         <span>Fecha esperada de Ejecución:</span>
                                         <label id="lblfechaeje"></label>
                                     </div>
+
+                                    <div style="text-align:center">
+                                        <span>Observaciones Generales:</span>
+                                        <label id="lblobgene2"></label>
+                                    </div>
+                                                                        
+                                    <%--<div class="cinta_whit_sh">
+                                        <span>Observaciones Auditoria:</span>
+                                        <label id="lblobaud2"></label>
+                                    </div>--%>
+
+                                   
 
                                 </div>
                                 <div class="modal-footer">
@@ -1291,6 +1293,8 @@
                                         <th>Cups</th>
                                         <th>Nueva Descripción</th>
                                         <th>Especialidad</th>
+                                        <th>Valor</th>
+                                        <th>Per o NC</th>
                                         <th>Acción </th>
                                     </tr>
                                 </thead>

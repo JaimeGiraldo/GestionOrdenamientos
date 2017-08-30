@@ -1281,12 +1281,12 @@ function GuardarProovedor(posicion,opcion) {
 
         //console.log(motivonadecuado)                 
 
-
+        //observacionesaudit.replace("'", "") esto para que no saque error cuando el usuario ingrese comillas simple
         $.ajax({
             url: "GestionOrdenamientos.aspx/actualizarOrdenes",
             data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
                 + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
-                + observacionesaudit + "', observacionesagen: '" + observacionesagen + "', at4: '" + at4 + "', cie10: '"
+                + observacionesaudit.replace("'", "") + "', observacionesagen: '" + observacionesagen.replace("'", "") + "', at4: '" + at4 + "', cie10: '"
                 + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '"
                 + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "'}",
             contentType: "application/json; charset=utf-8",
@@ -1549,7 +1549,7 @@ function MasInformacionProveedor2(idconsecutivo, posicion) {
     document.getElementById('lblestado2').innerHTML = datosordenproveedor2[posicion].EstadoProveedor;
     document.getElementById('lblcontacto2').innerHTML = datosordenproveedor2[posicion].ObservacionesContacto;
     document.getElementById('lblobgene2').innerHTML = datosordenproveedor2[posicion].ObservacionesGen;
-    document.getElementById('lblobaud2').innerHTML = datosordenproveedor2[posicion].ObservacionesAud; 
+    //document.getElementById('lblobaud2').innerHTML = datosordenproveedor2[posicion].ObservacionesAud; 
     document.getElementById('lblfechaeje').innerHTML = datosordenproveedor2[posicion].FechaAsignacion;
 
     $("#DetalleModalProveedor2").modal();
@@ -1778,9 +1778,13 @@ function SeleccionarCUPS() {
                 tbl += '<tr>';
                 tbl += '<td>' + listacupsout.Table[i].Nit + '</td>';
                 tbl += '<td>' + '<input type="text" id="txtCupss_' + i + '" placeholder="Ingresa el CUPS" class="form-control">' + '</td>';
-                tbl += '<td>' + '<input type="text" id="txtNuevaDescripcion_' + i + '" placeholder="Ingresa la nueva descripción" class="form-control">' + '</td>';
+                tbl += '<td>' + '<input type="text" id="txtNuevaDescripcion_' + i + '" placeholder="Descripción" class="form-control">' + '</td>';
 
                 tbl += '<td>' + '<select id="ddl_Especialidad_' + i + '" class="js-example-basic-single js-states form-control" style="width:100%"></select>' + '</td>';
+                tbl += '<td>' + '<input type="number" id="txtValorCups_' + i + '" placeholder="Ingresa el Valor" class="form-control">' + '</td>';
+
+                tbl += '<td>' + '<label class="switch"><input id="checkPer_' + i + '" type="checkbox" ><span class="slider round"></span></label>' + '</td>';
+
 
                 tbl += '<td>' + '<button id="btnAsignarCups_' + i +
                         '" class="btn btn-primary" onclick="GuardarCUPS(' + i + ')">Guardar</button>' + '</td>';
@@ -1790,7 +1794,7 @@ function SeleccionarCUPS() {
 
                 var Especialidad = $('#ddl_Especialidad_' + i);
                 Especialidad.select2({
-                    placeholder: "Selecciona la Especialidad"
+                    placeholder: "Selecciona"
                 });
                 llenarCombos(Especialidad, "spGestionOrdenamientos_ObtenerEspecialidades");
             }
@@ -1803,27 +1807,39 @@ function SeleccionarCUPS() {
 function GuardarCUPS(i) {
 
     //$('#tablaCUPS td').remove();
-
-    var descripcion = $('#ddlCupsout').val();
     var cups = $('#txtCupss_' + i).val();
+    var descripcion = $('#ddlCupsout').val();    
     var nuevadescripcion = $('#txtNuevaDescripcion_' + i).val();
     var especialidad = $('#ddl_Especialidad_' + i).val();
+    var valorcups = $('#txtValorCups_' + i).val();
+    var per = 'NO';
+
+    if (!$('#checkPer_' + i).is(':checked')) {
+        per = 'NO';
+    } else {
+        per = 'SI';
+    }
 
     //console.log(descripcion)
     //console.log(cups)
     //console.log(nuevadescripcion)
+    //console.log(especialidad)
+    //console.log(valorcups)
+    //console.log(per)
 
     if (cups.length == 0) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar el CUPS de acuerdo a la resolución 1132.', 'warning');
-    } if (nuevadescripcion.length == 0) {
+    } else if (nuevadescripcion.length == 0) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar la nueva descripción de acuerdo a la resolución 1132.', 'warning');
     } else if (especialidad == 0 ) {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar la especialidad correspondiente.', 'warning');
+    } else if (valorcups == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el valor correspondiente.', 'warning');
     } else {
 
         $.ajax({
             url: "GestionOrdenamientos.aspx/actualizarCups",
-            data: "{ DescripcionCUPS: '" + descripcion + "', CUPS: '" + cups + "', nuevadescripcion: '" + nuevadescripcion + "', especialidad: '" + especialidad + "'}",
+            data: "{ DescripcionCUPS: '" + descripcion + "', CUPS: '" + cups + "', nuevadescripcion: '" + nuevadescripcion + "', especialidad: '" + especialidad + "', valorcups: '" + valorcups + "', per: '" + per + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -1839,6 +1855,8 @@ function GuardarCUPS(i) {
 
                     if (lista.Table[0].Respuesta == "OK") {                   
                    
+                        //Asigna el nuevo cups ingresado a las ordenes faltantes
+                        RepartirOrdenes();
                         ////Recarga el combo y limpia la pantalla
                         $('#tablaCUPS tbody').html('');
                         //$('#ddlCupsout').attr('title','');

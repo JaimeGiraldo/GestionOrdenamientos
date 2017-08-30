@@ -371,11 +371,11 @@ namespace GestionOrdenamientos
 
 
         //Acttualiza los cups
-        public string ActualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad)
+        public string ActualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "','" + nuevadescripcion + "','" + especialidad + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "','" + nuevadescripcion + "','" + especialidad + "','" + valorcups + "','" + per + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -392,12 +392,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad)
+        public static string actualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS, nuevadescripcion, especialidad);
+                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS, nuevadescripcion, especialidad, valorcups, per);
             }
             catch (Exception ex)
             {
