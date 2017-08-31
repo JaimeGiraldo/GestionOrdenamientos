@@ -74,14 +74,16 @@
 
     <nav class="pages-nav">
         <div id="MenuCargaArchivo" class="pages-nav__item" style="display: none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
-        <div id="MenuResponsables" class="pages-nav__item" style="display: none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>
+        <div id="MenuResponsables" class="pages-nav__item" style="display: none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>       
         <div id="MenuOptimizador" class="pages-nav__item" style="display: none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
+        <div id="MenuProveedoresCups" class="pages-nav__item" style="display: none"><a id="pgProveedoresCups" class="link link--page" href="#page-ProveedoresCups"><span class="icon-edit"></span>Cups-Prove</a></div>
         <div id="MenuProveedor" class="pages-nav__item" style="display: none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-headphones"></span>Contacto</a></div>
         <div id="MenuProveedor2" class="pages-nav__item" style="display: none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-clock"></span>Asistencia</a></div>
         <div id="MenuProveedor3" class="pages-nav__item" style="display: none"><a id="pgProveedores3" class="link link--page" href="#page-Proveedores3"><span class="icon-record"></span>Ejecución</a></div>
         <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
         <div id="MenuDashProveedor" class="pages-nav__item" style="display: none"><a id="pgDashProveedores" class="link link--page" href="#page-DashBoardProveedores"><span class="icon-stats"></span>Dashboard</a></div>
+       
 
         <%--<div class="pages-nav__item"><a id="pgJefe" class="link link--page" href="#jefe_cargo"><span class="icon-diagram-1"></span>Jefe a Cargo</a></div>		       
         <div class="pages-nav__item" id="Resultado2" style="display:none"><a id="btnGrafico1"  class="link link--page" href="#page-Resultado2"><span class="icon-pie-chart-1"></span>Resultados 2</a></div>
@@ -143,7 +145,7 @@
 
             </header>
 
-            <div class="container">
+            <div class="container" >
 
                 <div class="col-lg-12 col-md-12"></div>
 
@@ -706,17 +708,17 @@
                     </select>
                 </div>--%>
             </header>
-            <div class="container">
+            <div class="container" style="width:90%">
               <div class="scroll_header_fixed">
                 <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="s16 color-white">Responsable:</label>
                             <select id="ddlEmpleado" class="form-control color-blue" style="width: 100%"></select>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label class="s16 color-white">Cups:</label>
                             <select id="ddlCups" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                         </div>
@@ -724,6 +726,11 @@
                         <div class="col-md-2">
                             <label>FILTRAR:</label>
                             <input type="text" class="myinput1" id="txtfiltroRespon" placeholder="Responsable" onkeyup="FiltrarResponsables()">
+                        </div>
+
+                          <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" class="myinput1" id="txtfiltroDescri" placeholder="Descripción"onkeyup="FiltrarTablaProveedor1('txtfiltroDescri','tablaParametros','3')">
                         </div>
 
                         <div class="col-md-2" style="text-align: end; padding-top: 25px">
@@ -756,6 +763,81 @@
             </div>
         </div>
 
+        <div class="page" id="page-ProveedoresCups" style="display: none">
+           <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el proveedor y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un proveedor sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
+            </div>
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Parametrización Proveedores - Cups</h1>
+                <p>Asigne por cada proveedor los cups o servicios que prestara cada uno de ellos.</p>
+
+                <%--<div class="col-md-12" style="text-align: end; padding-top: 25px">
+                    <button id="btnAddPxxxx">Adicionar</button>
+                </div>--%>
+
+                <%-- <div class="col-md-3">
+                    <label class="s16">Responsable:</label>
+                    <select id="selecttest" class="js-example-basic-single js-states form-control" multiple="multiple">
+                        <option value="AL">Alabama</option>
+                        <option value="WY">Wyoming</option>
+                    </select>
+                </div>--%>
+            </header>
+            <div class="container" style="width:90%">
+              <div class="scroll_header_fixed">
+                <div class="card" style="margin: 0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
+
+                        <div class="col-md-2">
+                            <label class="s16 color-white">Proveedor:</label>
+                            <select id="ddlPProveedor" class="form-control color-blue" style="width: 100%"></select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="s16 color-white">Cups:</label>
+                            <select id="ddlProveedoresXCups" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" class="myinput1" id="txtfiltroProve" placeholder="Proveedor" onkeyup="FiltrarTablaProveedor1('txtfiltroProve','tablaProveedoresXCups','0')">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" class="myinput1" id="txtfiltroPrDes" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltroPrDes','tablaProveedoresXCups','3')">
+                        </div>
+                        
+                        <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                            <button id="btnAddPx">Adicionar</button>
+                        </div>
+
+                    </div>
+                </div>
+               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card-content table-responsive">
+                            <table id="tablaProveedoresXCups" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Proveedor</th>
+                                        <th>Identificación</th>
+                                        <th>Cups</th>
+                                        <th>Descripción</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+               
+
+              </div>
+
+            </div>
+        </div>
+
         <div class="page" id="page-ImportarArchivo" style="display: none">
               <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Importar</b><p>- Se debe adjuntar el archivo una única vez por día y en el formato de Excel especificado.</p><p>- Después de adjuntar el archivo se debe presionar en el botón PROCESAR ARCHIVO para actualizar la base de datos y luego en DISTRIBUIR CUPS para completar el proceso.</p><p>- Al mismo tiempo, se repartirán automáticamente las ordenes en función de los responsables y se muestra el resultado en la tabla.</p>')" style="width: 30px; height: 30px" />
@@ -765,7 +847,7 @@
                 <p>Ingresar el archivo de ordenes generadas para los prestadores al sistema.</p>
             </header>
 
-            <div class="container">
+            <div class="container" style="width:90%">
                <div class="scroll_header_fixed">
                 <div class="col-lg-6 col-md-6">
                     <label>Arrastra o selecciona el archivo en formato Excel.</label>
@@ -848,17 +930,15 @@
                     <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
                 </div>
                 
-                 <div class="col-md-2" id="div_filtrosede1">
-                    <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','3')" />
-                </div>
-
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','2')" />
+                    <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','3')" />
                 </div>
 
-               
+                <div class="col-md-2" id="div_filtrosede1">
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
+                </div>
 
                 <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
@@ -882,6 +962,7 @@
                                                 <tr>
                                                     <th><span class="text">Fecha Asignacion</span></th>
                                                     <th id="th_Sede1"><span class="text">IPS Usuario</span></th>
+                                                     <th id="th_CentroGenera"><span class="text">Centro Generó</span></th>
                                                     <th><span class="text">Especialidad</span></th>
                                                     <th><span class="text">Descripción</span></th>
                                                     <th><span class="text">Paciente</span></th>
@@ -1266,7 +1347,7 @@
                 <h1 class="bp-header__title">Administrar CUPS</h1>
                 <p>Sistema para administración y control de los CUPS que usa el programa en general y su parametrización.</p>
             </header>
-            <div class="container">
+            <div class="container" style="width:90%">
                 <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
@@ -1306,6 +1387,7 @@
             </div>
         </div>
 
+       
     </div>
 
     <!-- /pages-stack -->

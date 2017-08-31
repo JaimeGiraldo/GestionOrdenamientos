@@ -251,12 +251,20 @@ html.js,
 
 /*==================== Login(Home) ====================*/
 
-.js #page-Resultado1 {
+.js #page-DashBoard {
     background-image: url('/images/fondo2.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
 }
+
+.js #page-DashBoardProveedores {
+    background-image: url('/images/fondo2.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
+
 
 .js #page-ImportarArchivo {
     background-image: url('/images/fondo3.png');
@@ -272,6 +280,12 @@ html.js,
     background-position: top center;
 }
 
+.js #page-ProveedoresCups {
+    background-image: url('/images/fondo3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
 
 .js #page-AsignarAT4 {
     background-image: url('/images/fondo1.png');
@@ -280,8 +294,12 @@ html.js,
     background-position: top center;
 }
 
-
-
+.js #page-CUPS {
+    background-image: url('/images/fondo6.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
 
 .js #page-Proveedores {
     background-image: url('/images/fondo6.png');
@@ -760,6 +778,14 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
    color:white;
 }
 #btnConsultarOrdenesProveedor3:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+#btnAddPx {
+   background-color:#0c9688;
+}
+#btnAddPx:hover {   
     /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
     box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
 }
@@ -2199,7 +2225,7 @@ button, input[type="button"] {
 .myinput1 {  
   width: 100%;
   font-size: 16px;
-  margin-top:3px;
+  margin-top:5px;
   height:27px;
   border: 1px solid #86e4db;
   background-color: rgba(0, 189, 218, 0.11);
