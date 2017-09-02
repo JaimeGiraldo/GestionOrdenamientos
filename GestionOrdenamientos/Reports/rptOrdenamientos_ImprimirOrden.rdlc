@@ -685,10 +685,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FALTA CONTRATO</Value>
+                              <Value>=First(Fields!Contrato.Value, "DataSet3")</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
-                                <Color>Tomato</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1503,43 +1502,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>2</ColSpan>
+                    <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox52">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>NIT:</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>DeepSkyBlue</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox52</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="NitPrestador">
@@ -1717,43 +1684,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>2</ColSpan>
+                    <ColSpan>3</ColSpan>
                   </CellContents>
                 </TablixCell>
                 <TablixCell />
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox180">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Contrato:</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>DeepSkyBlue</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox180</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox192">
@@ -1763,10 +1698,9 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FALTA CONTRATO</Value>
+                              <Value>=First(Fields!Contrato.Value, "DataSet3")</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
-                                <Color>Tomato</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3053,10 +2987,10 @@
               <Width>8.33013cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01223cm</Width>
+              <Width>1.03925cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.74634cm</Width>
+              <Width>2.71933cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.7633cm</Width>
@@ -3141,45 +3075,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox68">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Nivel</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Left</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox67</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>DeepSkyBlue</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox69">
@@ -3189,7 +3088,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Finalidad</Value>
+                              <Value>Nivel</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -3325,61 +3224,29 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Servicio">
+                    <Textbox Name="Textbox9">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FALTA </Value>
+                              <Value>=First(Fields!Nivel.Value, "DataSet2")</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
-                                <Color>Tomato</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Servicio</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="FinalidadOrdenamiento1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>FALTA </Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <Color>Tomato</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>FinalidadOrdenamiento1</rd:DefaultName>
+                      <rd:DefaultName>Textbox9</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3593,26 +3460,26 @@
                 <TablixCell />
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox241">
+                    <Textbox Name="Textbox15">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FALTA </Value>
+                              <Value>=First(Fields!Porce.Value, "DataSet5")</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
-                                <FontSize>12pt</FontSize>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Color>Tomato</Color>
+                                <Format>#,0 '$';(#,0 '$')</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox241</rd:DefaultName>
+                      <rd:DefaultName>Textbox15</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -3623,6 +3490,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-CO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -3636,12 +3504,12 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>FALTA </Value>
+                              <Value>=First(Fields!ValorProducto.Value, "DataSet4")</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
-                                <Color>Tomato</Color>
+                                <Format>#,0 '$';(#,0 '$')</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3661,6 +3529,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-CO</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                     <ColSpan>2</ColSpan>
@@ -3693,7 +3562,7 @@
         <Top>7.27055cm</Top>
         <Left>0.05776cm</Left>
         <Height>2.42646cm</Height>
-        <Width>16.85743cm</Width>
+        <Width>16.85744cm</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -4009,6 +3878,86 @@
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
         <rd:TableAdapterName>spGestionOrdenamientos_ImprimirOrdenamiento_ObtenerTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>DataSetReportes</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Nivel">
+          <DataField>Nivel</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSetReportes</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\LUISM\Source\Repos\GestionOrdenamientos\GestionOrdenamientos\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:TableName>NivelOrden</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet3">
+      <Query>
+        <DataSourceName>DataSetReportes</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Contrato">
+          <DataField>Contrato</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSetReportes</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\LUISM\Source\Repos\GestionOrdenamientos\GestionOrdenamientos\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:TableName>OrdenContrato</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet4">
+      <Query>
+        <DataSourceName>DataSetReportes</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="ValorProducto">
+          <DataField>ValorProducto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSetReportes</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\LUISM\Source\Repos\GestionOrdenamientos\GestionOrdenamientos\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:TableName>ValorOrden</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DataSet5">
+      <Query>
+        <DataSourceName>DataSetReportes</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Porce">
+          <DataField>Porce</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSetReportes</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\LUISM\Source\Repos\GestionOrdenamientos\GestionOrdenamientos\DataSetReportes.xsd</rd:SchemaPath>
+        <rd:TableName>Copago</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

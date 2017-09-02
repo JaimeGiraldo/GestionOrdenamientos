@@ -1075,6 +1075,34 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="ValorOrden" msprop:Generator_TableClassName="ValorOrdenDataTable" msprop:Generator_TableVarName="tableValorOrden" msprop:Generator_RowChangedName="ValorOrdenRowChanged" msprop:Generator_TablePropName="ValorOrden" msprop:Generator_RowDeletingName="ValorOrdenRowDeleting" msprop:Generator_RowChangingName="ValorOrdenRowChanging" msprop:Generator_RowEvHandlerName="ValorOrdenRowChangeEventHandler" msprop:Generator_RowDeletedName="ValorOrdenRowDeleted" msprop:Generator_RowClassName="ValorOrdenRow" msprop:Generator_UserTableName="ValorOrden" msprop:Generator_RowEvArgName="ValorOrdenRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ValorProducto" msprop:Generator_ColumnVarNameInTable="columnValorProducto" msprop:Generator_ColumnPropNameInRow="ValorProducto" msprop:Generator_ColumnPropNameInTable="ValorProductoColumn" msprop:Generator_UserColumnName="ValorProducto" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="NivelOrden" msprop:Generator_TableClassName="NivelOrdenDataTable" msprop:Generator_TableVarName="tableNivelOrden" msprop:Generator_TablePropName="NivelOrden" msprop:Generator_RowDeletingName="NivelOrdenRowDeleting" msprop:Generator_RowChangingName="NivelOrdenRowChanging" msprop:Generator_RowEvHandlerName="NivelOrdenRowChangeEventHandler" msprop:Generator_RowDeletedName="NivelOrdenRowDeleted" msprop:Generator_UserTableName="NivelOrden" msprop:Generator_RowChangedName="NivelOrdenRowChanged" msprop:Generator_RowEvArgName="NivelOrdenRowChangeEvent" msprop:Generator_RowClassName="NivelOrdenRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nivel" msprop:Generator_ColumnVarNameInTable="columnNivel" msprop:Generator_ColumnPropNameInRow="Nivel" msprop:Generator_ColumnPropNameInTable="NivelColumn" msprop:Generator_UserColumnName="Nivel" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OrdenContrato" msprop:Generator_TableClassName="OrdenContratoDataTable" msprop:Generator_TableVarName="tableOrdenContrato" msprop:Generator_TablePropName="OrdenContrato" msprop:Generator_RowDeletingName="OrdenContratoRowDeleting" msprop:Generator_RowChangingName="OrdenContratoRowChanging" msprop:Generator_RowEvHandlerName="OrdenContratoRowChangeEventHandler" msprop:Generator_RowDeletedName="OrdenContratoRowDeleted" msprop:Generator_UserTableName="OrdenContrato" msprop:Generator_RowChangedName="OrdenContratoRowChanged" msprop:Generator_RowEvArgName="OrdenContratoRowChangeEvent" msprop:Generator_RowClassName="OrdenContratoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Contrato" msprop:Generator_ColumnVarNameInTable="columnContrato" msprop:Generator_ColumnPropNameInRow="Contrato" msprop:Generator_ColumnPropNameInTable="ContratoColumn" msprop:Generator_UserColumnName="Contrato" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Copago" msprop:Generator_TableClassName="CopagoDataTable" msprop:Generator_TableVarName="tableCopago" msprop:Generator_TablePropName="Copago" msprop:Generator_RowDeletingName="CopagoRowDeleting" msprop:Generator_RowChangingName="CopagoRowChanging" msprop:Generator_RowEvHandlerName="CopagoRowChangeEventHandler" msprop:Generator_RowDeletedName="CopagoRowDeleted" msprop:Generator_UserTableName="Copago" msprop:Generator_RowChangedName="CopagoRowChanged" msprop:Generator_RowEvArgName="CopagoRowChangeEvent" msprop:Generator_RowClassName="CopagoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Porce" msprop:Generator_ColumnVarNameInTable="columnPorce" msprop:Generator_ColumnPropNameInRow="Porce" msprop:Generator_ColumnPropNameInTable="PorceColumn" msprop:Generator_UserColumnName="Porce" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
