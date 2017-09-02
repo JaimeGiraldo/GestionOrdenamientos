@@ -287,31 +287,43 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 id="ModalReportestittle">REPORTES</h4>
+                            <h4 id="ModalReportestittle">GESTIÓN DE REPORTES</h4>
                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
 
                         <section id="services">
                             <div class="row">
-                                <div class="col-md-12 service-item">
-                                    <div class="service-icon"><i class="fa fa-desktop" id="reporteasignaciones"></i></div>
-                                    <h4 class="service-title"><a href="">Reporte de Asignaciones</a></h4>
-                                    <p class="service-description">Informe detallado del número de ordenes asignadas por cada persona responsable de la gestión.</p>
-                                </div>
-                                <div class="col-md-12 service-item">
+                                 <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-bar-chart" id="reportecups"></i></div>
-                                    <h4 class="service-title"><a href="">Reporte CUPS</a></h4>
-                                    <p class="service-description">Informe detallado de los cupos que se han ingresado al sistema y su correspondiente asignación.</p>
+                                    <h4 class="service-title"><a href="">Reporte de CUPS</a></h4>
+                                    <p class="service-description">Informe detallado de los CUPS ingresados al sistema.</p>
                                 </div>
                                 <div class="col-md-12 service-item">
-                                    <div class="service-icon"><i class="fa fa-bar-chart" id="reportegeneral"></i></div>
+                                    <div class="service-icon"><i class="fa fa-users" id="reporteasignaciones"></i></div>
+                                    <h4 class="service-title"><a href="">Asignación de Responsables por Cups</a></h4>
+                                    <p class="service-description">Ordenes asignadas a cada responsable, CUPS y total gestionado.</p>
+                                </div>
+                                <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-truck" id="reporteasignacionesProve"></i></div>
+                                    <h4 class="service-title"><a href="">Asignación de Proveedores por Cups</a></h4>
+                                    <p class="service-description">Informe detallado de los CUPS asignados a cada Proveedor.</p>
+                                </div>
+
+                                 <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-sitemap" id="rptAsigProvePromedan"></i></div>
+                                    <h4 class="service-title"><a href="">Asignaciónes Proveedor Promedan</a></h4>
+                                    <p class="service-description">CUPS asignados a cada responsable en Sede.</p>
+                                </div>
+                               
+                                <div class="col-md-12 service-item">
+                                    <div class="service-icon"><i class="fa fa-area-chart" id="reportegeneral"></i></div>
                                     <h4 class="service-title"><a href="">Reporte General</a></h4>
-                                    <p class="service-description">Informe general de todas las ordenes ingresadas al sistema y su estado actual.</p>
+                                    <p class="service-description">Informe general de ordenes ingresadas y su estado actual.</p>
                                 </div>
                                  <div class="col-md-12 service-item">
-                                    <div class="service-icon"><i class="fa fa-bar-chart" id="reportefaltantescontacto"></i></div>
+                                    <div class="service-icon"><i class="fa fa-user-times" id="reportefaltantescontacto"></i></div>
                                     <h4 class="service-title"><a href="">Reporte de Usuarios no contactados</a></h4>
-                                    <p class="service-description">Informe general de ordenes aprobadas y asignadas a proveedor donde se reportaron inconvenientes para contactar al paciente.</p>
+                                    <p class="service-description">Pacientes sin contacto o registro en el sistema.</p>
                                 </div>
                             </div>
                         </section>
@@ -337,6 +349,50 @@
                                         <th>Cups</th>
                                         <th>Ordenes Asignadas</th>
                                         <th>Ordenes Auditadas</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+             <div class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <%--tabla para generar el reporte de asignaciones, se oculta dentro de un modal--%>
+                            <table id="tblasignacionesProveedores" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Proveedor</th>                                        
+                                        <th>Cups</th>
+                                        <th>Descripcion 1132</th>
+                                        <th>Descripcion Ciklos</th>
+                                        <th>Persona Asigno</th>
+                                        <th>Fecha Asigancion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <%--tabla para generar el reporte de asignaciones, se oculta dentro de un modal--%>
+                            <table id="tblasignacionesProveedoresPromedan" class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Usuario</th>                                        
+                                        <th>Cups</th>
+                                        <th>Descripcion 1132</th>
+                                        <th>Descripcion Ciklos</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -471,7 +527,7 @@
 
         <div class="page" id="page-AsignarAT4" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
-                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 20 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 40 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada - Optimización</h1>
@@ -485,32 +541,42 @@
 
                             <div class="col-lg-12 col-md-12" data-background-color="bluee" style="margin: -20px 5px 0; padding: 8px; border-radius: 3px">
 
-                                <div class="col-md-2">
-                                    <label>TOTAL ASIGNADO:</label>
+                                <div class="col-md-1">
+                                    <label>ASIGNADAS:</label>
                                     <label id="lbltotalasignados"></label>
                                 </div>
 
-                                <div class="col-md-2">
-                                    <label>TOTAL PENDIENTES:</label>
+                                <div class="col-md-1">
+                                    <label>PENDIENTES:</label>
                                     <label id="lbltotalpendientes"></label>
                                 </div>
 
-                                  <div class="col-md-2">
-                                    <label>TOTAL VENCIDAS:</label>
+                                  <div class="col-md-1">
+                                    <label>VENCIDAS:</label>
                                     <label id="lbltotalvencidas"></label>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label>FILTRAR:</label>
+                                    <input class="myinput" type="text" id="txtfiltroips" placeholder="IPS Usuario" onkeyup="FiltrarTablaProveedor1('txtfiltroips','tablaAsignar','4')">
                                 </div>
                                 
                                 <div class="col-md-2">
                                     <label>FILTRAR:</label>
-                                    <input class="myinput" type="text" id="txtfiltro" placeholder="Descripción" onkeyup="FiltrarTablaSede()">
+                                    <input class="myinput" type="text" id="txtfiltroCentroGene" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltroCentroGene','tablaAsignar','5')">
                                 </div>
 
                                 <div class="col-md-2">
                                     <label>FILTRAR:</label>
-                                    <input class="myinput" type="text" id="txtfiltroespecialidadd" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidadd','tablaAsignar','6')"">
+                                    <input class="myinput" type="text" id="txtfiltroDescripcin" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltroDescripcin','tablaAsignar','6')"">
                                 </div>
 
-                                <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                                  <div class="col-md-2">
+                                    <label>FILTRAR:</label>
+                                    <input class="myinput" type="text" id="txtfiltrdsoespecialidadd" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltrdsoespecialidadd','tablaAsignar','7')"">
+                                </div>
+
+                                <div class="col-md-1" style="text-align: end; padding-top: 25px">
                                     <button id="btnActualizartabla">Listar</button>
                                 </div>
 
@@ -525,10 +591,11 @@
                                                     <th><span class="text">Codigo S. Ciklos</span></th>
                                                     <th><span class="text">Fecha Sistema</span></th>
                                                     <th><span class="text">Dias Espera</span></th>
-                                                    <th><span class="text">IPS Solicitante</span></th>
-                                                    <th><span class="text">Descripción</span></th>
-                                                    <th><span class="text">CUPS</span></th>  
-                                                    <th><span class="text">Especialidad</span></th>                                                    
+                                                    <th><span class="text">Usuario</span></th>     
+                                                    <th><span class="text">IPS Usuario</span></th>
+                                                    <th><span class="text">Centro Generó</span></th>
+                                                    <th><span class="text">Descripción</span></th>                                                   
+                                                    <th><span class="text">Especialidad</span></th>
                                                     <th><span class="text">Detalle</span></th>
                                                     <th><span class="text">Acción</span></th>
                                                 </tr>
@@ -574,7 +641,7 @@
                                     <label id="lblciudad"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
-                                    <span>IPS Primaria:</span>
+                                    <span>Fecha Registro Ciklos:</span>
                                     <label id="lblestadoserv"></label>
                                 </div>
                                 <div class="cinta_whit_sh">
@@ -698,7 +765,7 @@
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Responsable</h1>
                 <p>Seleccione el personal que va a realizar la optimización.</p>
-
+                 <button id="btnListResponsables">Listar</button>
 
                 <%-- <div class="col-md-3">
                     <label class="s16">Responsable:</label>
@@ -770,7 +837,7 @@
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Parametrización Proveedores - Cups</h1>
                 <p>Asigne por cada proveedor los cups o servicios que prestara cada uno de ellos.</p>
-
+                 <button id="btnListProveCups">Listar</button>
                 <%--<div class="col-md-12" style="text-align: end; padding-top: 25px">
                     <button id="btnAddPxxxx">Adicionar</button>
                 </div>--%>
@@ -920,14 +987,19 @@
 
 
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label>Fecha Inicial:</label>
                     <input type="date" id="ProveedorFechaInicial" class="form-control color-dark" />
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label>Fecha Final:</label>
                     <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
+                </div>
+
+                 <div class="col-md-2" id="div_filtrosede1">
+                    <label>Filtrar por:</label>
+                    <input id="txtfiltrosedegenero" class="form-control" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltrosedegenero','tablaProveedores','2')" />
                 </div>
                 
                 <div class="col-md-2">
@@ -935,7 +1007,7 @@
                     <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','3')" />
                 </div>
 
-                <div class="col-md-2" id="div_filtrosede1">
+                <div class="col-md-2" >
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede" class="form-control" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
                 </div>

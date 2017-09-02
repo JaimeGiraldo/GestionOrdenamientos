@@ -185,12 +185,12 @@ html.js,
 }
 
 #services .service-item {
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
 #services .service-icon {
   float: left;
-  background: #0fd0b6;
+  background: #bcf7ef;
   padding: 16px;
   border-radius: 50%;
   transition: 0.5s;
@@ -738,6 +738,23 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
     box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
 }
 
+#btnListResponsables {
+   background-color:#0c9688;
+   color:white;
+}
+#btnListResponsables:hover {   
+    background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+#btnListProveCups {
+   background-color:#0c9688;
+   color:white;
+}
+#btnListProveCups:hover {   
+    background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
 
 #btnAddcups {
    background-color:#0c9688;
@@ -2195,8 +2212,8 @@ button, input[type="button"] {
 }
 
 #page-AsignarAT4 .container {
-    width: 100%;
-    max-width: 1300px;
+    width: 95%;
+    /*max-width: 1300px;*/
 }
 .listar_nambers {
     display: block;

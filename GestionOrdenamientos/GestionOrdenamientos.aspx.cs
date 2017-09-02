@@ -228,11 +228,11 @@ namespace GestionOrdenamientos
 
 
         //Guarda el responsable asignado
-        public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion)
+        public string GuardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups,string descripcion,string usuariosis)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionResponsable" + "'" + IdTipoId + "','" + Identificacion + "','" + Cups + "','" + descripcion + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionResponsable" + "'" + IdTipoId + "','" + Identificacion + "','" + Cups + "','" + descripcion + "','" + usuariosis + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -249,12 +249,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string guardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups, string descripcion)
+        public static string guardarAsignacionResponsable(string IdTipoId, string Identificacion, string Cups, string descripcion,string usuariosis)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.GuardarAsignacionResponsable(IdTipoId, Identificacion, Cups, descripcion);
+                return objOrdenesProveedor.GuardarAsignacionResponsable(IdTipoId, Identificacion, Cups, descripcion, usuariosis);
             }
             catch (Exception ex)
             {
@@ -333,11 +333,11 @@ namespace GestionOrdenamientos
         }
 
         //Guarda el proveedor asignado
-        public string GuardarAsignacionProveedoresCups(string Pproveedor, string cups, string descripcion)
+        public string GuardarAsignacionProveedoresCups(string Pproveedor, string cups, string descripcion,string usuariosis)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionProveedoresXCups" + "'" + Pproveedor + "','" + cups + "','" + descripcion + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionProveedoresXCups" + "'" + Pproveedor + "','" + cups + "','" + descripcion + "','" + usuariosis + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -354,12 +354,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string guardarAsignacionProveedoresCups(string Pproveedor, string cups, string descripcion)
+        public static string guardarAsignacionProveedoresCups(string Pproveedor, string cups, string descripcion,string usuariosis)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.GuardarAsignacionProveedoresCups(Pproveedor, cups, descripcion);
+                return objOrdenesProveedor.GuardarAsignacionProveedoresCups(Pproveedor, cups, descripcion, usuariosis);
             }
             catch (Exception ex)
             {
@@ -440,11 +440,11 @@ namespace GestionOrdenamientos
 
 
         //Acttualiza los cups
-        public string ActualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per)
+        public string ActualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per,string usuariosis)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "','" + nuevadescripcion + "','" + especialidad + "','" + valorcups + "','" + per + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionordenamientos_GuardarCUPSSinAsignar" + "'" + DescripcionCUPS + "','" + CUPS + "','" + nuevadescripcion + "','" + especialidad + "','" + valorcups + "','" + per + "','" + usuariosis + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -461,12 +461,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per)
+        public static string actualizarCups(string DescripcionCUPS, string CUPS,string nuevadescripcion,string especialidad,string valorcups,string per,string usuariosis)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS, nuevadescripcion, especialidad, valorcups, per);
+                return objOrdenesProveedor.ActualizarCups(DescripcionCUPS, CUPS, nuevadescripcion, especialidad, valorcups, per, usuariosis);
             }
             catch (Exception ex)
             {
@@ -762,11 +762,11 @@ namespace GestionOrdenamientos
         }
 
         //Obtiene el dashboard de proveedores por proveedor
-        public string DashboardProveedor(string proveedor)
+        public string DashboardProveedor(string proveedor,string tipoid,string identificacion)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDashboardProveedores" + "'" + proveedor + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDashboardProveedores" + "'" + proveedor + "','" + tipoid + "','" + identificacion + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -783,12 +783,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string dashboardProveedor(string proveedor)
+        public static string dashboardProveedor(string proveedor,string tipoid,string identificacion)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.DashboardProveedor(proveedor);
+                return objOrdenesProveedor.DashboardProveedor(proveedor, tipoid, identificacion);
             }
             catch (Exception ex)
             {
