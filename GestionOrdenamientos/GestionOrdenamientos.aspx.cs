@@ -97,9 +97,9 @@ namespace GestionOrdenamientos
         }
                        
         //Actualiza los datos de las ordenes optimizadas por el usuario tipo 1 (optmizador)
-        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional,string sedepromedan,string noAt4motivo,string motivonadecuado)
+        public string ActualizarOrdenes(string tipoidoptimizador,string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10,string adecuado,string profesional,string sedepromedan,string noAt4motivo,string motivonadecuado,string direccionamiento)
         {
-            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observacionesaudit + "','" + observacionesagen + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "','" + sedepromedan + "','" + noAt4motivo + "','" + motivonadecuado + "'");
+            var dt = objRetornarDatos.llenarDataSet("spOrdenamientos_gestionarOrdenes" + "'" + tipoidoptimizador + "','" + optimizador + "','" + idconsecutivo + "','" + proveedorasignado + "','" + observacionesaudit + "','" + observacionesagen + "','" + at4 + "','" + cie10 + "','" + adecuado + "','" + profesional + "','" + sedepromedan + "','" + noAt4motivo + "','" + motivonadecuado + "','" + direccionamiento + "'");
             if (dt.Tables.Count > 0)
             {
                 return JsonConvert.SerializeObject(dt);
@@ -111,19 +111,19 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional,string sedepromedan,string noAt4motivo,string motivonadecuado)
+        public static string actualizarOrdenes(string tipoidoptimizador, string optimizador, string idconsecutivo, string proveedorasignado, string observacionesaudit,string observacionesagen, string at4, string cie10, string adecuado, string profesional,string sedepromedan,string noAt4motivo,string motivonadecuado,string direccionamiento)
         {
             GestionOrdenamientos objUsuario = new GestionOrdenamientos();
-            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional, sedepromedan, noAt4motivo, motivonadecuado);
+            return objUsuario.ActualizarOrdenes(tipoidoptimizador,optimizador, idconsecutivo, proveedorasignado, observacionesaudit, observacionesagen, at4, cie10, adecuado, profesional, sedepromedan, noAt4motivo, motivonadecuado, direccionamiento);
         }
         
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
-        public string ConsultarOrdenesxProveedor(string proveedor,string estado,string idtipoid,string identificacion,string fechainicial,string fechafinal)
+        public string ConsultarOrdenesxProveedor(string proveedor,string estado,string usuariosis,string fechainicial,string fechafinal)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "','" + estado + "','" + idtipoid + "','" + identificacion + "','" + fechainicial + "','" + fechafinal + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "','" + estado + "','" + usuariosis + "','" + fechainicial + "','" + fechafinal + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -140,12 +140,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string consultarOrdenesxProveedor(string proveedor, string estado, string idtipoid,string identificacion, string fechainicial, string fechafinal)
+        public static string consultarOrdenesxProveedor(string proveedor, string estado, string usuariosis, string fechainicial, string fechafinal)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor, estado, idtipoid, identificacion, fechainicial,fechafinal);
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor, estado, usuariosis, fechainicial,fechafinal);
             }
             catch (Exception ex)
             {
@@ -360,6 +360,77 @@ namespace GestionOrdenamientos
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
                 return objOrdenesProveedor.GuardarAsignacionProveedoresCups(Pproveedor, cups, descripcion, usuariosis);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Elimina el Proveedor asignado Pormedan
+        public string EliminarAsignacionProveedoresCupsProme(string idasignacion)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_EliminarAsignacionProveedoresXCupsPromedan" + "'" + idasignacion + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string eliminarAsignacionProveedoresCupsProme(string idasignacion)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.EliminarAsignacionProveedoresCupsProme(idasignacion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //Guarda el proveedor asignado de Promedan
+        public string GuardarAsignacionProveedoresCupsProme(string ProveedorProme, string cupsProme, string usuariosis)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_insertarAsignacionProveedoresXCupsProme" + "'" + ProveedorProme + "','" + cupsProme + "','" + usuariosis + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarAsignacionProveedoresCupsProme(string ProveedorProme, string cupsProme, string usuariosis)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarAsignacionProveedoresCupsProme(ProveedorProme, cupsProme, usuariosis);
             }
             catch (Exception ex)
             {
@@ -762,11 +833,11 @@ namespace GestionOrdenamientos
         }
 
         //Obtiene el dashboard de proveedores por proveedor
-        public string DashboardProveedor(string proveedor,string tipoid,string identificacion)
+        public string DashboardProveedor(string proveedor,string usuariosis)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDashboardProveedores" + "'" + proveedor + "','" + tipoid + "','" + identificacion + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ObtenerDashboardProveedores" + "'" + proveedor + "','" + usuariosis + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -783,12 +854,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string dashboardProveedor(string proveedor,string tipoid,string identificacion)
+        public static string dashboardProveedor(string proveedor,string usuariosis)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.DashboardProveedor(proveedor, tipoid, identificacion);
+                return objOrdenesProveedor.DashboardProveedor(proveedor, usuariosis);
             }
             catch (Exception ex)
             {

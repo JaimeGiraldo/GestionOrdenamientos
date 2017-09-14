@@ -229,7 +229,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Nombre del Prestador:</Value>
+                              <Value>Prestador:</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -253,13 +253,11 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>2</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell />
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox57">
+                    <Textbox Name="Textbox16">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
@@ -278,7 +276,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox57</rd:DefaultName>
+                      <rd:DefaultName>Textbox16</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -289,9 +287,10 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <ColSpan>3</ColSpan>
+                    <ColSpan>4</ColSpan>
                   </CellContents>
                 </TablixCell>
+                <TablixCell />
                 <TablixCell />
                 <TablixCell />
                 <TablixCell>
@@ -1482,6 +1481,7 @@
                               <Value>=Fields!Prestador.Value</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1625,7 +1625,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Dirección Prestador:</Value>
+                              <Value>Dirección Proveedor:</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -2014,7 +2014,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Justificación Clínica:</Value>
+                              <Value>Especialidad:</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -2049,7 +2049,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!Especialidad.Value</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                               </Style>
@@ -2094,10 +2094,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>9.81194cm</Top>
+        <Top>8.85944cm</Top>
         <Left>0.05777cm</Left>
         <Height>1.8cm</Height>
-        <Width>16.85744cm</Width>
+        <Width>16.85743cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -2106,7 +2106,7 @@
         </Style>
       </Tablix>
       <Line Name="Line1">
-        <Top>17.1029cm</Top>
+        <Top>16.1504cm</Top>
         <Left>0.05777cm</Left>
         <Height>0cm</Height>
         <Width>5.41715cm</Width>
@@ -2118,7 +2118,7 @@
         </Style>
       </Line>
       <Line Name="Line2">
-        <Top>17.1029cm</Top>
+        <Top>16.1504cm</Top>
         <Left>6.30986cm</Left>
         <Height>0cm</Height>
         <Width>5.24849cm</Width>
@@ -2148,7 +2148,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>17.24401cm</Top>
+        <Top>16.29151cm</Top>
         <Left>0.05777cm</Left>
         <Height>0.6cm</Height>
         <Width>5.41715cm</Width>
@@ -2182,7 +2182,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>17.24401cm</Top>
+        <Top>16.29151cm</Top>
         <Left>6.35967cm</Left>
         <Height>0.6cm</Height>
         <Width>5.19868cm</Width>
@@ -2216,7 +2216,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>17.27929cm</Top>
+        <Top>16.32679cm</Top>
         <Left>12.35622cm</Left>
         <Height>0.6cm</Height>
         <Width>4.55899cm</Width>
@@ -2250,7 +2250,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>16.32651cm</Top>
+        <Top>15.37401cm</Top>
         <Left>0.05777cm</Left>
         <Height>0.6cm</Height>
         <Width>5.41715cm</Width>
@@ -2266,7 +2266,7 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>17.1029cm</Top>
+        <Top>16.1504cm</Top>
         <Left>12.35622cm</Left>
         <Height>0cm</Height>
         <Width>4.55899cm</Width>
@@ -2296,7 +2296,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>16.32651cm</Top>
+        <Top>15.37401cm</Top>
         <Left>12.35622cm</Left>
         <Height>0.6cm</Height>
         <Width>4.55899cm</Width>
@@ -2428,10 +2428,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>13.17769cm</Top>
+        <Top>12.0488cm</Top>
         <Left>0.05777cm</Left>
         <Height>1.76417cm</Height>
-        <Width>16.85744cm</Width>
+        <Width>16.85743cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -2775,202 +2775,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>11.88949cm</Top>
+        <Top>10.80055cm</Top>
         <Left>0.05777cm</Left>
         <Height>1.14709cm</Height>
-        <Width>16.85744cm</Width>
+        <Width>16.85743cm</Width>
         <ZIndex>11</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Tablix>
-      <Tablix Name="Tablix9">
-        <TablixBody>
-          <TablixColumns>
-            <TablixColumn>
-              <Width>4.05899cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>6.97718cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>2.69743cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.12384cm</Width>
-            </TablixColumn>
-          </TablixColumns>
-          <TablixRows>
-            <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox103">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Proveedor del Servicio:</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox101</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>DeepSkyBlue</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Prestador1">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Prestador.Value</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Prestador1</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox309">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Especialidad:</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox307</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>DeepSkyBlue</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Especialidad">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Especialidad.Value</Value>
-                              <Style>
-                                <FontFamily>Calibri Light</FontFamily>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Especialidad</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-          </TablixRows>
-        </TablixBody>
-        <TablixColumnHierarchy>
-          <TablixMembers>
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
-            <TablixMember />
-          </TablixMembers>
-        </TablixColumnHierarchy>
-        <TablixRowHierarchy>
-          <TablixMembers>
-            <TablixMember />
-          </TablixMembers>
-        </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>6.49416cm</Top>
-        <Left>0.05776cm</Left>
-        <Height>0.6cm</Height>
-        <Width>16.85744cm</Width>
-        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3363,8 +3172,7 @@
                       <rd:DefaultName>Textbox87</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>Dotted</Style>
                         </Border>
                         <BackgroundColor>DeepSkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -3401,8 +3209,7 @@
                       <rd:DefaultName>Textbox242</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>Dotted</Style>
                         </Border>
                         <BackgroundColor>DeepSkyBlue</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -3482,8 +3289,7 @@
                       <rd:DefaultName>Textbox15</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>Dotted</Style>
                         </Border>
                         <BackgroundColor>WhiteSmoke</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -3521,8 +3327,7 @@
                       <rd:DefaultName>Nivel</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>Dotted</Style>
                         </Border>
                         <BackgroundColor>WhiteSmoke</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
@@ -3559,11 +3364,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.27055cm</Top>
-        <Left>0.05776cm</Left>
+        <Top>6.31805cm</Top>
+        <Left>0.05777cm</Left>
         <Height>2.42646cm</Height>
-        <Width>16.85744cm</Width>
-        <ZIndex>13</ZIndex>
+        <Width>16.85743cm</Width>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3571,13 +3376,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>7.03909in</Height>
+    <Height>6.66409in</Height>
     <Style />
   </Body>
   <Width>6.65953in</Width>
   <Page>
     <PageHeader>
-      <Height>2.8225cm</Height>
+      <Height>2.00229cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -3606,28 +3411,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Teléfono: 4441117</Value>
-                  <Style>
-                    <FontStyle>Normal</FontStyle>
-                    <FontFamily>Calibri Light</FontFamily>
-                    <FontSize>9pt</FontSize>
-                    <FontWeight>Normal</FontWeight>
-                    <TextDecoration>None</TextDecoration>
-                    <Color>#000000</Color>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <LeftIndent>0cm</LeftIndent>
-              <RightIndent>0cm</RightIndent>
-              <Style>
-                <TextAlign>Center</TextAlign>
-                <LineHeight>12pt</LineHeight>
-              </Style>
-            </Paragraph>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>www.promedan.com.co</Value>
+                  <Value>Teléfono: 4441117 www.promedan.com.co</Value>
                   <Style>
                     <FontStyle>Normal</FontStyle>
                     <FontFamily>Calibri Light</FontFamily>
@@ -3665,10 +3449,9 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>0.10583cm</Top>
-          <Left>4.64621cm</Left>
-          <Height>1.24092cm</Height>
-          <Width>8.14211cm</Width>
+          <Left>2.58182cm</Left>
+          <Height>0.90579cm</Height>
+          <Width>11.69875cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -3683,10 +3466,9 @@
           <Source>Embedded</Source>
           <Value>escudodeColombia</Value>
           <Sizing>FitProportional</Sizing>
-          <Top>0.62646cm</Top>
-          <Left>0.19797cm</Left>
-          <Height>2.01965cm</Height>
-          <Width>1.99389cm</Width>
+          <Left>0.37527cm</Left>
+          <Height>1.79944cm</Height>
+          <Width>2.13409cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
@@ -3704,7 +3486,7 @@
                   <Value>AUTORIZACIÓN DE SERVICIO ANEXO TÉCNICO Nº 4</Value>
                   <Style>
                     <FontFamily>Calibri Light</FontFamily>
-                    <FontSize>14pt</FontSize>
+                    <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                     <Color>DeepSkyBlue</Color>
                   </Style>
@@ -3716,10 +3498,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox84</rd:DefaultName>
-          <Top>1.45259cm</Top>
-          <Left>2.19186cm</Left>
-          <Height>1.26407cm</Height>
-          <Width>12.64105cm</Width>
+          <Top>0.94107cm</Top>
+          <Left>2.58182cm</Left>
+          <Height>0.85838cm</Height>
+          <Width>11.69874cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -3735,9 +3517,9 @@
           <Source>Embedded</Source>
           <Value>LogoReportes</Value>
           <Sizing>Fit</Sizing>
-          <Left>13.26559cm</Left>
-          <Height>1.01162cm</Height>
-          <Width>3.64961cm</Width>
+          <Left>14.28056cm</Left>
+          <Height>0.72058cm</Height>
+          <Width>2.63464cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -3752,8 +3534,8 @@
         </Border>
       </Style>
     </PageHeader>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
+    <PageHeight>27.94cm</PageHeight>
+    <PageWidth>21.59cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>
     <RightMargin>2cm</RightMargin>
     <TopMargin>2cm</TopMargin>

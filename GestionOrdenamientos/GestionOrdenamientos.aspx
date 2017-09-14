@@ -80,6 +80,10 @@
         <div id="MenuProveedor" class="pages-nav__item" style="display: none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-headphones"></span>Contacto</a></div>
         <div id="MenuProveedor2" class="pages-nav__item" style="display: none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-clock"></span>Asistencia</a></div>
         <div id="MenuProveedor3" class="pages-nav__item" style="display: none"><a id="pgProveedores3" class="link link--page" href="#page-Proveedores3"><span class="icon-record"></span>Ejecución</a></div>
+        
+        <div id="MenuProveedoresProm" class="pages-nav__item" style="display: none"><a id="btnProveedoresProm" class="link link--page" href="#page-CUPSProveedoresProm"><span class="icon-settings-1"></span>CUPS-Prome</a></div>
+        <div id="MenuGuias" class="pages-nav__item" style="display: none"><a id="btnGuias" class="link link--page" href="#page-Guias"><span class="icon-settings"></span>Guias</a></div>
+        
         <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
         <div id="MenuDashProveedor" class="pages-nav__item" style="display: none"><a id="pgDashProveedores" class="link link--page" href="#page-DashBoardProveedores"><span class="icon-stats"></span>Dashboard</a></div>
@@ -763,9 +767,16 @@
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el responsable y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un responsable sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
-                <h1 class="bp-header__title">Parametrización Responsable</h1>
-                <p>Seleccione el personal que va a realizar la optimización.</p>
-                 <button id="btnListResponsables">Listar</button>
+
+                <div class="col-md-10" style="padding-left: 0">
+                    <h1 class="bp-header__title">Asignación de Responsables</h1>
+                    <p>Seleccione el personal que va a realizar la optimización.</p>
+                </div>
+
+                <div class="col-md-2" style="text-align: end; padding-right: 0; padding-top: 30px">
+                    <button id="btnListResponsables">Listar</button>
+                </div>
+
 
                 <%-- <div class="col-md-3">
                     <label class="s16">Responsable:</label>
@@ -835,20 +846,16 @@
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el proveedor y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un proveedor sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
-                <h1 class="bp-header__title">Parametrización Proveedores - Cups</h1>
-                <p>Asigne por cada proveedor los cups o servicios que prestara cada uno de ellos.</p>
-                 <button id="btnListProveCups">Listar</button>
-                <%--<div class="col-md-12" style="text-align: end; padding-top: 25px">
-                    <button id="btnAddPxxxx">Adicionar</button>
-                </div>--%>
 
-                <%-- <div class="col-md-3">
-                    <label class="s16">Responsable:</label>
-                    <select id="selecttest" class="js-example-basic-single js-states form-control" multiple="multiple">
-                        <option value="AL">Alabama</option>
-                        <option value="WY">Wyoming</option>
-                    </select>
-                </div>--%>
+                <div class="col-md-10" style="padding-left: 0">
+                    <h1 class="bp-header__title">Parametrización Proveedores - Cups</h1>
+                    <p>Asigne por cada proveedor los cups o servicios que prestara cada uno de ellos.</p>
+                </div>
+
+                <div class="col-md-2" style="text-align: end; padding-right: 0; padding-top: 30px">
+                    <button id="btnListProveCups">Listar</button>
+                </div>
+
             </header>
             <div class="container" style="width:90%">
               <div class="scroll_header_fixed">
@@ -1413,7 +1420,105 @@
 
             </div>
         </div>
-        
+
+        <div class="page" id="page-CUPSProveedoresProm" style="display: none">
+           <div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el proveedor y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un proveedor sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
+            </div>
+            <header class="bp-header cf">
+               
+
+                <div class="col-md-10" style="padding-left:0">
+                    <h1 class="bp-header__title">Asignación Cups - Promedan</h1>
+                    <p>Asigne por cada proveedor Promedan (sede o dependencia), los servicios que prestara cada uno de ellos en base al CUPS.</p>
+                </div>
+
+                <div class="col-md-2" style="text-align: end;padding-right:0;padding-top:30px">
+                     <button id="btnListaCupsProme">Listar</button>
+                </div>
+
+            </header>
+            <div class="container" style="width:90%">
+              <div class="scroll_header_fixed">
+                <div class="card" style="margin: 0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
+
+                        <div class="col-md-2">
+                            <label class="s16 color-white">Proveedor:</label>
+                            <select id="ddlPProveedorProm" class="form-control color-blue" style="width: 100%"></select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="s16 color-white">Cups:</label>
+                            <select id="ddlProveedoresXCupsProm" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" class="myinput1" id="txtfiltroProveeProm" placeholder="Proveedor" onkeyup="FiltrarTablaProveedor1('txtfiltroProveeProm','tablaProveedoresXCupsPromedan','0')">
+                        </div>
+
+                        <div class="col-md-2">
+                            <label>FILTRAR:</label>
+                            <input type="text" class="myinput1" id="txtfiltroPrDessProm" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltroPrDessProm','tablaProveedoresXCupsPromedan','2')">
+                        </div>
+                        
+                        <div class="col-md-2" style="text-align: end; padding-top: 25px">
+                            <button id="btnAddPromeCups">Adicionar</button>
+                        </div>
+
+                    </div>
+                </div>
+               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card-content table-responsive">
+                            <table id="tablaProveedoresXCupsPromedan" <%--style="visibility:hidden"--%> class="table table-hover table-action">
+                                <thead>
+                                    <tr>
+                                        <th>Proveedor</th>
+                                        <th>Cups</th>
+                                        <th>Descripción</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+               
+
+              </div>
+
+            </div>
+        </div>
+
+        <div class="page" id="page-Guias" style="display: none">
+           <%--<div class="col-lg-12 col-md-12 helpicon">
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el proveedor y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un proveedor sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
+            </div>--%>
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Guias de Apoyo</h1>
+                <p>Utilice este material como base para realizar una buena optimización en función de los lineamientos definidos por cada procedimiento.</p>
+              
+            </header>
+            <div class="container" style="width:90%">
+              <div class="scroll_header_fixed">
+                <div class="card" style="margin: 0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
+
+                      
+
+                    </div>
+                </div>
+               
+                   
+               
+
+              </div>
+
+            </div>
+        </div>
+
         <div class="page" id="page-CUPS" style="display: none">
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Administrar CUPS</h1>

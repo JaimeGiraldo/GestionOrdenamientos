@@ -104,6 +104,10 @@ var archivos2 = [];
         AsignarProveedoresCups();
     });
 
+    $("#btnAddPromeCups").on("click", function (e) {
+        AsignarProveedoresCupsProme();
+    });
+
     //Reparte las ordenes entre los responsables asignados
     $("#btnRepartir").on("click", function (e) {
         $("#loaderepartir").show();
@@ -152,6 +156,10 @@ var archivos2 = [];
 
     $('#btnListProveCups').on("click", function (e) {
         consultarAsignacionesProveedoresCups("spGestionOrdenamiento_ListarProveedoresXCups");
+    });
+
+    $('#btnListaCupsProme').on("click", function (e) {
+        consultarAsignacionesPromedanCups("spGestionOrdenamiento_ListarProveedoresXCupsPromedan");
     });
     //////////////////////////////////////////////////////////////////////////////////////
     
@@ -557,6 +565,22 @@ function ObtenerDatosIniciales(Menu, lista) {
                       
             llenarCombos(cboProveedor, "spsuministros_Proveedores_ObtenerNew");
             llenarCombos(cboProveedoresXCups, "spOrdenamientos_Obtener_ListaCUPS");
+            break;
+        case "MenuProveedoresProm":
+
+            var cboProveedorProm = $('#ddlPProveedorProm');
+            var cboProveedoresXCupsProm = $('#ddlProveedoresXCupsProm');
+
+            cboProveedorProm.select2({
+                placeholder: "Selecciona el Proveedor"
+            });
+
+            cboProveedoresXCupsProm.select2({
+                placeholder: "Selecciona el CUPS"
+            });
+
+            llenarCombos(cboProveedorProm, "spGestionOrdenamientos_ProveedoresObtenerPromedan");
+            llenarCombos(cboProveedoresXCupsProm, "spOrdenamientos_Obtener_ListaCUPS");
     }
 }
     
@@ -637,6 +661,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 //consultar ordenes desde el proveedor para contactar
 function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
    
+    var usuariosis = sessionStorage.getItem("UsuarioSistema");
     //var estado = $('#ddlEstadoOrden').val();
     var estado = "Aprobada";
     var fechainicial = $('#ProveedorFechaInicial').val();
@@ -655,8 +680,8 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
     } else {
         $.ajax({
             url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
-            data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', idtipoid: '"
-                + idtipoid + "', identificacion: '" + identificacion + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
+            data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', usuariosis: '"
+                + usuariosis + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -717,8 +742,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
 
 	
 }
-
-   
+       
 //consultar ordenes desde el proveedor para la gestion finaltablaProveedores
 function consultarOrdenesProveedor2(proveedor, idtipoid, identificacion) {
 
@@ -1039,6 +1063,9 @@ function abrirModalAcciones(posicion, posiciontabla) {
     body += '<div class="box_swith_mod"><p>Genero AT4:</p><label class="switch"><input id="checkAt4_' + posicion + '" type="checkbox" onclick="GeneroAt4(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_mod" style="margin-bottom:5px"><p>Adecuada:</p><label class="switch"><input id="checkAdecuado_' + posicion + '" type="checkbox" onclick="NoAdecuado(' + posicion + ',' + posiciontabla + ')"><span class="slider round"></span></label></div>';
 
+    body += '<div class="box_swith_mod" style="margin-bottom:5px"><p>Dir. Externo:</p><label class="switch"><input id="checkDirreccio_' + posicion + '" type="checkbox" ><span class="slider round"></span></label></div>';
+
+
     body += '<div id="ddl_Div_' + posicion + '"><p style="margin:5px 0px 0px">Motivo AT4:</p><select id="ddl_Noat4_' + posicion + '" style="width:100%" class="js-example-basic-single js-states form-control" ></select></div>';
 
     body += '<p style="margin:5px 0px 0px">Observaciones Auditoria:</p><input type="text" id="txtObservacionesAud_' + posicion + '" placeholder="Relacionadas con la atención y notas de tipo médico." class="form-control">';
@@ -1274,6 +1301,8 @@ function GuardarProovedor(posicion,opcion) {
     var adecuado = 0;
     var motivonadecuado = $('#txtObservacionesmotivo').val();
 
+    var direccionamiento = 0; 
+
     if (!$('#checkAt4_' + posicion).is(':checked')) {
         at4 = 0;
     } else {
@@ -1286,6 +1315,12 @@ function GuardarProovedor(posicion,opcion) {
         adecuado = 1;
     }        
 
+    if (!$('#checkDirreccio_' + posicion).is(':checked')) {
+        direccionamiento = 0;
+    } else {
+        direccionamiento = 1;
+    }
+
     if (opcion == 1) {
         proveedorasignado = 'No Aplica';
         observacionesaudit = $('#txtObservacionesaud').val();
@@ -1297,6 +1332,8 @@ function GuardarProovedor(posicion,opcion) {
     } else {
         motivonadecuado = '';
     }
+
+    //console.log(direccionamiento)
        
     if (opcion == 1 && (motivonadecuado == 0 || observacionesaudit.length == 0 || observacionesagen.length == 0 || profesional.length == 0)) {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar el motivo del porqué no es adecuada la orden y completar los demás campos para continuar.', 'warning');
@@ -1320,16 +1357,21 @@ function GuardarProovedor(posicion,opcion) {
         //console.log(proveedorasignado)           
         //console.log(sedepromedan)
 
-        //console.log(motivonadecuado)                 
+        //console.log(motivonadecuado)  
+
+       
 
         //observacionesaudit.replace("'", "") esto para que no saque error cuando el usuario ingrese comillas simple
+
+
+
         $.ajax({
             url: "GestionOrdenamientos.aspx/actualizarOrdenes",
             data: "{ tipoidoptimizador: '" + IdtipoOpt + "', optimizador: '" + IdOpt + "', idconsecutivo: '"
                 + idconsecutivo + "', proveedorasignado: '" + proveedorasignado + "', observacionesaudit: '"
                 + observacionesaudit.replace("'", "") + "', observacionesagen: '" + observacionesagen.replace("'", "") + "', at4: '" + at4 + "', cie10: '"
                 + cie10 + "', adecuado: '" + adecuado + "', profesional: '" + profesional + "', sedepromedan: '"
-                + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "'}",
+                + sedepromedan + "', noAt4motivo: '" + noAt4motivo + "', motivonadecuado: '" + motivonadecuado + "', direccionamiento: '" + direccionamiento + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -1455,8 +1497,8 @@ function AccionesProveedor1(posicion, i) {
 
     var body = '';
     var footer = '';
-    body += '<div class="box_swith_mod"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
-    body += '<div class="box_swith_mod" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control" /></div>';
+    body += '<div class="box_swith_modPro"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
+    body += '<div class="box_swith_modPro" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control" /></div>';
     body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="En caso de ser necesario." class="form-control">';
     body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
 
@@ -1610,7 +1652,7 @@ function AccionesProveedor2(posicion, i) {
     archivos = [];
     var body = '';
     var footer = '';
-    body += '<div style="text-align:-webkit-center;padding-bottom:7px"><div class="box_swith_mod"><p>Usuario asistió:</p><label class="switch"><input id="checkAsitencia_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div></div>';
+    body += '<div style="text-align:-webkit-center;padding-bottom:7px"><div class="box_swith_modPro"><p>Usuario asistió:</p><label class="switch"><input id="checkAsitencia_' + posicion + '" type="checkbox"><span class="slider round"></span></label></div></div>';
     body += '<p style="margin:5px 0px 0px;text-align:center">Observaciones:</p><input type="text" id="txtObserpro2_' + posicion + '" placeholder="Detalles generales o de inasistencia del usuario" style="text-align:center" class="form-control">';
 
     body += '<div><label style="text-align:center;padding-top: 7px">Arrastra o toca para seleccionar los archivos de soporte</label></div><div id="mydropzone1_' + posicion + '" class="dropzone"></div>';
@@ -2260,6 +2302,155 @@ function llenarCombos(combo, spP) {
                 });
             }); 
     }
+   
+
+    function consultarAsignacionesPromedanCups(spP) {
+
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/cargarDatos",
+            data: "{ sp: '" + spP + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
+            } else {
+
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                $('#tablaProveedoresXCupsPromedan td').remove();
+
+                if (listaDatos.Table.length > 0) {
+
+                    for (var i = 0; i < datos.length; i++) {
+
+                        var tbl = '';
+                        tbl += '<tr id="trProveCupsProme_' + datos[i].IdAsignacion + '">';
+                        tbl += '<td>' + datos[i].NombreCompleto + '</td>';
+                        tbl += '<td>' + datos[i].Cups + '</td>';
+                        tbl += '<td>' + datos[i].Descripcionnew + '</td>';
+                        tbl += '<td>' + '<button id="btnEliminarProme_' + datos[i].IdAsignacion + '" onclick="EliminarProveedorCupsProme(' + datos[i].IdAsignacion + ')" class="btn btn-primary">Eliminar</button>' + '</td>';
+                        tbl += '</tr>';
+
+                        $("#tablaProveedoresXCupsPromedan").append(tbl);
+                    }
+                }
+                else {
+                    //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');                   
+                }
+            }
+
+        });
+
+    }
+
+    function AsignarProveedoresCupsProme() {
+
+        var ProveedorProme = $('#ddlPProveedorProm').val();
+        var responsable = $("#ddlPProveedorProm :selected").text();
+        var cupsProme = $('#ddlProveedoresXCupsProm').val();
+        var descripcion = $("#ddlProveedoresXCupsProm :selected").text();
+
+        var usuariosis = sessionStorage.getItem("UsuarioSistema"); 
+
+        if (ProveedorProme.length == 0 || ProveedorProme == 0) {
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista.', 'warning');
+        } else if (cupsProme.length = 0 || cupsProme == "null" || cupsProme == 0) {
+            swal(swalheadertxt, 'Lo sentimos, debes seleccionar un cups de la lista.', 'warning');
+        } else {
+
+            //console.log(ProveedorProme)
+            //console.log(cupsProme)
+
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/guardarAsignacionProveedoresCupsProme",
+                data: "{ ProveedorProme: '" + ProveedorProme + "', cupsProme: '" + cupsProme + "', usuariosis: '" + usuariosis + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    alert(rest.Error);
+                } else {
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
+
+                    if (listaDatos.Table.length > 0) {
+
+                        if (datos[0].Respuesta == "OK") {
+
+                            var tbl = '';
+                            tbl += '<tr id="trProveCupsProme_' + datos[0].idasignacion + '">';
+                            tbl += '<td>' + responsable + '</td>';
+                            tbl += '<td>' + cupsProme + '</td>';
+                            tbl += '<td>' + descripcion + '</td>';
+                            tbl += '<td>' + '<button id="btnEliminarProme_' + datos[0].idasignacion + '" onclick="EliminarProveedorCupsProme(' + datos[0].idasignacion + ')" class="btn btn-primary">Eliminar</button>' + '</td>';
+                            tbl += '</tr>';
+
+                            $("#tablaProveedoresXCupsPromedan").append(tbl);
+
+                            swal(swalheadertxt, 'Bien, la asignación se realizó correctamente.', 'success');
+
+                        } else {
+                            swal(swalheadertxt, 'Lo sentimos, el CUPS ' + cupsProme + ' ya fue asignado a ' + responsable + '.', 'warning');
+                        }
+                    }
+                    else {
+                        swal(swalheadertxt, 'Lo sentimos, el registro no se actualizo.', 'warning');
+                    }
+                }
+            });
+        }
+    }
+
+    function EliminarProveedorCupsProme(idasignacion) {
+
+        swal({
+            title: swalheadertxt,
+            text: "¿Estas segur@ que la Asignación debe ser eliminada?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Si",
+            cancelButtonText: "No",
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/eliminarAsignacionProveedoresCupsProme",
+                data: "{ idasignacion: '" + idasignacion + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    alert(rest.Error);
+                } else {
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
+
+                    if (listaDatos.Table.length > 0) {
+
+                        if (datos[0].Respuesta == "OK") {
+                            //borra la fila de la tabla en pantalla
+                            $('#trProveCupsProme_' + idasignacion).html('');
+                            //tr[posicion].style.display = "none";
+                            swal(swalheadertxt, 'Bien, la asignación se eliminó correctamente.', 'success');
+                        } else {
+                            swal(swalheadertxt, 'Lo sentimos, la asignación no se eliminó correctamente.', 'error');
+                        }
+                    }
+                    else {
+                        swal(swalheadertxt, 'Lo sentimos, el registro no se eliminó.', 'error');
+                    }
+                }
+            });
+        });
+    }
 
     function consultarAsignacionesProveedoresCups(spP) {
 
@@ -2743,10 +2934,11 @@ function llenarCombos(combo, spP) {
             var cups = [];
             var cantidades = [];
             var coloress = [];
+            var usuariosis = sessionStorage.getItem("UsuarioSistema");
 
             $.ajax({
                 url: "GestionOrdenamientos.aspx/dashboardProveedor",
-                data: "{ sp: '" + spP + "', proveedor: '" + proveedor + "', tipoid: '" + tipoid + "', identificacion: '" + identificacion + "'}",
+                data: "{ sp: '" + spP + "', proveedor: '" + proveedor + "', usuariosis: '" + usuariosis + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
