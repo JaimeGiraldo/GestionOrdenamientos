@@ -531,7 +531,7 @@
 
         <div class="page" id="page-AsignarAT4" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
-                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 40 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la IPS del usuario y su ubicación.</p>')" style="width: 30px; height: 30px" />
+                <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 40 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la fecha de nacimiento del usuario, entre otros.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada - Optimización</h1>
@@ -596,7 +596,7 @@
                                                     <th><span class="text">Fecha Sistema</span></th>
                                                     <th><span class="text">Dias Espera</span></th>
                                                     <th><span class="text">Usuario</span></th>     
-                                                    <th><span class="text">IPS Usuario</span></th>
+                                                    <th><span class="text">IPS Usuario (EVO)</span></th>
                                                     <th><span class="text">Centro Generó</span></th>
                                                     <th><span class="text">Descripción</span></th>                                                   
                                                     <th><span class="text">Especialidad</span></th>
@@ -636,10 +636,12 @@
                                     <span>Paciente:</span>
                                     <label id="lblpaciente"></label>
                                 </div>
+
                                 <div class="cinta_whit_sh">
-                                    <span>Tipo Servicio:</span>
-                                    <label id="lbltiposervicio"></label>
+                                    <span>Fecha Nacimiento Paciente:</span>
+                                    <label id="lblFechanacimiento"></label>
                                 </div>
+                                                                
                                 <div class="cinta_whit_sh">
                                     <span>Ciudad:</span>
                                     <label id="lblciudad"></label>
@@ -652,6 +654,12 @@
                                     <span>Centro Generador de la Autorización:</span>
                                     <label id="lbltiposerv"></label>
                                 </div>
+
+                                <div style="text-align:center" >
+                                    <span>Servicio CIKLOS:</span>
+                                    <label id="lbltiposervicio" style="color:#00bdda"></label>
+                                </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
@@ -830,7 +838,7 @@
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody  id="bodytablaParametros"></tbody>
                             </table>
                         </div>
                     </div>
@@ -901,7 +909,7 @@
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody id="bodytablaProveedoresXCups"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1481,7 +1489,7 @@
                                         <th>Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody id="bodytablaProveedoresXCupsPromedan"></tbody>
                             </table>
                         </div>
                     </div>
