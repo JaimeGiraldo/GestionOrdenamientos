@@ -252,7 +252,7 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 id="ModalGrafico2tittle">TITULO</h4>
+                            <h4 id="ModalGrafico2tittle">ORDENES POR SEMANA</h4>
                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
@@ -299,34 +299,34 @@
                             <div class="row">
                                  <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-bar-chart" id="reportecups"></i></div>
-                                    <h4 class="service-title"><a href="">Reporte de CUPS</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick=" ObtenerReporteCUPS('spGestionOrdenamientos_ReporteCups');">Reporte de CUPS</a></h4>
                                     <p class="service-description">Informe detallado de los CUPS ingresados al sistema.</p>
                                 </div>
                                 <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-users" id="reporteasignaciones"></i></div>
-                                    <h4 class="service-title"><a href="">Asignación de Responsables por Cups</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick=" ObtenerResponsablesAsignaciones('spGestionOrdenamientos_ObtenerReporteResponsables');">Asignación de Responsables por Cups</a></h4>
                                     <p class="service-description">Ordenes asignadas a cada responsable, CUPS y total gestionado.</p>
                                 </div>
                                 <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-truck" id="reporteasignacionesProve"></i></div>
-                                    <h4 class="service-title"><a href="">Asignación de Proveedores por Cups</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick=" ObtenerReporteCUPSProveedores('spGestionOrdenamientos_ReporteAsigProveedores');">Asignación de Proveedores por Cups</a></h4>
                                     <p class="service-description">Informe detallado de los CUPS asignados a cada Proveedor.</p>
                                 </div>
 
                                  <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-sitemap" id="rptAsigProvePromedan"></i></div>
-                                    <h4 class="service-title"><a href="">Asignaciónes Proveedor Promedan</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick="ObtenerReporteCUPSProvePROME('spGestionOrdenamientos_ReporteProvedoresPromedan');">Asignaciónes Proveedor Promedan</a></h4>
                                     <p class="service-description">CUPS asignados a cada responsable en Sede.</p>
                                 </div>
                                
                                 <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-area-chart" id="reportegeneral"></i></div>
-                                    <h4 class="service-title"><a href="">Reporte General</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick="AbrirReporteGeneral();">Reporte General</a></h4>
                                     <p class="service-description">Informe general de ordenes ingresadas y su estado actual.</p>
                                 </div>
                                  <div class="col-md-12 service-item">
                                     <div class="service-icon"><i class="fa fa-user-times" id="reportefaltantescontacto"></i></div>
-                                    <h4 class="service-title"><a href="">Reporte de Usuarios no contactados</a></h4>
+                                    <h4 class="service-title"><a href="#" onclick="AbrirReporteUsuarioNoContactados();">Reporte de Usuarios no contactados</a></h4>
                                     <p class="service-description">Pacientes sin contacto o registro en el sistema.</p>
                                 </div>
                             </div>

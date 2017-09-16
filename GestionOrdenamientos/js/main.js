@@ -3188,7 +3188,7 @@ function llenarCombos(combo, spP) {
 
         function MostrarGrafico2(tiporeque, totalreque, totalgeneral) {
     
-            document.getElementById('ModalGrafico2tittle').innerHTML = 'TIPO DE SERVICIO';
+            document.getElementById('ModalGrafico2tittle').innerHTML = 'TOTAL ORDENES EN OPTIMIZACIÓN POR ESPECIALIDAD';
             seriesreque = [];
 
             for (var i = 0; i < tiporeque.length; i++) {
@@ -3230,41 +3230,73 @@ function llenarCombos(combo, spP) {
             });
         }
 
-        function pintarGrafico3() {
+        function pintarGrafico3() {       
 
             Highcharts.chart('containergrafico2', {
                 chart: {
-                    type: 'line'
+                    type: 'areaspline'
                 },
                 title: {
-                    text: 'Monthly Average Temperature'
+                    text: 'Optimizadas por Responsable'
                 },
-                subtitle: {
-                    text: 'Source: WorldClimate.com'
+                legend: {
+                    layout: 'vertical',
+                    align: 'left',
+                    verticalAlign: 'top',
+                    x: 100,
+                    y: 50,
+                    floating: true,
+                    borderWidth: 1,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
                 },
                 xAxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    categories: [
+                        'Lunes',
+                        'Martes',
+                        'Miercoles',
+                        'Jueves',
+                        'Viernes',
+                        'Sabado',
+                        'Domingo'
+                    ],
+                    plotBands: [{ // visualize the weekend
+                        from: 4.5,
+                        to: 6.5,
+                        color: 'rgba(68, 170, 213, .2)'
+                    }]
                 },
                 yAxis: {
                     title: {
-                        text: 'Temperature (°C)'
+                        text: 'Total Ordenes'
                     }
                 },
+                tooltip: {
+                    shared: true,
+                    valueSuffix: ' units'
+                },
+                credits: {
+                    enabled: false
+                },
                 plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: false
+                    areaspline: {
+                        fillOpacity: 0.5
                     }
                 },
                 series: [{
-                    name: 'Tokyo',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+                    name: 'Isabel',
+                    data: [3, 4, 3, 5, 4, 10, 12]
                 }, {
-                    name: 'London',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-                }]
+                    name: 'Sara',
+                    data: [1, 6, 4, 8, 2, 6, 4]
+                },
+                 {
+                     name: 'Angelica',
+                     data: [1, 3, 4, 3, 3, 5, 4]
+                 },
+                 {
+                     name: 'Sebastian',
+                     data: [5, 1, 5, 3, 5, 5, 4]
+                 }]
             });
         
         }
@@ -3326,4 +3358,12 @@ function llenarCombos(combo, spP) {
                 }
             }
 
+        }
+
+        function AbrirReporteGeneral() {
+            window.open('VisorReporting.aspx?Id=311', '');
+        }
+
+        function AbrirReporteUsuarioNoContactados() {
+            window.open('VisorReporting.aspx?Id=315', '');
         }
