@@ -250,17 +250,20 @@
             <div class="modal fade" id="ModalGrafico2" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
-                    <div class="modal-content">
+                    <div class="modal-content" style="padding:0px">
                         <div class="modal-header">
-                            <h4 id="ModalGrafico2tittle">ORDENES POR SEMANA</h4>
+                            <h4 id="ModalGrafico2tittle"></h4>
                             <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
+                        
                         <div class="modal-body">
-                            <div id="containergrafico2" style="width: 472px"></div>
+                            <div id="containergrafico2"></div>
                         </div>
+
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
                         </div>
+
                     </div>
                 </div>
             </div>

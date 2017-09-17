@@ -3230,7 +3230,83 @@ function llenarCombos(combo, spP) {
             });
         }
 
-        function pintarGrafico3() {       
+        function pintarGrafico3() {
+
+            var Responsables = [];
+            var Cantidades = [];
+            var spP = "spGestionOrdenamientos_ObtenerGrafico";
+
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/cargarDatos",
+                data: "{ sp: '" + spP + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    swal(swalheadertxt, 'No se encontraron datos', 'error');
+                } else {
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
+
+                    var aux = 0;
+
+                    if (listaDatos.Table.length > 0) {
+
+                        for (var i = 0; i < datos.length; i++) {
+
+                            var responsab = datos[i].Nombre;
+                            Responsables.push(responsab);
+                            var num = datos[i].TotalOrdenes;                            
+                            Cantidades.push(num);
+                        }
+
+                        MostrarGrafico3(Responsables, Cantidades);
+
+                    } else {
+                        swal(swalheadertxt, 'Lo sentimos, no se encontraron datos', 'warning');
+                    }
+
+                }
+
+            });
+        
+        }
+
+        function MostrarGrafico3(responsables, cantidades) {
+
+            //console.log(responsables)
+            //console.log(cantidades)
+            
+            var responss = [];
+            var totales = [];
+            var areglodetotales = [];
+
+            var second_data_drilldown = [];
+
+            for (var i = 0; i < responsables.length / 7; i++) {
+                responss.push(responsables[i * 7])
+
+                for (var j = i * 7; j < (i * 7) + 7; j++) {
+                    totales.push(cantidades[j])                   
+                }
+
+                areglodetotales.push(totales)
+                totales = [];
+            }
+
+            //console.log(responss)
+            //console.log(areglodetotales)
+
+            for (var i = 0; i < responss.length; i++) {
+                second_data_drilldown.push({
+                    name: responss[i],
+                    data: areglodetotales[i],
+                });
+            }
+
+            document.getElementById('ModalGrafico2tittle').innerHTML = 'ORDENES OPTIMIZADAS - SEMANA ACTUAL';
 
             Highcharts.chart('containergrafico2', {
                 chart: {
@@ -3240,11 +3316,11 @@ function llenarCombos(combo, spP) {
                     text: 'Optimizadas por Responsable'
                 },
                 legend: {
-                    layout: 'vertical',
-                    align: 'left',
+                    layout: 'horizontal',
+                    align: 'center',
                     verticalAlign: 'top',
-                    x: 100,
-                    y: 50,
+                    x: 10,
+                    y: -10,
                     floating: true,
                     borderWidth: 1,
                     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
@@ -3253,10 +3329,10 @@ function llenarCombos(combo, spP) {
                     categories: [
                         'Lunes',
                         'Martes',
-                        'Miercoles',
+                        'Miércoles',
                         'Jueves',
                         'Viernes',
-                        'Sabado',
+                        'Sábado',
                         'Domingo'
                     ],
                     plotBands: [{ // visualize the weekend
@@ -3267,12 +3343,12 @@ function llenarCombos(combo, spP) {
                 },
                 yAxis: {
                     title: {
-                        text: 'Total Ordenes'
+                        text: 'Total ordenes por responsable'
                     }
                 },
                 tooltip: {
                     shared: true,
-                    valueSuffix: ' units'
+                    valueSuffix: ' ordenes.'
                 },
                 credits: {
                     enabled: false
@@ -3282,23 +3358,24 @@ function llenarCombos(combo, spP) {
                         fillOpacity: 0.5
                     }
                 },
-                series: [{
-                    name: 'Isabel',
-                    data: [3, 4, 3, 5, 4, 10, 12]
-                }, {
-                    name: 'Sara',
-                    data: [1, 6, 4, 8, 2, 6, 4]
-                },
-                 {
-                     name: 'Angelica',
-                     data: [1, 3, 4, 3, 3, 5, 4]
-                 },
-                 {
-                     name: 'Sebastian',
-                     data: [5, 1, 5, 3, 5, 5, 4]
-                 }]
+                series: second_data_drilldown
+                //    [{
+                //    name: 'Isabel',
+                //    data: [3, 4, 3, 5, 4, 10, 12]
+                //}, {
+                //    name: 'Sara',
+                //    data: [1, 6, 4, 8, 2, 6, 4]
+                //},
+                // {
+                //     name: 'Angelica',
+                //     data: [1, 3, 4, 3, 3, 5, 4]
+                // },
+                // {
+                //     name: 'Sebastian',
+                //     data: [5, 1, 5, 3, 5, 5, 4]
+                // }]
             });
-        
+
         }
 
         function showNotification(from, align,text) {
