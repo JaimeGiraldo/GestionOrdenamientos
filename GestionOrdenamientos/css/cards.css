@@ -160,6 +160,7 @@
 }
 .card .table {
   margin-bottom: 0;
+  word-wrap:break-word;
 }
 .card .table tr:first-child td {
   border-top: none;

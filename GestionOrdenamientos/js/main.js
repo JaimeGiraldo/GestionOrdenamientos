@@ -1512,6 +1512,7 @@ function MasInformacionProveedor(idconsecutivo,posicion) {
     document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
     document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
     document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
+    document.getElementById('lblfechaciklos').innerHTML = datosordenproveedor[posicion].Fecha_Registro_Solicitud;
     //document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
 
     $("#DetalleModalProveedor").modal();
@@ -3306,7 +3307,7 @@ function llenarCombos(combo, spP) {
                 });
             }
 
-            document.getElementById('ModalGrafico2tittle').innerHTML = 'ORDENES OPTIMIZADAS - SEMANA ACTUAL';
+            document.getElementById('ModalGrafico2tittle').innerHTML = 'TOTAL ORDENES OPTIMIZADAS - SEMANA ACTUAL';
 
             Highcharts.chart('containergrafico2', {
                 chart: {
@@ -3319,7 +3320,7 @@ function llenarCombos(combo, spP) {
                     layout: 'horizontal',
                     align: 'center',
                     verticalAlign: 'top',
-                    x: 10,
+                    x: 20,
                     y: -10,
                     floating: true,
                     borderWidth: 1,
@@ -3343,7 +3344,7 @@ function llenarCombos(combo, spP) {
                 },
                 yAxis: {
                     title: {
-                        text: 'Total ordenes por responsable'
+                        text: ''
                     }
                 },
                 tooltip: {
@@ -3436,6 +3437,88 @@ function llenarCombos(combo, spP) {
             }
 
         }
+
+        $("#txtfiltroCentroGene").keyup(function () {
+
+            var filter = $.trim($(this).val().toLowerCase());
+            count = 0;
+            var length = $.trim($(this).val().length);
+            if (length > 1) {
+                var filter_tags = filter.split(" ");
+                var filter_tags_length = filter_tags.length;
+                $("#tablaAsignar tr:gt(0)").each(function () {
+                    count++;
+                    i = 0;
+                    matches = 0;
+                    c = 0;
+                    $(this).find('td').each(function () {
+                        var $this = $(this);
+                        var lenght_td = $this.parents('tr').find('td').length;
+                        i++;
+                        $.each(filter_tags, function (i, a_filter) {
+                            if ($this.text().toLowerCase().indexOf(a_filter) !== -1) {
+                                c++;
+                                if (c == filter_tags_length) {
+                                    matches = 1;
+                                }
+                            }
+                        });
+                        // console.log(matches);
+                        if (i == lenght_td) {
+                            if (matches > 0) {
+                                $(this).parents("tr").removeClass("hidden");
+                            } else {
+                                $(this).parents("tr").addClass("hidden");
+                            }
+                        }
+                    });
+                    //console.log('next'+count);
+                });
+            } else {
+                $("#tablaAsignar td").parent("tr").removeClass("hidden");
+            }
+        });
+
+        $("#txtfiltrosedegenero").keyup(function () {
+
+            var filter = $.trim($(this).val().toLowerCase());
+            count = 0;
+            var length = $.trim($(this).val().length);
+            if (length > 1) {
+                var filter_tags = filter.split(" ");
+                var filter_tags_length = filter_tags.length;
+                $("#tablaProveedores tr:gt(0)").each(function () {
+                    count++;
+                    i = 0;
+                    matches = 0;
+                    c = 0;
+                    $(this).find('td').each(function () {
+                        var $this = $(this);
+                        var lenght_td = $this.parents('tr').find('td').length;
+                        i++;
+                        $.each(filter_tags, function (i, a_filter) {
+                            if ($this.text().toLowerCase().indexOf(a_filter) !== -1) {
+                                c++;
+                                if (c == filter_tags_length) {
+                                    matches = 1;
+                                }
+                            }
+                        });
+                        // console.log(matches);
+                        if (i == lenght_td) {
+                            if (matches > 0) {
+                                $(this).parents("tr").removeClass("hidden");
+                            } else {
+                                $(this).parents("tr").addClass("hidden");
+                            }
+                        }
+                    });
+                    //console.log('next'+count);
+                });
+            } else {
+                $("#tablaProveedores td").parent("tr").removeClass("hidden");
+            }
+        });
 
         function AbrirReporteGeneral() {
             window.open('VisorReporting.aspx?Id=311', '');

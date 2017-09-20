@@ -212,12 +212,12 @@
                                 <i class="material-icons">info_outline</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Asignadas Faltantes</p>
+                                <p class="category">Aprobadas sin Proveedor</p>
                                 <h3 class="title" id="lblnoadecuadas">0</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">report_problem</i> Asignadas sin optimizar 
+                                    <i class="material-icons">report_problem</i> Sin asignación de Proveedor
                                 </div>
                             </div>
                         </div>
@@ -570,7 +570,7 @@
                                 
                                 <div class="col-md-2">
                                     <label>FILTRAR:</label>
-                                    <input class="myinput" type="text" id="txtfiltroCentroGene" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltroCentroGene','tablaAsignar','5')">
+                                    <input class="myinput" type="text" id="txtfiltroCentroGene" placeholder="Centro Generó" <%--onkeyup="FiltrarTablaProveedor1('txtfiltroCentroGene','tablaAsignar','5')"--%>>
                                 </div>
 
                                 <div class="col-md-2">
@@ -1017,17 +1017,17 @@
 
                  <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltrosedegenero" class="form-control" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltrosedegenero','tablaProveedores','2')" />
+                    <input id="txtfiltrosedegenero" class="form-control search-key" placeholder="Centro Generó" <%--onkeyup="FiltrarMultipleTabla('txtfiltrosedegenero','txtfiltroespecialidad','2','3','tablaProveedores')"--%> />
                 </div>
                 
                 <div class="col-md-2">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad" class="form-control" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','3')" />
+                    <input id="txtfiltroespecialidad" class="form-control search-key" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','3')" />
                 </div>
 
                 <div class="col-md-2" >
                     <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede" class="form-control" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
+                    <input type="text" id="txtfiltrosede" class="form-control search-key" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
                 </div>
 
                 <div class="col-md-2" style="text-align: end; padding-top: 25px">
@@ -1101,6 +1101,11 @@
                                     <div class="cinta_whit_sh">
                                         <span>Estado de la Orden:</span>
                                         <label id="lblestado"></label>
+                                    </div>
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Fecha Ciklos:</span>
+                                        <label id="lblfechaciklos"></label>
                                     </div>
 
                                     <div style="text-align:center">
