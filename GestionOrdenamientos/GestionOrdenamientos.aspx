@@ -117,7 +117,7 @@
                             <img src="images/LogoNuevo.png" alt="Promedan">
                         </div>
                         <div class="intro_log">
-                            <p>GESTIÓN DE ORDENAMIENTOS</p>
+                            <p>OPTIMIZACIÓN</p>
                         </div>
                         <div class="login-form" id="login_pro">
                             <div class="control-group">
@@ -1015,20 +1015,24 @@
                     <input type="date" id="ProveedorFechaFinal" class="form-control color-dark" />
                 </div>
 
+                <div class="col-md-2">
+                    <label>Filtrar por:</label>
+                    <select id="ddlespecialidadproveedor1" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>
+
+
+                 <div class="col-md-2" >
+                    <label>Filtrar por:</label>
+                    <input type="text" id="txtfiltrosede" class="form-control search-key" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
+                </div>
+
                  <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>
                     <input id="txtfiltrosedegenero" class="form-control search-key" placeholder="Centro Generó" <%--onkeyup="FiltrarMultipleTabla('txtfiltrosedegenero','txtfiltroespecialidad','2','3','tablaProveedores')"--%> />
                 </div>
-                
-                <div class="col-md-2">
-                    <label>Filtrar por:</label>
-                    <input id="txtfiltroespecialidad" class="form-control search-key" placeholder="Especialidad" onkeyup="FiltrarTablaProveedor1('txtfiltroespecialidad','tablaProveedores','3')" />
-                </div>
+                          
 
-                <div class="col-md-2" >
-                    <label>Filtrar por:</label>
-                    <input type="text" id="txtfiltrosede" class="form-control search-key" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
-                </div>
+               
 
                 <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
@@ -1107,6 +1111,17 @@
                                         <span>Fecha Ciklos:</span>
                                         <label id="lblfechaciklos"></label>
                                     </div>
+
+                                     <div class="cinta_whit_sh">
+                                        <span>Profesional Solicita:</span>
+                                        <label id="lblprofesionalsol"></label>
+                                    </div>
+
+                                    <div class="cinta_whit_sh">
+                                        <span>Detalle Ciklos:</span>
+                                        <label id="lbldetalleciklos"></label>
+                                    </div>
+                                                                       
 
                                     <div style="text-align:center">
                                         <span>Observaciones:</span>

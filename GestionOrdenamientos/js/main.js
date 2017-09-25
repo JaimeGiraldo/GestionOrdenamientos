@@ -498,9 +498,16 @@ function ObtenerDatosIniciales(Menu, lista) {
             $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
             proveedorasignado = lista.Table[0].ProveedorAsignado;
                          
-            $("#btnConsultarOrdenesProveedor").on("click", function (e) {                                
+           
+            var Especialidad = $('#ddlespecialidadproveedor1');
+            Especialidad.select2({
+                placeholder: "Selecciona"
+            });
+            llenarCombos(Especialidad, "spGestionOrdenamientos_ObtenerEspecialidades");
+
+             $("#btnConsultarOrdenesProveedor").on("click", function (e) {                                
                 consultarOrdenesProveedor(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);                                
-            });           
+            });
             break;
             
         case "MenuProveedor2":
@@ -668,8 +675,9 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
     var estado = "Aprobada";
     var fechainicial = $('#ProveedorFechaInicial').val();
     var fechafinal = $('#ProveedorFechaFinal').val();
+    var especialidad = $('#ddlespecialidadproveedor1').val();
 
-    //console.log(fechainicial)
+    //console.log(especialidad)
 
     //if (estado == "0") {
     //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
@@ -683,7 +691,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
         $.ajax({
             url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
             data: "{ proveedor: '" + proveedor + "', estado: '" + estado + "', usuariosis: '"
-                + usuariosis + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "'}",
+                + usuariosis + "', fechainicial: '" + fechainicial + "', fechafinal: '" + fechafinal + "', especialidad: '" + especialidad + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -1512,7 +1520,9 @@ function MasInformacionProveedor(idconsecutivo,posicion) {
     document.getElementById('lblcontacto').innerHTML = datosordenproveedor[posicion].Contacto;
     document.getElementById('lblestado').innerHTML = datosordenproveedor[posicion].EstadoProveedor;
     document.getElementById('lblobgene').innerHTML = datosordenproveedor[posicion].ObservacionesGen;
-    document.getElementById('lblfechaciklos').innerHTML = datosordenproveedor[posicion].Fecha_Registro_Solicitud;
+    document.getElementById('lblfechaciklos').innerHTML = datosordenproveedor[posicion].Fecha_Registro_Solicitud
+    document.getElementById('lblprofesionalsol').innerHTML = datosordenproveedor[posicion].ProfesionalSolicita;
+    document.getElementById('lbldetalleciklos').innerHTML = datosordenproveedor[posicion].Descripcion;
     //document.getElementById('lblobaud').innerHTML = datosordenproveedor[posicion].ObservacionesAud;      
 
     $("#DetalleModalProveedor").modal();
@@ -1530,7 +1540,7 @@ function AccionesProveedor1(posicion, i) {
     body += '<div class="box_swith_modPro"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_modPro" style="display:inline-grid"><p>Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" class="form-control" /></div>';
     body += '<p style="margin:5px 0px 0px">Observaciones:</p><input type="text" id="txtObservacionesContacto_' + posicion + '" placeholder="En caso de ser necesario." class="form-control">';
-    body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><select id="ddl_profesionalContacto_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+    body += '<div id="ddl_Div_Profesional' + posicion + '"><p style="margin:5px 0px 0px">Profesional:</p><input type="text" id="ddl_profesionalContacto_' + posicion + '"  placeholder="Escribe el nombre del Profesional Asignado." class="form-control"></div>';
 
     body += '<div id="ddl_DivSede_' + posicion + '"><p style="margin:5px 0px 0px">Sede:</p><select id="ddl_PromedanSede_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
 
@@ -1551,11 +1561,11 @@ function AccionesProveedor1(posicion, i) {
 
     if (proveedorasignado == '9000389264') {
 
-        var profesional = $('#ddl_profesionalContacto_' + posicion);
-        profesional.select2({
-            placeholder: "Selecciona el Profesional"
-        });
-        llenarCombos(profesional, "spGestionOrdenamientos_ObtenerProfesionales");
+        //var profesional = $('#ddl_profesionalContacto_' + posicion);
+        //profesional.select2({
+        //    placeholder: "Selecciona el Profesional"
+        //});
+        //llenarCombos(profesional, "spGestionOrdenamientos_ObtenerProfesionales");
 
         var sedes = $('#ddl_PromedanSede_' + posicion);
         sedes.select2({
@@ -1597,8 +1607,8 @@ function GuardarContactoProveedor(posicion) {
 
     if (contactousuario == 1 && fechaasigncion == '') {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar la FECHA y HORA de asignación para continuar.', 'warning');
-    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && profesional == '0') {
-        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un profesional de la lista para continuar.', 'warning');
+    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && profesional.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el nombre del profesional para continuar.', 'warning');
     } else if (contactousuario == 1 && proveedorasignado == '9000389264' && sedeasignada == '00') {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar la sede asignada de la lista para continuar.', 'warning');
     } else if (contactousuario == 0 && observacionescontacto.length == 0) {

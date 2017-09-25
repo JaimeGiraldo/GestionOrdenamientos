@@ -118,12 +118,12 @@ namespace GestionOrdenamientos
         }
         
         //Obtiene las ordenes por proveedor ya optimizadas para el usuario tipo 2 (proveedor)
-        public string ConsultarOrdenesxProveedor(string proveedor,string estado,string usuariosis,string fechainicial,string fechafinal)
+        public string ConsultarOrdenesxProveedor(string proveedor,string estado,string usuariosis,string fechainicial,string fechafinal,string especialidad)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "','" + estado + "','" + usuariosis + "','" + fechainicial + "','" + fechafinal + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ObtenerOrdenesXProveedor" + "'" + proveedor + "','" + estado + "','" + usuariosis + "','" + fechainicial + "','" + fechafinal + "','" + especialidad + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -140,12 +140,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string consultarOrdenesxProveedor(string proveedor, string estado, string usuariosis, string fechainicial, string fechafinal)
+        public static string consultarOrdenesxProveedor(string proveedor, string estado, string usuariosis, string fechainicial, string fechafinal,string especialidad)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor, estado, usuariosis, fechainicial,fechafinal);
+                return objOrdenesProveedor.ConsultarOrdenesxProveedor(proveedor, estado, usuariosis, fechainicial,fechafinal, especialidad);
             }
             catch (Exception ex)
             {
