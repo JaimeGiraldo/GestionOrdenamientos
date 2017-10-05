@@ -84,6 +84,8 @@
         <div id="MenuProveedoresProm" class="pages-nav__item" style="display: none"><a id="btnProveedoresProm" class="link link--page" href="#page-CUPSProveedoresProm"><span class="icon-settings-1"></span>CUPS-Prome</a></div>
         <div id="MenuGuias" class="pages-nav__item" style="display: none"><a id="btnGuias" class="link link--page" href="#page-Guias"><span class="icon-settings"></span>Guias</a></div>
         
+         <div id="MenuBuscarOrden" class="pages-nav__item" style="display: none"><a id="btnBuscarOrden" class="link link--page" href="#page-BuscarOrden"><span class="icon-search"></span>Buscar-Orden</a></div>
+
         <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
         <div id="MenuDashProveedor" class="pages-nav__item" style="display: none"><a id="pgDashProveedores" class="link link--page" href="#page-DashBoardProveedores"><span class="icon-stats"></span>Dashboard</a></div>
@@ -519,8 +521,12 @@
                         </div>
                     </div>
                                
-                    <div class="col-lg-12 col-md-12 col-sm-12" style="text-align: center">
-                        <button id="btnreporteprovee" class="btn btn-primary">Reporte</button>
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
+                        <button id="btnreporteprovee" class="btn btn-primary">Reporte Ordenes</button>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
+                        <button id="btnreportegeneralprovee" class="btn btn-primary">Reporte General</button>
                     </div>
 
                 </div>
@@ -1028,11 +1034,9 @@
 
                  <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>
-                    <input id="txtfiltrosedegenero" class="form-control search-key" placeholder="Centro Generó" <%--onkeyup="FiltrarMultipleTabla('txtfiltrosedegenero','txtfiltroespecialidad','2','3','tablaProveedores')"--%> />
+                    <input id="txtfiltrosedegenero" class="form-control search-key" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltrosedegenero','tablaProveedores','2')"/>
                 </div>
-                          
-
-               
+                                        
 
                 <div class="col-md-2" style="text-align: end; padding-top: 25px">
                     <button id="btnConsultarOrdenesProveedor">Consultar</button>
@@ -1448,6 +1452,125 @@
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+
+        <div class="page" id="page-BuscarOrden" style="display: none">
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Consultar Ordenes</h1>
+                <p>Ingrese los datos del paciente para rastrear en el sistema la existencia de alguna orden asociada al mismo y al proceso de Optimización.</p>
+            </header>
+            <div class="container" style="width:90%">
+                <div class="card" style="margin: 0">
+                    <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
+
+
+                        <div class="col-md-3">
+                            <label class="s16 color-white">Tipo Identificación:</label>
+                            <select id="ddlTipoid" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                        </div>
+
+                         <div class="col-md-3">
+                            <label class="s16 color-white">Identificación:</label>
+                            <input type="text" id="Identificacion" placeholder="Identificación del Paciente" style="height:28px" class="form-control color-dark" />
+                        </div>
+
+
+                        <div class="col-md-6" style="text-align: end; padding-top: 25px">
+                            <button id="btnSearchOrden">Buscar</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="scroll_header_fixed">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card-content table-responsive">
+                            <table id="tablarastrearorden" <%--style="visibility:hidden"--%> class="table table-hover table-action" style="word-wrap:break-word">
+                                <thead>
+                                    <tr>
+                                        <th>Id Orden</th>
+                                        <th>Fecha Sistema</th>
+                                        <th>Fecha Ciklos</th>
+                                        <th>Paciente</th>
+                                        <th>Procedimiento C.</th>
+                                        <th>Procedimiento 1132</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodytablarastrearorden"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                  <div class="container">
+                <!-- Modal para ingresar al detalle -->
+                <div class="modal fade" id="ModalOrdenesXusuario" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 id="ModalOrdenesXusuariotittle"></h4>
+                                <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+
+                                  
+                                <div class="cinta_whit_sh">
+                                    <span>Responsable Optimización:</span>
+                                    <label id="lblrespon"></label>
+                                </div>
+
+                                <div class="cinta_whit_sh">
+                                    <span>Fecha Optimización:</span>
+                                    <label id="lblFechaopt"></label>
+                                </div>
+
+                                <div <%--class="cinta_whit_sh"--%> style="text-align:center">
+                                    <span>Observaciones Innadecuada:</span>
+                                    <label id="lblinnadecuado" style="color:#00c3e1"></label>
+                                </div>
+
+                                   <div <%--class="cinta_whit_sh"--%> style="text-align:center">
+                                    <span>Observaciones AT4:</span>
+                                    <label id="lblObservacionesat4" style="color:#00c3e1"></label>
+                                </div>
+
+                                   <div class="cinta_whit_sh">
+                                    <span>Proveedor Asignado:</span>
+                                    <label id="lblProveedorAsignado"></label>
+                                </div>
+
+                                 <div <%--class="cinta_whit_sh"--%> style="text-align:center">
+                                    <span>Observaciones Contacto:</span>
+                                    <label id="lblObservacionesContacto" style="color:#00c3e1"></label>
+                                </div>
+
+                                 <div class="cinta_whit_sh">
+                                    <span>Fecha Cita:</span>
+                                    <label id="lblFechaCita"></label>
+                                </div>
+
+                                 <div <%--class="cinta_whit_sh"--%> style="text-align:center">
+                                    <span>Observaciones Asistencia:</span>
+                                    <label id="lblObservAsistencia" style="color:#00c3e1"></label>
+                                </div>
+
+                                  <div <%--class="cinta_whit_sh"--%> style="text-align:center">
+                                    <span>Observaciones Ejecución:</span>
+                                    <label id="lblObservEjecucion" style="color:#00c3e1"></label>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             </div>
         </div>

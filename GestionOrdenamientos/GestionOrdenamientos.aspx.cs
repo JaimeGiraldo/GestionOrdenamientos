@@ -868,7 +868,40 @@ namespace GestionOrdenamientos
         }
 
 
-
+        //Obtiene las ordenes por usuario existentes en el programa
+        public string RastrearOrdenXpaciente(string tipoid, string identificacion)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamiento_ListarOrdenesXPaciente" + "'" + tipoid + "','" + identificacion + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string rastrearOrdenXpaciente(string tipoid, string identificacion)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.RastrearOrdenXpaciente(tipoid, identificacion);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
     }
