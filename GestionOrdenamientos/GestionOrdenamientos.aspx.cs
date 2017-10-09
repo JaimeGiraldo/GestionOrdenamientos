@@ -727,12 +727,12 @@ namespace GestionOrdenamientos
 
 
         //Hace la gestion del proveedor para contactar al usuario y programar el servicio o atencion
-        public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada)
+        public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ContactoUsuarioProveedor" + "'" + idorden + "','" + contactousuario + "','" + fechaasigncion + "','" + observacionescontacto + "','" + profesional + "','" + usuario + "','" + sedeasignada + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ContactoUsuarioProveedor" + "'" + idorden + "','" + contactousuario + "','" + fechaasigncion + "','" + observacionescontacto + "','" + profesional + "','" + usuario + "','" + sedeasignada + "','" + omitirordenintentos3 + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -749,12 +749,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string contactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada)
+        public static string contactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ContactoProveedor(idorden, contactousuario, fechaasigncion, observacionescontacto, profesional, usuario, sedeasignada);
+                return objOrdenesProveedor.ContactoProveedor(idorden, contactousuario, fechaasigncion, observacionescontacto, profesional, usuario, sedeasignada, omitirordenintentos3);
             }
             catch (Exception ex)
             {
@@ -901,6 +901,32 @@ namespace GestionOrdenamientos
             {
                 throw ex;
             }
+        }
+
+
+        ///////C#//////
+        //Metodo de envio de correo sin adjunto
+        [System.Web.Services.WebMethod]
+        public static void EnviarCorreo(string emails, string asunto, string cuerpomensaje)
+        {
+            System.Net.Mail.MailMessage correo = new System.Net.Mail.MailMessage();
+            //Correo del que se envia y nombre del correo
+            correo.From = new System.Net.Mail.MailAddress("optimizacion.promedan@gmail.com", "Optimizacion Promedan");
+            correo.To.Add(emails);
+            correo.Subject = asunto;
+            correo.Body = cuerpomensaje + "      \n Este es un mensaje automatico por favor no intente responderlo - Promedan IPS.";
+            correo.IsBodyHtml = true;
+            correo.Priority = System.Net.Mail.MailPriority.Normal;
+
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            //correo del que se envia y contraseña
+            smtp.Credentials = new System.Net.NetworkCredential("optimizacion.promedan@gmail.com", "Optimizacion123");
+            smtp.EnableSsl = true;
+            smtp.Send(correo);
+
         }
 
 

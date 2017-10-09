@@ -136,6 +136,111 @@
                 </div>
             </div>
         </div>
+
+          <div class="page" id="page-DashBoardProveedores" style="display: none">
+            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Análisis y Reportes</h1>
+                <p>Información detallada sobre la prestación del servicio por parte del proveedor.</p>
+
+                <!-- indicador de wait -->
+                <div class="col-lg-6 col-md-4"></div>
+                <div class="col-lg-2 col-md-2">
+                    <div class="loader" id="loaderdashboardProveedores"></div>
+                </div>
+
+            </header>
+
+            <div class="container">
+
+                <div class="col-lg-12 col-md-12"></div>
+
+                <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="green">
+                                <i class="material-icons">assignment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Asignadas</p>
+                                <h3 class="title" id="lblasignadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">receipt</i> Asignadas por Prestador
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="red">
+                                <i class="material-icons">help</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Pendientes</p>
+                                <h3 class="title" id="lblpendientesPro">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">alarm</i> En espera de Ejecución
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">comment</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes en Gestión</p>
+                                <h3 class="title" id="lblprogramadas">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">date_range</i> Programadas con Usuario
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="orange">
+                                <i class="material-icons">info_outline</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Total Ordenes Represadas</p>
+                                <h3 class="title" id="lblengestion">0</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">report_problem</i> Sin contacto o Impresas 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                               
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
+                        <button id="btnreporteprovee" class="btn btn-primary">Reporte Ordenes</button>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
+                        <button id="btnreportegeneralprovee" class="btn btn-primary">Reporte General</button>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div id="containerProvee" style="height: 400px"></div>
+                </div>
+
+            </div>
+        </div>
         
         <div class="page" id="page-DashBoard" style="display: none">
             <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
@@ -433,111 +538,6 @@
 
         </div>
 
-        <div class="page" id="page-DashBoardProveedores" style="display: none">
-            <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
-            <header class="bp-header cf">
-                <h1 class="bp-header__title">Análisis y Reportes</h1>
-                <p>Información detallada sobre la prestación del servicio por parte del proveedor.</p>
-
-                <!-- indicador de wait -->
-                <div class="col-lg-6 col-md-4"></div>
-                <div class="col-lg-2 col-md-2">
-                    <div class="loader" id="loaderdashboardProveedores"></div>
-                </div>
-
-            </header>
-
-            <div class="container">
-
-                <div class="col-lg-12 col-md-12"></div>
-
-                <div class="col-lg-6 col-md-6 sortable-layout ui-sortable">
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="green">
-                                <i class="material-icons">assignment</i>
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Total Ordenes Asignadas</p>
-                                <h3 class="title" id="lblasignadas">0</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">receipt</i> Asignadas por Prestador
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="red">
-                                <i class="material-icons">help</i>
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Total Ordenes Pendientes</p>
-                                <h3 class="title" id="lblpendientesPro">0</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">alarm</i> En espera de Ejecución
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="blue">
-                                <i class="material-icons">comment</i>
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Total Ordenes en Gestión</p>
-                                <h3 class="title" id="lblprogramadas">0</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Programadas con Usuario
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="orange">
-                                <i class="material-icons">info_outline</i>
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Total Ordenes Represadas</p>
-                                <h3 class="title" id="lblengestion">0</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">report_problem</i> Sin contacto o Impresas 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                               
-                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
-                        <button id="btnreporteprovee" class="btn btn-primary">Reporte Ordenes</button>
-                    </div>
-
-                    <div class="col-lg-6 col-md-6 col-sm-6" style="text-align: center">
-                        <button id="btnreportegeneralprovee" class="btn btn-primary">Reporte General</button>
-                    </div>
-
-                </div>
-
-                <div class="col-lg-6 col-md-6">
-                    <div id="containerProvee" style="height: 400px"></div>
-                </div>
-
-            </div>
-        </div>
-
         <div class="page" id="page-AsignarAT4" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Optimización</b><p>- Se muestran 40 ordenes en pantalla, cuando sean todas auditadas es necesario listar de nuevo (Botón Listar).</p><p>- Las ordenes se organizan en función de la fecha que se subió al sistema, primero las más antiguas.</p><p>- En el detalle de la orden se pueden visualizar datos importantes como la fecha de nacimiento del usuario, entre otros.</p>')" style="width: 30px; height: 30px" />
@@ -545,6 +545,7 @@
             <header class="bp-header cf">
                 <h1 id="headeroptimizacion" class="bp-header__title">Asignar Orden Liberada - Optimización</h1>
                 <p id="optimi">Favor consultar las ordenes asignadas y realizar el proceso de Optimización.</p>
+                <%--<button type="button" id="SendEmail" class="btn btn-success">Email</button>--%>                            
             </header>
             <div class="container">
                <%-- <div class="scroll_header_fixed">   --%>                
@@ -778,6 +779,10 @@
             </div>
 
         </div>
+
+       
+
+       
       
         <div class="page" id="page-Responsables" style="display: none">
            <div class="col-lg-12 col-md-12 helpicon">
