@@ -1312,6 +1312,7 @@ function NotificacionProveExterno(posicion) {
 
 function GeneroAt4(posicion, posiciontabla) {
 
+
     if (!$('#checkAt4_' + posicion).is(':checked')) {
 
         $('#checkDirreccio_' + posicion).attr('checked', false);
@@ -1332,15 +1333,15 @@ function GeneroAt4(posicion, posiciontabla) {
         $('#ddl_Noat4_' + posicion).append('<option value="' + 0 + '">' + "" + '</option>'); //para validar si el usuario no selecciono nada
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Solicitud mal ingresada (Back1 - Back2)" + '">' + "Solicitud mal ingresada (Back1 - Back2)" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Error en aplicativo Ciklos" + '">' + "Error en aplicativo Ciklos" + '</option>');
-        $('#ddl_Noat4_' + posicion).append('<option value="' + "Procedimiento no contratado con la IPS del Afiliado" + '">' + "Procedimiento no contratado con la IPS del Afiliado" + '</option>');
+        //$('#ddl_Noat4_' + posicion).append('<option value="' + "Procedimiento no contratado con la IPS del Afiliado" + '">' + "Procedimiento no contratado con la IPS del Afiliado" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS CON recobro" + '">' + "Se redirecciona orden a EPS CON recobro" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Se redirecciona orden a EPS SIN recobro" + '">' + "Se redirecciona orden a EPS SIN recobro" + '</option>');
-        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se anula la orden" + '">' + "Se anula la orden" + '</option>');
+        //$('#ddl_Noat4_' + posicion).append('<option value="' + "Se anula la orden" + '">' + "Se anula la orden" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '">' + "Se supera la cantidad de ordenes parametrizadas (Frecuencia)" + '</option>');
-        $('#ddl_Noat4_' + posicion).append('<option value="' + "El servicio no es de PGP" + '">' + "El servicio no es de PGP" + '</option>');
+        //$('#ddl_Noat4_' + posicion).append('<option value="' + "El servicio no es de PGP" + '">' + "El servicio no es de PGP" + '</option>');
         $('#ddl_Noat4_' + posicion).append('<option value="' + "El afiliado no tiene solicitudes pendientes de auditoría" + '">' + "El afiliado no tiene solicitudes pendientes de auditoría" + '</option>');
-        $('#ddl_Noat4_' + posicion).append('<option value="' + "Se deja pendiente" + '">' + "Se deja pendiente (P)" + '</option>');
-        $('#ddl_Noat4_' + posicion).append('<option value="' + "Otras" + '">' + "Otras" + '</option>');
+        //$('#ddl_Noat4_' + posicion).append('<option value="' + "Se deja pendiente" + '">' + "Se deja pendiente (P)" + '</option>');
+        //$('#ddl_Noat4_' + posicion).append('<option value="' + "Otras" + '">' + "Otras" + '</option>');
 
     } else {
         //at4 = 1;
@@ -1559,9 +1560,15 @@ function GuardarProovedor(posicion, opcion, posiciontabla) {
                     if (datos[0].Respuesta == "OK") {
 
                         if (opcion == 1) {
+
+                            var datos1 = listaDatos.Table1;
+
+                            var emailasignado = datos1[0].Email;
+                            //console.log(emailasignado);
+
                             //envia un correo con el reporte de la orden no adecuada
                             //EnviarEmailNoAdecuado(posicion);
-                            EnviarEmailOrdenInnadecuada(posiciontabla, motivonadecuado, observacionesaudit, observacionesagen, profesional);
+                            EnviarEmailOrdenInnadecuada(posiciontabla, motivonadecuado, observacionesaudit, observacionesagen, profesional, emailasignado);
                             //borra la fila de la tabla en pantalla
                             $('#tr_' + posicion).remove();
 
@@ -1631,9 +1638,9 @@ function EnviarEmailNoAdecuado(posicion) {
 
 }
 
-function EnviarEmailOrdenInnadecuada(posiciontabla, motivonadecuado, observacionesaudit, observacionesagen, profesional) {
+function EnviarEmailOrdenInnadecuada(posiciontabla, motivonadecuado, observacionesaudit, observacionesagen, profesional, emailasignado) {
 
-    var email = "luis05247@gmail.com";
+    var email = emailasignado;
     var asunto = "Reporte de Inadecuación";
     var mensaje = JSON.stringify('Reporte de Inadecuación, Equipo Optimizador Promedan IPS<br /><br />' + 'Numero de Orden:' + datosorden[posiciontabla].idConsecutivo +
         '<br /> Numero de Orden Ciklos: ' + datosorden[posiciontabla].Codigo_Solicitud_Ciklos +
@@ -1659,7 +1666,7 @@ function EnviarEmailOrdenInnadecuada(posiciontabla, motivonadecuado, observacion
         async: false,
         type: 'POST'
     }).done(function (rest) {
-        swal(swalheadertxt, 'Envio del correo realizado con Éxito', 'success');
+        swal(swalheadertxt, 'Bien, la orden se auditó correctamente y se envió un correo al responsable asignado con el detalle de inadecuación segun la sede del usuario.', 'success');
     });
 
 
