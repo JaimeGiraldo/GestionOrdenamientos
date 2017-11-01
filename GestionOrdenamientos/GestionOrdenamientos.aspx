@@ -137,7 +137,7 @@
             </div>
         </div>
 
-          <div class="page" id="page-DashBoardProveedores" style="display: none">
+        <div class="page" id="page-DashBoardProveedores" style="display: none">
             <%-- <input type="hidden" id="IdUsuario" value="0" />--%>
             <header class="bp-header cf">
                 <h1 class="bp-header__title">Análisis y Reportes</h1>
@@ -780,10 +780,6 @@
 
         </div>
 
-       
-
-       
-      
         <div class="page" id="page-Responsables" style="display: none">
            <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el responsable y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un responsable sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
@@ -1002,6 +998,7 @@
 
         <div class="page" id="page-Proveedores" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
+                 <img src="images/icons8-settings.png" onclick="AgendasDisponibilidad()" style="width: 30px; height: 30px" />
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Proveedores - Contacto</b><p>- Se muestran las ordenes organizadas por fecha de asignación.</p><p>- Las ordenes donde el usuario no pudo ser contactado se deben gestionar igualmente, pero se siguen mostrando de color rojo hasta lograr el contacto.</p><p>- Si se logra el contacto con el usuario, la fecha de asignación es la fecha para la que usted programó la prestación del servicio.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
@@ -1012,9 +1009,6 @@
                     <label>Estado de la Orden:</label>
                     <select id="ddlEstadoOrden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>--%>
-
-
-
 
                 <div class="col-md-2">
                     <label>Fecha Inicial:</label>
@@ -1065,7 +1059,7 @@
                                                 <tr>
                                                     <th><span class="text">Fecha Asignacion</span></th>
                                                     <th id="th_Sede1"><span class="text">IPS Usuario</span></th>
-                                                     <th id="th_CentroGenera"><span class="text">Centro Generó</span></th>
+                                                    <th id="th_CentroGenera"><span class="text">Centro Generó</span></th>
                                                     <th><span class="text">Especialidad</span></th>
                                                     <th><span class="text">Descripción</span></th>
                                                     <th><span class="text">Paciente</span></th>
@@ -1151,17 +1145,39 @@
                     </div>
                 </div>
 
-                <%-- <div class="container">
+                 <div class="container">
                     <!-- Modal para ingresar en la pantalla de adjunto proveedor-->
-                    <div class="modal fade" id="ModalAdjuntoProveedor" role="dialog">
+                    <div class="modal fade" id="ModalDisponibilidadAgenda" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4><span class="glyphicon glyphicon-plus"></span>Soporte de la Orden</h4>
+                                   <%-- <h4><span class="glyphicon glyphicon-plus"></span>Disponibilidad de Agendas por Especialidad</h4>--%>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
+
+                                    <div class="col-md-12">
+                                        <div class="card card-plain">
+                                            <div class="card-header" data-background-color="bluee">
+                                                <h4 class="title">Disponibilidad de Agendas por Especialidad</h4>
+                                                <p class="category">Favor configurar según sea el caso.</p>
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <table id="tablaDisponibilidadAgenda" class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Especialidad</th>
+                                                            <th>Disponible</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id ="bodytablaDisponibilidadAgenda"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Volver</button>
@@ -1169,7 +1185,7 @@
                             </div>
                         </div>
                     </div>
-                </div>--%>
+                </div>
 
                 <div class="modal fade" id="ModalAccionesProveedor1" role="dialog">
                     <div class="modal-dialog">

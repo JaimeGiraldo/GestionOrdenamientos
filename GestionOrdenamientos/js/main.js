@@ -756,7 +756,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         tbl += '<td>' + datos[i].FechaOptimizacion + '</td>';
                         tbl += '<td id="td_sedepromedan1' + datos[i].idConsecutivo + '">' + datos[i].IpsUsuario + '</td>';
                         tbl += '<td id="td_centrogenero1' + datos[i].idConsecutivo + '">' + datos[i].Centro_generador_de_autorizacion + '</td>';
-                        tbl += '<td>' + datos[i].Especialidad + '</td>';
+                        tbl += '<td id="td_especialidad' + datos[i].idConsecutivo + '">' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
                         tbl += '<td>' + datos[i].Id_Afiliado +', '+ datos[i].NombreCompleto + '</td>';
                         tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + datos[i].idConsecutivo + ',' + i + ')">Ver</button>' + '</td>';
@@ -778,6 +778,12 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                             $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#D1FEE5');
                         } else if (datos[i].EstadoProveedor == 'No Asistencia') {
                             $('#tr_ContactoProveedor' + datos[i].idConsecutivo).css('background-color', '#FCDEAB');
+                        }
+
+                        //para diferenciar cuando no hay agendas disponibles (se hace por especialidad)
+                        if (datos[i].AgendaDisponible == '0') {
+                            $('#td_especialidad' + datos[i].idConsecutivo).css('background-color', '#FFFF00');
+                            console.log('entroooo')
                         }
                     }
                     datosordenproveedor = datos; //
@@ -3931,4 +3937,145 @@ function llenarCombos(combo, spP) {
 
         function AbrirReporteUsuarioNoContactados() {
             window.open('VisorReporting.aspx?Id=315', '');
+        }
+
+        function AgendasDisponibilidad() {
+
+            var spP = 'spGestioOrdenamientos_ObtenerDisponibilidadAgendas';
+
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/cargarDatos",
+                data: "{ sp: '" + spP + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
+                } else {
+
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
+
+                    $('#tablaDisponibilidadAgenda td').remove();
+                    $("#bodytablaDisponibilidadAgenda").empty();
+
+                    if (listaDatos.Table.length > 0) {
+
+                        for (var i = 0; i < datos.length; i++) {
+
+                            var tbl = '';
+                            tbl += '<tr>';
+                            tbl += '<td>' + datos[i].Especialidad + '</td>';  
+                            tbl += '<td>' + '<label class="switch"><input id="Check_DispoAgenda_' + datos[i].IdAsignacion + '" type="checkbox" onclick="DefinirDisponibilidad(' + datos[i].IdAsignacion + ')"><span class="slider round"></span></label>' + '</td>';
+                            tbl += '</tr>';
+
+                            $("#tablaDisponibilidadAgenda").append(tbl);
+
+                            if (datos[i].Disponible == "1") {
+                                $('#Check_DispoAgenda_' + datos[i].IdAsignacion).attr('checked', true);
+                                $('#Check_DispoAgenda_' + datos[i].IdAsignacion).val('on');
+                            } else {
+                                $('#Check_DispoAgenda_' + datos[i].IdAsignacion).attr('checked', false);
+                                $('#Check_DispoAgenda_' + datos[i].IdAsignacion).val('off');
+                            }
+                        }
+                    }
+                    else {
+                        //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');                   
+                    }
+                }
+
+            });
+
+            $('#ModalDisponibilidadAgenda').modal({ backdrop: 'static', keyboard: false })
+            $("#ModalDisponibilidadAgenda").modal();
+
+        }
+
+        function DefinirDisponibilidad(idAsignacion) {
+                       
+            var idespecialidad = idAsignacion;
+            var estado = 0;          
+
+            swal({
+                title: swalheadertxt,
+                text: "¿Estás segur@ que la disponibilidad de Agenda para esta Especialidad cambio?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Si",
+                cancelButtonText: "No",
+                closeOnConfirm: true
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    //swal(swalheadertxt, "La asignacion se realizo.", "success");
+
+                    if (!$('#Check_DispoAgenda_' + idAsignacion).is(':checked')) {
+                        estado = 0;
+                        $('#Check_DispoAgenda_' + idAsignacion).prop('checked', false);
+                        $('#Check_DispoAgenda_' + idAsignacion).attr('checked', false);
+                        $('#Check_DispoAgenda_' + idAsignacion).val('off');
+
+                    } else {
+                        estado = 1;
+                        $('#Check_DispoAgenda_' + idAsignacion).attr('checked', true);
+                        $('#Check_DispoAgenda_' + idAsignacion).prop('checked', true);
+                        $('#Check_DispoAgenda_' + idAsignacion).val('on');
+                    }
+
+                    GuardarDisponibilidadAgenda(idespecialidad,estado);
+
+                } else {                  
+
+                    if ($('#Check_DispoAgenda_' + idAsignacion).val() == 'on') {
+                        $('#Check_DispoAgenda_' + idAsignacion).attr('checked', true);
+                        $('#Check_DispoAgenda_' + idAsignacion).prop('checked', true);
+                        $('#Check_DispoAgenda_' + idAsignacion).val('on');
+                    } else if ($('#Check_DispoAgenda_' + idAsignacion).val() == 'off') {
+                        $('#Check_DispoAgenda_' + idAsignacion).prop('checked', false);
+                        $('#Check_DispoAgenda_' + idAsignacion).attr('checked', false);
+                        $('#Check_DispoAgenda_' + idAsignacion).val('off');
+                    }                  
+                   
+                }
+            });
+        }
+
+        function GuardarDisponibilidadAgenda(idespecialidad, estado) {
+
+            //console.log (idespecialidad + '   ' + estado)
+
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/guardarAsignacionDispoAgenda",
+                data: "{ idespecialidad: '" + idespecialidad + "', estado: '" + estado + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: true,
+                type: 'POST'
+            }).done(function (rest) {
+                if (rest.Error != undefined) {
+                    swal(swalheadertxt, 'No tiene permisos para ingresar', 'warning');
+                } else {
+
+                    var listaDatos = JSON.parse(rest.d);
+                    var datos = listaDatos.Table;
+                    
+                    if (listaDatos.Table.length > 0) {
+
+                        if (listaDatos.Table[0].Respuesta == "OK") {
+
+                            swal(swalheadertxt, "Felicidades, La asignacion se realizo correctamente.", "success");
+                            //console.log('se guardo correctamente');                            
+                        }
+
+                    }
+                    else {
+                        swal(swalheadertxt, "Ocurrió un error, favor informar a sistemas.", "success");
+                    }
+                }
+
+            });
+
         }

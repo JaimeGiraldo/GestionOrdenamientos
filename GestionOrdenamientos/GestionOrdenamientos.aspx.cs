@@ -930,5 +930,41 @@ namespace GestionOrdenamientos
         }
 
 
+        //Guarda la asignacion de disponibilidad de agendas
+        public string GuardarAsignacionDispoAgenda(string idespecialidad, string estado)
+        {
+            try
+            {
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_GuardarDisponibilidadAgenda" + "'" + idespecialidad + "','" + estado + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarAsignacionDispoAgenda(string idespecialidad, string estado)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarAsignacionDispoAgenda(idespecialidad, estado);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }
