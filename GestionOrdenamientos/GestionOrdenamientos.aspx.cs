@@ -931,11 +931,11 @@ namespace GestionOrdenamientos
 
 
         //Guarda la asignacion de disponibilidad de agendas
-        public string GuardarAsignacionDispoAgenda(string idespecialidad, string estado)
+        public string GuardarAsignacionDispoAgenda(string idespecialidad, string estado,string usuariosis)
         {
             try
             {
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_GuardarDisponibilidadAgenda" + "'" + idespecialidad + "','" + estado + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_GuardarDisponibilidadAgenda" + "'" + idespecialidad + "','" + estado + "','" + usuariosis + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -952,12 +952,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string guardarAsignacionDispoAgenda(string idespecialidad, string estado)
+        public static string guardarAsignacionDispoAgenda(string idespecialidad, string estado,string usuariosis)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.GuardarAsignacionDispoAgenda(idespecialidad, estado);
+                return objOrdenesProveedor.GuardarAsignacionDispoAgenda(idespecialidad, estado, usuariosis);
             }
             catch (Exception ex)
             {

@@ -280,12 +280,12 @@ html.js,
     background-position: top center;
 }
 
-.js #page-ProveedoresCups {
+/*.js #page-ProveedoresCups {
     background-image: url('/images/fondo3.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
-}
+}*/
 
 .js #page-AsignarAT4 {
     background-image: url('/images/fondo1.png');

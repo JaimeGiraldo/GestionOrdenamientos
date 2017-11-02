@@ -779,7 +779,7 @@
             </div>
 
         </div>
-
+        
         <div class="page" id="page-Responsables" style="display: none">
            <div class="col-lg-12 col-md-12 helpicon">
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Responsables</b><p>- Se debe seleccionar el responsable y el cups para realizar las asignaciones.</p><p>- Algunos cups están duplicados pero tienen descripciones diferentes y solo se asignara en función del cups.</p><p>- Solo es posible asignar un cups una única vez a un responsable sin importar que sus descripciones sean diferentes.</p>')" style="width: 30px; height: 30px" />
@@ -998,7 +998,7 @@
 
         <div class="page" id="page-Proveedores" style="display: none">
             <div class="col-lg-12 col-md-12 helpicon">
-                 <img src="images/icons8-settings.png" onclick="AgendasDisponibilidad()" style="width: 30px; height: 30px" />
+                 <img id="optionsmenu" src="images/icons8-settings.png" onclick="AgendasDisponibilidad()" style="width: 30px; height: 30px" />
                 <img src="images/icons8-Idea-40.png" onclick="showNotification('top','right','<b>Proveedores - Contacto</b><p>- Se muestran las ordenes organizadas por fecha de asignación.</p><p>- Las ordenes donde el usuario no pudo ser contactado se deben gestionar igualmente, pero se siguen mostrando de color rojo hasta lograr el contacto.</p><p>- Si se logra el contacto con el usuario, la fecha de asignación es la fecha para la que usted programó la prestación del servicio.</p>')" style="width: 30px; height: 30px" />
             </div>
             <header class="bp-header cf">
@@ -1150,7 +1150,7 @@
                     <div class="modal fade" id="ModalDisponibilidadAgenda" role="dialog">
                         <div class="modal-dialog">
                             <!-- Modal content-->
-                            <div class="modal-content">
+                            <div class="modal-content" style="padding:15px">
                                 <div class="modal-header">
                                    <%-- <h4><span class="glyphicon glyphicon-plus"></span>Disponibilidad de Agendas por Especialidad</h4>--%>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -1550,7 +1550,7 @@
                                 </div>
 
                                 <div <%--class="cinta_whit_sh"--%> style="text-align:center">
-                                    <span>Observaciones Innadecuada:</span>
+                                    <span>Observaciones Inadecuada:</span>
                                     <label id="lblinnadecuado" style="color:#00c3e1"></label>
                                 </div>
 

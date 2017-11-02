@@ -1,8 +1,9 @@
 
 var colores = ['#FC1404', '#E91E63', '#9C27B0', '#0E2DDC', '#1ecbf2', '#009688', '#8B092E', '#DDF02B', '#FF7103', '#ffcb8e', '#64F510', '#FFFF00'];
-var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard, nombrearchivo, listacupsout, datosordenproveedor, proveedorasignado, datosordenproveedor2, datosordenproveedor3,datosordenXusuario;
+var usuario, IdtipoOpt, IdOpt, datosorden, totalpendientes, detalledashboard, nombrearchivo, listacupsout, datosordenproveedor, proveedorasignado, datosordenproveedor2, datosordenproveedor3,datosordenXusuario,datosespecialidad;
 var idtipoidaux = "CC";
 var swalheadertxt = "Optimización";
+var nombreusuario ;
 
 var archivos = [];
 var archivos2 = [];
@@ -405,6 +406,8 @@ function iniciarSesion(usuario, clave) {
 	                $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
 
+	                nombreusuario = lista.Table[0].NombreCompleto;
+
                    for (var i = 0; i < datos.length; i++) {
                         //Muestra el menu y la pagina correspondiente
 	                    $('#' + datos[i].Menu).show();
@@ -519,11 +522,14 @@ function ObtenerDatosIniciales(Menu, lista) {
 
             sessionStorage.setItem("Proveedor", lista.Table[0].ProveedorAsignado);
 
-            //si el proveedor no es promedan se ocultan los campos de sede
+            //si el proveedor no es promedan se ocultan los campos de sede,centro genera, filtro sede y opcion de disponibilidad de agendas
             if (lista.Table[0].ProveedorAsignado != "9000389264") {
                 $('#th_Sede1').hide();
                 $('#th_CentroGenera').hide();
                 $('#div_filtrosede1').css("visibility", "hidden");
+
+                $("#optionsmenu").prop("onclick", false);
+                $("#optionsmenu").hide();
             }
 
             $('#lblProveedor').html('Proveedor: ' + lista.Table[0].RazonSocial);
@@ -781,9 +787,10 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         }
 
                         //para diferenciar cuando no hay agendas disponibles (se hace por especialidad)
-                        if (datos[i].AgendaDisponible == '0') {
-                            $('#td_especialidad' + datos[i].idConsecutivo).css('background-color', '#FFFF00');
-                            console.log('entroooo')
+                        if (datos[i].AgendaDisponible == '0' && proveedor == "9000389264") {
+
+                            $('#td_especialidad' + datos[i].idConsecutivo).css('background-color', '#F78181');
+                            //console.log('entroooo')
                         }
                     }
                     datosordenproveedor = datos; //
@@ -1056,7 +1063,7 @@ function MasInformacionOrdenesXusuario(posicion) {
     document.getElementById('lblFechaopt').innerHTML = datosordenXusuario[posicion].FechaOptimizacion;
     document.getElementById('lblrespon').innerHTML = datosordenXusuario[posicion].Optimizador;
     document.getElementById('lblinnadecuado').innerHTML = datosordenXusuario[posicion].ObservacionesInnadecuacion;
-    document.getElementById('lblObservacionesat4').innerHTML = datosordenXusuario[posicion].ObservacionesInnadecuacion;
+    document.getElementById('lblObservacionesat4').innerHTML = datosordenXusuario[posicion].JustificacionAt4;
     document.getElementById('lblProveedorAsignado').innerHTML = datosordenXusuario[posicion].ProveedorAsignado;
     document.getElementById('lblObservacionesContacto').innerHTML = datosordenXusuario[posicion].ObservacionesContacto;
     document.getElementById('lblFechaCita').innerHTML = datosordenXusuario[posicion].FechaAsignacionCita;
@@ -1800,7 +1807,7 @@ function AccionesProveedor1(posicion, i) {
     body += '<div class="box_swith_modPro"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_modPro"><p>Omitir orden (3 Intentos):</p><label class="switch"><input id="checkOmitirOrdennoc_' + posicion + '" type="checkbox" onclick="OmitirOrdenLimitellamadas(' + posicion + ')"><span class="slider round"></span></label></div>';
 
-    body += '<div id="Div_FechaAsignacion_' + posicion + '"><p style="margin:5px 0px 0px">Fecha de Asignación:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" placeholder="Clic para seleccionar la fecha en la que se agendo la cita." class="form-control" /></div>';
+    body += '<div id="Div_FechaAsignacion_' + posicion + '"><p style="margin:5px 0px 0px">Fecha de la Cita:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" placeholder="Clic para seleccionar la fecha en la que se agendo la cita." class="form-control" /></div>';
 
     body += '<div id="Div_IngresoOrdenamientos_' + posicion + '"><p style="margin:5px 0px 0px">Se ingresa a Ordenamientos (Pendientes):</p><select id="ddl_IngresoOrdenamientos_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
 
@@ -3981,6 +3988,9 @@ function llenarCombos(combo, spP) {
                                 $('#Check_DispoAgenda_' + datos[i].IdAsignacion).val('off');
                             }
                         }
+
+                        datosespecialidad = datos;
+                        //console.log(datosespecialidad)
                     }
                     else {
                         //swal('Evolution Ordenamientos', 'No se encontraron ordenes asignadas al usuario: ' + tipoidoptimizador +': ' + idoptimizador + '.', 'warning');                   
@@ -4046,10 +4056,11 @@ function llenarCombos(combo, spP) {
         function GuardarDisponibilidadAgenda(idespecialidad, estado) {
 
             //console.log (idespecialidad + '   ' + estado)
+            var usuariosis = sessionStorage.getItem("UsuarioSistema");
 
             $.ajax({
                 url: "GestionOrdenamientos.aspx/guardarAsignacionDispoAgenda",
-                data: "{ idespecialidad: '" + idespecialidad + "', estado: '" + estado + "'}",
+                data: "{ idespecialidad: '" + idespecialidad + "', estado: '" + estado + "', usuariosis: '" + usuariosis + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: true,
@@ -4066,16 +4077,50 @@ function llenarCombos(combo, spP) {
 
                         if (listaDatos.Table[0].Respuesta == "OK") {
 
-                            swal(swalheadertxt, "Felicidades, La asignacion se realizo correctamente.", "success");
-                            //console.log('se guardo correctamente');                            
+                            swal(swalheadertxt, "Felicidades, La asignación se realizó correctamente, se envió un correo a dirección medica notificando la novedad.", "success");
+                            //console.log('se guardo correctamente');
+                            EnviarEmailDispoAgendas(idespecialidad, estado, usuariosis);
+
                         }
 
                     }
                     else {
-                        swal(swalheadertxt, "Ocurrió un error, favor informar a sistemas.", "success");
+                        swal(swalheadertxt, "Ocurrió un error, favor informar a sistemas.", "warning");
                     }
                 }
 
             });
 
+        }
+
+        function EnviarEmailDispoAgendas(idespecialidad, estado, usuariosis) {
+
+            //magalypatinos@promedan.net
+            var disponible;
+
+            if (estado == '1') {
+                disponible = 'Disponible';
+            } else {
+                disponible = 'No Disponible';
+            }
+
+            var email = 'luismoncadao@promedan.net';
+            var asunto = "Reporte de Disponibilidad de Agendas";
+            var mensaje = JSON.stringify('Se reporta desde contact center el siguiente movimiento en disponibilidad de agenda, del cual depende el agendamiento de las citas y procedimientos asociados a dicha especialidad.<br /><br />' +
+                'Especialidad: ' + datosespecialidad[idespecialidad - 1].Especialidad +
+                '<br /> Estado: ' + disponible +
+                '<br /> Responsable Movimiento: ' + nombreusuario + '  (' + usuariosis + ')' + '<br /><br />');
+
+            $.ajax({
+                url: "GestionOrdenamientos.aspx/EnviarCorreo",
+                data: "{ emails: '" + email + "',asunto:'" + asunto + "',cuerpomensaje:" + mensaje + "}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                type: 'POST'
+            }).done(function (rest) {
+                //$("#loaderinadecuada").hide();
+                //swal(swalheadertxt, 'Felicidades, La asignación se realizó correctamente, se envió un correo a dirección medica notificando la novedad.', 'success');
+            });
+            
         }
