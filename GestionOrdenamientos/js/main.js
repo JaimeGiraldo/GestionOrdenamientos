@@ -698,7 +698,7 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 
 	                    if (datos[i].NombreCompleto == "No Registra En EVO") {
 	                        $('#td_pciente' + datos[i].idConsecutivo).css('background-color', '#F4FA58');
-	                    }
+	                    }	                    
                            
 	                }
 	                datosorden = datos;
@@ -764,7 +764,7 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                         tbl += '<td id="td_centrogenero1' + datos[i].idConsecutivo + '">' + datos[i].Centro_generador_de_autorizacion + '</td>';
                         tbl += '<td id="td_especialidad' + datos[i].idConsecutivo + '">' + datos[i].Especialidad + '</td>';
                         tbl += '<td>' + datos[i].DescripcionNew + '</td>';
-                        tbl += '<td>' + datos[i].Id_Afiliado +', '+ datos[i].NombreCompleto + '</td>';
+                        tbl += '<td id="td_pcienteee' + datos[i].idConsecutivo + '">' + datos[i].Id_Afiliado + ', ' + datos[i].NombreCompleto + '</td>';
                         tbl += '<td>' + '<button id="btninfoPro_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="MasInformacionProveedor(' + datos[i].idConsecutivo + ',' + i + ')">Ver</button>' + '</td>';
                         tbl += '<td>' + '<button id="btnImprimirOrden_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="ImprimirOrden(' + datos[i].idConsecutivo + ')">Generar</button>' + '</td>';
                         tbl += '<td>' + '<button id="btngestion_' + datos[i].idConsecutivo + '" class="btn btn-primary" onclick="AccionesProveedor1(' + datos[i].idConsecutivo + ',' + i + ')">Gestionar</button>' + '</td>';
@@ -792,6 +792,11 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
                             $('#td_especialidad' + datos[i].idConsecutivo).css('background-color', '#F78181');
                             //console.log('entroooo')
                         }
+
+                        if (datos[i].UsuarioAceptoCita == "2" && proveedor == "9000389264") {
+                            $('#td_pcienteee' + datos[i].idConsecutivo).css('background-color', '#A9D0F5');
+                        }
+
                     }
                     datosordenproveedor = datos; //
                    
@@ -1807,6 +1812,11 @@ function AccionesProveedor1(posicion, i) {
     body += '<div class="box_swith_modPro"><p>Se contactó al Usuario:</p><label class="switch"><input id="checkContacto_' + posicion + '" type="checkbox" onclick="ContactoUsuario(' + posicion + ')"><span class="slider round"></span></label></div>';
     body += '<div class="box_swith_modPro"><p>Omitir orden (3 Intentos):</p><label class="switch"><input id="checkOmitirOrdennoc_' + posicion + '" type="checkbox" onclick="OmitirOrdenLimitellamadas(' + posicion + ')"><span class="slider round"></span></label></div>';
 
+
+    body += '<div id="Div_AceptoCita_' + posicion + '"><p style="margin:5px 0px 0px">Paciente Acepta Cita:</p><select id="ddl_AceptoCita_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
+
+
+
     body += '<div id="Div_FechaAsignacion_' + posicion + '"><p style="margin:5px 0px 0px">Fecha de la Cita:</p><input  style="margin-bottom:5px" id="dateFechaAsignacion_' + posicion + '" placeholder="Clic para seleccionar la fecha en la que se agendo la cita." class="form-control" /></div>';
 
     body += '<div id="Div_IngresoOrdenamientos_' + posicion + '"><p style="margin:5px 0px 0px">Se ingresa a Ordenamientos (Pendientes):</p><select id="ddl_IngresoOrdenamientos_' + posicion + '" class="js-example-basic-single js-states form-control" style="width:100%"></select></div>';
@@ -1827,6 +1837,8 @@ function AccionesProveedor1(posicion, i) {
     $('#Div_IngresoOrdenamientos_' + posicion).hide();
     $('#Div_IdOrden_' + posicion).hide();
 
+    $('#Div_AceptoCita_' + posicion).hide();
+
     $('#dateFechaAsignacion_' + posicion).datetimepicker();
     
     document.getElementById('ModaltittleAccionesProveedor1').innerHTML = 'Gestión de contacto para la Orden ' + datosordenproveedor[i].Codigo_Solicitud_Ciklos +' - '+ datosordenproveedor[i].idConsecutivo;
@@ -1843,6 +1855,17 @@ function AccionesProveedor1(posicion, i) {
         $('#ddl_IngresoOrdenamientos_' + posicion).append('<option value="' + 1 + '">' + "SI" + '</option>');
 
         $('#ddl_IngresoOrdenamientos_' + posicion).select2({
+            placeholder: "Selecciona"
+        });
+
+        $('#Div_AceptoCita_' + posicion).show();
+
+        $('#ddl_AceptoCita_' + posicion).append('<option value="' + 1 + '">' + "SI" + '</option>');
+        $('#ddl_AceptoCita_' + posicion).append('<option value="' + 0 + '">' + "NO" + '</option>');
+        $('#ddl_AceptoCita_' + posicion).append('<option value="' + 2 + '">' + "NO TIENE EXAMENES" + '</option>');
+       
+
+        $('#ddl_AceptoCita_' + posicion).select2({
             placeholder: "Selecciona"
         });
 
@@ -1871,6 +1894,25 @@ function AccionesProveedor1(posicion, i) {
         }
 
     });
+
+
+    $('#ddl_AceptoCita_' + posicion).on("select2:select", function (e) {
+
+        if ($('#ddl_AceptoCita_' + posicion).val() == '1' && proveedorasignado == '9000389264') {
+            $('#Div_FechaAsignacion_' + posicion).show();
+            $('#ddl_Div_Profesional' + posicion).show();
+            $('#ddl_DivSede_' + posicion).show();
+
+        } else {
+            $('#Div_FechaAsignacion_' + posicion).hide();
+            $('#ddl_Div_Profesional' + posicion).hide();
+            $('#ddl_DivSede_' + posicion).hide();
+
+            $('#dateFechaAsignacion_' + posicion).val('');            
+        }
+
+    });
+
 
     $('#ModalAccionesProveedor1').modal({ backdrop: 'static', keyboard: false })
     $("#ModalAccionesProveedor1").modal();
@@ -1925,7 +1967,7 @@ function GuardarContactoProveedor(posicion) {
     var sedeasignada = $('#ddl_PromedanSede_' + posicion).val();
     var ingreogestionorden = $('#ddl_IngresoOrdenamientos_' + posicion).val();
     var idordengestionord = $('#txt_IdOrden_' + posicion).val();
-       
+    var aceptocita = $('#ddl_AceptoCita_' + posicion).val();
 
     var user = sessionStorage.getItem("UsuarioSistema");
     //console.log(usuario)
@@ -1955,16 +1997,18 @@ function GuardarContactoProveedor(posicion) {
     //console.log(idordengestionord)
    
 
-    if (contactousuario == 1 && fechaasigncion == '') {
+    if (contactousuario == 1 && aceptocita == 1 && fechaasigncion == '') {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar la FECHA y HORA de asignación para continuar.', 'warning');
-    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && profesional.length == 0) {
+    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && profesional.length == 0 && aceptocita == 1) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar el nombre del profesional para continuar.', 'warning');
-    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && sedeasignada == '00') {
+    } else if (contactousuario == 1 && proveedorasignado == '9000389264' && sedeasignada == '00' && aceptocita == 1) {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar la sede asignada de la lista para continuar.', 'warning');
     } else if (contactousuario == 0 && observacionescontacto.length == 0) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar el detalle de la gestión o tipificación en las observaciones según el caso.', 'warning');
     } else if (ingreogestionorden == 1 && idordengestionord.length == 0) {
         swal(swalheadertxt, 'Lo sentimos, debes ingresar el id de la orden registrado en Evolution - Gestión de Ordenamientos.', 'warning');
+    } else if (aceptocita != 1 && observacionescontacto.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el detalle de la gestión, notificación o justificación del usuario según sea el caso.', 'warning');
     } else {
         //console.log(contactousuario)
         //console.log(omitirordenintentos3)
@@ -1977,9 +2021,15 @@ function GuardarContactoProveedor(posicion) {
         //console.log(ingreogestionorden)
         //console.log(idordengestionord)
 
+        if (contactousuario == 0 || omitirordenintentos3 == 1) {
+            aceptocita = 0;
+        }
+
+        //console.log(aceptocita)
+
         $.ajax({
             url: "GestionOrdenamientos.aspx/contactoProveedor",
-            data: "{ idorden: '" + idorden + "', contactousuario: '" + contactousuario + "', fechaasigncion: '" + fechaasigncion + "', observacionescontacto: '" + observacionescontacto.replace("'", "") + "', profesional: '" + profesional + "', usuario: '" + user + "', sedeasignada: '" + sedeasignada + "', omitirordenintentos3: '" + omitirordenintentos3 + "', ingreogestionorden: '" + ingreogestionorden + "', idordengestionord: '" + idordengestionord + "'}",
+            data: "{ idorden: '" + idorden + "', contactousuario: '" + contactousuario + "', fechaasigncion: '" + fechaasigncion + "', observacionescontacto: '" + observacionescontacto.replace("'", "") + "', profesional: '" + profesional + "', usuario: '" + user + "', sedeasignada: '" + sedeasignada + "', omitirordenintentos3: '" + omitirordenintentos3 + "', ingreogestionorden: '" + ingreogestionorden + "', idordengestionord: '" + idordengestionord + "', aceptocita: '" + aceptocita + "'}",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             async: true,
@@ -2016,6 +2066,8 @@ function ContactoUsuario(posicion) {
   
     $('#ddl_IngresoOrdenamientos_' + posicion).val('0').trigger('change')
 
+    //$('#ddl_AceptoCita_' + posicion).val('0').trigger('change')
+
     if (!$('#checkContacto_' + posicion).is(':checked')) {
 
         $('#checkOmitirOrdennoc_' + posicion).prop("disabled", true);
@@ -2032,6 +2084,10 @@ function ContactoUsuario(posicion) {
         //$('#ddl_PromedanSede_' + posicion).prop('disabled', true);
         $('#ddl_PromedanSede_' + posicion).val('');
 
+
+        $('#Div_AceptoCita_' + posicion).hide();
+       
+
         if (proveedorasignado == '9000389264') {
             $('#Div_IngresoOrdenamientos_' + posicion).show();
         }
@@ -2045,6 +2101,8 @@ function ContactoUsuario(posicion) {
         if (proveedorasignado == '9000389264') {
             $('#ddl_Div_Profesional' + posicion).show();
             $('#ddl_DivSede_' + posicion).show();
+            $('#Div_AceptoCita_' + posicion).show();
+           
         }
 
         //$('#dateFechaAsignacion_' + posicion).prop('disabled', false);
@@ -3081,9 +3139,7 @@ function llenarCombos(combo, spP) {
                     $('#tablaRepartir tbody').html('');
 
 
-                    if (listaDatos.Table.length > 0) {          
-
-               
+                    if (listaDatos.Table.length > 0) {                         
 
                         for (var i = 0; i < datos.length; i++) {
 

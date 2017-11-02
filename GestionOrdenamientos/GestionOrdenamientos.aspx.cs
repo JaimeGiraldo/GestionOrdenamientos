@@ -727,12 +727,12 @@ namespace GestionOrdenamientos
 
 
         //Hace la gestion del proveedor para contactar al usuario y programar el servicio o atencion
-        public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3,string ingreogestionorden,string idordengestionord)
+        public string ContactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3,string ingreogestionorden,string idordengestionord,string aceptocita)
         {
             try
             {
 
-                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ContactoUsuarioProveedor" + "'" + idorden + "','" + contactousuario + "','" + fechaasigncion + "','" + observacionescontacto + "','" + profesional + "','" + usuario + "','" + sedeasignada + "','" + omitirordenintentos3 + "','" + ingreogestionorden + "','" + idordengestionord + "'");
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_ContactoUsuarioProveedor" + "'" + idorden + "','" + contactousuario + "','" + fechaasigncion + "','" + observacionescontacto + "','" + profesional + "','" + usuario + "','" + sedeasignada + "','" + omitirordenintentos3 + "','" + ingreogestionorden + "','" + idordengestionord + "','" + aceptocita + "'");
                 if (dtOrdenes.Tables.Count > 0)
                 {
                     return JsonConvert.SerializeObject(dtOrdenes);
@@ -749,12 +749,12 @@ namespace GestionOrdenamientos
         }
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string contactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3,string ingreogestionorden,string idordengestionord)
+        public static string contactoProveedor(string idorden, string contactousuario, string fechaasigncion, string observacionescontacto, string profesional,string usuario,string sedeasignada,string omitirordenintentos3,string ingreogestionorden,string idordengestionord,string aceptocita)
         {
             try
             {
                 GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
-                return objOrdenesProveedor.ContactoProveedor(idorden, contactousuario, fechaasigncion, observacionescontacto, profesional, usuario, sedeasignada, omitirordenintentos3, ingreogestionorden, idordengestionord);
+                return objOrdenesProveedor.ContactoProveedor(idorden, contactousuario, fechaasigncion, observacionescontacto, profesional, usuario, sedeasignada, omitirordenintentos3, ingreogestionorden, idordengestionord, aceptocita);
             }
             catch (Exception ex)
             {
