@@ -2421,3 +2421,14 @@ select, input {
   /*width:35%;*/
   /*border:1px solid red;*/
 }
+.panelusuario span {
+    font-weight:bold;
+}
+
+.nombreusuario {
+    font-weight:bold;
+    /*text-align:center;*/
+    padding-top:20px;
+    font-size:x-large;
+    color:darkcyan;
+}

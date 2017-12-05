@@ -75,7 +75,7 @@
     <nav class="pages-nav">
         <div id="MenuCargaArchivo" class="pages-nav__item" style="display: none"><a id="pgEvaluarAutoevaluacion" class="link link--page" href="#page-ImportarArchivo"><span class="icon-upload"></span>Importar</a></div>
         <div id="MenuResponsables" class="pages-nav__item" style="display: none"><a id="pgResponsables" class="link link--page" href="#page-Responsables"><span class="icon-profile"></span>Responsables</a></div>       
-        <div id="MenuOptimizador" class="pages-nav__item" style="display: none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-check"></span>Optimización </a></div>
+        <div id="MenuOptimizador" class="pages-nav__item" style="display: none"><a id="pgEvaluarIndividual" class="link link--page" href="#page-AsignarAT4"><span class="icon-safebox"></span>Optimización </a></div>
         <div id="MenuProveedoresCups" class="pages-nav__item" style="display: none"><a id="pgProveedoresCups" class="link link--page" href="#page-ProveedoresCups"><span class="icon-edit"></span>Cups-Prove</a></div>
         <div id="MenuProveedor" class="pages-nav__item" style="display: none"><a id="pgEvaluarGrupal" class="link link--page" href="#page-Proveedores"><span class="icon-headphones"></span>Contacto</a></div>
         <div id="MenuProveedor2" class="pages-nav__item" style="display: none"><a id="pgProveedores2" class="link link--page" href="#page-Proveedores2"><span class="icon-clock"></span>Asistencia</a></div>
@@ -85,6 +85,8 @@
         <div id="MenuGuias" class="pages-nav__item" style="display: none"><a id="btnGuias" class="link link--page" href="#page-Guias"><span class="icon-settings"></span>Guias</a></div>
         
          <div id="MenuBuscarOrden" class="pages-nav__item" style="display: none"><a id="btnBuscarOrden" class="link link--page" href="#page-BuscarOrden"><span class="icon-search"></span>Buscar-Orden</a></div>
+
+        <div id="MenuOrdenamiento" class="pages-nav__item" style="display: none"><a id="btnBuscarOrdenamiento" class="link link--page" href="#page-Ordenamiento"><span class="icon-check"></span>Ordenamiento</a></div>
 
         <div id="MenuCUPS" class="pages-nav__item" style="display: none"><a id="btnCUPS" class="link link--page" href="#page-CUPS"><span class="icon-calculator"></span>Gestión CUPS</a></div>
         <div id="MenuReportes" class="pages-nav__item" style="display: none"><a id="btnGrafico" class="link link--page" href="#page-DashBoard"><span class="icon-stats"></span>Dashboard</a></div>
@@ -1593,6 +1595,73 @@
                 </div>
             </div>
 
+            </div>
+        </div>
+
+        <div class="page" id="page-Ordenamiento" style="display: none">
+            <header class="bp-header cf">
+                <h1 class="bp-header__title">Generar Ordenamiento</h1>
+                <p>Ingrese los datos del paciente para generar una orden.</p>
+            </header>
+            <div class="container" style="width: 90%">
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="panel panel-default toggle panelMove">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+
+                            <h4 class="panel-title">Información del Paciente</h4>
+                        </div>
+                        <div class="panel-body">
+
+
+                            <div class="row profile">
+                                <!-- Start .row -->
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="profile-avatar">
+
+                                        <div class="col-lg-6 col-lm-6">
+                                            <i class="material-icons">face</i><span>Tipo de Identificación:</span>
+                                            <select id="ddlTipoIdPaciente" class="form-control"></select>
+                                        </div>
+
+                                        <div class="col-lg-6 col-lm-6">
+                                            <i class="material-icons">fingerprint</i><span>Identificación:</span>
+                                            <input type="text" id="txtCedula" placeholder="Enter para buscar" class="form-control" style="height:90%" />
+                                        </div>
+
+                                         <div class="col-lg-12 col-lm-12">
+                                            <div class="nombreusuario">                                           
+                                                <label id="lbl_nombreusuario">Luis Miguel Moncada Ocampo</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="profile-name">
+                                      
+
+                                        <div class="panelusuario">
+                                            <span>Edad:</span>
+                                            <label id="lbl_edad"></label>
+                                        </div>
+
+                                        <div class="panelusuario">
+                                            <span>Genero:</span>
+                                            <label id="lbl_genero"></label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                              
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

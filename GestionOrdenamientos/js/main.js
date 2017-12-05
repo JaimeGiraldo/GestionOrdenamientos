@@ -635,6 +635,16 @@ function ObtenerDatosIniciales(Menu, lista) {
             });
             
             llenarCombos(cboTipoId, "spGestionOrdenamientos_ObtenerTipoIdentificion");
+            break;
+        case "MenuOrdenamiento":
+
+            var cboTipoIdPaciente = $('#ddlTipoIdPaciente');
+
+            cboTipoIdPaciente.select2({
+                placeholder: "Selecciona el Tipo"
+            });
+
+            llenarCombos(cboTipoIdPaciente, "spGestionOrdenamientos_ObtenerTipoIdentificion");
     }
 }
     
