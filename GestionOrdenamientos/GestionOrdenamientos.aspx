@@ -1614,7 +1614,6 @@
                         </div>
                         <div class="panel-body">
 
-
                             <div class="row profile">
                                 <!-- Start .row -->
                                 <div class="col-lg-6 col-md-6">
@@ -1632,31 +1631,111 @@
 
                                          <div class="col-lg-12 col-lm-12">
                                             <div class="nombreusuario">                                           
-                                                <label id="lbl_nombreusuario">Luis Miguel Moncada Ocampo</label>
+                                                <label id="lbl_nombreusuario">NOMBRE USUARIO</label>
                                             </div>
                                         </div>
 
+
+                                        <div class="col-lg-12 col-lm-12" style="text-align:center">
+                                            <div class="panelusuario">
+                                                <span>RED SUMATE:</span>
+                                                <label id="lbl_redsumate" class="lblusuario"></label>
+                                            </div>
+                                        </div>
+
+                                        
+                                         <div class="col-lg-6 col-lm-6" style="text-align:center;margin-top:15px;color:white">
+                                           <button id="btngenerarorden">Generar Orden</button>
+                                        </div>
+
+                                         <div class="col-lg-6 col-lm-6 " style="text-align:center;margin-top:15px;color:white">
+                                           <button id="btnnuevaconsulta">Nueva Consulta</button>
+                                        </div>
+
+                                      
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="profile-name">
                                       
-
-                                        <div class="panelusuario">
-                                            <span>Edad:</span>
-                                            <label id="lbl_edad"></label>
-                                        </div>
-
-                                        <div class="panelusuario">
+                                         <div class="panelusuario">
                                             <span>Genero:</span>
-                                            <label id="lbl_genero"></label>
+                                            <label id="lbl_genero" class="lblusuario"></label>
                                         </div>
 
+                                         <div class="panelusuario">
+                                            <span>Fecha de Nacimiento:</span>
+                                            <label id="lbl_fechanacimiento" class="lblusuario"></label>
+                                        </div>
+
+                                        <div class="panelusuario">
+                                            <span>Dirección:</span>
+                                            <label id="lbl_direccion" class="lblusuario"></label>
+                                        </div>
+
+                                        <div class="panelusuario">
+                                            <span>Contacto:</span>
+                                            <label id="lbl_contacto" class="lblusuario"></label>
+                                        </div>
+
+                                         <div class="panelusuario">
+                                            <span>Rango:</span>
+                                            <label id="lbl_rango" class="lblusuario"></label>
+                                        </div>
+
+                                        <div class="panelusuario">
+                                            <span>Tipo Afiliado:</span>
+                                            <label id="lbl_tipoafiliado" class="lblusuario"></label>
+                                        </div>
+                                       
+                                          <div class="panelusuario">
+                                            <span>Estado:</span>
+                                            <label id="lbl_estado" class="lblusuario"></label>
+                                        </div>
+                                       
+                                          <div class="panelusuario">
+                                            <span>EPS:</span>
+                                            <label id="lbl_eps" class="lblusuario"></label>
+                                        </div>
+
+                                        
+                                          <div class="panelusuario">
+                                            <span>IPS:</span>
+                                            <label id="lbl_ips" class="lblusuario"></label>
+                                        </div>
+
+                                        
+                                          <div class="panelusuario">
+                                            <span>Centro de Atención:</span>
+                                            <label id="lbl_centroatencion" class="lblusuario"></label>
+                                        </div>
                                     </div>
                                 </div>
 
                               
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="panel panel-default toggle panelMove">
+                        <!-- Start .panel -->
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Datos de la Orden</h4>
+                        </div>
+                        <div class="panel-body">
+
+                            <div class="row profile">
+
+                                <div class="col-lg-6 col-lm-6">
+                                    <i class="material-icons">fingerprint</i><span>Diagnostico:</span>
+                                    <input type="text" id="txtDiagnostico" placeholder="Enter para buscar" class="form-control" style="height: 90%" />
+                                </div>
+
+
 
                             </div>
                         </div>

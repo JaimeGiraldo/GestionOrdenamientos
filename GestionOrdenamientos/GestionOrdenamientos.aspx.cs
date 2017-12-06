@@ -966,5 +966,38 @@ namespace GestionOrdenamientos
         }
 
 
+
+        //Obtiene todos los datos del usuario a partir del procedimiento definido y la identificacion
+        public string ObtenerDatosPaciente(string sp, string idtipoid, string identificacion)
+        {
+            var dt = objRetornarDatos.llenarDataSet(sp + "'" + idtipoid + "','" + identificacion + "'");
+            if (dt.Tables.Count > 0)
+            {
+
+                return JsonConvert.SerializeObject(dt);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string obtenerDatosPaciente(string sp, string idtipoid, string identificacion)
+        {
+            GestionOrdenamientos objUsuario = new GestionOrdenamientos();
+            return objUsuario.ObtenerDatosPaciente(sp, idtipoid, identificacion);
+        }
+
+
+
+
+
+
+
+
+
     }
 }

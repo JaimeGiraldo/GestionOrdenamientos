@@ -833,12 +833,27 @@ table#tablaParametros tr th:first-child, table#tablaParametros tr td:first-child
     box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
 }
 
+#btngenerarorden {
+   background-color:#fbc02d;
+}
+#btngenerarorden:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
+
+#btnnuevaconsulta {
+   background-color:#32bcd8;
+}
+#btnnuevaconsulta:hover {   
+    /*background-image: -webkit-linear-gradient( -45deg, rgb(0,234,189) 0%, rgb(0,189,218) 44%);*/
+    box-shadow: 0px 4px 18px 0px rgba(0, 0, 0, 0.1);
+}
 /*bootstrap reset*/
 .table-hover>tbody>tr:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
 }
 label {
-    display: block !important;
+    display: block /*!important*/;
 }
 .control-group {
     margin-bottom: 0 !important;
@@ -2427,8 +2442,14 @@ select, input {
 
 .nombreusuario {
     font-weight:bold;
-    /*text-align:center;*/
+    text-align:center;
     padding-top:20px;
     font-size:x-large;
     color:darkcyan;
+}
+
+.lblusuario {
+   display:initial;
+   font-weight:initial;
+   color:cadetblue;
 }

@@ -52,6 +52,7 @@ var archivos2 = [];
     });
 
 
+
     //buscar orden  con enter
     $("#Identificacion").keypress(function (e) {
         if (e.which == 13) {
@@ -183,7 +184,47 @@ var archivos2 = [];
         window.open('VisorReporting.aspx?Id=311', '');
     });
 
-    
+    //obtener datos del paciente para montar una orden
+    $("#txtCedula").keypress(function (e) {
+        LimpiarCampos();//Se limpian los campos cada vez que se consulta un nuevo paciente para evitar errores en los datos
+
+        if (e.which == 13) {
+            //Se obtienen los valores de los controles para tipo y documento
+            var idtipoid = $('#ddlTipoIdPaciente').val();
+            var Identificacion = $('#txtCedula').val();           
+
+            //console.log(idtipoid)
+            //console.log(Identificacion)
+
+            //Se dispara una advertencia (modal) si el campo cedula esta vacio y se da ENTER
+            if (idtipoid== "AA") {
+                swal(swalheadertxt, 'Lo sentimos, debes selecionar el tipo de identificación de la lista para continuar.', 'warning');
+            }else  if (Identificacion.length == 0) {
+                swal(swalheadertxt, 'Lo sentimos, el campo identificación es necesario para continuar.', 'warning');
+            }
+            else {               
+                //Se inician las funciones para obtener los datos iniciales del paciente
+                ObtenerDatosPaciente('spGestionOrdenamientos_Obtenerpaciente', idtipoid, Identificacion);                
+            }
+        }
+    });
+
+    $("#txtCedula").bind({
+        paste: function () {
+            LimpiarCampos();//Se limpian los campos cada vez que se detecta un paste
+        }
+    });
+
+    $('#btnnuevaconsulta').on("click", function (e) {
+        $('#ddlTipoIdPaciente').prop('disabled', false);
+        $('#txtCedula').prop('disabled', false);
+
+        $('#txtCedula').val('');
+        LimpiarCampos();
+       
+    });
+
+  
 
     //$('#SendEmail').on("click", function (e) {
     //    EnviarEmailOrdenInnadecuada(1);
@@ -230,6 +271,8 @@ function init() {
 	buildStack();
 	initEvents();
 }
+
+
 
 function buildStack() {
 	var stackPagesIdxs = getStackPagesIdxs();
@@ -993,6 +1036,78 @@ function ImprimirOrden(idorden) {
     
     window.open("VisorOrdenes.aspx?IdOrdenamiento=" + idorden + "&Id=313", '');
 
+}
+
+function ObtenerDatosPaciente(spP, Idtipoid, Identificacion) {
+
+    //var a = 5;
+    //var b = 10;
+    //console.log(`Quince es ${a + b} y no ${2 * a + b}.`);
+
+    $.ajax({
+        url: "GestionOrdenamientos.aspx/obtenerDatosPaciente",
+        data: "{ sp: '" + spP + "',idtipoid: '" + Idtipoid + "',identificacion:'" + Identificacion + "'}",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        type: 'POST'
+    }).done(function (rest) {
+
+        if (rest.d != '') {
+            //Convierte la lista Json 
+            var listaDatos = JSON.parse(rest.d);
+            var datos = listaDatos.Table;
+            var redsumate = listaDatos.Table1;
+
+            if (listaDatos.Table.length > 0) {
+
+                //console.log(datos)
+
+                if (datos[0].Respuesta == "KO") {
+                    swal(swalheadertxt, 'Lo sentimos, el paciente no se encuentra en el sistema. Favor validar el tipo y numero de identificación.', 'error');
+                    limpiarcampos();
+                } else {
+
+                    $('#lbl_nombreusuario').html(datos[0].Nombre1 + ' ' + datos[0].Nombre2 + ' ' + datos[0].Apellidos1 + ' ' + datos[0].Apellidos2);
+                    $('#lbl_genero').html(datos[0].IdSexo);
+                    $('#lbl_fechanacimiento').html(datos[0].FechaNacimiento);
+                    $('#lbl_direccion').html(datos[0].Direccion);
+                    $('#lbl_contacto').html(datos[0].Telefono + ' ' + datos[0].Celular1 + ' ' + datos[0].Celular2);
+                    $('#lbl_rango').html(datos[0].IdRango);
+                    $('#lbl_tipoafiliado').html(datos[0].IdTipoAfiliado);
+                    $('#lbl_estado').html(datos[0].IdEstado);
+                    $('#lbl_eps').html(datos[0].IdEps);
+                    $('#lbl_ips').html(datos[0].IdIps);
+                    $('#lbl_centroatencion').html(datos[0].CentroAtencion);
+
+                    $('#lbl_redsumate').html(redsumate[0].REDSUMATE);
+
+                    $('#ddlTipoIdPaciente').prop('disabled', true);
+                    $('#txtCedula').prop('disabled', true);
+
+                }               
+
+            } else {
+                swal(swalheadertxt, 'Lo sentimos, ocurrio un error, favor informar a Sistemas.', 'warning');
+                //LimpiarCampos();              
+            }
+        }
+    })
+}
+
+function LimpiarCampos() {
+    $('#lbl_nombreusuario').html('NOMBRE USUARIO');
+    $('#lbl_genero').html('');
+    $('#lbl_fechanacimiento').html('');
+    $('#lbl_direccion').html('');
+    $('#lbl_contacto').html('');
+    $('#lbl_rango').html('');
+    $('#lbl_tipoafiliado').html('');
+    $('#lbl_estado').html('');
+    $('#lbl_eps').html('');
+    $('#lbl_ips').html('');
+    $('#lbl_centroatencion').html('');
+    $('#lbl_redsumate').html('');
 }
 
 function consultarOrdenXPaciente() {
