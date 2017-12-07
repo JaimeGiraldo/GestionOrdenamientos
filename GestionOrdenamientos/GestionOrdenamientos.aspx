@@ -1712,35 +1712,131 @@
                                         </div>
                                     </div>
                                 </div>
-
-                              
-
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-lg-12 col-md-12">
-                    <div class="panel panel-default toggle panelMove">
+                    <div class="panel panel-default toggle panelMove" id="panelgenerarorden" style="display:none">
                         <!-- Start .panel -->
                         <div class="panel-heading">
-                            <h4 class="panel-title">Datos de la Orden</h4>
+                            <h4 id="headerordentitle" class="panel-title">Datos de la Orden</h4>
                         </div>
                         <div class="panel-body">
 
                             <div class="row profile">
 
-                                <div class="col-lg-6 col-lm-6">
-                                    <i class="material-icons">fingerprint</i><span>Diagnostico:</span>
-                                    <input type="text" id="txtDiagnostico" placeholder="Enter para buscar" class="form-control" style="height: 90%" />
+                                <div class="col-lg-12 col-lm-12">
+
+                                    <div class="col-lg-2 col-lm-2">
+                                        <i class="material-icons">vpn_key</i><span>Numero AT Ciklos:</span>
+                                        <input type="number" id="txtnumat" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                    <div class="col-lg-2 col-lm-2">                                         
+                                        <i class="material-icons">dns</i><span>CUPS:</span><i class="material-icons" onclick="listarcups()" style="margin-left:3em;cursor:pointer">search</i>
+                                        <input type="text" id="txtcups" class="form-control" style="height: 90%" />                                                                              
+                                    </div>
+
+                                    <div class="col-lg-5 col-lm-5">
+                                        <i class="material-icons">description</i><span>CUPS Descripción:</span>
+                                        <input type="text" id="txtcupsdetalle" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                    <div class="col-lg-3 col-lm-3">
+                                        <i class="material-icons">domain</i><span>Proveedor:</span>
+                                        <select id="ddlProveedororden" class="form-control" style="height: 90%"></select>
+                                    </div>
+
                                 </div>
 
+                                <div class="col-lg-12 col-lm-12" style="padding-top:10px">
 
+                                    <div class="col-lg-2 col-lm-2">
+                                        <i class="material-icons">local_hospital</i><span>Diagnóstico:</span>
+                                        <input type="text" id="txtdiagnostico" placeholder="Enter para buscar" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                    <div class="col-lg-4 col-lm-4">
+                                        <i class="material-icons">description</i><span>Diagnóstico Descripción:</span>
+                                        <input type="text" id="txtdiagdetalle" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                     <div class="col-lg-3 col-lm-3">
+                                        <i class="material-icons">wc</i><span>Profesional Solicita:</span>
+                                        <input type="text" id="txtprofesionalorden" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                     <div class="col-lg-3 col-lm-3">
+                                        <i class="material-icons">textsms</i><span>Observaciones Generales:</span>
+                                        <input type="text" id="txtobservaorden" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                </div>
+                                
+
+                                <div class="col-lg-12 col-lm-12" style="text-align: center; margin-top: 15px; color: white">
+                                    <button id="btnguardarorden">Guardar</button>
+                                </div>
 
                             </div>
                         </div>
                     </div>
                 </div>
+
+
+                <div class="container">
+                    <!-- Modal para ingresar al detalle -->
+                    <div class="modal fade" id="ModalCUPS" role="dialog">
+                        <div class="modal-dialog">
+                            <!-- Modal content-->
+                            <div class="modal-content" style="padding:0 1em;background-image:none">
+                                <div class="modal-header" style="padding-bottom:0">
+                                    <h4 id="myModaltittleCUPS">Buscar CUPS - Descripción</h4>
+                                    <button class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body" style="padding-top:0">
+
+                                    <div class="col-lg-10 col-lm-10">
+                                        <i class="material-icons">textsms</i><span>CUPS Descripción:</span>
+                                        <input type="text" id="txtdescrbuscarcups" placeholder="Ingresa el detalle del procedimiento" class="form-control" style="height: 90%" />
+                                    </div>
+
+                                    <div class="col-lg-2 col-lm-2" style="text-align: center; margin-top: 2em; color: white">
+                                        <button id="btnbuscarcupsdesc">Buscar</button>
+                                    </div>
+                                    
+
+                                    <div class="col-lg-12 col-lm-12" style="padding-top:1em;padding-bottom:1em">
+                                        <div class="card-content table-responsive" style="overflow-x: auto; max-height: 400px">
+                                            <table class="table table-responsive s12" id="tablaCUPSdesc">
+                                                <thead>
+                                                    <tr>
+                                                        <th>CUPS
+                                                        </th>
+                                                        <th>Descripción
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="bodytablaCUPSdesc"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span>Cerrar</button>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         </div>
 

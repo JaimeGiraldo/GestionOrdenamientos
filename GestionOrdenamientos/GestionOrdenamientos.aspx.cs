@@ -992,6 +992,29 @@ namespace GestionOrdenamientos
         }
 
 
+        //Obtiene todos los datos del cups
+        public string ObtenerCUPSdesc(string sp, string desc)
+        {
+            var dt = objRetornarDatos.llenarDataSet(sp + "'" + desc + "'");
+            if (dt.Tables.Count > 0)
+            {
+
+                return JsonConvert.SerializeObject(dt);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string obtenerCUPSdesc(string sp, string desc)
+        {
+            GestionOrdenamientos objUsuario = new GestionOrdenamientos();
+            return objUsuario.ObtenerCUPSdesc(sp, desc);
+        }
 
 
 
