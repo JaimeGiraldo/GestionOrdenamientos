@@ -235,19 +235,20 @@ var archivos2 = [];
 
             $('#panelgenerarorden').show();
 
+            $('#ddlProveedororden').val('').trigger('change');
+            $('#ddlProveedororden').html('');
+
             var cboProveedor = $('#ddlProveedororden');
            
             cboProveedor.select2({
                 placeholder: "Selecciona el Proveedor"
             });
-
-           
-
             llenarCombos(cboProveedor, "spsuministros_Proveedores_ObtenerNew");
             //llenarCombos(cboProveedoresXCups, "spOrdenamientos_Obtener_ListaCUPS");
 
         } else {
             swal(swalheadertxt, 'Lo sentimos, no hay información del paciente para continuar.', 'warning');
+            LimpiarCampos();
         }
        
     });
@@ -496,6 +497,9 @@ function iniciarSesion(usuario, clave) {
 	                sessionStorage.setItem("UsuarioSistema", usuario);
 	                sessionStorage.setItem("ContraseñaSistema", clave);
 
+	                sessionStorage.setItem("tipoidusuariosis", lista.Table[0].idtipoid);
+	                sessionStorage.setItem("idusuariosis", lista.Table[0].identificacion);
+
 	                if (usuario != 'alexandervs') {	                
 	                    //$("#btnreportegeneralprovee").css('visibility', 'hidden');
 	                    $('#btnreportegeneralprovee').prop('disabled', true);
@@ -503,6 +507,8 @@ function iniciarSesion(usuario, clave) {
 
 	                $('#lblUsuario').html(lista.Table[0].idtipoid + ': ' + lista.Table[0].identificacion);
 	                $('#lblNombreUsuario').html(lista.Table[0].NombreCompleto);
+
+
 
 	                nombreusuario = lista.Table[0].NombreCompleto;
 
@@ -1209,7 +1215,7 @@ function LimpiarCampos() {
     $('#txtprofesionalorden').val('');
     $('#txtobservaorden').val('');
     $('#txtdescrbuscarcups').val('');
-    $('#ddlProveedororden').val('').trigger('change')
+    $('#ddlProveedororden').val('').trigger('change');
 
     $('#tablaCUPSdesc td').remove();
     $("#bodytablaCUPSdesc").empty();
@@ -1291,18 +1297,91 @@ function guardarordenamiento() {
     var diagnostico = $('#txtdiagnostico').val();
     var profesional = $('#txtprofesionalorden').val();
     var observacionesorden = $('#txtobservaorden').val();
+    var idtipoidusuariossis = sessionStorage.getItem("tipoidusuariosis");
+    var idusuariossis = sessionStorage.getItem("idusuariosis");
+
+    //console.log(idtipoid)
+    //console.log(Identificacion)
+    //console.log(at)
+    //console.log(cups)
+    //console.log(desccups)
+    //console.log(proveedor)
+    //console.log(diagnostico)
+    //console.log(profesional)
+    //console.log(observacionesorden)
+    //console.log(idtipoidusuariossis)
+    //console.log(idusuariossis)
+
+    if (idtipoid.length == 0 || Identificacion.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar los datos del paciente para continuar.', 'warning');    
+    } else if (at.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el código del AT registrado en el aplicativo Ciklos de Coomeva para continuar.', 'warning');
+    } else if (cups.length == 0 || desccups.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar el código CUPS y la descripción del servicio para continuar.', 'warning');
+    } else if (proveedor == "0" || proveedor.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar un proveedor de la lista para continuar.', 'warning');
+    } else if (diagnostico.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar un diagnóstico para continuar.', 'warning');
+    } else if (profesional.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar el profesional que ordena para continuar.', 'warning');
+    } else if (observacionesorden.length == 0) {
+        swal(swalheadertxt, 'Lo sentimos, debes ingresar las observaciones para continuar.', 'warning');
+    } else {
+        $.ajax({
+            url: "GestionOrdenamientos.aspx/guardarOrden",
+            data: "{ idtipoid: '" + idtipoid + "', Identificacion: '" + Identificacion + "', at: '"
+                         + at + "', cups: '" + cups + "', desccups: '"
+                         + desccups + "', proveedor: '" + proveedor + "', diagnostico: '" + diagnostico + "', profesional: '"
+                         + profesional + "', observacionesorden: '" + observacionesorden.replace("'", "") + "', idtipoidusuariossis: '"
+                         + idtipoidusuariossis + "', idusuariossis: '" + idusuariossis + "'}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            async: true,
+            type: 'POST'
+        }).done(function (rest) {
+            if (rest.Error != undefined) {
+                alert(rest.Error);
+            } else {
+                var listaDatos = JSON.parse(rest.d);
+                var datos = listaDatos.Table;
+
+                if (listaDatos.Table.length > 0) {
+                    if (datos[0].Respuesta == "OK") {
+
+                        swal(swalheadertxt, "Bien, la orden se guardo correctamente", "success");
+
+                        $('#txtnumat').val('');
+                        $('#txtcups').val('');
+                        $('#txtcupsdetalle').val('');
+                        $('#txtdiagnostico').val('');
+                        $('#txtdiagdetalle').val('');
+                        $('#txtprofesionalorden').val('');
+                        $('#txtobservaorden').val('');
+                        $('#txtdescrbuscarcups').val('');
+                        $('#ddlProveedororden').val('').trigger('change');
+
+                        document.getElementById("panelgenerarorden").style.display = "none";
 
 
-    console.log(idtipoid)
-    console.log(Identificacion)
-    console.log(at)
-    console.log(cups)
-    console.log(desccups)
-    console.log(proveedor)
-    console.log(diagnostico)
-    console.log(profesional)
-    console.log(observacionesorden)
-
+                    } else {
+                        swal({
+                            title: swalheadertxt,
+                            text: "Lo sentimos, no se pudo guardar la orden, favor comunicarse con sistemas.",
+                            type: "error",
+                            confirmButtonText: "ACEPTAR"
+                        });
+                    }
+                } else {
+                    swal({
+                        title: swalheadertxt,
+                        text: "Lo sentimos, no se pudo guardar la orden, favor comunicarse con sistemas.",
+                        type: "error",
+                        confirmButtonText: "ACEPTAR"
+                    });
+                }
+            }
+        });
+    }  
 
 }
 

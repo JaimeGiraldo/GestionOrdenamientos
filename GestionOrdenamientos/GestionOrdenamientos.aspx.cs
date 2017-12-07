@@ -1018,6 +1018,47 @@ namespace GestionOrdenamientos
 
 
 
+        //Guardar ordenamiento nuevo
+        public string GuardarOrden(string idtipoid, string Identificacion, string at, string cups, string desccups, string proveedor, string diagnostico, string profesional, string observacionesorden, string idtipoidusuariossis, string idusuariossis)
+        {
+            try
+            {
+
+                var dtOrdenes = objRetornarDatos.llenarDataSet("spGestionOrdenamientos_GuardarOrden" + "'" + idtipoid + "','" + Identificacion + "','" +
+                    at + "','" + cups + "','" + desccups + "','" + proveedor + "','" + diagnostico + "','" + profesional + "','" + observacionesorden + "','" + idtipoidusuariossis + "','" + idusuariossis + "'");
+                if (dtOrdenes.Tables.Count > 0)
+                {
+                    return JsonConvert.SerializeObject(dtOrdenes);
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string guardarOrden(string idtipoid, string Identificacion, string at, string cups, string desccups, string proveedor, string diagnostico, string profesional, string observacionesorden, string idtipoidusuariossis, string idusuariossis)
+        {
+            try
+            {
+                GestionOrdenamientos objOrdenesProveedor = new GestionOrdenamientos();
+                return objOrdenesProveedor.GuardarOrden(idtipoid, Identificacion, at, cups, desccups, proveedor, diagnostico, profesional, observacionesorden, idtipoidusuariossis, idusuariossis);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
 
 
 
