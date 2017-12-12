@@ -1023,15 +1023,19 @@
                 </div>
 
                 <div class="col-md-2">
-                    <label>Filtrar por:</label>
+                    <label>Filtrar Especialidad:</label>
                     <select id="ddlespecialidadproveedor1" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>
 
+                 <div class="col-md-2">
+                    <label>Filtrar Estado:</label>
+                    <select id="ddlestadodelaorden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
+                </div>
 
-                 <div class="col-md-2" >
+                <%-- <div class="col-md-2" >
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede" class="form-control search-key" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
-                </div>
+                </div>--%>
 
                  <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>

@@ -646,6 +646,12 @@ function ObtenerDatosIniciales(Menu, lista) {
             });
             llenarCombos(Especialidad, "spGestionOrdenamientos_ObtenerEspecialidades");
 
+            var Estado = $('#ddlestadodelaorden');
+            Estado.select2({
+                placeholder: "Selecciona"
+            });
+            llenarCombos(Estado, "spGestionOrdenamientos_ObtenerEstadoOrden");
+
              $("#btnConsultarOrdenesProveedor").on("click", function (e) {                                
                 consultarOrdenesProveedor(lista.Table[0].ProveedorAsignado, lista.Table[0].idtipoid, lista.Table[0].identificacion);                                
             });
@@ -832,13 +838,13 @@ function consultarOrdenesFecha(tipoidoptimizador, idoptimizador) {
 function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
    
     var usuariosis = sessionStorage.getItem("UsuarioSistema");
-    //var estado = $('#ddlEstadoOrden').val();
-    var estado = "Aprobada";
+    var estado = $('#ddlestadodelaorden').val();
+    //var estado = "Aprobada";
     var fechainicial = $('#ProveedorFechaInicial').val();
     var fechafinal = $('#ProveedorFechaFinal').val();
     var especialidad = $('#ddlespecialidadproveedor1').val();
 
-    //console.log(especialidad)
+    //console.log(estado)
 
     //if (estado == "0") {
     //    swal(swalheadertxt, 'Lo sentimos, debes seleccionar un estado de la lista.', 'warning');       
@@ -848,6 +854,8 @@ function consultarOrdenesProveedor(proveedor,idtipoid,identificacion) {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha inicial.', 'warning');       
     } else if (fechafinal == "") {
         swal(swalheadertxt, 'Lo sentimos, debes seleccionar una fecha final.', 'warning');
+    } else if (estado == "0") {
+        swal(swalheadertxt, 'Lo sentimos, debes seleccionar estado para continuar.', 'warning');
     } else {
         $.ajax({
             url: "GestionOrdenamientos.aspx/consultarOrdenesxProveedor",
