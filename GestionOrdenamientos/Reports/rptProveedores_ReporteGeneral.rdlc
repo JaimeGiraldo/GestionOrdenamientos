@@ -9,7 +9,7 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>7.05083cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.20896cm</Width>
@@ -165,7 +165,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Fecha  Asignacion</Value>
+                              <Value>Fecha  Asignacion (Optimizacion)</Value>
                               <Style>
                                 <FontFamily>Calibri Light</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -2675,7 +2675,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Height>1.2cm</Height>
-        <Width>106.81397cm</Width>
+        <Width>111.3648cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2686,7 +2686,7 @@
     <Height>0.47244in</Height>
     <Style />
   </Body>
-  <Width>42.05274in</Width>
+  <Width>43.84441in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>

@@ -981,8 +981,6 @@ namespace GestionOrdenamientos
                 return string.Empty;
             }
         }
-
-
         [System.Web.Services.WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string obtenerDatosPaciente(string sp, string idtipoid, string identificacion)

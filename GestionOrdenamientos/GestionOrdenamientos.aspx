@@ -1032,20 +1032,18 @@
                     <select id="ddlestadodelaorden" class="js-example-basic-single js-states form-control" style="width: 100%"></select>
                 </div>
 
-                <%-- <div class="col-md-2" >
+                 <div class="col-md-2" >
                     <label>Filtrar por:</label>
                     <input type="text" id="txtfiltrosede" class="form-control search-key" placeholder="Descripción" onkeyup="FiltrarTablaProveedor1('txtfiltrosede','tablaProveedores','4')" />
-                </div>--%>
+                </div>
 
                  <div class="col-md-2" id="div_filtrosede1">
                     <label>Filtrar por:</label>
                     <input id="txtfiltrosedegenero" class="form-control search-key" placeholder="Centro Generó" onkeyup="FiltrarTablaProveedor1('txtfiltrosedegenero','tablaProveedores','2')"/>
                 </div>
-                                        
+                                      
 
-                <div class="col-md-2" style="text-align: end; padding-top: 25px">
-                    <button id="btnConsultarOrdenesProveedor">Consultar</button>
-                </div>
+              
 
             </header>
             <div class="container" style="width:90%">
@@ -1053,8 +1051,12 @@
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
                             <div class="card-header" data-background-color="bluee">
+                                <div class="col-md-12" style="text-align: end; margin-bottom: -45px">
+                                    <button id="btnConsultarOrdenesProveedor">Consultar</button>
+                                </div>
                                 <h4 class="title">Listado de Ordenes</h4>
                                 <p class="category">Ordenes pendientes por gestión del proveedor - contacto con el usuario.</p>
+
                             </div>
 
                             <div class="card-content table-responsive">
