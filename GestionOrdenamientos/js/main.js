@@ -4303,7 +4303,7 @@ function consultarOrdenXPaciente() {
         }, {
             type: type[color],
             //type: 'danger',
-            timer: 2000,
+            timer: 1000,
             placement: {
                 from: from,
                 align: align

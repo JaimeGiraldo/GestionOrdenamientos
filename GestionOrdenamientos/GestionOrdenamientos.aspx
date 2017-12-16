@@ -1949,7 +1949,7 @@
                 <h1 class="bp-header__title">Administrar CUPS</h1>
                 <p>Sistema para administración y control de los CUPS que usa el programa en general y su parametrización.</p>
             </header>
-            <div class="container" style="width:90%">
+            <div>
                 <div class="card" style="margin: 0">
                     <div class="col-lg-12 col-md-12" data-background-color="bluee" style="padding: 15px; border-radius: 3px">
 
